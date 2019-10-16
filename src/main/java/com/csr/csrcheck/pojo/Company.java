@@ -8,7 +8,7 @@ import java.util.Objects;
  * @date: Created in 2019/10/14 15:33
  * @version:
  * @modified By:
- */
+     */
 public class Company {
 
     private int id;                     //主键id
