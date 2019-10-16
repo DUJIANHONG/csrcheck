@@ -1,0 +1,26 @@
+package com.csr.csrcheck.service.impl;
+
+import com.csr.csrcheck.mapper.CompanyMapper;
+import com.csr.csrcheck.pojo.Company;
+import com.csr.csrcheck.service.CompanyService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+/**
+ * @description:
+ * @author: Administrator
+ * @date: Created in 2019/10/15 11:24
+ * @version:
+ * @modified By:
+ */
+@Service
+public class CompanyServiceImpl implements CompanyService {
+    @Autowired
+    private CompanyMapper companyMapper;
+    @Override
+    public List<Company> getCommpanylist() {
+        return companyMapper.getCommpanylist();
+    }
+}
