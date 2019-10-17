@@ -14,7 +14,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                              HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session=request.getSession();
 		if(session.getAttribute("uid")==null){
-			response.sendRedirect("/web/login.html");
+			response.sendRedirect("/login.html");
 			return false;
 		}
 		return true;
