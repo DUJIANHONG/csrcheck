@@ -11,20 +11,26 @@ import java.util.Objects;
  * @modified By:
  */
 public class Product {
-    private int product_number;         //主键，产品编号
-    private String product_name;        //产品名称
-    private String product_type;        //产品类型
-    private int domestic_import;        //国产/进口（1：国产，2：进口）
-    private String production_address;  //生产地址
-    private Date Date_manufacture;      //生产日期
-    private Date product_expirationtime;//产品到期时间
+    //产品表
 
-    public int getProduct_number() {
-        return product_number;
+    private int product_id;             //主键，产品编号
+    private String product_name;        //产品名称
+    private int product_type_id;        //产品类型
+    private String product_territory;   //产品领域
+    private int study_appear;           //在研/上市（1：在研，2：上市）
+    private String registered;          //注册分类（化1，化2，化3，化4，化5，老化6）
+    private int stage_no;               //阶段编号
+    private String patent_no;           //专利号
+    private int patent_type_id;         //专利类型id
+    private int domestic_import;        //国产/进口（1国产；2进口）
+    private String yieldly;             //产品生产地
+
+    public int getProduct_id() {
+        return product_id;
     }
 
-    public void setProduct_number(int product_number) {
-        this.product_number = product_number;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 
     public String getProduct_name() {
@@ -35,12 +41,60 @@ public class Product {
         this.product_name = product_name;
     }
 
-    public String getProduct_type() {
-        return product_type;
+    public int getProduct_type_id() {
+        return product_type_id;
     }
 
-    public void setProduct_type(String product_type) {
-        this.product_type = product_type;
+    public void setProduct_type_id(int product_type_id) {
+        this.product_type_id = product_type_id;
+    }
+
+    public String getProduct_territory() {
+        return product_territory;
+    }
+
+    public void setProduct_territory(String product_territory) {
+        this.product_territory = product_territory;
+    }
+
+    public int getStudy_appear() {
+        return study_appear;
+    }
+
+    public void setStudy_appear(int study_appear) {
+        this.study_appear = study_appear;
+    }
+
+    public String getRegistered() {
+        return registered;
+    }
+
+    public void setRegistered(String registered) {
+        this.registered = registered;
+    }
+
+    public int getStage_no() {
+        return stage_no;
+    }
+
+    public void setStage_no(int stage_no) {
+        this.stage_no = stage_no;
+    }
+
+    public String getPatent_no() {
+        return patent_no;
+    }
+
+    public void setPatent_no(String patent_no) {
+        this.patent_no = patent_no;
+    }
+
+    public int getPatent_type_id() {
+        return patent_type_id;
+    }
+
+    public void setPatent_type_id(int patent_type_id) {
+        this.patent_type_id = patent_type_id;
     }
 
     public int getDomestic_import() {
@@ -51,53 +105,11 @@ public class Product {
         this.domestic_import = domestic_import;
     }
 
-    public String getProduction_address() {
-        return production_address;
+    public String getYieldly() {
+        return yieldly;
     }
 
-    public void setProduction_address(String production_address) {
-        this.production_address = production_address;
-    }
-
-    public Date getDate_manufacture() {
-        return Date_manufacture;
-    }
-
-    public void setDate_manufacture(Date date_manufacture) {
-        Date_manufacture = date_manufacture;
-    }
-
-    public Date getProduct_expirationtime() {
-        return product_expirationtime;
-    }
-
-    public void setProduct_expirationtime(Date product_expirationtime) {
-        this.product_expirationtime = product_expirationtime;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Product)) return false;
-        Product product = (Product) o;
-        return product_number == product.product_number;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(product_number);
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "product_number=" + product_number +
-                ", product_name='" + product_name + '\'' +
-                ", product_type='" + product_type + '\'' +
-                ", domestic_import=" + domestic_import +
-                ", production_address='" + production_address + '\'' +
-                ", Date_manufacture=" + Date_manufacture +
-                ", product_expirationtime=" + product_expirationtime +
-                '}';
+    public void setYieldly(String yieldly) {
+        this.yieldly = yieldly;
     }
 }

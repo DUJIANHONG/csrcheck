@@ -17,12 +17,14 @@ public class Company {
     private String type_ownership;      //公司所属类型
     private String main_business;       //主营业务
     private int product_id;             //在售产品编号
+    private int certificate_id;         //证书id
     private String strategic_focus;     //战略重点
     private String ten_shareholders;    //前十大股东
-    private String controller_company;  //公司实际控制人
-    private String introduction_controller; //控制人简介
-    private int number_patents;        //专利数量
-    private  int company_ranking;      //公司排名
+    private String introduction_controller_id;  //公司实际控制人id
+    private int number_patents;         //专利数量
+    private int company_ranking;        //公司排名
+    private String business_license;    //营业执照图片路径
+    private String exequatur;           //许可证图片路径
 
     public int getId() {
         return id;
@@ -72,6 +74,14 @@ public class Company {
         this.product_id = product_id;
     }
 
+    public int getCertificate_id() {
+        return certificate_id;
+    }
+
+    public void setCertificate_id(int certificate_id) {
+        this.certificate_id = certificate_id;
+    }
+
     public String getStrategic_focus() {
         return strategic_focus;
     }
@@ -88,20 +98,12 @@ public class Company {
         this.ten_shareholders = ten_shareholders;
     }
 
-    public String getController_company() {
-        return controller_company;
+    public String getIntroduction_controller_id() {
+        return introduction_controller_id;
     }
 
-    public void setController_company(String controller_company) {
-        this.controller_company = controller_company;
-    }
-
-    public String getIntroduction_controller() {
-        return introduction_controller;
-    }
-
-    public void setIntroduction_controller(String introduction_controller) {
-        this.introduction_controller = introduction_controller;
+    public void setIntroduction_controller_id(String introduction_controller_id) {
+        this.introduction_controller_id = introduction_controller_id;
     }
 
     public int getNumber_patents() {
@@ -120,34 +122,23 @@ public class Company {
         this.company_ranking = company_ranking;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Company)) return false;
-        Company company = (Company) o;
-        return id == company.id;
+    public String getBusiness_license() {
+        return business_license;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public void setBusiness_license(String business_license) {
+        this.business_license = business_license;
     }
 
-    @Override
-    public String toString() {
-        return "Company{" +
-                "id=" + id +
-                ", company_name='" + company_name + '\'' +
-                ", company_address='" + company_address + '\'' +
-                ", type_ownership='" + type_ownership + '\'' +
-                ", main_business='" + main_business + '\'' +
-                ", product_id=" + product_id +
-                ", strategic_focus='" + strategic_focus + '\'' +
-                ", ten_shareholders='" + ten_shareholders + '\'' +
-                ", controller_company='" + controller_company + '\'' +
-                ", introduction_controller='" + introduction_controller + '\'' +
-                ", number_patents=" + number_patents +
-                ", company_ranking=" + company_ranking +
-                '}';
+    public String getExequatur() {
+        return exequatur;
     }
+
+    public void setExequatur(String exequatur) {
+        this.exequatur = exequatur;
+    }
+
+
+
+
 }

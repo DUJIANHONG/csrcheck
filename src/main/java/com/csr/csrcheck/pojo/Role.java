@@ -10,6 +10,7 @@ import java.util.Objects;
  * @modified By:
  */
 public class Role {
+    //角色表
     private int role_id;         //角色id
     private String role_name;    // 角色名称
 
