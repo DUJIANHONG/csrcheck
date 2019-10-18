@@ -37,7 +37,6 @@ public class CompanyConntroller extends BaseController{
 /*    @ResponseBody*/
     @GetMapping("companylist")
    public JsonResult<List<Company>> Companylist(HttpServletResponse response) throws IOException, ServletException {
-
         List<Company> list = companyService.getCommpanylist();
         return new JsonResult<>(SUCCESS,list);
 
