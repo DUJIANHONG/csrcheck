@@ -4,9 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.csr.csrcheck.mapper.CompanyMapper">
 <sql id="commid">
-    `id`,`company_name`,`company_address`,`type_ownership`,`main_business`,
-    `product_id`,`strategic_focus`,`ten_shareholders`,`introduction_controller_id`,
-    `number_patents`,`company_ranking`
+`id`,`company_name`,`company_address`,`type_ownership`,`main_business`,`product_id`,
+`strategic_focus`,`certificate_id`,`ten_shareholders`,`introduction_controller_id`,
+`number_patents`,`company_ranking`,`business_license`,`exequatur`
 </sql>
     
     <select id="getCommpanylist" resultType="com.csr.csrcheck.pojo.Company">

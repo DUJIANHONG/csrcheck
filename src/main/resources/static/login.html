@@ -6,13 +6,13 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>BootDo</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css//fonts/font-awesome.css?v=4.4.0" rel="stylesheet">
-    <link href="../css/animate.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/login.css" rel="stylesheet">
+    <meta name="keywords" content="JAVA快速开发框架">
+    <meta name="description" content="JAVA快速开发框架">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
@@ -33,7 +33,7 @@
                 </div>
                 <div class="m-b"></div>
                 <h3>
-                    欢迎使用 <strong>CSR企查后台管理系统</strong>
+                    欢迎使用 <strong>JAVA后台管理系统</strong>
                 </h3>
                 <ul class="m-b">
                     <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i>
@@ -53,28 +53,29 @@
         <div class="col-sm-5">
             <form id="signupForm">
                 <h3 class="text-center">用户登录</h3>
-                <p class="m-t-md text-center">csr药企查</p>
-                <input type="text" name="username" class="form-control uname" value=""/>
+                <p class="m-t-md text-center">JAVA快速开发框架</p>
+                <input type="text" name="username" class="form-control uname"
+                       th:value="${username}"/>
                 <input type="password" name="password"
-                       class="form-control pword m-b" value=""/>
+                       class="form-control pword m-b" th:value="${password}"/>
                 <a id="login" class="btn btn-login btn-block">登录</a>
             </form>
         </div>
     </div>
 </div>
-
+<script th:inline="javascript"> var ctx = [[@{/}]] ; </script>
 <!-- 全局js -->
-<script src="../js/jquery.min.js?v=2.1.4"></script>
-<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/jquery.min.js?v=2.1.4" th:src="@{/js/jquery.min.js?v=2.1.4}"></script>
+<script src="js/bootstrap.min.js?v=3.3.6" th:src="@{/js/bootstrap.min.js?v=3.3.6}"></script>
 
 <!-- 自定义js -->
-<script src="..//js/content.js?v=1.0.0"></script>
+<script src="js/content.js?v=1.0.0" th:src="@{/js/content.js?v=1.0.0}"></script>
 
 <!-- jQuery Validation plugin javascript-->
-<script src="../js/ajax-util.js"></script>
-<script src="../js/jquery.validate.min.js" ></script>
-<script src="../js/messages_zh.min.js"></script>
-<script src="../js/plugins/layer/layer.min.js"></script>
+<script src="js/ajax-util.js"></script>
+<script src="js/jquery.validate.min.js" th:src="@{/js/jquery.validate.min.js}"></script>
+<script src="js/messages_zh.min.js" th:src="@{/js/messages_zh.min.js}"></script>
+<script src="js/layer.min.js" th:src="@{/js/layer.min.js}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#login").on('click',function(){$("#signupForm").submit();});
@@ -91,7 +92,7 @@
     function login() {
         $.ajax({
             type: "POST",
-            url: ctx+"static.include.html index_v1.html login.html main.html.login",
+            url: ctx+"login",
             data: $('#signupForm').serialize(),
             success: function (r) {
                  if (r.code == 0) {
