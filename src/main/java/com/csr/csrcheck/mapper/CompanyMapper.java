@@ -1,6 +1,7 @@
 package com.csr.csrcheck.mapper;
 
 import com.csr.csrcheck.pojo.Company;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,5 +20,13 @@ public interface CompanyMapper {
      * @return
      */
     public List<Company> getCommpanylist();
+
+
+    /**
+     * 根据公司名称模糊查询
+     * @param company_name
+     * @return
+     */
+    public List<Company> getCommpanylistbyname(@Param(value = "company_name") String company_name);
 
 }

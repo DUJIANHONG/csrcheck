@@ -1,5 +1,7 @@
 package com.csr.csrcheck.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Objects;
 
 /**
@@ -16,15 +18,50 @@ public class Company {
     private String company_address;     //公司地址
     private String type_ownership;      //公司所属类型
     private String main_business;       //主营业务
+    @JsonIgnore
     private int product_id;             //在售产品编号
+    @JsonIgnore
     private int certificate_id;         //证书id
     private String strategic_focus;     //战略重点
     private String ten_shareholders;    //前十大股东
+    @JsonIgnore
     private String introduction_controller_id;  //公司实际控制人id
     private int number_patents;         //专利数量
     private int company_ranking;        //公司排名
     private String business_license;    //营业执照图片路径
     private String exequatur;           //许可证图片路径
+
+
+    /*
+     *自定义字段
+     */
+    private String product_name; //产品名称
+    private String certificate_no;//营业执照编号
+    private String user_name;//用户名
+
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
+    }
+
+    public String getCertificate_no() {
+        return certificate_no;
+    }
+
+    public void setCertificate_no(String certificate_no) {
+        this.certificate_no = certificate_no;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
 
     public int getId() {
         return id;

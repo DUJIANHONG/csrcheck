@@ -1,6 +1,7 @@
 package com.csr.csrcheck.service;
 
 import com.csr.csrcheck.pojo.Company;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,5 +19,11 @@ public interface CompanyService {
      * @return
      */
     public List<Company> getCommpanylist();
+
+
+    public List<Company> getCommpanylistbyname(@Param(value = "company_name") String company_name);
+
+
+
 
 }

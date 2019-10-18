@@ -7,6 +7,7 @@ import com.csr.csrcheck.service.ex.CompanyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ import java.util.List;
  */
 @Service
 public class CompanyServiceImpl implements CompanyService {
-    @Autowired
+    @Resource
     private CompanyMapper companyMapper;
     @Override
     public List<Company> getCommpanylist() {
@@ -26,6 +27,15 @@ public class CompanyServiceImpl implements CompanyService {
      if(list==null){
        throw new CompanyException("数据不存在");
      }
+        return list;
+    }
+
+    @Override
+    public List<Company> getCommpanylistbyname(String company_name) {
+        List<Company> list=companyMapper.getCommpanylistbyname(company_name);
+        if (list==null){
+            throw new CompanyException("数据不存在");
+        }
         return list;
     }
 }

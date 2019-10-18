@@ -10,8 +10,25 @@
 </sql>
     
     <select id="getCommpanylist" resultType="com.csr.csrcheck.pojo.Company">
-     select
-     <include refid="commid"></include>
-     from company
+        SELECT c.`id`,c.`company_name`,c.`company_address`,c.`type_ownership`,c.main_business,
+        (SELECT `product_name` FROM product WHERE product_id=c.`product_id`) AS product_name,
+        c.`strategic_focus`,(SELECT certificate_no FROM certificate WHERE id=c.`certificate_id` )AS certificate_no,
+        c.`ten_shareholders`,
+        c.`number_patents`,c.`company_ranking`,c.`business_license`,c.`exequatur`
+        FROM company c
+    </select>
+
+    <select id="getCommpanylistbyname" resultType="com.csr.csrcheck.pojo.Company">
+        SELECT c.`id`,c.`company_name`,c.`company_address`,c.`type_ownership`,c.main_business,
+        (SELECT `product_name` FROM product WHERE product_id=c.`product_id`) AS product_name,
+        c.`strategic_focus`,(SELECT certificate_no FROM certificate WHERE id=c.`certificate_id` )AS certificate_no,
+        c.`ten_shareholders`,(SELECT `user_name` FROM USER WHERE user_id=c.`introduction_controller_id`)AS user_name,
+        c.`number_patents`,c.`company_ranking`,c.`business_license`,c.`exequatur`
+        FROM company c
+        <trim prefix="where" prefixOverrides="and | or">
+        <if test="company_name != null and company_name != ''">
+            and company_name like CONCAT ('%',#{company_name},'%')
+        </if>
+        </trim>
     </select>
 </mapper>

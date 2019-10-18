@@ -1,15 +1,13 @@
 package com.csr.csrcheck.controller;
 
+import com.csr.csrcheck.controller.ex.CompanyException;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.service.CompanyService;
 import com.csr.csrcheck.util.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -34,12 +32,38 @@ import java.util.List;
 public class CompanyConntroller extends BaseController{
     @Resource
     private CompanyService companyService;
+
+    /**
+     * 查询公司信息
+     * @param response
+     * @return
+     * @throws IOException
+     * @throws ServletException
+     */
 /*    @ResponseBody*/
     @GetMapping("companylist")
    public JsonResult<List<Company>> Companylist(HttpServletResponse response) throws IOException, ServletException {
         List<Company> list = companyService.getCommpanylist();
-        return new JsonResult<>(SUCCESS,list);
+        if (list==null){
+           throw new CompanyException("没有数据");
+        }
 
+        return new JsonResult<>(SUCCESS,list);
     }
 
+    /**
+     * 根据公司名查询公司信息
+     * @param company_name
+     * @return
+     */
+    @GetMapping("companylist2")
+    public JsonResult<List<Company>> CompanyList2(@RequestParam(value = "name") String company_name){
+        List<Company> list2=companyService.getCommpanylistbyname(company_name);
+        if (list2==null) {
+            throw new CompanyException("没有数据哦");
+        }else if(company_name==null&company_name.equals("")){
+            throw new CompanyException("没有这个产品名称");
+        }
+        return new JsonResult<>(SUCCESS,list2);
+   }
 }
