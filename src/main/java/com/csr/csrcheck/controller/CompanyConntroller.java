@@ -31,9 +31,7 @@ import java.util.List;
 //@Controller
 @RestController
 @Slf4j
-public class CompanyConntroller{
-
-    public static final int SUCCESS=2000;
+public class CompanyConntroller extends BaseController{
     @Resource
     private CompanyService companyService;
 /*    @ResponseBody*/

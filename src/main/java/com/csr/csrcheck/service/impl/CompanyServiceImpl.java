@@ -3,6 +3,7 @@ package com.csr.csrcheck.service.impl;
 import com.csr.csrcheck.mapper.CompanyMapper;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.service.CompanyService;
+import com.csr.csrcheck.service.ex.CompanyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,10 @@ public class CompanyServiceImpl implements CompanyService {
     private CompanyMapper companyMapper;
     @Override
     public List<Company> getCommpanylist() {
-        return companyMapper.getCommpanylist();
+     List<Company> list=companyMapper.getCommpanylist();
+     if(list==null){
+       throw new CompanyException("数据不存在");
+     }
+        return list;
     }
 }

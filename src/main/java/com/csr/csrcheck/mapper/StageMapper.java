@@ -7,5 +7,5 @@ package com.csr.csrcheck.mapper;
  * @version:
  * @modified By:
  */
-public class StageMapper {
+public interface StageMapper {
 }
