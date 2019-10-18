@@ -7,13 +7,31 @@
 <body>
 <div id="address-list">
 </div>
+<div><input type="text" id="text"></div>
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript">
 $(function () {
+    $("#text").blur(function () {
+        $.ajax({
+            "type":"get",
+            "url":"company/companylist2"
+            "data":"name",
+            "dataType":"json",
+            success:function (json) {
+                var attr=json.data.length;
+                var list=json.data;
+                console.log(attr);
+                for (var i = 0; i <list.length ; i++) {
+                    console.log(list[i].company_name);
+                }
+            }
+        })
+    })
+
     $.ajax({
-        "type":"get",
-        "url":"company/companylist",
-        "dataType":"json",
+            "type":"get",
+            "url":"company/companylist",
+            "dataType":"json",
         success:function (json) {
             var attr=json.data.length;
             var list=json.data;
