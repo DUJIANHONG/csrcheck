@@ -11,7 +11,7 @@ import java.util.Objects;
  * @modified By:
  */
 public class User {
-    private int userid;          //用户id
+    private int user_id;          //用户id
     private String user_name;    //用户名
     private String password;     //密码
     private int user_roleid;     //用户角色id
@@ -22,12 +22,12 @@ public class User {
     private Date create_time;    //创建时间
     private String login_status; //最近登录状态
 
-    public int getUserid() {
-        return userid;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getUser_name() {
@@ -100,5 +100,43 @@ public class User {
 
     public void setLogin_status(String login_status) {
         this.login_status = login_status;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id=" + user_id +
+                ", user_name='" + user_name + '\'' +
+                ", password='" + password + '\'' +
+                ", user_roleid=" + user_roleid +
+                ", user_sex=" + user_sex +
+                ", user_age=" + user_age +
+                ", user_address='" + user_address + '\'' +
+                ", create_people='" + create_people + '\'' +
+                ", create_time=" + create_time +
+                ", login_status='" + login_status + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return user_id == user.user_id &&
+                user_roleid == user.user_roleid &&
+                user_sex == user.user_sex &&
+                user_age == user.user_age &&
+                Objects.equals(user_name, user.user_name) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(user_address, user.user_address) &&
+                Objects.equals(create_people, user.create_people) &&
+                Objects.equals(create_time, user.create_time) &&
+                Objects.equals(login_status, user.login_status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(user_id, user_name, password, user_roleid, user_sex, user_age, user_address, create_people, create_time, login_status);
     }
 }
