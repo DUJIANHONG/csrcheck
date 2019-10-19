@@ -17,7 +17,8 @@ public class UserController extends BaseController {
     @Resource
     private IUserService userService;
     @GetMapping("login")
-    public JsonResult<User>login(@RequestParam(value = "username") String user_name, @RequestParam(value = "password") String password, HttpSession session){
+    public JsonResult<User>login(@RequestParam(value = "username") String user_name,
+                                 @RequestParam(value = "password") String password, HttpSession session){
         User data=userService.login(user_name,password);
         session.setAttribute("user_id",data.getUser_id());
         session.setAttribute("user_name",data.getUser_name());

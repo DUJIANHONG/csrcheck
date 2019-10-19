@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.springframework.org/schema/jdbc">
 
 <head>
     <meta charset="utf-8">
@@ -33,9 +33,9 @@
                 </div>
                 <div class="m-b"></div>
                 <h3>
-                    欢迎使用 <strong>JAVA后台管理系统</strong>
+                    欢迎使用 <strong>CSR药企查后台管理系统</strong>
                 </h3>
-                <ul class="m-b">
+     <!--           <ul class="m-b">
                     <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i>
                         springBoot
                     </li>
@@ -47,7 +47,7 @@
                     <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i>
                         bootstrap
                     </li>
-                </ul>
+                </ul>-->
             </div>
         </div>
         <div class="col-sm-5">
@@ -63,7 +63,7 @@
         </div>
     </div>
 </div>
-<script th:inline="javascript"> var ctx = [[@{/}]] ; </script>
+<!--<script th:inline="javascript"> var ctx = [[@{/}]] ; </script>-->
 <!-- 全局js -->
 <script src="js/jquery.min.js?v=2.1.4" th:src="@{/js/jquery.min.js?v=2.1.4}"></script>
 <script src="js/bootstrap.min.js?v=3.3.6" th:src="@{/js/bootstrap.min.js?v=3.3.6}"></script>
@@ -91,18 +91,17 @@
 
     function login() {
         $.ajax({
-            type: "POST",
-            url: ctx+"login",
+            type: "get",
+            url: "users/login",
             data: $('#signupForm').serialize(),
-            success: function (r) {
-                 if (r.code == 0) {
-                    var index = layer.load(1, {
-                        shade: [0.1,'#fff'] //0.1透明度的白色背景
-                    });
-                    parent.location.href = '/index';
-                } else {
-                    layer.msg(r.msg);
-                }
+            dataType:"json",
+            success: function (json) {
+                    if(json.state=2000){
+                        alert("登录成功");
+                        window.location.href="ce.html";
+                    }else{
+                        alert("登录失败"+json.messages)
+                    }
             },
         });
     }
