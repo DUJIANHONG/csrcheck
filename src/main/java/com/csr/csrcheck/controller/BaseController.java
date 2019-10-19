@@ -1,6 +1,7 @@
 package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.controller.ex.*;
+import com.csr.csrcheck.controller.ex.CompanyException;
 import com.csr.csrcheck.service.ex.*;
 import com.csr.csrcheck.util.JsonResult;
 import org.apache.tomcat.util.http.fileupload.FileUploadException;
@@ -78,6 +79,9 @@ public class BaseController {
         } else if (e instanceof FileUploadIOException) {
             // 6004-上传文件时出现读写错误
             jr.setState(6004);
+        }else if(e instanceof CompanyException){
+            //查询异常
+            jr.setState(7001);
         }
 
         return jr;

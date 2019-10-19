@@ -11,11 +11,13 @@
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript">
 $(function () {
+
     $("#text").blur(function () {
+        var Name=$("#text").val();
         $.ajax({
             "type":"get",
-            "url":"company/companylist2"
-            "data":"name",
+            "url":"company/companylist2",
+            "data":{name:Name},
             "dataType":"json",
             success:function (json) {
                 var attr=json.data.length;
@@ -27,6 +29,10 @@ $(function () {
             }
         })
     })
+
+
+
+
 
     $.ajax({
             "type":"get",
@@ -80,7 +86,6 @@ $(function () {
             }
         });
 })
-
 </script>
 </body>
 </html>
