@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="col-sm-5">
-            <form id="signupForm">
+            <form id="signupForm" action="index_v1.html">
                 <h3 class="text-center">用户登录</h3>
                 <p class="m-t-md text-center">JAVA快速开发框架</p>
                 <input type="text" name="username" class="form-control uname"
@@ -78,7 +78,9 @@
 <script src="js/layer.min.js" th:src="@{/js/layer.min.js}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#login").on('click',function(){$("#signupForm").submit();});
+        $("#login").on('click',function(){
+            $("#signupForm").submit();
+        });
         validateRule();
         $("body").keydown(keyDownLogon);
     });
@@ -98,7 +100,7 @@
             success: function (json) {
                     if(json.state=2000){
                         alert("登录成功");
-                        window.location.href="ce.html";
+                        window.location.href="index_v1.html";
                     }else{
                         alert("登录失败"+json.messages)
                     }
