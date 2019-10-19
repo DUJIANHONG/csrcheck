@@ -7,8 +7,8 @@ package com.csr.csrcheck.pojo;
 public class Patent_type {
     //专利类型表
 
-    private int id;         //主键
-    private String patent_t_name;  //类型名称
+    private int id;//主键
+    private String patent_t_name;  //专利类型名称
 
     public int getId() {
         return id;
