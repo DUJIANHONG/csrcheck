@@ -38,6 +38,15 @@ public class Company {
     private String product_name; //产品名称
     private String certificate_no;//营业执照编号
     private String user_name;//用户名
+    private String product_t_name;//产品类型名称
+
+    public String getProduct_t_name() {
+        return product_t_name;
+    }
+
+    public void setProduct_t_name(String product_t_name) {
+        this.product_t_name = product_t_name;
+    }
 
     public String getProduct_name() {
         return product_name;

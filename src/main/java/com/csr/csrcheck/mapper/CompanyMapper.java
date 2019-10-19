@@ -19,7 +19,7 @@ public interface CompanyMapper {
      * @param
      * @return
      */
-    public List<Company> getCommpanylist();
+    public List<Company> getCommpanylist( );
 
 
     /**

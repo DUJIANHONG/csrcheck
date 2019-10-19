@@ -31,8 +31,9 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public List<Company> getCommpanylistbyname(String company_name) {
+    public List<Company> getCommpanylistbyname(String company_name){
         List<Company> list=companyMapper.getCommpanylistbyname(company_name);
+        Company company=new Company();
         if (list==null){
             throw new CompanyException("数据不存在");
         }

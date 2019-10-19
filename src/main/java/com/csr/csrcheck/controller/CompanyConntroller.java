@@ -59,10 +59,9 @@ public class CompanyConntroller extends BaseController{
     @GetMapping("companylist2")
     public JsonResult<List<Company>> CompanyList2(@RequestParam(value = "name") String company_name){
         List<Company> list2=companyService.getCommpanylistbyname(company_name);
+        Company company=new Company();
         if (list2==null) {
             throw new CompanyException("没有数据哦");
-        }else if(company_name==null&company_name.equals("")){
-            throw new CompanyException("没有这个产品名称");
         }
         return new JsonResult<>(SUCCESS,list2);
    }
