@@ -83,7 +83,10 @@ public class BaseController {
             jr.setState(6005);
         }else if (e instanceof ProductNotFoundException) {
             // 6005-产品找不到异常
-            jr.setState(6005);
+            jr.setState(6006);
+        }else if (e instanceof Flight_checkException) {
+            // 6005-飞行查询异常
+            jr.setState(6007);
         }
         return jr;
     }

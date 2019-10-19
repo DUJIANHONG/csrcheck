@@ -1,18 +1,10 @@
-package com.csr.csrcheck.mapper;
-
+package com.csr.csrcheck.service;
 
 import com.csr.csrcheck.pojo.Flight_check;
 
 import java.util.List;
 
-/**
- * @description:
- * @author: dujianhong
- * @date: Created in 2019/10/17 20:12
- * @version:
- * @modified By:
- */
-public interface Flight_checkMapper {
+public interface IFlight_checkService {
     /**
      * 查询飞行检查信息
      * @param
