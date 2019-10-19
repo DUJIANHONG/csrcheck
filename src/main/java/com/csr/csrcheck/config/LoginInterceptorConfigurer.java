@@ -28,6 +28,7 @@ public class LoginInterceptorConfigurer implements WebMvcConfigurer {
 		paths.add("/register.html");
 		paths.add("/login.html");
 		paths.add("/index.html");
+		paths.add("/index_v1.html");
 		registry.addInterceptor(interceptor).addPathPatterns("/**").excludePathPatterns(paths);
 	}
 	
