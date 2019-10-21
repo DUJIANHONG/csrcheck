@@ -57,7 +57,7 @@
                 <input type="text" name="user_name" id="user_name" class="form-control uname"/>
                 <input type="password" name="password" id="password"
                        class="form-control pword m-b"/>
-                <span id="error"></span>
+                <span id="error" style="color: red"></span>
                 <a id="login" class="btn btn-login btn-block">登录</a>
             </form>
         </div>
@@ -99,10 +99,11 @@
             dataType:"json",
             success: function (json) {
                     if(json.state==2000){
-                        alert("登录成功");
+                        //alert("登录成功");
                         window.location.href="index_v1.html";
                     }else{
-                        alert("登录失败"+json.message)
+                        //alert("登录失败"+json.message)
+                        $("#error").html(json.message)
                     }
             },
         });
