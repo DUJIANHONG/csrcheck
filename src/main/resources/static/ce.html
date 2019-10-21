@@ -9,8 +9,31 @@
 </div>-->
 <!--<div><input type="text" id="text"></div>-->
 <div id="box" style="text-align: center">
-    <div id="table"></div>
+    <table id="table"
+           class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+          width="150%"  aria-describedby="datatable-responsive_info" style="width: 150%;">
+        <tr role="row">
+           <th>主键id(公司表)</th>
+            <th>公司名称</th>
+            <th>公司地址</th>
+            <th>所属类型</th>
+            <th>主营业务</th>
+            <th>战略重点</th>
+            <th>上市/未上市（1：上市2：未上市）</th>
+            <th>证书id，对应证书表</th>
+            <th>前十大股东</th>
+            <th>公司实际控制人编号</th>
+            <th>公司排名</th>
+            <th>营业执照的路径</th>
+            <th>许可证的路径</th>
+            <th>产品名称</th>
+            <th>营业执照编号</th>
+            <th>用户名</th>
+        </tr>
+    </table>
 </div>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-paginator.min.js"></script>
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript">
 /*$(function () {
@@ -92,29 +115,41 @@ $(function () {
                 console.log("count=" + list.length);
                 for (let i = 0; i < list.length; i++) {
                     console.log(list[i].name);
-                    let html = '<tr>'
-                        + '<td>主键id(公司表)</td>'
-                        + '<td>公司名称</td>'
-                        + '<td>公司地址</td>'
-                        + '<td>所属类型</td>'
-                        + '<td>主营业务</td>'
-                        + '<td>战略重点</td>'
-                        + '<td>上市/未上市（1：上市2：未上市）</td>'
-                        + '<td>前十大股东</td>'
-                        + '<td>公司实际控制人编号</td>'
-                        + '<td>公司排名</td>'
-                        + '<td>营业执照的路径</td>'
-                        + '<td>许可证的路径</td>'
+                    let html = '<tr role="row">'
+                        + '<th>id</th>'
+                        + '<th>company_name</th>'
+                        + '<th>company_address</th>'
+                        + '<th>type_ownership</th>'
+                        + '<th>main_business</th>'
+                        + '<th>certificate_id</th>'
+                        + '<th>strategic_focus</th>'
+                        + '<th>listed_unlisted</th>'
+                        + '<th>ten_shareholders</th>'
+                        + '<th>introduction_controller_id</th>'
+                        + '<th>company_ranking</th>'
+                        + '<th>business_license</th>'
+                        + '<th>product_name</th>'
+                        + '<th>business_license</th>'
+                        + '<th>certificate_no</th>'
+                        + '<th>user_name</th>'
                         + '</tr>';
 
-                    html = html.replace('#{aid}', list[i].company_name);
-                    html = html.replace('#{tag}', list[i].company_address);
-                    html = html.replace('#{name}', list[i].type_ownership);
-                    html = html.replace('#{provinceName}', list[i].main_business);
-                    html = html.replace('#{cityName}', list[i].strategic_focus);
-                    html = html.replace('#{areaName}', list[i].ten_shareholders);
-                    html = html.replace('#{address}', list[i].number_patents);
-                    html = html.replace('#{phone}', list[i].company_ranking);
+                    html = html.replace('id', list[i].id);
+                    html = html.replace('company_name', list[i].company_name);
+                    html = html.replace('company_address', list[i].company_address);
+                    html = html.replace('所属类型', list[i].type_ownership);
+                    html = html.replace('type_ownership', list[i].main_business);
+                    html = html.replace('certificate_id', list[i].certificate_id);
+                    html = html.replace('strategic_focus', list[i].strategic_focus);
+                    html = html.replace('listed_unlisted', list[i].listed_unlisted);
+                    html = html.replace('ten_shareholders', list[i].ten_shareholders);
+                    html = html.replace('introduction_controller_id', list[i].introduction_controller_id );
+                    html = html.replace('company_ranking', list[i].company_ranking);
+                    html = html.replace('business_license', list[i].business_license);
+                    html = html.replace('exequatur', list[i].exequatur);
+                    html = html.replace('product_name', list[i].product_name);
+                    html = html.replace('certificate_no', list[i].certificate_no);
+                    html = html.replace('user_name', list[i].user_name);
 
                     $("#table").append(html);
                 }
