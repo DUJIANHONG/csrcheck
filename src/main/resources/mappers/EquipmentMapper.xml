@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csr.csrcheck.mapper.ProductMapper">
+<sql id="prodid">
+`product_id`,`product_name`,`product_type_id`,`product_territory`,`study_appear`,`registered`,
+`stage_no`,`patent_no`,`patent_type_id`,`domestic_import`,
+`yieldly`
+</sql>
+    
+    <select id="getProductlist" resultType="com.csr.csrcheck.pojo.Product">
+       SELECT p.`product_id`,p.`product_name`,
+       p.`product_territory`,p.`study_appear`,p.`registered`,
+         p.`domestic_import`,p.`yieldly`
+     FROM product p
+     where product_type_id=3
+    </select>
+
+   <select id="getProductlistbyname" resultType="com.csr.csrcheck.pojo.Product">
+       SELECT p.`product_id`,p.`product_name`,
+       p.`product_territory`,p.`study_appear`,p.`registered`,
+       p.`domestic_import`,p.`yieldly`
+       FROM product p
+        <trim prefix="where" prefixOverrides="and | or">
+        <if test="product_name != null and product_name != ''">
+            and product_type_id =3 and product_name like CONCAT ('%',#{product_name},'%')
+        </if>
+        </trim>
+    </select>
+</mapper>

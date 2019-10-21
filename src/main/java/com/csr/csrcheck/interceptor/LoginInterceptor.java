@@ -9,11 +9,11 @@ import javax.servlet.http.HttpSession;
 
 public class LoginInterceptor implements HandlerInterceptor {
 
-/*	@Override
+	/*@Override
 	public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session=request.getSession();
-		if(session.getAttribute("uid")==null){
+		if(session.getAttribute("user_id")==null){
 			response.sendRedirect("/login.html");
 			return false;
 		}

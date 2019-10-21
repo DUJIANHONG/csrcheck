@@ -33,6 +33,47 @@ public class Company {
         this.listed_unlisted = listed_unlisted;
     }
 
+
+    /*
+     *自定义字段
+     */
+    private String product_name; //产品名称
+    private String certificate_no;//营业执照编号
+    private String user_name;//用户名
+    private String product_t_name;//产品类型名称
+
+    public String getProduct_t_name() {
+        return product_t_name;
+    }
+
+    public void setProduct_t_name(String product_t_name) {
+        this.product_t_name = product_t_name;
+    }
+
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
+    }
+
+    public String getCertificate_no() {
+        return certificate_no;
+    }
+
+    public void setCertificate_no(String certificate_no) {
+        this.certificate_no = certificate_no;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
     public int getId() {
         return id;
     }

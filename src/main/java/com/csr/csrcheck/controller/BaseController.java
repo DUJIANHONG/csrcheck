@@ -78,8 +78,16 @@ public class BaseController {
         } else if (e instanceof FileUploadIOException) {
             // 6004-上传文件时出现读写错误
             jr.setState(6004);
+        }else if (e instanceof ProductException) {
+            // 6005-产品异常
+            jr.setState(6005);
+        }else if (e instanceof ProductNotFoundException) {
+            // 6005-产品找不到异常
+            jr.setState(6006);
+        }else if (e instanceof Flight_checkException) {
+            // 6005-飞行查询异常
+            jr.setState(6007);
         }
-
         return jr;
     }
 

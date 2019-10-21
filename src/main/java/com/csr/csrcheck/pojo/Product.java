@@ -34,6 +34,38 @@ public class Product {
         this.company_id = company_id;
     }
 
+
+    /*
+     *自定义字段
+     */
+    private String patent_t_name;//产品类型名称
+    private String stage_name;  //阶段名称ss
+    private String patent_name;  //专利类型名称
+
+    public String getPatent_t_name() {
+        return patent_t_name;
+    }
+
+    public void setPatent_t_name(String patent_t_name) {
+        this.patent_t_name = patent_t_name;
+    }
+
+    public String getStage_name() {
+        return stage_name;
+    }
+
+    public void setStage_name(String stage_name) {
+        this.stage_name = stage_name;
+    }
+
+    public String getPatent_name() {
+        return patent_name;
+    }
+
+    public void setPatent_name(String patent_name) {
+        this.patent_name = patent_name;
+    }
+
     public int getProduct_id() {
         return product_id;
     }

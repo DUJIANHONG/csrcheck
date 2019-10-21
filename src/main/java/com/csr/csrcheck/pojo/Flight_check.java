@@ -23,6 +23,29 @@ public class Flight_check {
         this.publication = publication;
     }
 
+    /**
+     * 自定义字段
+     * @return
+     */
+    private String company_name; //公司名称
+    private String product_name;//产品名称
+
+    public String getCompany_name() {
+        return company_name;
+    }
+
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
+    }
+
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
+    }
+
     public int getId() {
         return id;
     }
