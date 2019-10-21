@@ -31,7 +31,7 @@ public class TheirServlet {
     @ResponseBody
     @GetMapping("theirlist")
     public JsonResult<List<Product>> TheirList(){
-        List<Product> list = theirService.getAlltheirByproduct_id(3);
+        List<Product> list = theirService.getAlltheirByproduct_id(2,"");
         return new JsonResult<>(SUCCESS,list);
     }
 }

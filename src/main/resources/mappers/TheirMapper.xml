@@ -3,15 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.csr.csrcheck.mapper.TheirMapper">
-    <sql id="product_id">
+    <!--<sql id="product_id">
         `product_id`,`product_name`,`product_type_id`,`product_territory`,`study_appear`,
         `registered`,`stage_no`,`patent_no`,`patent_type_id`,
         `domestic_import`,`yieldly`
-    </sql>
+    </sql>-->
 
     <select id="getAlltheirByproduct_id" resultType="com.csr.csrcheck.pojo.Product">
-        select 
-         <include refid="product_id"></include>
-         from product where product_type_id = #{id}
+        select p.product_name,p.product_territory,p.yieldly FROM product p
+        <where>
+            product_type_id = #{id}
+            <if test="product_name!=null and product_name!= ''">
+                and p.product_name LIKE concat ('%',#{product_name},'%');
+            </if>
+        </where>
     </select>
 </mapper>

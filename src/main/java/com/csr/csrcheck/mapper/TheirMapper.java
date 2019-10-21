@@ -11,5 +11,5 @@ import java.util.List;
 public interface TheirMapper {
 
     //查询产品表中的所有化妆品
-    public List<Product> getAlltheirByproduct_id(int id);
+    public List<Product> getAlltheirByproduct_id(int id,String product_name);
 }

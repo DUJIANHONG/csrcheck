@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>BootDo</title>
+    <title>药企查</title>
     <meta name="keywords" content="JAVA快速开发框架">
     <meta name="description" content="JAVA快速开发框架">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/login.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/login.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
@@ -32,28 +32,17 @@
                 <div class="logopanel m-b">
                 </div>
                 <div class="m-b"></div>
-                <h3>
-                    欢迎使用 <strong>JAVA后台管理系统</strong>
-                </h3>
-                <ul class="m-b">
-                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i>
-                        springBoot
-                    </li>
-                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> mybatis</li>
-                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> shiro</li>
-                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i>
-                        thymeleaf
-                    </li>
-                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i>
-                        bootstrap
-                    </li>
+                <h2>
+                    欢迎使用 <strong>药企查后台管理系统</strong>
+                </h2>
+
                 </ul>
             </div>
         </div>
         <div class="col-sm-5">
             <form id="signupForm">
                 <h3 class="text-center">用户登录</h3>
-                <p class="m-t-md text-center">JAVA快速开发框架</p>
+                <p class="m-t-md text-center">CSR药企查</p>
                 <input type="text" name="username" class="form-control uname"
                        th:value="${username}"/>
                 <input type="password" name="password"
@@ -65,17 +54,17 @@
 </div>
 <script th:inline="javascript"> var ctx = [[@{/}]] ; </script>
 <!-- 全局js -->
-<script src="js/jquery.min.js?v=2.1.4" th:src="@{/js/jquery.min.js?v=2.1.4}"></script>
-<script src="js/bootstrap.min.js?v=3.3.6" th:src="@{/js/bootstrap.min.js?v=3.3.6}"></script>
+<script src="../js/jquery.min.js?v=2.1.4" th:src="@{/js/jquery.min.js?v=2.1.4}"></script>
+<script src="../js/bootstrap.min.js?v=3.3.6" th:src="@{/js/bootstrap.min.js?v=3.3.6}"></script>
 
 <!-- 自定义js -->
-<script src="js/content.js?v=1.0.0" th:src="@{/js/content.js?v=1.0.0}"></script>
+<script src="../js/content.js?v=1.0.0" th:src="@{/js/content.js?v=1.0.0}"></script>
 
 <!-- jQuery Validation plugin javascript-->
-<script src="js/ajax-util.js"></script>
-<script src="js/jquery.validate.min.js" th:src="@{/js/jquery.validate.min.js}"></script>
-<script src="js/messages_zh.min.js" th:src="@{/js/messages_zh.min.js}"></script>
-<script src="js/layer.min.js" th:src="@{/js/layer.min.js}"></script>
+<script src="../js/ajax-util.js"></script>
+<script src="../js/jquery.validate.min.js" th:src="@{/js/jquery.validate.min.js}"></script>
+<script src="../js/messages_zh.min.js" th:src="@{/js/messages_zh.min.js}"></script>
+<script src="../js/layer.min.js" th:src="@{/js/layer.min.js}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#login").on('click',function(){$("#signupForm").submit();});
@@ -92,7 +81,7 @@
     function login() {
         $.ajax({
             type: "POST",
-            url: ctx+"login",
+            url: ctx+"static.login.login",
             data: $('#signupForm').serialize(),
             success: function (r) {
                  if (r.code == 0) {

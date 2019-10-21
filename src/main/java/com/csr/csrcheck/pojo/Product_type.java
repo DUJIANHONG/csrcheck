@@ -8,7 +8,7 @@ public class Product_type {
     //产品类型表
 
     private int id;                 //主键
-    private String patent_t_name;   //产品类型名称
+    private String product_t_name;   //产品类型名称
 
     public int getId() {
         return id;
@@ -18,11 +18,11 @@ public class Product_type {
         this.id = id;
     }
 
-    public String getPatent_t_name() {
-        return patent_t_name;
+    public String getProduct_t_name() {
+        return product_t_name;
     }
 
-    public void setPatent_t_name(String patent_t_name) {
-        this.patent_t_name = patent_t_name;
+    public void setProduct_t_name(String product_t_name) {
+        this.product_t_name = product_t_name;
     }
 }

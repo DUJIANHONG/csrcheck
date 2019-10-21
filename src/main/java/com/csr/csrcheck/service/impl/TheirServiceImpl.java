@@ -21,7 +21,7 @@ public class TheirServiceImpl implements TheirService {
     private TheirMapper theirMapper;
 
     @Override
-    public List<Product> getAlltheirByproduct_id(int id) {
-        return theirMapper.getAlltheirByproduct_id(id);
+    public List<Product> getAlltheirByproduct_id(int id,String product_name) {
+        return theirMapper.getAlltheirByproduct_id(id,product_name);
     }
 }

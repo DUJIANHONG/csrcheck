@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface TheirService {
 
-    public List<Product> getAlltheirByproduct_id(int id);
+    public List<Product> getAlltheirByproduct_id(int id,String product_name);
 }

@@ -8,5 +8,5 @@ public class Stage {
     //产品研究阶段表
 
     private int id;             //主键
-    private String stage_name;  //阶段名称ss
+    private String stage_name;  //阶段名称
 }

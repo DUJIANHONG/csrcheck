@@ -10,10 +10,18 @@ public class Flight_check {
     //飞行检查表
 
     private int id;                 //主键
-    private int company_id;         //涉及公司id
     private int product_id;         //涉及产品id
     private String punish;          //所受处罚
+    private Date publication;       //公布日期
     private Date term_of_validity;  //有效期限
+
+    public Date getPublication() {
+        return publication;
+    }
+
+    public void setPublication(Date publication) {
+        this.publication = publication;
+    }
 
     public int getId() {
         return id;
@@ -21,14 +29,6 @@ public class Flight_check {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getCompany_id() {
-        return company_id;
-    }
-
-    public void setCompany_id(int company_id) {
-        this.company_id = company_id;
     }
 
     public int getProduct_id() {
