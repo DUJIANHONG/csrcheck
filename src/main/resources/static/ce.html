@@ -5,13 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-<div id="address-list">
+<!--<div id="address-list">
+</div>-->
+<!--<div><input type="text" id="text"></div>-->
+<div id="box" style="text-align: center">
+    <div id="table"></div>
 </div>
-<div><input type="text" id="text"></div>
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript">
-$(function () {
-
+/*$(function () {
     $("#text").blur(function () {
         var Name=$("#text").val();
         $.ajax({
@@ -29,11 +31,6 @@ $(function () {
             }
         })
     })
-
-
-
-
-
     $.ajax({
             "type":"get",
             "url":"company/companylist",
@@ -47,8 +44,6 @@ $(function () {
             }
         }
     })
-
-
         $.ajax({
             "url":"company/companylist",
             "type":"get",
@@ -85,6 +80,49 @@ $(function () {
                 }
             }
         });
+})*/
+$(function () {
+    $.ajax({
+        "url": "company/companylist",
+        "type": "get",
+        "dataType": "json",
+        "success": function (json) {
+            if (json.state == 2000) {
+                let list = json.data;
+                console.log("count=" + list.length);
+                for (let i = 0; i < list.length; i++) {
+                    console.log(list[i].name);
+                    let html = '<tr>'
+                        + '<td>主键id(公司表)</td>'
+                        + '<td>公司名称</td>'
+                        + '<td>公司地址</td>'
+                        + '<td>所属类型</td>'
+                        + '<td>主营业务</td>'
+                        + '<td>战略重点</td>'
+                        + '<td>上市/未上市（1：上市2：未上市）</td>'
+                        + '<td>前十大股东</td>'
+                        + '<td>公司实际控制人编号</td>'
+                        + '<td>公司排名</td>'
+                        + '<td>营业执照的路径</td>'
+                        + '<td>许可证的路径</td>'
+                        + '</tr>';
+
+                    html = html.replace('#{aid}', list[i].company_name);
+                    html = html.replace('#{tag}', list[i].company_address);
+                    html = html.replace('#{name}', list[i].type_ownership);
+                    html = html.replace('#{provinceName}', list[i].main_business);
+                    html = html.replace('#{cityName}', list[i].strategic_focus);
+                    html = html.replace('#{areaName}', list[i].ten_shareholders);
+                    html = html.replace('#{address}', list[i].number_patents);
+                    html = html.replace('#{phone}', list[i].company_ranking);
+
+                    $("#table").append(html);
+                }
+            } else {
+                alert("获取数据失败！" + json.message + "！");
+            }
+        }
+    })
 })
 </script>
 </body>
