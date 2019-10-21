@@ -9,7 +9,7 @@
     
     <select id="getFlight_checklist" resultType="com.csr.csrcheck.pojo.Flight_check">
         SELECT f.`id`,
-        (SELECT `company_name` FROM company WHERE id=f.`company_id`) AS company_name,
+       /* (SELECT `company_name` FROM company WHERE id=f.`company_id`) AS company_name,*/
         f.`punish`,(SELECT product_name FROM product WHERE product_id=f.`product_id` )AS product_name,
         f.`term_of_validity`
         FROM flight_check f
