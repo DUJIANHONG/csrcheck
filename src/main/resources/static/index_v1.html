@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
-    <title>面向学习型的开源框架，简洁高效，减少过渡封装，展现技术本质</title>
-    <meta name="keywords" content="面向学习型的开源框架，简洁高效，杜绝过渡封装，展现技术本质本质">
-    <meta name="description" content="面向学习型的开源框架，简洁高效，杜绝过渡封装，展现技术本质本质">
+    <title>CSR</title>
+    <meta name="keywords" content="CSR">
+    <meta name="description" content="CSR">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
     <link rel="shortcut icon" href="favicon.ico">
-    <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
-    <link href="/css/plugins/toastr/toastr.min.css" rel="stylesheet">
-    <link href="/css/animate.css" rel="stylesheet">
-    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="css/toastr.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg"
       style="overflow: hidden">
@@ -69,20 +68,25 @@
                 </li>
                 <li th:each="menu : ${menus}"><a href="#"> <i
                         class="fa fa fa-bar-chart-o" th:class="${menu.attributes.icon}"></i>
-                    <span class="nav-label" th:text="${menu.text}">基础信息</span> <span
+                    <span class="nav-label" th:text="${menu.text}">公司</span> <span
                             class="fa arrow"></span>
                 </a>
+
+                    <ul class="nav nav-second-level">
+                        <li th:each="cmenu : ${menu.children}"><a class="J_menuItem" href="ce.html"
+                                                                  th:text="${cmenu.text}">公司信息</a></li>
+                    </ul>
                     <ul class="nav nav-second-level">
                         <li th:each="cmenu : ${menu.children}"><a class="J_menuItem" href="graph_echarts.html"
                                                                   th:text="${cmenu.text}"
-                                                                  th:href="${cmenu.attributes.url}">系统管理</a></li>
+                                                                  th:href="${cmenu.attributes.url}">增加公司信息</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
+        <!--右侧部分开始-->
     </nav>
     <!--左侧导航结束-->
-    <!--右侧部分开始-->
     <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation"
@@ -169,7 +173,7 @@
                     seamless></iframe>
         </div>
         <div class="footer">
-            <div class="pull-right">JAVA快速开发框架</div>
+            <div class="pull-right">CSR药企查后台管理系统</div>
         </div>
     </div>
     <!--右侧部分结束-->
@@ -278,25 +282,25 @@
     </div>
 </div>
 <!-- 全局js -->
-<script src="/js/jquery.min.js?v=2.1.4"></script>
-<script src="/js/bootstrap.min.js?v=3.3.6"></script>
-<script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="/js/plugins/layer/layer.min.js"></script>
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/jquery.metisMenu.js"></script>
+<script src="js/jquery.slimscroll.min.js"></script>
+<script src="js/layer/layer.min.js"></script>
 <!-- 自定义js -->
-<script src="/js/app.js?v=4.1.0"></script>
-<script type="text/javascript" src="/js/contabs.js"></script>
+<script src="js/app.js?v=4.1.0"></script>
+<script type="text/javascript" src="js/contabs.js"></script>
 <!-- 第三方插件 -->
-<script src="/js/plugins/pace/pace.min.js"></script>
+<script src="js/pace/pace.min.js"></script>
 <!-- vue -->
 <script type="text/javascript"
-        src="/js/vue.min.js">
+        src="js/vue.min.js">
 
 </script>
-<script src="/js/appjs/oa/webSocket/sockjs.min.js"></script>
-<script src="/js/appjs/oa/webSocket/stomp.min.js"></script>
+<script src="js/appjs/oa/webSocket/sockjs.min.js"></script>
+<script src="js/appjs/oa/webSocket/stomp.min.js"></script>
 <!-- Toastr script -->
-<script src="/js/plugins/toastr/toastr.min.js"></script>
+<script src="js/toastr/toastr.min.js"></script>
 <script type="text/javascript">
     var stompClient = null;
     $(function () {
