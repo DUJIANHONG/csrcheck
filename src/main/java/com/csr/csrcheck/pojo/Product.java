@@ -16,6 +16,7 @@ public class Product {
     private int product_id;             //主键，产品编号
     private String product_name;        //产品名称
     private int product_type_id;        //产品类型
+    private int company_id;             //关联公司id
     private String product_territory;   //产品领域
     private int study_appear;           //在研/上市（1：在研，2：上市）
     private String registered;          //注册分类（化1，化2，化3，化4，化5，老化6）
@@ -24,6 +25,14 @@ public class Product {
     private int patent_type_id;         //专利类型id
     private int domestic_import;        //国产/进口（1国产；2进口）
     private String yieldly;             //产品生产地
+
+    public int getCompany_id() {
+        return company_id;
+    }
+
+    public void setCompany_id(int company_id) {
+        this.company_id = company_id;
+    }
 
 
     /*

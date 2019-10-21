@@ -1,7 +1,5 @@
 package com.csr.csrcheck.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.Objects;
 
 /**
@@ -18,18 +16,22 @@ public class Company {
     private String company_address;     //公司地址
     private String type_ownership;      //公司所属类型
     private String main_business;       //主营业务
-    @JsonIgnore
-    private int product_id;             //在售产品编号
-    @JsonIgnore
     private int certificate_id;         //证书id
     private String strategic_focus;     //战略重点
+    private int listed_unlisted;        //上市/未上市（1上市；2未上市）
     private String ten_shareholders;    //前十大股东
-    @JsonIgnore
     private String introduction_controller_id;  //公司实际控制人id
-    private int number_patents;         //专利数量
     private int company_ranking;        //公司排名
     private String business_license;    //营业执照图片路径
     private String exequatur;           //许可证图片路径
+
+    public int getListed_unlisted() {
+        return listed_unlisted;
+    }
+
+    public void setListed_unlisted(int listed_unlisted) {
+        this.listed_unlisted = listed_unlisted;
+    }
 
 
     /*
@@ -112,14 +114,6 @@ public class Company {
         this.main_business = main_business;
     }
 
-    public int getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
-    }
-
     public int getCertificate_id() {
         return certificate_id;
     }
@@ -151,15 +145,6 @@ public class Company {
     public void setIntroduction_controller_id(String introduction_controller_id) {
         this.introduction_controller_id = introduction_controller_id;
     }
-
-    public int getNumber_patents() {
-        return number_patents;
-    }
-
-    public void setNumber_patents(int number_patents) {
-        this.number_patents = number_patents;
-    }
-
     public int getCompany_ranking() {
         return company_ranking;
     }
