@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 public class LoginInterceptor implements HandlerInterceptor {
 
-	@Override
+	/*@Override
 	public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session=request.getSession();
@@ -18,6 +18,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 			return false;
 		}
 		return true;
-	}
+	}*/
 	
 }

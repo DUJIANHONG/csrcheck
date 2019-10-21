@@ -51,19 +51,19 @@
             </div>
         </div>
         <div class="col-sm-5">
-            <form id="signupForm" action="index_v1.html">
+            <form id="signupForm">
                 <h3 class="text-center">用户登录</h3>
                 <p class="m-t-md text-center">JAVA快速开发框架</p>
-                <input type="text" name="username" class="form-control uname"
-                       th:value="${username}"/>
-                <input type="password" name="password"
-                       class="form-control pword m-b" th:value="${password}"/>
+                <input type="text" name="user_name" id="user_name" class="form-control uname"/>
+                <input type="password" name="password" id="password"
+                       class="form-control pword m-b"/>
+                <span id="error" style="color: red"></span>
                 <a id="login" class="btn btn-login btn-block">登录</a>
             </form>
         </div>
     </div>
 </div>
-<!--<script th:inline="javascript"> var ctx = [[@{/}]] ; </script>-->
+<script th:inline="javascript"> var ctx = [[@{/}]] ; </script>
 <!-- 全局js -->
 <script src="js/jquery.min.js?v=2.1.4" th:src="@{/js/jquery.min.js?v=2.1.4}"></script>
 <script src="js/bootstrap.min.js?v=3.3.6" th:src="@{/js/bootstrap.min.js?v=3.3.6}"></script>
@@ -98,11 +98,12 @@
             data: $('#signupForm').serialize(),
             dataType:"json",
             success: function (json) {
-                    if(json.state=2000){
-                        alert("登录成功");
+                    if(json.state==2000){
+                        //alert("登录成功");
                         window.location.href="index_v1.html";
                     }else{
-                        alert("登录失败"+json.messages)
+                        //alert("登录失败"+json.message)
+                        $("#error").html(json.message)
                     }
             },
         });
