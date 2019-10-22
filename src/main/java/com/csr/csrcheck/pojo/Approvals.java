@@ -11,6 +11,30 @@ public class Approvals {
     private int approval_num;   //批文编号
     private int product_id;     //关联产品id
     private int approval_no;    //批文号
+    private int approved_by;    //所属准字
+
+    /**
+     * 自定义字段
+     * @return
+     */
+    private String approved_t_name;  //准字类型名称
+    private String product_name;        //产品名称
+
+    public String getApproved_t_name() {
+        return approved_t_name;
+    }
+
+    public void setApproved_t_name(String approved_t_name) {
+        this.approved_t_name = approved_t_name;
+    }
+
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
+    }
 
     public int getId() {
         return id;
@@ -42,5 +66,13 @@ public class Approvals {
 
     public void setApproval_no(int approval_no) {
         this.approval_no = approval_no;
+    }
+
+    public int getApproved_by() {
+        return approved_by;
+    }
+
+    public void setApproved_by(int approved_by) {
+        this.approved_by = approved_by;
     }
 }

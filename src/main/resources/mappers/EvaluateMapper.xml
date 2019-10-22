@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csr.csrcheck.mapper.EvaluateMapper">
+<sql id="evalid">
+`id`,`accept_no`,`product_id`,`english_name`,`specification`,`agent_type`,
+`adaptation_disease`,`company_id`
+</sql>
+    
+    <select id="getEvaluatelist" resultType="com.csr.csrcheck.pojo.Evaluate">
+       SELECT e.`id`,e.`accept_no`,e.`english_name`,e.`specification`,
+        (SELECT `product_name` FROM product
+        WHERE product_id=e.`product_id`) AS product_name,
+         e.`agent_type`,(SELECT `company_name` FROM company
+        WHERE id=e.`company_id`) AS company_name,
+         e.`adaptation_disease`
+        FROM evaluate e
+    </select>
+
+</mapper>

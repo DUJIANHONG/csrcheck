@@ -14,7 +14,7 @@ public class Flight_check {
     private String punish;          //所受处罚
     private Date publication;       //公布日期
     private Date term_of_validity;  //有效期限
-
+    private String content;         //飞行检查内容
     public Date getPublication() {
         return publication;
     }
