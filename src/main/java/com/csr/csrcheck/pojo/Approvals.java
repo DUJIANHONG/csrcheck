@@ -19,6 +19,15 @@ public class Approvals {
      */
     private String approved_t_name;  //准字类型名称
     private String product_name;        //产品名称
+    private String company_name;        //公司名称
+
+    public String getCompany_name() {
+        return company_name;
+    }
+
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
+    }
 
     public String getApproved_t_name() {
         return approved_t_name;
