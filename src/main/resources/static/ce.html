@@ -22,7 +22,6 @@
             <th>上市/未上市（1：上市2：未上市）</th>
             <th>证书id，对应证书表</th>
             <th>前十大股东</th>
-            <th>公司实际控制人编号</th>
             <th>公司排名</th>
             <th>营业执照的路径</th>
             <th>许可证的路径</th>
@@ -125,10 +124,8 @@ $(function () {
                         + '<th>strategic_focus</th>'
                         + '<th>listed_unlisted</th>'
                         + '<th>ten_shareholders</th>'
-                        + '<th>introduction_controller_id</th>'
                         + '<th>company_ranking</th>'
                         + '<th>business_license</th>'
-                        + '<th>product_name</th>'
                         + '<th>business_license</th>'
                         + '<th>certificate_no</th>'
                         + '<th>user_name</th>'
@@ -143,7 +140,6 @@ $(function () {
                     html = html.replace('strategic_focus', list[i].strategic_focus);
                     html = html.replace('listed_unlisted', list[i].listed_unlisted);
                     html = html.replace('ten_shareholders', list[i].ten_shareholders);
-                    html = html.replace('introduction_controller_id', list[i].introduction_controller_id );
                     html = html.replace('company_ranking', list[i].company_ranking);
                     html = html.replace('business_license', list[i].business_license);
                     html = html.replace('exequatur', list[i].exequatur);

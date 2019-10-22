@@ -26,8 +26,8 @@
 	<link href="css/custom.min.css"	rel="stylesheet">
 
 	<!-- add local/css 2016-8-18 -->
-	<link href='css/appinfoadd.css' rel='stylesheet'>
-	<link href='css/appinfolist.css' rel='stylesheet'>
+	<link href="css/appinfoadd.css" rel='stylesheet'>
+	<link href="css/appinfolist.css" rel='stylesheet'>
 
 </head>
 <div class="clearfix"></div>
@@ -38,18 +38,18 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-				<form method="post" action="list">
-					<input type="hidden" name="pageIndex" value="1" />
+				<form method="get" id="form">
+					<input type="hidden" name="" value="1" />
 			    <ul>
 					<li>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">软件名称</label>
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">公司名称</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="">
+								<input name="name" type="text" class="form-control col-md-7 col-xs-12" value="" id="name">
 							</div>
 						</div>
 					</li>
-					<li><button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button></li>
+					<li><button type="submit" class="btn btn-primary" id="submit"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button></li>
 				</ul>
 			</form>
 		</div>
@@ -71,35 +71,47 @@
 									<th class="sorting_asc" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="First name: activate to sort column descending"
-										aria-sort="ascending">软件名称</th>
+										aria-sort="ascending">公司名称</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-										APK名称</th>
+										公司地址</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-										软件大小(单位:M)</th>
+										所属类型</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-										所属平台</th>
+										主营业务</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-										所属分类(一级分类、二级分类、三级分类)</th>
+										战略重点</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-										状态</th>
+										上市/未上市</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-										下载次数</th>
+										前十大股东</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-										最新版本号</th>
+										公司实际控制人</th>
+									<th class="sorting" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										aria-label="Last name: activate to sort column ascending">
+										公司排名</th>
+									<th class="sorting" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										aria-label="Last name: activate to sort column ascending">
+										营业执照</th>
+									<th class="sorting" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										aria-label="Last name: activate to sort column ascending">
+										许可证</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										style="width: 124px;"
@@ -107,83 +119,134 @@
 										操作</th>
 								</tr>
 							</thead>
-							<tbody>
-
-									<tr role="row" class="odd">
-										<td tabindex="0" class="sorting_1"></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td>
-										
-										
-										<div class="btn-group">
-                      <button type="button" class="btn btn-danger">点击操作</button>
-                      <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                      </button>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a  class="modifyAppInfo" 
-											appinfoid="" status="" statusname=""
-											data-toggle="tooltip" data-placement="top" title="" data-original-title="修改APP基础信息">修改</a></li>
-                        <li><a  class="viewApp" appinfoid="" data-toggle="tooltip" data-placement="top" title="" data-original-title="查看APP基础信息以及全部版本信息">查看</a></li>
-						<li><a  class="deleteApp" appinfoid=  appsoftwarename= data-toggle="tooltip" data-placement="top" title="" data-original-title="删除APP基础信息以及全部版本信息">删除</a></li>
-                      </ul>
-                    </div>
-										</td>
-									</tr>
-								</c:forEach>
-							</tbody>
+							<tbody id="tbody"></tbody>
+							<tbody id="tbody2"></tbody>
 						</table>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-sm-5">
-						<div class="dataTables_info" id="datatable-responsive_info"
-							role="status" aria-live="polite">共条记录 页</div>
-					</div>
-					<div class="col-sm-7">
-						<div class="dataTables_paginate paging_simple_numbers"
-							id="datatable-responsive_paginate">
-							<ul class="pagination">
-								<c:if test="">
-									<li class="paginate_button previous"><a
-										href="javascript:page_nav(document.forms[0],1);"
-										aria-controls="datatable-responsive" data-dt-idx="0"
-										tabindex="0">首页</a>
-									</li>
-									<li class="paginate_button "><a
-										href="javascript:page_nav(document.forms[0],);"
-										aria-controls="datatable-responsive" data-dt-idx="1"
-										tabindex="0">上一页</a>
-									</li>
-								</c:if>
-								<c:if test="">
-									<li class="paginate_button "><a
-										href="javascript:page_nav(document.forms[0],);"
-										aria-controls="datatable-responsive" data-dt-idx="1"
-										tabindex="0">下一页</a>
-									</li>
-									<li class="paginate_button next"><a
-										href="javascript:page_nav(document.forms[0],);"
-										aria-controls="datatable-responsive" data-dt-idx="7"
-										tabindex="0">最后一页</a>
-									</li>
-								</c:if>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div> 
-
+			</div>
 		</div>
 	</div>
 </div>
 </div>
 <script src="js/rollpage.js"></script>
-<script src="js/appinfolist.js"></script>
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript">
+
+	$(function () {
+		//展示公司信息
+		$.ajax({
+			"type":"get",
+			"url":"company/companylist",
+			"dataType":"json",
+			"success": function (json) {
+				if (json.state == 2000) {
+					let list = json.data;
+					console.log("count=" + list.length);
+					for (let i = 0; i < list.length; i++) {
+						let html ='<tr role="row" class="odd">'
+								+'<td tabindex="0" class="sorting_1">company_name</td>'
+								+'<td tabindex="1" class="sorting_2">company_address</td>'
+								+'<td tabindex="2" class="sorting_3">type_ownership</td>'
+								+'<td tabindex="3" class="sorting_4">main_business</td>'
+								+'<td tabindex="4" class="sorting_5">strategic_focus</td>'
+								+'<td tabindex="5" class="sorting_6">listed_unlisted</td>'
+								+'<td tabindex="6" class="sorting_7">ten_shareholders</td>'
+								+'<td tabindex="7" class="sorting_8">user_name</td>'
+								+'<td tabindex="8" class="sorting_9">company_ranking</td>'
+								+'<td tabindex="9" class="sorting_10">business_license</td>'
+								+'<td tabindex="10" class="sorting_11">exequatur</td>'
+						        +'<td><div class="btn-group">' +
+								'<button type="button" class="btn btn-danger">点击操作</button>' +
+								'<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">' +
+								'<span class="caret"></span>' +
+								'<span class="sr-only">Toggle Dropdown</span>' +
+								'</button>' +
+								' <ul class="dropdown-menu" role="menu">' +
+								'  <li><a  class="modifyAppInfo"' +
+								'appinfoid="" status="" statusname=""' +
+								'data-toggle="tooltip" data-placement="top" title="" data-original-title="修改APP基础信息">修改</a></li>' +
+								'<li><a  class="viewApp" appinfoid="" data-toggle="tooltip" data-placement="top" title="" data-original-title="查看APP基础信息以及全部版本信息">查看</a></li>' +
+								'<li><a  class="deleteApp" appinfoid=  appsoftwarename= data-toggle="tooltip" data-placement="top" title="" data-original-title="删除APP基础信息以及全部版本信息">删除</a></li>' +
+								' </ul>' +
+								'</div>' +
+								'</td>'
+						      +'</tr>'
+						html=html.replace('company_name',list[i].company_name);
+						html=html.replace('company_address',list[i].company_address);
+						html=html.replace('type_ownership',list[i].type_ownership);
+						html=html.replace('main_business',list[i].main_business);
+						html=html.replace('strategic_focus',list[i].strategic_focus);
+						html=html.replace('listed_unlisted',list[i].listed_unlisted);
+						html=html.replace('ten_shareholders',list[i].ten_shareholders);
+						html=html.replace('user_name',list[i].user_name);
+						html=html.replace('company_ranking',list[i].company_ranking);
+						html=html.replace('business_license',list[i].business_license);
+						html=html.replace('exequatur',list[i].exequatur);
+						$("#tbody").append(html);
+					}
+				} else {
+					alert("获取数据失败！" + json.message + "！");
+				}
+			}
+		})
+		$("#form").submit(function () {
+				//根據公司名称模糊查詢
+				var name = $("#name").val();
+				$.ajax({
+					"type": "get",
+					"url": "company/companylist2",
+					"data": {name: name},
+					"dataType": "json",
+					success: function (json) {
+						var attr = json.data.length;
+						var list = json.data;
+						console.log(attr);
+						for (var i = 0; i < list.length; i++) {
+							let html = '<tr role="row" class="odd">'
+									+ '<td tabindex="0" class="sorting_1">company_name</td>'
+									+ '<td tabindex="1" class="sorting_2">company_address</td>'
+									+ '<td tabindex="2" class="sorting_3">type_ownership</td>'
+									+ '<td tabindex="3" class="sorting_4">main_business</td>'
+									+ '<td tabindex="4" class="sorting_5">strategic_focus</td>'
+									+ '<td tabindex="5" class="sorting_6">listed_unlisted</td>'
+									+ '<td tabindex="6" class="sorting_7">ten_shareholders</td>'
+									+ '<td tabindex="7" class="sorting_8">user_name</td>'
+									+ '<td tabindex="8" class="sorting_9">company_ranking</td>'
+									+ '<td tabindex="9" class="sorting_10">business_license</td>'
+									+ '<td tabindex="10" class="sorting_11">exequatur</td>'
+									+ '<td><div class="btn-group">' +
+									'<button type="button" class="btn btn-danger">点击操作</button>' +
+									'<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">' +
+									'<span class="caret"></span>' +
+									'<span class="sr-only">Toggle Dropdown</span>' +
+									'</button>' +
+									' <ul class="dropdown-menu" role="menu">' +
+									'  <li><a  class="modifyAppInfo"' +
+									'appinfoid="" status="" statusname=""' +
+									'data-toggle="tooltip" data-placement="top" title="" data-original-title="修改APP基础信息">修改</a></li>' +
+									'<li><a  class="viewApp" appinfoid="" data-toggle="tooltip" data-placement="top" title="" data-original-title="查看APP基础信息以及全部版本信息">查看</a></li>' +
+									'<li><a  class="deleteApp" appinfoid=  appsoftwarename= data-toggle="tooltip" data-placement="top" title="" data-original-title="删除APP基础信息以及全部版本信息">删除</a></li>' +
+									' </ul>' +
+									'</div>' +
+									'</td>'
+									+ '</tr>'
+							html = html.replace('company_name', list[i].company_name);
+							html = html.replace('company_address', list[i].company_address);
+							html = html.replace('type_ownership', list[i].type_ownership);
+							html = html.replace('main_business', list[i].main_business);
+							html = html.replace('strategic_focus', list[i].strategic_focus);
+							html = html.replace('listed_unlisted', list[i].listed_unlisted);
+							html = html.replace('ten_shareholders', list[i].ten_shareholders);
+							html = html.replace('user_name', list[i].user_name);
+							html = html.replace('company_ranking', list[i].company_ranking);
+							html = html.replace('business_license', list[i].business_license);
+							html = html.replace('exequatur', list[i].exequatur);
+							$("#tbody2").append(html);
+						}
+					}
+				})
+		})
+	})
+
+</script>
