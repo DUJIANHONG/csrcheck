@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 @Slf4j
 /**
- * 查药企中的临床
+ * 查药企中的批文
  */
 public class ApprovalsController extends BaseController{
     @Resource
