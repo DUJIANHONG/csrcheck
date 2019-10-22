@@ -53,12 +53,12 @@ public class CompanyConntroller extends BaseController{
 
     /**
      * 根据公司名查询公司信息
-     * @param company_name
+     * @param name
      * @return
      */
     @GetMapping("companylist2")
-    public JsonResult<List<Company>> CompanyList2(@RequestParam(value = "name") String company_name){
-        List<Company> list2=companyService.getCommpanylistbyname(company_name);
+    public JsonResult<List<Company>> CompanyList2(@RequestParam(value = "name") String name){
+        List<Company> list2=companyService.getCommpanylistbyname(name);
         Company company=new Company();
         if (list2==null) {
             throw new CompanyException("没有数据哦");
