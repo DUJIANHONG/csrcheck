@@ -1,5 +1,8 @@
 package com.csr.csrcheck.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -13,6 +16,7 @@ public class Clinic {
     private int product_id;         //关联药品id
     private String record_number;   //登记号
     private String  adaptation_disease; //适应症
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date record_date;       //登记日期
 
     /**

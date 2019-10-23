@@ -26,6 +26,10 @@ public class Product {
     private int domestic_import;        //国产/进口（1国产；2进口）
     private String yieldly;             //产品生产地
 
+    /*patent_t_id        int(5)       (NULL)     YES     MUL     (NULL)                   select,insert,update,references  专利类型id
+    approvals_id       int(6)       (NULL)     YES     MUL     (NULL)                   select,insert,update,references  准字号
+*/
+
     public int getCompany_id() {
         return company_id;
     }

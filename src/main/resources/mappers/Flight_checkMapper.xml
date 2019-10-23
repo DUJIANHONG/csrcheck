@@ -20,6 +20,6 @@ f.`publication`,f.`check_no`,c.`company_name` ,f.content
 c.`company_name`,p.`product_name`,f.`attention`,f.`punish` ,f.content
    FROM flight_check f,company c,product p
    WHERE
-   p.`company_id`=c.`id` AND f.`product_id`=p.`product_id`AND c.`id`=#{id};
+   p.`company_id`=c.`id` AND f.`product_id`=p.`product_id`;
     </select>
 </mapper>

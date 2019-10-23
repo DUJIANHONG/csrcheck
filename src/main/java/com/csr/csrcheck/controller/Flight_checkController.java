@@ -41,9 +41,17 @@ public class Flight_checkController extends BaseController{
 
         return new JsonResult<>(SUCCESS,list);
     }
+
+    /**
+     * 查化妆品中的飞行检查
+     * @param response
+     * @return
+     * @throws IOException
+     * @throws ServletException
+     */
     @GetMapping("flight_checkllist2")
-    public JsonResult<List<Flight_check>> Flight_checklist2(HttpServletResponse response) throws IOException, ServletException {
-        List<Flight_check> list = iFlight_checkService.getFlight_checklist();
+    public JsonResult<List<Flight_check>> Flight_checklist2( HttpServletResponse response) throws IOException, ServletException {
+        List<Flight_check> list = iFlight_checkService.getFlight_checklist2();
         if (list==null){
             throw new Flight_checkException("没有飞行数据");
         }

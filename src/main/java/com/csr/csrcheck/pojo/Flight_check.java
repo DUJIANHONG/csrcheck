@@ -1,5 +1,7 @@
 package com.csr.csrcheck.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 /**
@@ -14,6 +16,7 @@ public class Flight_check {
     private int  product_id;//涉及产品id
     private String punish; //所受处罚
     private String attention;//特别关注
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date publication;//公布日期
     private Date term_of_validity;//有效期限
     private String content;//飞行检查内容

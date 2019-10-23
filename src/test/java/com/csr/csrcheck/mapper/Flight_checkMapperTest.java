@@ -21,6 +21,7 @@ public class Flight_checkMapperTest {
     }
     @Test
     public void getFlight_checklist2(){
+
         List<Flight_check> result=flight_checkMapper.getFlight_checklist2();
         System.err.println(result);
     }

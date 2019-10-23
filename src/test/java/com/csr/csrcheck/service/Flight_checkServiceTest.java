@@ -19,4 +19,10 @@ public class Flight_checkServiceTest {
         List<Flight_check> result=iFlight_checkService.getFlight_checklist();
         System.err.println(result);
     }
+    @Test
+    public void getFlight_checklist2(){
+
+        List<Flight_check> result=iFlight_checkService.getFlight_checklist2();
+        System.err.println(result);
+    }
 }
