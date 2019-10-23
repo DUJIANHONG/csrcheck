@@ -23,7 +23,7 @@
 	<link href="css/jqvmap.min.css" rel="stylesheet" />
 	<link href="css/dropzone.min.css" rel="stylesheet">
 	<!-- Custom Theme Style -->
-	<link href="css/custom.min.css"	rel="stylesheet">
+	<link href="css/custom.min.css" rel="stylesheet">
 
 	<!-- add local/css 2016-8-18 -->
 	<link href="css/appinfoadd.css" rel='stylesheet'>
@@ -34,11 +34,14 @@
 	<div class="col-md-12">
 		<div class="x_panel">
 			<div class="x_title">
+                <h2>
+                    公司信息维护    <i class="fa fa-user"></i><small>
+                    - 您可以通过搜索或者其他的筛选项对公司的信息进行修改、删除等管理操作。^_^</small>
+                </h2>
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
 				<form method="get" id="form" action="javascript:search()">
-					<input type="hidden" name="" value="1" />
 			    <ul>
 					<li>
 						<div class="form-group">
@@ -62,9 +65,10 @@
 				class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 				<div class="row">
 					<div class="col-sm-12">
-
-						<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
-							cellspacing="0" width="100%" role="grid" aria-describedby="datatable-responsive_info" style="width: 100%;">
+						<div style="overflow-x: auto; overflow-y: auto; height: 40%; width:100%;">
+						<table id="datatable-responsive" class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+							  role="grid" aria-describedby="datatable-responsive_info"
+							    style="width: 600%;height: 50%">
                             <thead>
 								<tr role="row">
 									<th style="display: none">id</th>
@@ -121,8 +125,50 @@
 							</thead>
 							<tbody id="tbody"></tbody>
 						</table>
+						</div>
 					</div>
 				</div>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="dataTables_info" id="datatable-responsive_info"
+                             role="status" aria-live="polite">共<span id="totalCount"></span>条记录
+							<span id="currentPageNo"></span>/<span id="max"></span>页</div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="dataTables_paginate paging_simple_numbers"
+                             id="datatable-responsive_paginate">
+                            <ul class="pagination">
+
+								<input type="hidden" name="pageindex" id="pageindex" value="1"/>
+
+                                    <li class="paginate_button previous"><a
+                                            href="#;"
+                                            aria-controls="datatable-responsive" data-dt-idx="0"
+                                            tabindex="0" id="minpage">首页</a>
+                                    </li>
+                                    <li class="paginate_button "><a
+                                            href="#;"
+                                            aria-controls="datatable-responsive" data-dt-idx="1"
+                                            tabindex="0" id="uppage">上一页</a>
+                                    </li>
+
+
+                                    <li class="paginate_button "><a
+                                            href="#;"
+                                            aria-controls="datatable-responsive" data-dt-idx="1"
+                                            tabindex="0" id="lapage">下一页</a>
+                                    </li>
+
+                                    <li class="paginate_button next"><a
+                                            href="#;"
+                                            aria-controls="datatable-responsive" data-dt-idx="7"
+                                            tabindex="0" id="maxpage">最后一页</a>
+                                    </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</div>
@@ -141,31 +187,35 @@
 <!-- Custom Theme Scripts -->
 <script src="js/custom.min.js"></script>
 <script src="js/dropzone.js"></script>
-<script src="js/rollpage.js"></script>
+<!--<script src="js/rollpage.js"></script>-->
 <script src="js/jquery.min.js"></script>
-<script type="text/javascript">
 
+<!--
+<script src="js/companyjs/company.js"></script>-->
+<script type="text/javascript">
 	$(function () {
 		//展示公司信息
-         company();
-		})
+		company();
+	})
 	function search() {
 		$("#tbody").html("");
+		var pageIndex=1;
+		$("#pageindex").val(pageIndex);
 		company();
 	}
-	
+
 	function company() {
 		var name = $("#name").val();
+		var pageIndex=$("#pageindex").val();
 		$.ajax({
 			"type": "get",
-			"url": "company/companylist2",
-			"data": {name: name},
+			"url": "company/companylist3",
+			"data": {name: name,pageIndex:pageIndex},
+			async:false,
 			"dataType": "json",
-            async:false,
-			success: function (json) {
-				var attr = json.data.length;
-				var list = json.data;
-				console.log(attr);
+			success: function (d) {
+				var list = d.list3;
+				console.log(list.length);
 				for (var i = 0; i < list.length; i++) {
 					let html = '<tr role="row" class="odd">'
 							+'<td style="display: none">id</td>'
@@ -180,24 +230,23 @@
 							+ '<td tabindex="8" class="sorting_9">company_ranking</td>'
 							+ '<td tabindex="9" class="sorting_10">business_license</td>'
 							+ '<td tabindex="10" class="sorting_11">exequatur</td>'
-                        +'<td>'
+							+'<td>'
 
 
-                        +'<div class="btn-group">'
-                        +'<button type="button" class="btn btn-danger">点击操作</button>'
-                        +'<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">'
-                        +'<span class="caret"></span>'
-                        +'<span class="sr-only">Toggle Dropdown</span>'
-                    +'</button>'
-                    +'<ul class="dropdown-menu" role="menu">'
+							+'<div class="btn-group">'
+							+'<button type="button" class="btn btn-danger">点击操作</button>'
+							+'<button type="button" class="btn btn-danger dropdown-toggle" jsona-toggle="dropdown" aria-expanded="false">'
+							+'<span class="caret"></span>'
+							+'<span class="sr-only">Toggle Dropdown</span>'
+							+'</button>'
+							+'<ul class="dropdown-menu" role="menu">'
 
-                        +'<li><a  class="modify"'
-                    +'data-toggle="tooltip" data-placement="top" title="" data-original-title="修改公司信息">修改</a></li>'
-                    +'<li><a  class="view"   data-toggle="tooltip" data-placement="top" title="" data-original-title="查看公司信息">查看</a></li>'
-                    +'<li><a  class="delete"  data-toggle="tooltip" data-placement="top" title="" data-original-title="删除公司信息">删除</a></li>'
-                    +'</ul>'
-                    +'</div>'
-                    +'</td>'
+							+'<li><a  class="modifyAppInfo" jsona-toggle="tooltip" jsona-placement="top" title="" jsona-original-title="修改公司信息">修改</a></li>'
+							+'<li><a  class="viewApp"   jsona-toggle="tooltip" jsona-placement="top" title="" jsona-original-title="查看公司信息">查看</a></li>'
+							+'<li><a  class="deleteApp"  jsona-toggle="tooltip" jsona-placement="top" title="" jsona-original-title="删除公司信息">删除</a></li>'
+							+'</ul>'
+							+'</div>'
+							+'</td>'
 							+ '</tr>'
 					html=html.replace('id',list[i].id);
 					html = html.replace('company_name', list[i].company_name);
@@ -213,7 +262,38 @@
 					html = html.replace('exequatur', list[i].exequatur);
 					$("#tbody").append(html);
 				}
+				$("#totalCount").html(d.totalCount);
+				$("#currentPageNo").html(d.currentPageNo);
+				$("#max").html(d.totalPageCount);
 			}
 		})
 	}
+	$("#lapage").on("click",function () {
+		var pageIndex=$("#currentPageNo").val()+1;
+		$("#pageindex").val(pageIndex);
+		$("#tbody").html("");
+		company();
+	})
+
+	$("#uppage").on("click",function () {
+		var pageIndex=$("#currentPageNo").val()-1;
+		$("#pageindex").val(pageIndex);
+		$("#tbody").html("");
+		company();
+	})
+
+	$("#minpage").on("click",function () {
+		var pageIndex=1;
+		$("#pageindex").val(pageIndex);
+		$("#tbody").html("");
+		company();
+	})
+
+	$("#maxpage").on("click",function () {
+		var pageIndex=$("#max").val();
+		$("#pageindex").val(pageIndex);
+		$("#tbody").html("");
+		company();
+	})
+
 </script>

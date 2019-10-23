@@ -39,4 +39,22 @@ public class CompanyServiceImpl implements CompanyService {
         }
         return list;
     }
+
+    @Override
+    public List<Company> getCommpanylistbynames(String company_name, Integer currentPageNo, Integer pageSize) {
+       List<Company> list2=companyMapper.getCommpanylistbynames(company_name,currentPageNo,pageSize);
+       if(list2==null){
+           throw new CompanyException("数据不存在");
+       }
+        return list2;
+    }
+
+    @Override
+    public Integer count(String company_name) {
+        Integer compantcount=companyMapper.count(company_name);
+        if(compantcount==0){
+            throw new CompanyException("数量为0");
+        }
+        return compantcount;
+    }
 }
