@@ -14,9 +14,15 @@ import java.util.List;
  */
 public interface Flight_checkMapper {
     /**
-     * 查询飞行检查信息
+     * 查询查药品中的飞行检查信息
      * @param
      * @return
      */
     public List<Flight_check> getFlight_checklist();
+    /**
+     * 查询化妆品的飞行检查信息
+     * @param
+     * @return
+     */
+    public List<Flight_check> getFlight_checklist2();
 }

@@ -4,16 +4,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.csr.csrcheck.mapper.Flight_checkMapper">
 <sql id="fligid">
-`id`,`company_id`,`product_id`,`punish`,`term_of_validity`
+`id`,`check_no`,`product_id`,`punish`,`attention`,`publication`,`term_of_validity`,`content`
 </sql>
-    
+
     <select id="getFlight_checklist" resultType="com.csr.csrcheck.pojo.Flight_check">
-        SELECT f.`id`,
-       /* (SELECT `company_name` FROM company WHERE id=f.`company_id`) AS company_name,*/
-        f.`punish`,(SELECT product_name FROM product WHERE product_id=f.`product_id` )AS product_name,
-        f.`term_of_validity`
-        FROM flight_check f
+        SELECT
+f.`publication`,f.`check_no`,c.`company_name` ,f.content
+   FROM flight_check f,company c,product p
+   WHERE
+   p.`company_id`=c.`id` AND f.`product_id`=p.`product_id`;
     </select>
 
-
+    <select id="getFlight_checklist2" resultType="com.csr.csrcheck.pojo.Flight_check">
+        SELECT
+c.`company_name`,p.`product_name`,f.`attention`,f.`punish` ,f.content
+   FROM flight_check f,company c,product p
+   WHERE
+   p.`company_id`=c.`id` AND f.`product_id`=p.`product_id`AND c.`id`=#{id};
+    </select>
 </mapper>

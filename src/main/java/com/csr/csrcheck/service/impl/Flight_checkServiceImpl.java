@@ -19,7 +19,16 @@ public class Flight_checkServiceImpl implements IFlight_checkService {
     public List<Flight_check> getFlight_checklist() {
         List<Flight_check> list=flight_checkMapper.getFlight_checklist();
         if(list==null){
-            throw new Flight_checkException("数据不存在");
+            throw new Flight_checkException("药企中的数据不存在");
+        }
+        return list;
+    }
+
+    @Override
+    public List<Flight_check> getFlight_checklist2() {
+        List<Flight_check> list=flight_checkMapper.getFlight_checklist();
+        if(list==null){
+            throw new Flight_checkException("化妆品中的数据不存在");
         }
         return list;
     }
