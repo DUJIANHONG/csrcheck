@@ -196,6 +196,9 @@
 	$(function () {
 		//展示公司信息
 		company();
+		$("#btn").click(function(){
+			$("#ul").toggle();
+		});
 	})
 	function search() {
 		$("#tbody").html("");
@@ -235,11 +238,11 @@
 
 							+'<div class="btn-group">'
 							+'<button type="button" class="btn btn-danger">点击操作</button>'
-							+'<button type="button" class="btn btn-danger dropdown-toggle" jsona-toggle="dropdown" aria-expanded="false">'
+							+'<button type="button" class="btn btn-danger dropdown-toggle" jsona-toggle="dropdown" aria-expanded="false" id="btn">'
 							+'<span class="caret"></span>'
 							+'<span class="sr-only">Toggle Dropdown</span>'
 							+'</button>'
-							+'<ul class="dropdown-menu" role="menu">'
+							+'<ul class="dropdown-menu" role="menu" id="ul">'
 
 							+'<li><a  class="modifyAppInfo" jsona-toggle="tooltip" jsona-placement="top" title="" jsona-original-title="修改公司信息">修改</a></li>'
 							+'<li><a  class="viewApp"   jsona-toggle="tooltip" jsona-placement="top" title="" jsona-original-title="查看公司信息">查看</a></li>'
