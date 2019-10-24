@@ -25,10 +25,9 @@ public class Product {
     private int patent_type_id;         //专利类型id
     private int domestic_import;        //国产/进口（1国产；2进口）
     private String yieldly;             //产品生产地
+    private int patent_t_id;             //专利类型id
+    private int approvals_id;            //  准字号
 
-    /*patent_t_id        int(5)       (NULL)     YES     MUL     (NULL)                   select,insert,update,references  专利类型id
-    approvals_id       int(6)       (NULL)     YES     MUL     (NULL)                   select,insert,update,references  准字号
-*/
 
     public int getCompany_id() {
         return company_id;
@@ -156,5 +155,21 @@ public class Product {
 
     public void setYieldly(String yieldly) {
         this.yieldly = yieldly;
+    }
+
+    public int getPatent_t_id() {
+        return patent_t_id;
+    }
+
+    public void setPatent_t_id(int patent_t_id) {
+        this.patent_t_id = patent_t_id;
+    }
+
+    public int getApprovals_id() {
+        return approvals_id;
+    }
+
+    public void setApprovals_id(int approvals_id) {
+        this.approvals_id = approvals_id;
     }
 }
