@@ -26,7 +26,7 @@ public class Product {
     private int domestic_import;        //国产/进口（1国产；2进口）
     private String yieldly;             //产品生产地
     private int patent_t_id;             //专利类型id
-    private int approvals_id;            //  准字号
+    private String approvals_no;         //准字号
 
 
     public int getCompany_id() {
@@ -44,6 +44,15 @@ public class Product {
     private String patent_t_name;//产品类型名称
     private String stage_name;  //阶段名称ss
     private String patent_name;  //专利类型名称
+    private String company_name;        //公司名称
+
+    public String getCompany_name() {
+        return company_name;
+    }
+
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
+    }
 
     public String getPatent_t_name() {
         return patent_t_name;
@@ -165,11 +174,11 @@ public class Product {
         this.patent_t_id = patent_t_id;
     }
 
-    public int getApprovals_id() {
-        return approvals_id;
+    public String getApprovals_no() {
+        return approvals_no;
     }
 
-    public void setApprovals_id(int approvals_id) {
-        this.approvals_id = approvals_id;
+    public void setApprovals_no(String approvals_no) {
+        this.approvals_no = approvals_no;
     }
 }

@@ -24,7 +24,8 @@ public class Company {
     private int company_ranking;        //公司排名
     private String business_license;    //营业执照图片路径
     private String exequatur;           //许可证图片路径
-
+    private String licence_no;           //许可证编号
+    private String production;          //生产范围
     public int getListed_unlisted() {
         return listed_unlisted;
     }
@@ -41,6 +42,9 @@ public class Company {
     private String certificate_no;//营业执照编号
     private String user_name;//用户名
     private String product_t_name;//产品类型名称
+
+
+
 
     public String getProduct_t_name() {
         return product_t_name;
@@ -169,7 +173,19 @@ public class Company {
         this.exequatur = exequatur;
     }
 
+    public String getLicence_no() {
+        return licence_no;
+    }
 
+    public void setLicence_no(String licence_no) {
+        this.licence_no = licence_no;
+    }
 
+    public String getProduction() {
+        return production;
+    }
 
+    public void setProduction(String production) {
+        this.production = production;
+    }
 }
