@@ -18,4 +18,5 @@ public interface ProductService {
      * @return
      */
     public List<Product> getProductlistbyname(@Param(value = "product_name") String product_name);
+
 }

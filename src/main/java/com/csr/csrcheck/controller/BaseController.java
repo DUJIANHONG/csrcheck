@@ -25,6 +25,12 @@ public class BaseController {
      */
     public static final int SUCCESS = 2000;
 
+
+    /**
+     * 响应成功的提示
+     */
+    public static final String OK="json响应成功";
+
     /**
      * 从Session中获取当前登录的用户的id
      * @param session Session对象

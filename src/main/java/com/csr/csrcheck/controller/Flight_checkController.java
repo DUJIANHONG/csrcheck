@@ -7,9 +7,7 @@ import com.csr.csrcheck.service.IFlight_checkService;
 import com.csr.csrcheck.service.ex.Flight_checkException;
 import com.csr.csrcheck.util.JsonResult;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -31,6 +29,6 @@ public class Flight_checkController extends BaseController{
             throw new Flight_checkException("没有数据");
         }
 
-        return new JsonResult<>(SUCCESS,list);
+        return new JsonResult<>(SUCCESS,OK,list);
     }
 }

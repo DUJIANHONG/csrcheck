@@ -4,9 +4,13 @@ import com.csr.csrcheck.mapper.CompanyMapper;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.service.CompanyService;
 import com.csr.csrcheck.service.ex.CompanyException;
+import com.csr.csrcheck.util.PageRequest;
+import com.csr.csrcheck.util.PageResult;
+import com.csr.csrcheck.util.PageUtils;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.github.pagehelper.PageInfo;
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -41,20 +45,21 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public List<Company> getCommpanylistbynames(String company_name, Integer currentPageNo, Integer pageSize) {
-       List<Company> list2=companyMapper.getCommpanylistbynames(company_name,currentPageNo,pageSize);
-       if(list2==null){
-           throw new CompanyException("数据不存在");
-       }
-        return list2;
+    public PageResult findPage(PageRequest pageRequest) {
+        return PageUtils.getPageResult(pageRequest,getPageinfo(pageRequest));
     }
 
-    @Override
-    public Integer count(String company_name) {
-        Integer compantcount=companyMapper.count(company_name);
-        if(compantcount==0){
-            throw new CompanyException("数量为0");
-        }
-        return compantcount;
+    /**
+     * 调用分页插件完成分页
+     * @param pageRequest
+     * @return
+     */
+    private PageInfo<Company> getPageinfo(PageRequest pageRequest){
+        int pageNum = pageRequest.getPageNum();
+        int pageSize = pageRequest.getPageSize();
+        PageHelper.startPage(1, 6);
+        List<Company> companyList=companyMapper.getCompanyPage();
+        return new PageInfo<Company>(companyList);
     }
+
 }

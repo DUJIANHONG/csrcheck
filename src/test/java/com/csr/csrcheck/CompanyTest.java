@@ -2,6 +2,8 @@ package com.csr.csrcheck;
 
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.service.CompanyService;
+import com.csr.csrcheck.util.PageRequest;
+import com.csr.csrcheck.util.PageResult;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -49,4 +51,11 @@ public void list(){
         e.printStackTrace();
     }
 }*/
+@Test
+public void list(){
+    PageRequest pageRequest=new PageRequest();
+    PageResult page=companyService.findPage(pageRequest);
+    System.out.println(page.getContent());
+    System.out.println(page.getTotalSize());
+}
 }

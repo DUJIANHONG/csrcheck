@@ -8,10 +8,7 @@ import com.csr.csrcheck.service.ex.ProductException;
 import com.csr.csrcheck.service.ex.ProductNotFoundException;
 import com.csr.csrcheck.util.JsonResult;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -36,7 +33,7 @@ public class EquipmentController extends BaseController{
             throw new ProductException("没有数据");
         }
 
-        return new JsonResult<>(SUCCESS,list);
+        return new JsonResult<>(SUCCESS,OK,list);
     }
     @GetMapping("productlist2")
     /**
@@ -47,6 +44,6 @@ public class EquipmentController extends BaseController{
         if (list2==null) {
             throw new ProductException("没有数据哦");
         }
-        return new JsonResult<>(SUCCESS,list2);
+        return new JsonResult<>(SUCCESS,OK,list2);
     }
 }
