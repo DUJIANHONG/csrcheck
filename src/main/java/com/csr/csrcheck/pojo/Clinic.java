@@ -2,6 +2,9 @@ package com.csr.csrcheck.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+
 import java.util.Date;
 
 /**
@@ -14,8 +17,23 @@ public class Clinic {
     private int id;                 //主键
     private int product_id;         //关联药品id
     private String record_number;   //登记号
-    private int adaptation_disease; //适应症
+    private String  adaptation_disease; //适应症
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date record_date;       //登记日期
+
+    /**
+     * 自定义字段
+     * @return
+     */
+    private String product_name;        //产品名称
+
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
+    }
 
     public int getId() {
         return id;
@@ -41,11 +59,11 @@ public class Clinic {
         this.record_number = record_number;
     }
 
-    public int getAdaptation_disease() {
+    public String getAdaptation_disease() {
         return adaptation_disease;
     }
 
-    public void setAdaptation_disease(int adaptation_disease) {
+    public void setAdaptation_disease(String adaptation_disease) {
         this.adaptation_disease = adaptation_disease;
     }
 

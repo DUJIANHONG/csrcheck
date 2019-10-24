@@ -1,5 +1,6 @@
 package com.csr.csrcheck.service;
 
+import com.csr.csrcheck.pojo.Clinic;
 import com.csr.csrcheck.pojo.Flight_check;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,18 +12,12 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Flight_checkServiceTest {
+public class ClinicServiceTest {
     @Resource
-    private IFlight_checkService iFlight_checkService;
+    private ClinicService clinicService;
     @Test
     public void getFlight_checklist(){
-        List<Flight_check> result=iFlight_checkService.getFlight_checklist();
-        System.err.println(result);
-    }
-    @Test
-    public void getFlight_checklist2(){
-
-        List<Flight_check> result=iFlight_checkService.getFlight_checklist2();
+        List<Clinic> result=clinicService.getCliniclist();
         System.err.println(result);
     }
 }

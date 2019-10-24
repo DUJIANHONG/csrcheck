@@ -1,6 +1,7 @@
 package com.csr.csrcheck.service;
 
-import com.csr.csrcheck.pojo.Flight_check;
+import com.csr.csrcheck.pojo.Approvals;
+import com.csr.csrcheck.pojo.Clinic;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,18 +12,12 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Flight_checkServiceTest {
+public class ApprovalsServiceTest {
     @Resource
-    private IFlight_checkService iFlight_checkService;
+    private ApprovalsService approvalsService;
     @Test
     public void getFlight_checklist(){
-        List<Flight_check> result=iFlight_checkService.getFlight_checklist();
-        System.err.println(result);
-    }
-    @Test
-    public void getFlight_checklist2(){
-
-        List<Flight_check> result=iFlight_checkService.getFlight_checklist2();
+        List<Approvals> result=approvalsService.getApprovalslist();
         System.err.println(result);
     }
 }

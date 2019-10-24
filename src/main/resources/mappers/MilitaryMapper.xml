@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csr.csrcheck.mapper.MilitaryMapper">
+
+    
+    <select id="getMilitarylist" resultType="com.csr.csrcheck.pojo.Product">
+       SELECT p.`product_name`,
+       (SELECT `company_name` FROM company
+         WHERE id=p.`company_id`) AS company_name,
+       p.`approvals_no`
+     FROM product p
+     where domestic_import=1
+    </select>
+
+   <select id="getMilitarylist2" resultType="com.csr.csrcheck.pojo.Product">
+       SELECT p.`product_name`,
+       (SELECT `company_name` FROM company
+         WHERE id=p.`company_id`) AS company_name,
+       p.`approvals_no`
+     FROM product p
+     where domestic_import=2
+    </select>
+</mapper>
