@@ -4,6 +4,7 @@ import com.csr.csrcheck.controller.ex.CompanyException;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.service.CompanyService;
 import com.csr.csrcheck.util.JsonResult;
+import com.csr.csrcheck.util.PageSupport;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.stereotype.Controller;
@@ -14,9 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * @description:
@@ -64,5 +63,63 @@ public class CompanyConntroller extends BaseController{
             throw new CompanyException("没有数据哦");
         }
         return new JsonResult<>(SUCCESS,list2);
+   }
+
+    /**
+     * 分页查询公司信息&根据公司名称模糊查询
+     * @param name
+     * @param pageIndex
+     * @return
+     */
+   @GetMapping("companylist3")
+   public Object companylist(String name,String pageIndex){
+       List<Company> list3=null;
+       String cname=name;
+       //页面容量
+       int pageSize=5;
+       //当前页码
+       Integer currentPageNo=1;
+       if(cname==null){
+            cname="";
+       }
+       if(pageIndex!=null){
+           try {
+               currentPageNo = Integer.valueOf(pageIndex);
+           } catch (NumberFormatException e) {
+               e.printStackTrace();
+           }
+       }
+       //总数量
+       Integer totalCount = 0;
+       try {
+           totalCount=companyService.count(cname);
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+       //总页数
+       PageSupport page=new PageSupport();
+       page.setCurrentPageNo(currentPageNo);
+       page.setPageSize(pageSize);
+       page.setTotalCount(totalCount);
+       int totalPageCount = page.getTotalPageCount();
+       //控制首页和尾页
+       if(currentPageNo <1){
+           currentPageNo=1;
+       }else if(currentPageNo>totalPageCount){
+            currentPageNo=totalPageCount;
+       }
+       try {
+           list3 = companyService.getCommpanylistbynames(name,currentPageNo,pageSize);
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+       Map<String,Object> map=new HashMap<String,Object>();
+       map.put("list3",list3);
+       map.put("name",cname);
+       map.put("currentPageNo",page.getCurrentPageNo());
+       map.put("pageSize",page.getPageSize());
+       map.put("totalPageCount",page.getTotalPageCount());
+       map.put("totalCount",page.getTotalCount());
+       return map;
    }
 }
