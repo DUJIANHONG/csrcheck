@@ -62,6 +62,11 @@ public class CompanyConntroller extends BaseController{
         return new JsonResult<>(SUCCESS,OK,list2);
    }
 
+    /**
+     * 分页查询
+     * @param pageRequest
+     * @return
+     */
       @GetMapping("companypage")
        public JsonResult<Object> findCompanyPage( PageRequest pageRequest){
           PageResult page=companyService.findPage(pageRequest);

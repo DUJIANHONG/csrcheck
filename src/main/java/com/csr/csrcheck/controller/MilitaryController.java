@@ -34,7 +34,7 @@ public class MilitaryController extends BaseController{
             throw new ClinicException("没有数据");
         }
 
-        return new JsonResult<>(SUCCESS,list);
+        return new JsonResult<>(SUCCESS,OK,list);
     }
     /**
      * 查进口器械的临床
@@ -47,6 +47,6 @@ public class MilitaryController extends BaseController{
             throw new ClinicException("没有数据");
         }
 
-        return new JsonResult<>(SUCCESS,list);
+        return new JsonResult<>(SUCCESS,OK,list);
     }
 }

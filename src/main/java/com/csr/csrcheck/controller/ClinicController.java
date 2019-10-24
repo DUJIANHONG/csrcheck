@@ -35,6 +35,6 @@ public class ClinicController extends BaseController{
             throw new ClinicException("没有数据");
         }
 
-        return new JsonResult<>(SUCCESS,list);
+        return new JsonResult<>(SUCCESS,OK,list);
     }
 }

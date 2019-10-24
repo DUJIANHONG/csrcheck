@@ -37,7 +37,7 @@ public class Flight_checkController extends BaseController{
             throw new Flight_checkException("没有飞行数据");
         }
 
-        return new JsonResult<>(SUCCESS,list);
+        return new JsonResult<>(SUCCESS,OK,list);
     }
 
     /**
