@@ -6,20 +6,15 @@
 
     
     <select id="getMilitarylist" resultType="com.csr.csrcheck.pojo.Product">
-       SELECT p.`product_name`,
-       (SELECT `company_name` FROM company
-         WHERE id=p.`company_id`) AS company_name,
-       p.`approvals_no`
-     FROM product p
-     where domestic_import=1
+
+     SELECT p.`product_name`,p.`approvals_no`,c.company_name
+     FROM product p,company c,z_product_type z
+     WHERE  p.domestic_import=1  AND p.product_type_id=z.id AND z.id=3 AND c.id=p.`company_id`;
     </select>
 
    <select id="getMilitarylist2" resultType="com.csr.csrcheck.pojo.Product">
-       SELECT p.`product_name`,
-       (SELECT `company_name` FROM company
-         WHERE id=p.`company_id`) AS company_name,
-       p.`approvals_no`
-     FROM product p
-     where domestic_import=2
+       SELECT p.`product_name`,p.`approvals_no`,c.company_name
+     FROM product p,company c,z_product_type z
+     WHERE  p.domestic_import=2 AND p.product_type_id=z.id AND z.id=3 AND c.id=p.`company_id`;
     </select>
 </mapper>
