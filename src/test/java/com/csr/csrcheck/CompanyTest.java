@@ -51,11 +51,5 @@ public void list(){
         e.printStackTrace();
     }
 }*/
-@Test
-public void list(){
-    PageRequest pageRequest=new PageRequest();
-    PageResult page=companyService.findPage(pageRequest);
-    System.out.println(page.getContent());
-    System.out.println(page.getTotalSize());
-}
+
 }

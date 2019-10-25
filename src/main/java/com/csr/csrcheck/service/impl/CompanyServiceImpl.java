@@ -45,19 +45,17 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(pageRequest,getPageinfo(pageRequest));
+    public PageResult findPage(int pageNum,int pageSize) {
+        return PageUtils.getPageResult(pageNum,pageSize,getPageinfo(pageNum,pageSize));
     }
 
     /**
      * 调用分页插件完成分页
-     * @param pageRequest
+     * @param
      * @return
      */
-    private PageInfo<Company> getPageinfo(PageRequest pageRequest){
-        int pageNum = pageRequest.getPageNum();
-        int pageSize = pageRequest.getPageSize();
-        PageHelper.startPage(1, 6);
+    private PageInfo<Company> getPageinfo(int pageNum,int pageSize){
+        PageHelper.startPage(pageNum, pageSize);
         List<Company> companyList=companyMapper.getCompanyPage();
         return new PageInfo<Company>(companyList);
     }

@@ -38,6 +38,6 @@ public interface CompanyService {
      * @param pageRequest 自定义，统一分页查询请求
      * @return PageResult 自定义，统一分页查询结果
      */
-    PageResult findPage(PageRequest pageRequest);
+    PageResult findPage(int pageNum,int pageSize);
 
 }

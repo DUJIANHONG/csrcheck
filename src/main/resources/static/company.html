@@ -1,5 +1,7 @@
-<head xmlns:c="http://www.w3.org/1999/XSL/Transform" xmlns:c="">
+
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh">
+<head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="renderer" content="webkit">
@@ -68,7 +70,7 @@
 						<div style="overflow-x: auto; overflow-y: auto; height: 40%; width:100%;">
 						<table id="datatable-responsive" class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
 							  role="grid" aria-describedby="datatable-responsive_info"
-							    style="width: 600%;height: 50%">
+							    style="width: 500%;height: 50%">
                             <thead>
 								<tr role="row">
 									<th style="display: none">id</th>
@@ -138,9 +140,6 @@
                         <div class="dataTables_paginate paging_simple_numbers"
                              id="datatable-responsive_paginate">
                             <ul class="pagination">
-
-								<input type="hidden" name="pageindex" id="pageindex" value="1"/>
-
                                     <li class="paginate_button previous"><a
                                             href="#;"
                                             aria-controls="datatable-responsive" data-dt-idx="0"
@@ -153,10 +152,10 @@
                                     </li>
 
 
-                                    <li class="paginate_button "><a
+                                    <li class="paginate_button " id="lapage"><a
                                             href="#;"
                                             aria-controls="datatable-responsive" data-dt-idx="1"
-                                            tabindex="0" id="lapage">下一页</a>
+                                            tabindex="0">下一页</a>
                                     </li>
 
                                     <li class="paginate_button next"><a
@@ -196,6 +195,14 @@
 	$(function () {
 		//展示公司信息
 		company();
+		//上一页
+		$("#uppage").click(function () {
+			$("#currentPageNo").val()-1;
+		})
+		//下一页
+		$("#lapage").click(function () {
+			$("#currentPageNo").val()+1;
+		})
 	})
 	function search() {
 		$("#tbody").html("");
@@ -206,14 +213,13 @@
 
 	function company() {
 		var name = $("#name").val();
-		var pageIndex=$("#pageindex").val();
 		$.ajax({
 			"type": "get",
 			"url": "company/companypage",
 			async:false,
 			"dataType": "json",
-			success: function (d) {
-				var list = d.page;
+			success: function (json) {
+				var list = json.data.content;
 				console.log(list.length);
 				for (var i = 0; i < list.length; i++) {
 					let html = '<tr role="row" class="odd">'
@@ -260,39 +266,14 @@
 					html = html.replace('business_license', list[i].business_license);
 					html = html.replace('exequatur', list[i].exequatur);
 					$("#tbody").append(html);
+                    /*分页*/
+                    $("#totalCount").html(json.data.totalSize);  //总数
+                    $("#currentPageNo").html(json.data.pageNum);//当前第几页
+                    $("#max").html(json.data.totalPages);//总共几页
 				}
-				$("#totalCount").html(d.totalCount);
-				$("#currentPageNo").html(d.currentPageNo);
-				$("#max").html(d.totalPageCount);
 			}
 		})
 	}
-	$("#lapage").on("click",function () {
-		var pageIndex=$("#currentPageNo").val()+1;
-		$("#pageindex").val(pageIndex);
-		$("#tbody").html("");
-		company();
-	})
 
-	$("#uppage").on("click",function () {
-		var pageIndex=$("#currentPageNo").val()-1;
-		$("#pageindex").val(pageIndex);
-		$("#tbody").html("");
-		company();
-	})
-
-	$("#minpage").on("click",function () {
-		var pageIndex=1;
-		$("#pageindex").val(pageIndex);
-		$("#tbody").html("");
-		company();
-	})
-
-	$("#maxpage").on("click",function () {
-		var pageIndex=$("#max").val();
-		$("#pageindex").val(pageIndex);
-		$("#tbody").html("");
-		company();
-	})
 
 </script>

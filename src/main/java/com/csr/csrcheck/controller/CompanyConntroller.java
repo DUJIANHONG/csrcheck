@@ -8,6 +8,7 @@ import com.csr.csrcheck.util.PageRequest;
 import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -64,12 +65,12 @@ public class CompanyConntroller extends BaseController{
 
     /**
      * 分页查询
-     * @param pageRequest
+     * @param
      * @return
      */
       @GetMapping("companypage")
-       public JsonResult<Object> findCompanyPage( PageRequest pageRequest){
-          PageResult page=companyService.findPage(pageRequest);
+       public JsonResult<Object> findCompanyPage(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize, Model model){
+          PageResult page=companyService.findPage(pageNum,pageSize);
           if(page==null){
               throw new CompanyException("没有数据");
           }

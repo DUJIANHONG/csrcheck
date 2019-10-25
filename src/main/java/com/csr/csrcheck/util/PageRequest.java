@@ -1,4 +1,7 @@
 package com.csr.csrcheck.util;
+
+import org.springframework.web.bind.annotation.RequestParam;
+
 /**
  * 分页请求
  */
@@ -11,7 +14,6 @@ public class PageRequest {
      * 每页数量
      */
     private int pageSize;
-    
     public int getPageNum() {
         return pageNum;
     }
