@@ -1,16 +1,16 @@
-package com.csr.csrcheck.mapper;
+package com.csr.csrcheck.service;
 
 import com.csr.csrcheck.pojo.Patent;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * @author Karry
- * @create 2019-10-21 9:33
+ * @create 2019-10-22 13:59
  */
-public interface PatentMapper {
 
+public interface PatentService {
     //查询該公司旗下的所有专利
     public List<Patent> getListByProduct(int company_id);
-
 }

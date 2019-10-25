@@ -1,5 +1,7 @@
 package com.csr.csrcheck.pojo;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -22,6 +24,10 @@ public class Company {
     private String ten_shareholders;    //前十大股东
     private String introduction_controller_id;  //公司实际控制人id
     private int company_ranking;        //公司排名
+    private String licence_no;          //许可证编号
+    private String production;          //生产范围
+    private String organization;        //受管辖机构
+    private Date expire_date;           //许可证到期时间
     private String business_license;    //营业执照图片路径
     private String exequatur;           //许可证图片路径
 
@@ -41,6 +47,15 @@ public class Company {
     private String certificate_no;//营业执照编号
     private String user_name;//用户名
     private String product_t_name;//产品类型名称
+    private List<Patent> listbycompany; //专利list集合
+
+    public List<Patent> getListbycompany() {
+        return listbycompany;
+    }
+
+    public void setListbycompany(List<Patent> listbycompany) {
+        this.listbycompany = listbycompany;
+    }
 
     public String getProduct_t_name() {
         return product_t_name;
@@ -151,6 +166,38 @@ public class Company {
 
     public void setCompany_ranking(int company_ranking) {
         this.company_ranking = company_ranking;
+    }
+
+    public String getLicence_no() {
+        return licence_no;
+    }
+
+    public void setLicence_no(String licence_no) {
+        this.licence_no = licence_no;
+    }
+
+    public String getProduction() {
+        return production;
+    }
+
+    public void setProduction(String production) {
+        this.production = production;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
+    }
+
+    public Date getExpire_date() {
+        return expire_date;
+    }
+
+    public void setExpire_date(Date expire_date) {
+        this.expire_date = expire_date;
     }
 
     public String getBusiness_license() {

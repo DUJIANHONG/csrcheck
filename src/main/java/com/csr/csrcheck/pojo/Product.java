@@ -22,7 +22,8 @@ public class Product {
     private String registered;          //注册分类（化1，化2，化3，化4，化5，老化6）
     private int stage_no;               //阶段编号
     private String patent_no;           //专利号
-    private int patent_type_id;         //专利类型id
+    private int patent_t_id;            //专利类型id
+    private String approvals_no;        //准字号
     private int domestic_import;        //国产/进口（1国产；2进口）
     private String yieldly;             //产品生产地
 
@@ -38,9 +39,13 @@ public class Product {
     /*
      *自定义字段
      */
+    private String company_name;//公司名称
     private String patent_t_name;//产品类型名称
-    private String stage_name;  //阶段名称ss
-    private String patent_name;  //专利类型名称
+    private String stage_name;  //阶段名称
+    private String licence_no;  //许可证号
+    private String production;  //生产范围
+    private String organization;//受管辖机构
+    private String expire_date; //许可证到期时间
 
     public String getPatent_t_name() {
         return patent_t_name;
@@ -56,14 +61,6 @@ public class Product {
 
     public void setStage_name(String stage_name) {
         this.stage_name = stage_name;
-    }
-
-    public String getPatent_name() {
-        return patent_name;
-    }
-
-    public void setPatent_name(String patent_name) {
-        this.patent_name = patent_name;
     }
 
     public int getProduct_id() {
@@ -130,12 +127,28 @@ public class Product {
         this.patent_no = patent_no;
     }
 
-    public int getPatent_type_id() {
-        return patent_type_id;
+    public int getPatent_t_id() {
+        return patent_t_id;
     }
 
-    public void setPatent_type_id(int patent_type_id) {
-        this.patent_type_id = patent_type_id;
+    public void setPatent_t_id(int patent_t_id) {
+        this.patent_t_id = patent_t_id;
+    }
+
+    public String getApprovals_no() {
+        return approvals_no;
+    }
+
+    public void setApprovals_no(String approvals_no) {
+        this.approvals_no = approvals_no;
+    }
+
+    public String getCompany_name() {
+        return company_name;
+    }
+
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
     }
 
     public int getDomestic_import() {
@@ -152,5 +165,37 @@ public class Product {
 
     public void setYieldly(String yieldly) {
         this.yieldly = yieldly;
+    }
+
+    public String getLicence_no() {
+        return licence_no;
+    }
+
+    public void setLicence_no(String licence_no) {
+        this.licence_no = licence_no;
+    }
+
+    public String getProduction() {
+        return production;
+    }
+
+    public void setProduction(String production) {
+        this.production = production;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
+    }
+
+    public String getExpire_date() {
+        return expire_date;
+    }
+
+    public void setExpire_date(String expire_date) {
+        this.expire_date = expire_date;
     }
 }

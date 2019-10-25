@@ -18,4 +18,18 @@
             </if>
         </where>
     </select>
+
+    <!--查询进口/国产化妆品-->
+    <select id="gettheirByimport" resultType="com.csr.csrcheck.pojo.Product">
+        SELECT p.`product_name`,p.`approvals_no`,c.`company_name`
+        FROM product p,z_product_type z,company c
+        WHERE p.`product_type_id`=z.`id` AND p.`company_id`=c.`id` AND z.`id`=#{t_id} AND p.`domestic_import`=#{i_id};
+    </select>
+    <!--查询化妆品生产厂家-->
+    <select id="getComanyByProduct_t_id" resultType="com.csr.csrcheck.pojo.Product">
+         SELECT c.`company_name`,c.`licence_no`,c.`organization`,c.`expire_date`
+         FROM product p,company c,z_product_type z
+         WHERE p.`company_id`=c.`id` AND p.`product_type_id`=z.`id` AND p.`product_type_id`=#{t_id};
+    </select>
+
 </mapper>

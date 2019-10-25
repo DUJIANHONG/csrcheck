@@ -24,4 +24,14 @@ public class TheirServiceImpl implements TheirService {
     public List<Product> getAlltheirByproduct_id(int id,String product_name) {
         return theirMapper.getAlltheirByproduct_id(id,product_name);
     }
+
+    @Override
+    public List<Product> gettheirByimport(int t_id, int i_id) {
+        return theirMapper.gettheirByimport(t_id,i_id);
+    }
+
+    @Override
+    public List<Product> getComanyByProduct_t_id(int t_id) {
+        return theirMapper.getComanyByProduct_t_id(t_id);
+    }
 }

@@ -12,6 +12,10 @@ public class Product_recall {
     private String keywords_remarks;//关键词备注
     private String recall_content;  //召回内容
 
+
+    //自定义字段
+    private String company_name;     //公司名称
+
     public int getId() {
         return id;
     }
@@ -42,5 +46,13 @@ public class Product_recall {
 
     public void setRecall_content(String recall_content) {
         this.recall_content = recall_content;
+    }
+
+    public String getCompany_name() {
+        return company_name;
+    }
+
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
     }
 }
