@@ -196,9 +196,6 @@
 	$(function () {
 		//展示公司信息
 		company();
-		$("#btn").click(function(){
-			$("#ul").toggle();
-		});
 	})
 	function search() {
 		$("#tbody").html("");
@@ -212,12 +209,11 @@
 		var pageIndex=$("#pageindex").val();
 		$.ajax({
 			"type": "get",
-			"url": "company/companylist3",
-			"data": {name: name,pageIndex:pageIndex},
+			"url": "company/companypage",
 			async:false,
 			"dataType": "json",
 			success: function (d) {
-				var list = d.list3;
+				var list = d.page;
 				console.log(list.length);
 				for (var i = 0; i < list.length; i++) {
 					let html = '<tr role="row" class="odd">'

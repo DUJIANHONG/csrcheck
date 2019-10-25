@@ -35,6 +35,6 @@ public class ApprovalsController extends BaseController{
             throw new AppletIOException("批文没有数据");
         }
 
-        return new JsonResult<>(SUCCESS,list);
+        return new JsonResult<>(SUCCESS,OK,list);
     }
 }

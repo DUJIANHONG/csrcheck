@@ -30,19 +30,9 @@ public interface CompanyMapper {
     public List<Company> getCommpanylistbyname(@Param(value = "company_name") String company_name);
 
     /**
-     * 分页查询公司信息&根据公司名称模糊查询
-     * @param company_name
+     * 分页查询所有信息
      * @return
      */
-    public List<Company> getCommpanylistbynames(@Param(value = "company_name") String company_name,
-                                                @Param(value = "currentPageNo") Integer currentPageNo,
-                                                @Param(value = "pageSize") Integer pageSize);
+    public List<Company> getCompanyPage();
 
-
-    /**
-     * 查询公司数量
-     * @param company_name
-     * @return
-     */
-    public Integer count(@Param(value = "company_name") String company_name);
 }

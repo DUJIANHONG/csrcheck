@@ -35,6 +35,6 @@ public class EvaluateController extends BaseController{
             throw new EvaluateException("一致性评价没有数据");
         }
 
-        return new JsonResult<>(SUCCESS,list);
+        return new JsonResult<>(SUCCESS,OK,list);
     }
 }
