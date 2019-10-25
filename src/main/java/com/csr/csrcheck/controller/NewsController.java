@@ -22,6 +22,6 @@ public class NewsController extends BaseController{
     @GetMapping("newlist")
     public JsonResult<List<News>> getAllNews(){
         List<News> list = newsService.getAllNews();
-        return new JsonResult<>(SUCCESS,list);
+        return new JsonResult<>(SUCCESS,OK,list);
     }
 }

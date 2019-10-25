@@ -24,6 +24,6 @@ public class RecallConntroller extends BaseController{
     @GetMapping("recalllist")
     public JsonResult<List<Product_recall>> getlist(){
         List<Product_recall> list = recallService.getlist();
-        return new JsonResult<>(SUCCESS,list);
+        return new JsonResult<>(SUCCESS,OK,list);
     }
 }

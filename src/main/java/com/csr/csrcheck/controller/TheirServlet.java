@@ -32,12 +32,12 @@ public class TheirServlet extends BaseController{
     @RequestMapping("/import")
     public JsonResult<List<Product>> gettheirByimport(){
         List<Product> list = theirService.gettheirByimport(2,1);
-        return new JsonResult<>(SUCCESS,list);
+        return new JsonResult<>(SUCCESS,OK,list);
     }
     @ResponseBody
     @RequestMapping("/company")
     public JsonResult<List<Product>> getComanyByProduct_t_id(){
         List<Product> list = theirService.getComanyByProduct_t_id(2);
-        return new JsonResult<>(SUCCESS,list);
+        return new JsonResult<>(SUCCESS,OK,list);
     }
 }

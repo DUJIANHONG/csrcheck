@@ -23,6 +23,6 @@ public class PatentConntroller extends BaseController {
     @GetMapping("patentlist")
     public JsonResult<List<Patent>> getlistByCompany_id(){
         List<Patent> list = patentSercice.getListByProduct(4);
-        return new JsonResult<>(SUCCESS,list);
+        return new JsonResult<>(SUCCESS,OK,list);
     }
 }
