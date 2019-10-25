@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csr.csrcheck.mapper.ClinicMapper">
+<sql id="clinid">
+`id`,`product_id`,`record_number`,`adaptation_disease`,`record_date`
+</sql>
+    
+    <select id="getCliniclist" resultType="com.csr.csrcheck.pojo.Clinic">
+
+        SELECT c.`id`,c.`record_number`,c.`adaptation_disease`,p.`product_name`,c.`record_date`
+       FROM clinic c, product p, z_product_type z
+       WHERE
+       p.product_id=c.`product_id` AND p.product_type_id=z.id AND z.id=1;
+    </select>
+
+
+</mapper>

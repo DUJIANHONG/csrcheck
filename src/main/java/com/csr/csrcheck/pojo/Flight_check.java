@@ -1,5 +1,7 @@
 package com.csr.csrcheck.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 /**
@@ -9,19 +11,17 @@ import java.util.Date;
 public class Flight_check {
     //飞行检查表
 
-    private int id;                 //主键
-    private int product_id;         //涉及产品id
-    private String punish;          //所受处罚
-    private Date publication;       //公布日期
-    private Date term_of_validity;  //有效期限
+    private int  id;//主键（飞行检查表）
+    private String check_no;//检查编号
+    private int  product_id;//涉及产品id
+    private String punish; //所受处罚
+    private String attention;//特别关注
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    private Date publication;//公布日期
+    private Date term_of_validity;//有效期限
+    private String content;//飞行检查内容
 
-    public Date getPublication() {
-        return publication;
-    }
 
-    public void setPublication(Date publication) {
-        this.publication = publication;
-    }
 
     /**
      * 自定义字段
@@ -54,6 +54,14 @@ public class Flight_check {
         this.id = id;
     }
 
+    public String getCheck_no() {
+        return check_no;
+    }
+
+    public void setCheck_no(String check_no) {
+        this.check_no = check_no;
+    }
+
     public int getProduct_id() {
         return product_id;
     }
@@ -70,11 +78,35 @@ public class Flight_check {
         this.punish = punish;
     }
 
+    public String getAttention() {
+        return attention;
+    }
+
+    public void setAttention(String attention) {
+        this.attention = attention;
+    }
+
+    public Date getPublication() {
+        return publication;
+    }
+
+    public void setPublication(Date publication) {
+        this.publication = publication;
+    }
+
     public Date getTerm_of_validity() {
         return term_of_validity;
     }
 
     public void setTerm_of_validity(Date term_of_validity) {
         this.term_of_validity = term_of_validity;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

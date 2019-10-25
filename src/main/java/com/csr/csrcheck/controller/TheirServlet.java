@@ -4,9 +4,7 @@ import com.csr.csrcheck.pojo.Product;
 import com.csr.csrcheck.service.TheirService;
 import com.csr.csrcheck.util.JsonResult;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -19,9 +17,8 @@ import java.util.List;
 @Controller
 
 @RequestMapping("their")
-public class TheirServlet {
+public class TheirServlet extends BaseController{
 
-    public static final int SUCCESS = 2000;
     @Resource
     private TheirService theirService;
 
@@ -29,7 +26,7 @@ public class TheirServlet {
     @GetMapping("/theirlist")
     public JsonResult<List<Product>> TheirList(){
         List<Product> list = theirService.getAlltheirByproduct_id(2,"");
-        return new JsonResult<>(SUCCESS,list);
+        return new JsonResult<>(SUCCESS,OK,list);
     }
     @ResponseBody
     @RequestMapping("/import")

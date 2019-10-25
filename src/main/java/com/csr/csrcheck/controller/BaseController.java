@@ -25,6 +25,12 @@ public class BaseController {
      */
     public static final int SUCCESS = 2000;
 
+
+    /**
+     * 响应成功的提示
+     */
+    public static final String OK="json响应成功";
+
     /**
      * 从Session中获取当前登录的用户的id
      * @param session Session对象
@@ -82,11 +88,20 @@ public class BaseController {
             // 6005-产品异常
             jr.setState(6005);
         }else if (e instanceof ProductNotFoundException) {
-            // 6005-产品找不到异常
+            // 6006-产品找不到异常
             jr.setState(6006);
         }else if (e instanceof Flight_checkException) {
-            // 6005-飞行查询异常
+            // 6007-飞行查询异常
             jr.setState(6007);
+        }else if (e instanceof ClinicException) {
+            // 6008-临床数据查询异常
+            jr.setState(6008);
+        }else if (e instanceof ClinicException) {
+            // 6009-一致性数据查询异常
+            jr.setState(6009);
+        }else if (e instanceof ApprovalsException) {
+            // 7001-批文数据查询异常
+            jr.setState(7001);
         }
         return jr;
     }

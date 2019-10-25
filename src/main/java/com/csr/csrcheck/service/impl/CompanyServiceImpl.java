@@ -4,9 +4,13 @@ import com.csr.csrcheck.mapper.CompanyMapper;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.service.CompanyService;
 import com.csr.csrcheck.service.ex.CompanyException;
+import com.csr.csrcheck.util.PageRequest;
+import com.csr.csrcheck.util.PageResult;
+import com.csr.csrcheck.util.PageUtils;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.github.pagehelper.PageInfo;
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -39,4 +43,21 @@ public class CompanyServiceImpl implements CompanyService {
         }
         return list;
     }
+
+    @Override
+    public PageResult findPage(int pageNum,int pageSize) {
+        return PageUtils.getPageResult(pageNum,pageSize,getPageinfo(pageNum,pageSize));
+    }
+
+    /**
+     * 调用分页插件完成分页
+     * @param
+     * @return
+     */
+    private PageInfo<Company> getPageinfo(int pageNum,int pageSize){
+        PageHelper.startPage(pageNum, pageSize);
+        List<Company> companyList=companyMapper.getCompanyPage();
+        return new PageInfo<Company>(companyList);
+    }
+
 }

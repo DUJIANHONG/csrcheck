@@ -1,6 +1,7 @@
 package com.csr.csrcheck.util;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 封装响应的JSON结果的类
@@ -17,9 +18,10 @@ public class JsonResult<T> implements Serializable {
 		super();
 	}
 
-	public JsonResult(Integer state) {
+	public JsonResult(Integer state,String message) {
 		super();
 		this.state = state;
+		this.message=message;
 	}
 
 	public JsonResult(Throwable e) {
@@ -27,9 +29,10 @@ public class JsonResult<T> implements Serializable {
 		this.message = e.getMessage();
 	}
 
-	public JsonResult(Integer state, T data) {
+	public JsonResult(Integer state, String message,T data) {
 		super();
 		this.state = state;
+		this.message=message;
 		this.data = data;
 	}
 

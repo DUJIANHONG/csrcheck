@@ -29,4 +29,10 @@ public interface CompanyMapper {
      */
     public List<Company> getCommpanylistbyname(@Param(value = "company_name") String company_name);
 
+    /**
+     * 分页查询所有信息
+     * @return
+     */
+    public List<Company> getCompanyPage();
+
 }
