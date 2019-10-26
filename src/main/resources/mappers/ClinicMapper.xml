@@ -9,10 +9,10 @@
     
     <select id="getCliniclist" resultType="com.csr.csrcheck.pojo.Clinic">
 
-        SELECT c.`id`,c.`record_number`,c.`adaptation_disease`,p.`product_name`,c.`record_date`
-       FROM clinic c, product p, z_product_type z
+        SELECT c.`id`,c.`record_number`,c.`adaptation_disease`,p.`product_name`,c.`record_date`, o.`company_name`
+       FROM clinic c, product p, z_product_type z,company o
        WHERE
-       p.product_id=c.`product_id` AND p.product_type_id=z.id AND z.id=1;
+       p.`company_id`=o.`id` AND p.product_id=c.`product_id` AND p.product_type_id=z.id AND z.id=1;
     </select>
 
 
