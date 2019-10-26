@@ -26,6 +26,15 @@ public class Clinic {
      * @return
      */
     private String product_name;        //产品名称
+    private String company_name;        //公司名称
+
+    public String getCompany_name() {
+        return company_name;
+    }
+
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
+    }
 
     public String getProduct_name() {
         return product_name;
