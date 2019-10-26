@@ -44,4 +44,8 @@ public class TheirServlet extends BaseController{
     public String index(){
         return "index";
     }
+    @RequestMapping("/index2")
+    public String indexjsp(){
+        return "index";
+    }
 }

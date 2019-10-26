@@ -93,19 +93,6 @@ C  [msvcr100.dll+0x21e3b]
 C  [kernel32.dll+0x1556d]
 C  [ntdll.dll+0x5385d]
 
-最后一步最重要，在pom.xml文件中的build节点下添加如下内容，谨记：
-<resources>
-    <resource>
-        <directory>src/main/webapp/WEB-INF/jsp</directory>
-        <!--如果使用springboot自带的tomcat启动，则使用如下配置jsp路径-->
-        <targetPath>META-INF/resources</targetPath>
-        <!--如果使用maven启动本地tomcat启动，则使用如下配置-->
-        <!--<targetPath>/WEB-INF/jsp</targetPath>-->
-        <includes>
-            <include>**/*.*</include>
-        </includes>
-    </resource>
-</resources>
 
 ---------------  P R O C E S S  ---------------
 

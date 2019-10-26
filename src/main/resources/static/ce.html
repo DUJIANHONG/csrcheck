@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="css/layui.css">
+    <link rel="stylesheet" href="css/modules/layer/default/layer.css">
 </head>
 <body>
 <!--<div id="address-list">
@@ -174,5 +175,96 @@ $(function () {
     })
 })
 </script>-->
+
+<!--
+<script type="text/javascript">
+	$(function () {
+		//展示公司信息
+		company();
+	})
+	function search() {
+		$("#tbody").html("");
+		company();
+	}
+	function company() {
+		var name=$("#name").val();
+		$.ajax({
+			"type": "get",
+			"url": "company/companypage",
+			async:false,
+			"data":{company_name:name},
+			"dataType": "json",
+			success: function (json) {
+				var list = json.data.content;
+				console.log(list.length);
+				for (var i = 0; i < list.length; i++) {
+					let html = '<tr role="row" class="odd">'
+							+'<td style="display: none">id</td>'
+							+ '<td tabindex="0" class="sorting_1">company_name</td>'
+							+ '<td tabindex="1" class="sorting_2">company_address</td>'
+							+ '<td tabindex="2" class="sorting_3">type_ownership</td>'
+							+ '<td tabindex="3" class="sorting_4">main_business</td>'
+							+ '<td tabindex="4" class="sorting_5">strategic_focus</td>'
+							+ '<td tabindex="5" class="sorting_6">listed_unlisted</td>'
+							+ '<td tabindex="6" class="sorting_7">ten_shareholders</td>'
+							+ '<td tabindex="7" class="sorting_8">user_name</td>'
+							+ '<td tabindex="8" class="sorting_9">company_ranking</td>'
+							+ '<td tabindex="9" class="sorting_10">business_license</td>'
+							+ '<td tabindex="10" class="sorting_11">exequatur</td>'
+							+'<td>'
+
+
+							+'<div class="btn-group">'
+							+'<button type="button" class="btn btn-danger">点击操作</button>'
+							+'<button type="button" class="btn btn-danger dropdown-toggle" jsona-toggle="dropdown" aria-expanded="false" id="btn">'
+							+'<span class="caret"></span>'
+							+'<span class="sr-only">Toggle Dropdown</span>'
+							+'</button>'
+							+'<ul class="dropdown-menu" role="menu" id="ul">'
+
+							+'<li><a  class="modifyAppInfo" jsona-toggle="tooltip" jsona-placement="top" title="" jsona-original-title="修改公司信息">修改</a></li>'
+							+'<li><a  class="viewApp"   jsona-toggle="tooltip" jsona-placement="top" title="" jsona-original-title="查看公司信息">查看</a></li>'
+							+'<li><a  class="deleteApp"  jsona-toggle="tooltip" jsona-placement="top" title="" jsona-original-title="删除公司信息">删除</a></li>'
+							+'</ul>'
+							+'</div>'
+							+'</td>'
+							+ '</tr>'
+					html=html.replace('id',list[i].id);
+					html = html.replace('company_name', list[i].company_name);
+					html = html.replace('company_address', list[i].company_address);
+					html = html.replace('type_ownership', list[i].type_ownership);
+					html = html.replace('main_business', list[i].main_business);
+					html = html.replace('strategic_focus', list[i].strategic_focus);
+					html = html.replace('listed_unlisted', list[i].listed_unlisted);
+					html = html.replace('ten_shareholders', list[i].ten_shareholders);
+					html = html.replace('user_name', list[i].user_name);
+					html = html.replace('company_ranking', list[i].company_ranking);
+					html = html.replace('business_license', list[i].business_license);
+					html = html.replace('exequatur', list[i].exequatur);
+					$("#tbody").append(html);
+                    /*分页*/
+                    layui.use(['laypage', 'layer'], function(){
+                        var laypage = layui.laypage
+                            ,layer = layui.layer;
+                        //完整功能
+                        laypage.render({
+                            elem: 'demo7'
+                            ,count: json.data.totalSize
+                            //,groups:
+                            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip', ]
+                            ,jump: function(obj){
+                                console.log(obj)
+                            }
+                        });
+                    });
+                    /*结束*/
+				}
+			}
+		})
+	}
+
+
+</script>
+-->
 </body>
 </html>
