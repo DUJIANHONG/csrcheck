@@ -53,7 +53,7 @@
 							</div>
 						</div>
 					</li>
-					<li><button type="submit" class="btn btn-primary" id="submit"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button></li>
+					<li><button type="submit" class="btn btn-primary" onclick="tijiao()" id="submit"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button></li>
 				</ul>
 			</form>
 		</div>
@@ -195,28 +195,18 @@
 	$(function () {
 		//展示公司信息
 		company();
-		//上一页
-		$("#uppage").click(function () {
-			$("#currentPageNo").val()-1;
-		})
-		//下一页
-		$("#lapage").click(function () {
-			$("#currentPageNo").val()+1;
-		})
 	})
 	function search() {
 		$("#tbody").html("");
-		var pageIndex=1;
-		$("#pageindex").val(pageIndex);
 		company();
 	}
-
 	function company() {
-		var name = $("#name").val();
+		var name=$("#name").val();
 		$.ajax({
 			"type": "get",
 			"url": "company/companypage",
 			async:false,
+			"data":{company_name:name},
 			"dataType": "json",
 			success: function (json) {
 				var list = json.data.content;
