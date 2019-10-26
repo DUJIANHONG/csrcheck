@@ -30,7 +30,7 @@
 	<!-- add local/css 2016-8-18 -->
 	<link href="css/appinfoadd.css" rel='stylesheet'>
 	<link href="css/appinfolist.css" rel='stylesheet'>
-
+	<link rel="stylesheet" href="css/layui.css">
 </head>
 <div class="row">
 	<div class="col-md-12">
@@ -130,40 +130,7 @@
 						</div>
 					</div>
 				</div>
-                <div class="row">
-                    <div class="col-sm-5">
-                        <div class="dataTables_info" id="datatable-responsive_info"
-                             role="status" aria-live="polite">共<span id="totalCount"></span>条记录
-							<span id="currentPageNo"></span>/<span id="max"></span>页</div>
-                    </div>
-                    <div class="col-sm-7">
-                        <div class="dataTables_paginate paging_simple_numbers"
-                             id="datatable-responsive_paginate">
-                            <ul class="pagination">
-                                    <li class="paginate_button previous"><a
-                                            href="#;"
-                                            aria-controls="datatable-responsive" data-dt-idx="0"
-                                            tabindex="0" id="minpage">首页</a>
-                                    </li>
-                                    <li class="paginate_button "><a
-                                            href="#;"
-                                            aria-controls="datatable-responsive" data-dt-idx="1"
-                                            tabindex="0" id="uppage">上一页</a>
-                                    </li>
-                                    <li class="paginate_button " id="lapage"><a
-                                            href="#;"
-                                            aria-controls="datatable-responsive" data-dt-idx="1"
-                                            tabindex="0">下一页</a>
-                                    </li>
-                                    <li class="paginate_button next"><a
-                                            href="#;"
-                                            aria-controls="datatable-responsive" data-dt-idx="7"
-                                            tabindex="0" id="maxpage">最后一页</a>
-                                    </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+				<div id="demo7"></div>
 			</div>
 		</div>
 	</div>
@@ -184,9 +151,25 @@
 <script src="js/dropzone.js"></script>
 <!--<script src="js/rollpage.js"></script>-->
 <script src="js/jquery.min.js"></script>
+<script  type="text/javascript" src="js/layui/layui.js"></script>
+<script>
+	layui.use(['laypage', 'layer'], function(){
+		var laypage = layui.laypage
+				,layer = layui.layer;
+		//完整功能
+		laypage.render({
+			elem: 'demo7'
+			,count: 100
+			//,groups: 0
+			,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip', ]
+			,jump: function(obj){
+				console.log(obj)
+			}
+		});
+	});
+</script>
 
-<!--
-<script src="js/companyjs/company.js"></script>-->
+
 <script type="text/javascript">
 	$(function () {
 		//展示公司信息
