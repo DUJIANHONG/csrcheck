@@ -94,7 +94,16 @@
 			<artifactId>jsqlparser</artifactId>
 			<version>0.9.5</version>
 		</dependency>
-
+        <!--jsp依赖 对应springboot版本为2.1.4-->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
 	</dependencies>
 
 	<build>

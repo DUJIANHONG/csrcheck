@@ -15,7 +15,6 @@ import java.util.List;
  */
 
 @Controller
-
 @RequestMapping("their")
 public class TheirServlet extends BaseController{
 
@@ -39,5 +38,10 @@ public class TheirServlet extends BaseController{
     public JsonResult<List<Product>> getComanyByProduct_t_id(){
         List<Product> list = theirService.getComanyByProduct_t_id(2);
         return new JsonResult<>(SUCCESS,OK,list);
+    }
+
+    @RequestMapping("/index")
+    public String index(){
+        return "index";
     }
 }

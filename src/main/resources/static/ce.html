@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="css/layui/layui.css">
 </head>
 <body>
 <!--<div id="address-list">
 </div>-->
 <!--<div><input type="text" id="text"></div>-->
-<div id="box" style="text-align: center">
-    <table border="1px" style="width: 500%;height: 600%" id="table">
+<!--<div id="box" style="text-align: center">-->
+<!--    <table border="1px" style="width: 500%;height: 600%" id="table">
         <tr role="row">
            <th style="display: none">主键id(公司表)</th>
             <th>公司名称</th>
@@ -27,13 +28,32 @@
             <th>营业执照编号</th>
             <th>用户名</th>
         </tr>
-    </table>
-</div>
-<script src="js/bootstrap.min.js"></script>
+    </table>-->
+    <div id="demo7"></div>
+<!--</div>-->
+
+<!--<script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-paginator.min.js"></script>
 <script src="js/jquery.min.js"></script>
-<script type="text/javascript">
-/*$(function () {
+<script type="text/javascript"></script>-->
+<script  type="text/javascript" src="js/layui/layui.js"></script>
+<script>
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage
+            ,layer = layui.layer;
+        //完整功能
+        laypage.render({
+            elem: 'demo7'
+            ,count: 100
+            //,groups: 0
+            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip', ]
+            ,jump: function(obj){
+                console.log(obj)
+            }
+        });
+    });
+</script>
+<!--$(function () {
     $("#text").blur(function () {
         var Name=$("#text").val();
         $.ajax({
@@ -153,6 +173,6 @@ $(function () {
         }
     })
 })
-</script>
+</script>-->
 </body>
 </html>
