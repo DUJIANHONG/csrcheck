@@ -9,13 +9,11 @@
 </sql>
     
     <select id="getEvaluatelist" resultType="com.csr.csrcheck.pojo.Evaluate">
-       SELECT e.`id`,e.`accept_no`,e.`english_name`,e.`specification`,
-        (SELECT `product_name` FROM product
-        WHERE product_id=e.`product_id`) AS product_name,
-         e.`agent_type`,(SELECT `company_name` FROM company
-        WHERE id=e.`company_id`) AS company_name,
-         e.`adaptation_disease`
-        FROM evaluate e
+
+        SELECT e.`id`,e.`accept_no`,e.`english_name`,e.`specification`,e.`agent_type`,e.`adaptation_disease`,p.product_name,
+		c.company_name
+		FROM product p,evaluate e,company c,z_product_type z
+		WHERE p.product_id=e.`product_id` AND c.id=e.`company_id` AND p.product_type_id=z.id AND z.id=1;
     </select>
 
 </mapper>
