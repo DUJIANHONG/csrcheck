@@ -4,16 +4,15 @@ import com.csr.csrcheck.controller.ex.CompanyException;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.service.CompanyService;
 import com.csr.csrcheck.util.JsonResult;
-import com.csr.csrcheck.util.PageRequest;
 import com.csr.csrcheck.util.PageResult;
+import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.ui.Model;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
@@ -33,7 +32,7 @@ public class CompanyConntroller extends BaseController{
     private CompanyService companyService;
 
     /**
-     * 查询公司信息
+     * 查询公司信息（wxapi）
      * @param
      * @return
      * @throws IOException
@@ -50,7 +49,7 @@ public class CompanyConntroller extends BaseController{
     }
 
     /**
-     * 根据公司名模糊查询公司信息
+     * 根据公司名模糊查询公司信息（wxapi）
      * @param name
      * @return
      */
@@ -68,7 +67,7 @@ public class CompanyConntroller extends BaseController{
      * @param
      * @return
      */
-      @GetMapping("companypage")
+      @RequestMapping("companypage")
        public JsonResult<Object> findCompanyPage(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize,String company_name){
           PageResult page=companyService.findPage(pageNum,pageSize,company_name);
           if(page==null){
