@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.springframework.org/schema/jdbc">
+<html lang="en" xmlns:th="http://www.springframework.org/schema/mvc">
 
 <head>
     <meta charset="utf-8">
@@ -8,11 +8,11 @@
     <title>BootDo</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/login.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/login.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
@@ -33,9 +33,9 @@
                 </div>
                 <div class="m-b"></div>
                 <h3>
-                    欢迎使用 <strong>CSR药企查后台管理系统</strong>
+                    欢迎使用 <strong>CSR后台管理系统</strong>
                 </h3>
-     <!--           <ul class="m-b">
+<!--                <ul class="m-b">
                     <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i>
                         springBoot
                     </li>
@@ -53,29 +53,27 @@
         <div class="col-sm-5">
             <form id="signupForm">
                 <h3 class="text-center">用户登录</h3>
-                <p class="m-t-md text-center">CSR药企查</p>
-                <input type="text" name="user_name" id="user_name" class="form-control uname"/>
-                <input type="password" name="password" id="password"
-                       class="form-control pword m-b"/>
-                <span id="error" name="error" style="color: red" ></span>
+                <p class="m-t-md text-center">CSR后台管理</p>
+                <input type="text" name="user_name" class="form-control uname" th:value=""/>
+                <input type="password" name="password"
+                       class="form-control pword m-b" th:value=""/>
+                   <span id="erro" style="color: red"></span>
                 <a id="login" class="btn btn-login btn-block">登录</a>
             </form>
         </div>
     </div>
 </div>
-<script th:inline="javascript"> var ctx = [[@{/}]];</script>
 <!-- 全局js -->
-<script src="js/jquery.min.js?v=2.1.4" th:src="@{/js/jquery.min.js?v=2.1.4}"></script>
-<script src="js/bootstrap.min.js?v=3.3.6" th:src="@{/js/bootstrap.min.js?v=3.3.6}"></script>
+<script src="/js/jquery.min.js?v=2.1.4" th:src="@{/js/jquery.min.js?v=2.1.4}"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6" th:src="@{/js/bootstrap.min.js?v=3.3.6}"></script>
 
 <!-- 自定义js -->
-<script src="js/content.js?v=1.0.0" th:src="@{/js/content.js?v=1.0.0}"></script>
+<script src="/js/content.js?v=1.0.0" th:src="@{/js/content.js?v=1.0.0}"></script>
 
 <!-- jQuery Validation plugin javascript-->
-<script src="js/ajax-util.js"></script>
-<script src="js/jquery.validate.min.js" th:src="@{/js/jquery.validate.min.js}"></script>
-<script src="js/messages_zh.min.js" th:src="@{/js/messages_zh.min.js}"></script>
-<script src="js/layer.min.js" th:src="@{/js/layer.min.js}"></script>
+<script src="/js/plugins/validate/jquery.validate.min.js" th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
+<script src="/js/plugins/validate/messages_zh.min.js" th:src="@{/js/plugins/validate/messages_zh.min.js}"></script>
+<script src="/js/plugins/layer/layer.min.js" th:src="@{/js/plugins/layer/layer.min.js}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#login").on('click',function(){
@@ -98,14 +96,14 @@
             data: $('#signupForm').serialize(),
             dataType:"json",
             success: function (json) {
-                    if(json.state==2000){
-                        //alert("登录成功");
-                        window.location.href="index_v1.html";
-                    }else{
-                        //alert("登录失败"+json.message)
-                        var icon = "<i class='fa fa-times-circle'></i> ";
-                        $("#error").html(icon+json.message)
-                    }
+                if(json.state==2000){
+                    //alert("登录成功");
+                    window.location.href="index_v1.html";
+                }else{
+                    //alert("登录失败"+json.message)
+                    var icon = "<i class='fa fa-times-circle'></i> ";
+                    $("#erro").html(icon+json.message)
+                }
             },
         });
     }

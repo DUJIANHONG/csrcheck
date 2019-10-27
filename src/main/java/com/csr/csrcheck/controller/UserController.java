@@ -22,9 +22,4 @@ public class UserController extends BaseController {
         session.setAttribute("user_name",data.getUser_name());
         return new JsonResult<User>(SUCCESS,OK,data);
     }
-    @GetMapping("session")
-    public JsonResult<User> logins(HttpSession session){
-        String name=(String)session.getAttribute("user_id");
-        return new JsonResult<>(SUCCESS,OK);
-    }
 }
