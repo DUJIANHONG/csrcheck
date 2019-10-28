@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class Contend {
     private int  id;//竞争力ID
+    private int company_id;//公司ID
     private String  technology;//具备创新的技术
     private String  talent ; //具备创新能力的人才
     private String  culture ;//优秀的企业文化
@@ -36,6 +37,14 @@ public class Contend {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getCompany_id() {
+        return company_id;
+    }
+
+    public void setCompany_id(int company_id) {
+        this.company_id = company_id;
     }
 
     public String getTechnology() {

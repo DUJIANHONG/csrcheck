@@ -6,6 +6,6 @@
     <select id="getContendList" resultType="com.csr.csrcheck.pojo.Contend">
        SELECT o.company_name,c.`time`,c.`outline`,c.`technology`,c.`talent`,c.`culture`,c.`supervise`,c.`resource`,c.`rival`
 FROM company o, `contend` c
-WHERE c.`id`=o.`id`;
+WHERE c.`company_id`=o.`id`;
     </select>
 </mapper>
