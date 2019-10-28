@@ -4,26 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.csr.csrcheck.mapper.CompanyMapper">
 <sql id="commid">
-`id`,`company_name`,`company_address`,`type_ownership`,`main_business`,`product_id`,
-`strategic_focus`,`certificate_id`,`ten_shareholders`,`introduction_controller_id`,
-`number_patents`,`company_ranking`,`business_license`,`exequatur`,`licence_no`,`production`,
+`strategic_focus`,`listed_unlisted`,`certificate_id`,`ten_shareholders`,
+`introduction_controller_id`,`company_ranking`,`licence_no`,`production`,
+`organization`,`expire_date`,`business_license`,`exequatur`
 </sql>
     
     <select id="getCommpanylist" resultType="com.csr.csrcheck.pojo.Company">
-       SELECT c.`id`,c.`company_name`,c.`company_address`,c.`type_ownership`,
-        c.main_business,c.`strategic_focus`,c.`licence_no`,c.`production`,
-        c.`ten_shareholders`,(SELECT `con_name` FROM z_actual_controller
-         WHERE id=c.`introduction_controller_id`) AS user_name,c.`company_ranking`,
-         c.`business_license`,c.`exequatur`
+        SELECT c.*,(SELECT `con_name` FROM z_actual_controller WHERE id=c.`introduction_controller_id`) AS user_name,
+        (SELECT certificate_no FROM `certificate` WHERE id=c.`certificate_id`) AS certificate_no
         FROM company c
     </select>
 
     <select id="getCommpanylistbyname" resultType="com.csr.csrcheck.pojo.Company">
-        SELECT c.`id`,c.`company_name`,c.`company_address`,c.`type_ownership`,
-        c.main_business,c.`strategic_focus`,c.`licence_no`,c.`production`,
-        c.`ten_shareholders`,(SELECT `con_name` FROM z_actual_controller
-        WHERE id=c.`introduction_controller_id`) AS user_name,c.`company_ranking`,
-        c.`business_license`,c.`exequatur`
+        SELECT c.*,(SELECT `con_name` FROM z_actual_controller WHERE id=c.`introduction_controller_id`) AS user_name,
+        (SELECT certificate_no FROM `certificate` WHERE id=c.`certificate_id`) AS certificate_no
         FROM company c
         <trim prefix="where" prefixOverrides="and | or">
         <if test="company_name != null and company_name != ''">
@@ -34,11 +28,8 @@
     </select>
 <!--    pagehelper...分页查询-->
     <select id="getCompanyPage" resultType="com.csr.csrcheck.pojo.Company">
-        SELECT c.`id`,c.`company_name`,c.`company_address`,c.`type_ownership`,
-        c.main_business,c.`strategic_focus`,c.`licence_no`,c.`production`,
-        c.`ten_shareholders`,c.listed_unlisted,(SELECT `con_name` FROM z_actual_controller
-         WHERE id=c.`introduction_controller_id`) AS user_name,c.`company_ranking`,
-         c.`business_license`,c.`exequatur`
+        SELECT c.*,(SELECT `con_name` FROM z_actual_controller WHERE id=c.`introduction_controller_id`) AS user_name,
+        (SELECT certificate_no FROM `certificate` WHERE id=c.`certificate_id`) AS certificate_no
         FROM company c
         <trim prefix="where" prefixOverrides="and | or">
             <if test="company_name != null and company_name != ''">

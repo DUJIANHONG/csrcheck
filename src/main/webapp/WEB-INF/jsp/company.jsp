@@ -19,7 +19,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">公司名称</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
+                                    <input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="">
                                 </div>
                             </div>
                         </li>
@@ -41,6 +41,7 @@
                                    cellspacing="0" width="100%" role="grid" aria-describedby="datatable-responsive_info" style="width: 100%;">
                                 <thead>
                                 <tr role="row">
+                                    <th hidden>主键id</th>
                                     <th class="sorting_asc" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         aria-label="First name: activate to sort column descending"
@@ -76,6 +77,14 @@
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         aria-label="Last name: activate to sort column ascending">
+                                        生产范围</th>
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        受管辖机构</th>
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        aria-label="Last name: activate to sort column ascending">
                                         公司排名</th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
@@ -85,19 +94,21 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="appInfo" items="${appInfoList }" varStatus="status">
+                                <c:forEach var="pages" items="${page.content}" varStatus="status">
                                     <tr role="row" class="odd">
-                                        <td tabindex="0" class="sorting_1">${appInfo.softwareName}</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td tabindex="0" class="sorting_1">${pages.company_name}</td>
+                                        <td>${pages.company_name}</td>
+                                        <td>${pages.company_address}</td>
+                                        <td>${pages.type_ownership}</td>
+                                        <td>${pages.strategic_focus}</td>
+                                        <td>${pages.ten_shareholders}</td>
+                                        <td>${pages.company_ranking}</td>
+                                        <td>${pages.production}</td>
+                                        <td>${pages.organization}</td>
+                                        <td>${pages.expire_date}</td>
+                                        <td>${pages.certificate_no}</td>
+                                        <td>${pages.user_name}</td>
                                         <td>
-
-
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-danger">点击操作</button>
                                                 <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -106,8 +117,8 @@
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li><a  class="modifyAppInfo"data-toggle="tooltip" data-placement="top" title="" data-original-title="修改公司信息">修改</a></li>
-                                                    <li><a  class="viewApp" appinfoid=${appInfo.id }  data-toggle="tooltip" data-placement="top" title="" data-original-title="查看公司信息">查看</a></li>
-                                                    <li><a  class="deleteApp" appinfoid=${appInfo.id }  appsoftwarename=${appInfo.softwareName } data-toggle="tooltip" data-placement="top" title="" data-original-title="删除公司信息">删除</a></li>
+                                                    <li><a  class="viewApp"   data-toggle="tooltip" data-placement="top" title="" data-original-title="查看公司信息">查看</a></li>
+                                                    <li><a  class="deleteApp" data-toggle="tooltip" data-placement="top" title="" data-original-title="删除公司信息">删除</a></li>
                                                 </ul>
                                             </div>
                                         </td>
@@ -120,7 +131,7 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="dataTables_info" id="datatable-responsive_info"
-                                 role="status" aria-live="polite">共条记录 页</div>
+                                 role="status" aria-live="polite">共${page.totalSize}条记录${page.pageNum}页${page.totalPages}</div>
                         </div>
                         <div class="col-sm-7">
                             <div class="dataTables_paginate paging_simple_numbers"

@@ -73,9 +73,6 @@ public class CompanyConntroller extends BaseController{
           if(page==null){
               throw new CompanyException("没有数据");
           }
-          if(company_name==null&&company_name.equals("")){
-              throw  new CompanyException("请输入公司名称");
-          }
         return page;
    }
 }

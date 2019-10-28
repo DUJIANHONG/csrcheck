@@ -2,9 +2,9 @@ package com.csr.csrcheck.pojo;
 
 import java.util.Date;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @description:公司
@@ -19,16 +19,20 @@ public class Company {
     private String company_name;        //公司名称
     private String company_address;     //公司地址
     private String type_ownership;      //公司所属类型
-    private String main_business;       //主营业务
+    private String main_business;//主营业务
+    @JsonIgnore
     private int certificate_id;         //证书id
     private String strategic_focus;     //战略重点
     private int listed_unlisted;        //上市/未上市（1上市；2未上市）
     private String ten_shareholders;    //前十大股东
+    @JsonIgnore
     private String introduction_controller_id;  //公司实际控制人id
     private int company_ranking;        //公司排名
+    @JsonIgnore
     private String licence_no;          //许可证编号
     private String production;          //生产范围
     private String organization;        //受管辖机构
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date expire_date;           //许可证到期时间
     private String business_license;    //营业执照图片路径
     private String exequatur;           //许可证图片路径
@@ -57,34 +61,30 @@ public class Company {
         this.listed_unlisted = listed_unlisted;
     }
 
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
+    }
+
+    public Date getExpire_date() {
+        return expire_date;
+    }
+
+    public void setExpire_date(Date expire_date) {
+        this.expire_date = expire_date;
+    }
 
     /*
      *自定义字段
      */
     @JsonIgnore
     private String product_name; //产品名称
-    @JsonIgnore
     private String certificate_no;//营业执照编号
     private String user_name;//用户名
-    @JsonIgnore
-    private String product_t_name;//产品类型名称
-    private List<Patent> listbycompany; //专利list集合
 
-    public List<Patent> getListbycompany() {
-        return listbycompany;
-    }
-
-    public void setListbycompany(List<Patent> listbycompany) {
-        this.listbycompany = listbycompany;
-    }
-
-    public String getProduct_t_name() {
-        return product_t_name;
-    }
-
-    public void setProduct_t_name(String product_t_name) {
-        this.product_t_name = product_t_name;
-    }
 
     public String getProduct_name() {
         return product_name;

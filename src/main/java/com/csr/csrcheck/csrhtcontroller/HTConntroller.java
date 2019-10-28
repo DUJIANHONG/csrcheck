@@ -29,26 +29,17 @@ public class HTConntroller extends BaseController {
      * 公司信息页面
      * @return
      */
-    @RequestMapping("company")
-    public String Company(){
+    @RequestMapping("companyjsp")
+        public String findCompanyPage(@RequestParam(defaultValue = "1") int pageNum,
+        @RequestParam(defaultValue = "5") int pageSize,
+        String company_name, Model model){
+            PageResult page=companyService.findPage(pageNum,pageSize,company_name);
+            if(page==null){
+                throw new CompanyException("没有数据");
+            }
+            model.addAttribute("page",page);
         return "company";
-    }
-
-    /**
-     * 分页查询
-     * @param
-     * @return
-     */
-    @RequestMapping("companypage")
-    public String findCompanyPage(@RequestParam(defaultValue = "1") int pageNum,
-                                  @RequestParam(defaultValue = "5") int pageSize,
-                                  String company_name, Model model){
-        PageResult page=companyService.findPage(pageNum,pageSize,company_name);
-        if(page==null){
-            throw new CompanyException("没有数据");
         }
-        model.addAttribute("page",page);
-        return "csrht/company";
     }
 
-}
+

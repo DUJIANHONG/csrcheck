@@ -46,9 +46,6 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public PageResult findPage(int pageNum,int pageSize,String company_name) {
-        if(company_name==null&&company_name.equals("")){
-             throw new CompanyException("请输入公司名称");
-        }
         return PageUtils.getPageResult(pageNum,pageSize,getPageinfo(pageNum,pageSize,company_name));
     }
 
