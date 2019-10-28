@@ -68,7 +68,7 @@ public class CompanyConntroller extends BaseController{
      * @return
      */
       @RequestMapping("companypage")
-       public JsonResult<Object> findCompanyPage(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize,String company_name){
+       public Object findCompanyPage(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize,String company_name){
           PageResult page=companyService.findPage(pageNum,pageSize,company_name);
           if(page==null){
               throw new CompanyException("没有数据");
@@ -76,6 +76,6 @@ public class CompanyConntroller extends BaseController{
           if(company_name==null&&company_name.equals("")){
               throw  new CompanyException("请输入公司名称");
           }
-        return new JsonResult<>(SUCCESS,OK,page);
+        return page;
    }
 }

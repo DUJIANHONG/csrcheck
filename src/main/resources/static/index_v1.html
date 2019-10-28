@@ -63,7 +63,7 @@
                         class="nav-label">公司</span> <span class="fa arrow"></span>
                 </a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="csrht/company">公司信息</a></li>
+                        <li><a class="J_menuItem" href="csrht/companypage">公司信息</a></li>
                     </ul>
                 </li>
 
@@ -118,10 +118,10 @@
                         </ul>
                     </li>-->
                     <li class="hidden-xs"><a @click="personal" href="#" ><i class="fa fa-id-card"></i> 个人</a></li>
-                    <li class="dropdown hidden-xs"><a
+       <!--             <li class="dropdown hidden-xs"><a
                             class="right-sidebar-toggle" aria-expanded="false"> <i
                             class="fa fa-tasks"></i> 主题
-                    </a></li>
+                    </a></li>-->
                 </ul>
             </nav>
         </div>
@@ -163,18 +163,18 @@
     </div>
     <!--右侧部分结束-->
     <!--右侧边栏开始-->
-    <div id="right-sidebar">
+   <!-- <div id="right-sidebar">
         <div class="sidebar-container">
             <ul class="nav nav-tabs navs-3">
 
                 <li class="active"><a data-toggle="tab" href="#tab-1"> <i
                         class="fa fa-gear"></i> 主题
-                </a></li>
+                </a></li>-->
            <!--     <li class=""><a data-toggle="tab" href="#tab-2"> 通知 </a></li>
                 <li><a data-toggle="tab" href="#tab-3"> 项目进度 </a></li>-->
-            </ul>
-            <div class="tab-content">
-                <div id="tab-1" class="tab-pane active">
+          <!--  </ul>-->
+            <!--<div class="tab-content">
+               &lt;!&ndash; <div id="tab-1" class="tab-pane active">
                     <div class="sidebar-title">
                         <h3>
                             <i class="fa fa-comments-o"></i> 主题设置
@@ -242,8 +242,8 @@
 								</span>
                         </div>
                     </div>
-                </div>
-       <!--         <div id="tab-2" class="tab-pane">
+                </div>&ndash;&gt;
+       &lt;!&ndash;         <div id="tab-2" class="tab-pane">
 
                     <div class="sidebar-title">
                         <h3>
@@ -251,8 +251,8 @@
                         </h3>
                         <small><i class="fa fa-tim"></i> 您当前有10条未读信息</small>
                     </div>
-                </div>-->
-              <!--  <div id="tab-3" class="tab-pane">
+                </div>&ndash;&gt;
+              &lt;!&ndash;  <div id="tab-3" class="tab-pane">
 
                     <div class="sidebar-title">
                         <h3>
@@ -260,8 +260,8 @@
                         </h3>
                         <small><i class="fa fa-tim"></i> 您当前有14个任务，10个已完成</small>
                     </div>
-                </div>-->
-            </div>
+                </div>&ndash;&gt;
+            </div>-->
 
         </div>
     </div>
@@ -282,24 +282,24 @@
         src="/js/vue.min.js">
 
 </script>
-<script src="/js/appjs/oa/webSocket/sockjs.min.js"></script>
-<script src="/js/appjs/oa/webSocket/stomp.min.js"></script>
+<script src="/js/sockjs.min.js"></script>
+<script src="/js/stomp.min.js"></script>
 <!-- Toastr script -->
 <script src="/js/plugins/toastr/toastr.min.js"></script>
-<script type="text/javascript">
+<!--<script type="text/javascript">
     var stompClient = null;
     $(function () {
-        connect();
+      /*  connect();*/
     });
 
-    function connect() {
+    /*function connect() {
         var sock = new SockJS("/endpointChat");
         var stomp = Stomp.over(sock);
         stomp.connect('guest', 'guest', function(frame) {
 
-            /**  订阅了/user/queue/notifications 发送的消息,这里雨在控制器的 convertAndSendToUser 定义的地址保持一致, 
+            /!**  订阅了/user/queue/notifications 发送的消息,这里雨在控制器的 convertAndSendToUser 定义的地址保持一致, 
              *  这里多用了一个/user,并且这个user 是必须的,使用user 才会发送消息到指定的用户。 
-             *  */
+             *  *!/
             stomp.subscribe("/user/queue/notifications", handleNotification);
             stomp.subscribe('/topic/getResponse', function (response) { //订阅/topic/getResponse 目标发送的消息。这个是在控制器的@SendTo中定义的。
                 toastr.options = {
@@ -324,7 +324,7 @@
             wrapper.notify();
             toastr.info(message.body);
         }
-    }
+    }*/
 
     var wrapper = new Vue({
         el: '#wrapper',
@@ -333,12 +333,12 @@
             rows: '',
         },
         methods: {
-            notify: function () {
+/*            notify: function () {
                 $.getJSON('/oa/notify/message', function (r) {
                     wrapper.total = r.total;
                     wrapper.rows = r.rows;
                 });
-            },
+            },*/
             personal: function () {
                 layer.open({
                     type: 2,
@@ -354,6 +354,6 @@
             this.notify()
         }
     })
-</script>
+</script>-->
 </body>
 </html>
