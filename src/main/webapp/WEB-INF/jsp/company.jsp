@@ -12,7 +12,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <form method="post" action="list">
+                <form method="post" action="">
                     <input type="hidden" name="pageIndex" value="1" />
                     <ul>
                         <li>
@@ -37,8 +37,11 @@
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
                         <div class="col-sm-12">
-                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
-                                   cellspacing="0" width="100%" role="grid" aria-describedby="datatable-responsive_info" style="width: 100%;">
+                            <div style="overflow-x: auto; overflow-y: auto; height: 50%; width:100%;">
+                            <table id="datatable-responsive"
+                                   class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+                                   role="grid" aria-describedby="datatable-responsive_info"
+                                   style="width: 500%;height: 50%">
                                 <thead>
                                 <tr role="row">
                                     <th hidden>主键id</th>
@@ -96,18 +99,23 @@
                                 <tbody>
                                 <c:forEach var="pages" items="${page.content}" varStatus="status">
                                     <tr role="row" class="odd">
+                                        <td hidden>${pages.id}</td>
                                         <td tabindex="0" class="sorting_1">${pages.company_name}</td>
-                                        <td>${pages.company_name}</td>
                                         <td>${pages.company_address}</td>
                                         <td>${pages.type_ownership}</td>
+                                        <td>${pages.main_business}</td>
                                         <td>${pages.strategic_focus}</td>
+                                        <c:if test="${pages.listed_unlisted==1}">
+                                            <td>上市</td>
+                                        </c:if>
+                                        <c:if test="${pages.listed_unlisted==2}">
+                                            <td>未上市</td>
+                                        </c:if>
                                         <td>${pages.ten_shareholders}</td>
-                                        <td>${pages.company_ranking}</td>
+                                        <td>${pages.user_name}</td>
                                         <td>${pages.production}</td>
                                         <td>${pages.organization}</td>
-                                        <td>${pages.expire_date}</td>
-                                        <td>${pages.certificate_no}</td>
-                                        <td>${pages.user_name}</td>
+                                        <td>${pages.company_ranking}</td>
                                         <td>
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-danger">点击操作</button>
@@ -126,37 +134,39 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="dataTables_info" id="datatable-responsive_info"
-                                 role="status" aria-live="polite">共${page.totalSize}条记录${page.pageNum}页${page.totalPages}</div>
+                                 role="status" aria-live="polite">共${pages.totalCount }条记录
+                                ${pages.currentPageNo }/${pages.totalPageCount }页</div>
                         </div>
                         <div class="col-sm-7">
                             <div class="dataTables_paginate paging_simple_numbers"
                                  id="datatable-responsive_paginate">
                                 <ul class="pagination">
-                                    <c:if test="">
+                                    <c:if test="${pages.currentPageNo > 1}">
                                         <li class="paginate_button previous"><a
                                                 href="javascript:page_nav(document.forms[0],1);"
                                                 aria-controls="datatable-responsive" data-dt-idx="0"
                                                 tabindex="0">首页</a>
                                         </li>
                                         <li class="paginate_button "><a
-                                                href="javascript:page_nav(document.forms[0],);"
+                                                href="javascript:page_nav(document.forms[0],${pages.currentPageNo-1});"
                                                 aria-controls="datatable-responsive" data-dt-idx="1"
                                                 tabindex="0">上一页</a>
                                         </li>
                                     </c:if>
-                                    <c:if test="">
+                                    <c:if test="${pages.currentPageNo < pages.totalPageCount }">
                                         <li class="paginate_button "><a
-                                                href="javascript:page_nav(document.forms[0],);"
+                                                href="javascript:page_nav(document.forms[0],${pages.currentPageNo+1 });"
                                                 aria-controls="datatable-responsive" data-dt-idx="1"
                                                 tabindex="0">下一页</a>
                                         </li>
                                         <li class="paginate_button next"><a
-                                                href="javascript:page_nav(document.forms[0],);"
+                                                href="javascript:page_nav(document.forms[0],${pages.totalPageCount });"
                                                 aria-controls="datatable-responsive" data-dt-idx="7"
                                                 tabindex="0">最后一页</a>
                                         </li>
@@ -166,7 +176,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
