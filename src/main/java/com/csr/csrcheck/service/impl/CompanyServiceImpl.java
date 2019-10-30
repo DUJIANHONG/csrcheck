@@ -46,10 +46,22 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public PageResult findPage(int pageNum,int pageSize,String company_name) {
-        if(company_name==null&&company_name.equals("")){
-             throw new CompanyException("请输入公司名称");
-        }
         return PageUtils.getPageResult(pageNum,pageSize,getPageinfo(pageNum,pageSize,company_name));
+    }
+
+    @Override
+    public List<Company> getCommpanylistpage(String company_name, Integer currentPageNo, Integer pageSize) {
+        List<Company> list=companyMapper.getCommpanylistpage(company_name,(currentPageNo-1)*pageSize,pageSize);
+       if(list==null){
+           throw new CompanyException("没有数据");
+       }
+        return list;
+    }
+
+    @Override
+    public int getCompanyCount(String company_name) {
+        int count=companyMapper.getCompanyCount(company_name);
+        return count;
     }
 
     /**

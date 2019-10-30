@@ -35,9 +35,28 @@ public interface CompanyService {
      *  这里统一封装了分页请求和结果，避免直接引入具体框架的分页对象, 如MyBatis或JPA的分页对象
      *  从而避免因为替换ORM框架而导致服务层、控制层的分页接口也需要变动的情况，替换ORM框架也不会
      *  影响服务层以上的分页接口，起到了解耦的作用
-     * @param  自定义，统一分页查询请求
+     * @param
      * @return PageResult 自定义，统一分页查询结果
      */
     PageResult findPage(int pageNum,int pageSize,String company_name);
+
+    /**
+     * 根据公司名称模糊分页查询后台展示
+     * @param company_name
+     * @param currentPageNo
+     * @param pageSize
+     * @return
+     */
+    List<Company> getCommpanylistpage(@Param(value = "company_name") String company_name,
+                                      @Param(value = "currentPageNo") Integer currentPageNo,
+                                      @Param(value = "pageSize") Integer pageSize);
+
+
+    /**
+     * 查询公司数量
+     * @param company_name
+     * @return
+     */
+    int getCompanyCount(@Param(value = "company_name") String company_name);
 
 }
