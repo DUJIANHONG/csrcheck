@@ -66,6 +66,19 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="csrht/companyjsp">公司信息</a></li>
                     </ul>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="">增加公司信息</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"> <i class="fa fa-home"></i> <span
+                        class="nav-label">产品</span> <span class="fa arrow"></span>
+                </a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="csrht/companyjsp">产品信息</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="">增加产品信息</a></li>
+                    </ul>
                 </li>
 
             </ul>
@@ -150,7 +163,7 @@
                     <li class="J_tabCloseOther"><a>关闭其他选项卡</a></li>
                 </ul>
             </div>
-            <a href="/logout" class="roll-nav roll-right J_tabExit"><i
+            <a href="javascript:;" onclick="logout()" class="roll-nav roll-right J_tabExit"><i
                     class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
@@ -357,5 +370,17 @@
         }
     })
 </script>-->
+<script>
+        function logout(){
+            $.ajax({
+                type:"get",
+                url:"users/logout",
+                dataType:"json",
+                success:function () {
+                    window.location.href="login.html";
+                }
+            })
+        }
+</script>
 </body>
 </html>

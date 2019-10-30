@@ -39,19 +39,20 @@
             <div class="x_title">
                 <h2>
                     公司信息管理维护 <i class="fa fa-user"></i><small>
-                    - 您可以通过搜索或者其他的筛选项对APP的信息进行修改、删除等管理操作。^_^</small>
+                   ${userSession.user_name} - 您可以通过搜索或者其他的筛选项对APP的信息进行修改、删除等管理操作。^_^</small>
                 </h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <form method="post" action="/csrht/companyjsp">
+                <form method="post" action="${pageContext.request.contextPath }/csrht/companyjsp">
+                    <input type="hidden" name="pageIndex" value="1" />
                     <ul>
                         <li>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">公司名称</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12"
-                                           value="">
+                                    <input name="company_name" type="text" class="form-control col-md-7 col-xs-12"
+                                           value="${company_name}">
                                 </div>
                             </div>
                         </li>
@@ -143,7 +144,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="pages" items="${page.content}" varStatus="status">
+                                    <c:forEach var="pages" items="${list}" varStatus="status">
                                         <tr role="row" class="odd">
                                             <td hidden>${pages.id}</td>
                                             <td tabindex="0" class="sorting_1">${pages.company_name}</td>
@@ -194,23 +195,36 @@
                     <div class="row" id="row">
                         <div class="col-sm-5">
                             <div class="dataTables_info" id="datatable-responsive_info" role="status"
-                                 aria-live="polite">共<span>${page.content.size()}</span>条记录<span>${page.pageNum}</span>/<span>${page.totalPages}</span>页
+                                 aria-live="polite">共<span>${page.totalCount}</span>条记录<span>${page.currentPageNo }/${page.totalPageCount }</span>页
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="dataTables_paginate paging_simple_numbers" id="datatable-responsive_paginate">
                                 <ul class="pagination">
-                                    <li class="paginate_button previous"><a href="" aria-controls="datatable-responsive"
-                                                                            data-dt-idx="0" tabindex="0">首页</a>
-                                    </li>
-                                    <li class="paginate_button"><a href="" aria-controls="datatable-responsive"
-                                                                   data-dt-idx="1" tabindex="0">上一页</a></li>
-                                    <li class="paginate_button "><a href="" aria-controls="datatable-responsive"
-                                                                    data-dt-idx="1" tabindex="0">下一页</a>
-                                    </li>
-                                    <li class="paginate_button next"><a href="" aria-controls="datatable-responsive"
-                                                                        data-dt-idx="7" tabindex="0">最后一页</a>
-                                    </li>
+                                    <c:if test="${page.currentPageNo > 1}">
+                                        <li class="paginate_button previous"><a
+                                                href="javascript:page_nav(document.forms[0],1);"
+                                                aria-controls="datatable-responsive" data-dt-idx="0"
+                                                tabindex="0">首页</a>
+                                        </li>
+                                        <li class="paginate_button "><a
+                                                href="javascript:page_nav(document.forms[0],${page.currentPageNo-1});"
+                                                aria-controls="datatable-responsive" data-dt-idx="1"
+                                                tabindex="0">上一页</a>
+                                        </li>
+                                    </c:if>
+                                    <c:if test="${page.currentPageNo < page.totalPageCount }">
+                                        <li class="paginate_button "><a
+                                                href="javascript:page_nav(document.forms[0],${page.currentPageNo+1 });"
+                                                aria-controls="datatable-responsive" data-dt-idx="1"
+                                                tabindex="0">下一页</a>
+                                        </li>
+                                        <li class="paginate_button next"><a
+                                                href="javascript:page_nav(document.forms[0],${page.totalPageCount });"
+                                                aria-controls="datatable-responsive" data-dt-idx="7"
+                                                tabindex="0">最后一页</a>
+                                        </li>
+                                    </c:if>
                                 </ul>
                             </div>
                         </div>
@@ -232,7 +246,7 @@
 <!-- jQuery custom content scroller -->
 <script src="${pageContext.request.contextPath }/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <!-- Custom Theme Scripts -->
-<script src="${pageContext.request.contextPath }/js/custom.min.js"></script>
+<%--<script src="${pageContext.request.contextPath }/js/custom.min.js"></script>--%>
 <script src="${pageContext.request.contextPath }/js/dropzone.js"></script>
 <!--<script src="js/rollpage.js"></script>-->
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>

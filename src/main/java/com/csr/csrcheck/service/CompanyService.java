@@ -40,4 +40,23 @@ public interface CompanyService {
      */
     PageResult findPage(int pageNum,int pageSize,String company_name);
 
+    /**
+     * 根据公司名称模糊分页查询后台展示
+     * @param company_name
+     * @param currentPageNo
+     * @param pageSize
+     * @return
+     */
+    List<Company> getCommpanylistpage(@Param(value = "company_name") String company_name,
+                                      @Param(value = "currentPageNo") Integer currentPageNo,
+                                      @Param(value = "pageSize") Integer pageSize);
+
+
+    /**
+     * 查询公司数量
+     * @param company_name
+     * @return
+     */
+    int getCompanyCount(@Param(value = "company_name") String company_name);
+
 }
