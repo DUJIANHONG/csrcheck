@@ -15,7 +15,6 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 
 import com.csr.csrcheck.pojo.Token;
-import com.csr.csrcheck.service.impl.MyX509TrustManager;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 

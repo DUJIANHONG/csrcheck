@@ -5,17 +5,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 
 public class Contend {
-    private int  id;//竞争力ID
-    private int company_id;//公司ID
-    private String  technology;//具备创新的技术
-    private String  talent ; //具备创新能力的人才
-    private String  culture ;//优秀的企业文化
-    private String   supervise;//企业的规范化管理
-    private String   resource;//资源竞争分析
-    private String   rival;//竞争对手分析
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
-    private Date time ;//时间
-    private String   outline ;//点击查看竞争力信息
+
+    private int id;//主键（竞争力表）
+    private int company_id;//关联公司ID
+    private String title;//竞争力信息标题
+    private String content;//内容
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")//转换时间格式
+    private Date  time;//发布时间
 
     /**
      * 自定义字段
@@ -47,52 +43,20 @@ public class Contend {
         this.company_id = company_id;
     }
 
-    public String getTechnology() {
-        return technology;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTechnology(String technology) {
-        this.technology = technology;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getTalent() {
-        return talent;
+    public String getContent() {
+        return content;
     }
 
-    public void setTalent(String talent) {
-        this.talent = talent;
-    }
-
-    public String getCulture() {
-        return culture;
-    }
-
-    public void setCulture(String culture) {
-        this.culture = culture;
-    }
-
-    public String getSupervise() {
-        return supervise;
-    }
-
-    public void setSupervise(String supervise) {
-        this.supervise = supervise;
-    }
-
-    public String getResource() {
-        return resource;
-    }
-
-    public void setResource(String resource) {
-        this.resource = resource;
-    }
-
-    public String getRival() {
-        return rival;
-    }
-
-    public void setRival(String rival) {
-        this.rival = rival;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Date getTime() {
@@ -101,13 +65,5 @@ public class Contend {
 
     public void setTime(Date time) {
         this.time = time;
-    }
-
-    public String getOutline() {
-        return outline;
-    }
-
-    public void setOutline(String outline) {
-        this.outline = outline;
     }
 }
