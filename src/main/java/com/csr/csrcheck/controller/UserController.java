@@ -28,6 +28,8 @@ public class UserController extends BaseController {
                                  String password, HttpSession session){
         User data=userService.login(user_name,password);
         //放到session
+        session.setAttribute("user_id",data.getUser_id());
+        session.setAttribute("user_name",data.getUser_name());
         session.setAttribute(Constants.USER_SESSION,data);
         return new JsonResult<User>(SUCCESS,OK,data);
     }
