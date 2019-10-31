@@ -17,4 +17,10 @@ public interface IFlight_checkService {
      * @return
      */
     public List<Flight_check> getFlight_checklist2();
+    /**
+     * 查询医疗器械的飞行检查信息
+     * @param
+     * @return
+     */
+    public List<Flight_check> getFlight_checklist3();
 }

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.csr.csrcheck.mapper.ContendMapper">
     <select id="getContendList" resultType="com.csr.csrcheck.pojo.Contend">
-       SELECT o.company_name,c.`time`,c.`outline`,c.`technology`,c.`talent`,c.`culture`,c.`supervise`,c.`resource`,c.`rival`
+       SELECT o.company_name,c.`time`,c.`title`,c.`content`
 FROM company o, `contend` c
 WHERE c.`company_id`=o.`id`;
     </select>

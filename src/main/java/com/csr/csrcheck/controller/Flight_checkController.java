@@ -34,7 +34,7 @@ public class Flight_checkController extends BaseController{
     public JsonResult<List<Flight_check>> Flight_checklist(HttpServletResponse response) throws IOException, ServletException {
         List<Flight_check> list = iFlight_checkService.getFlight_checklist();
         if (list==null){
-            throw new Flight_checkException("没有飞行数据");
+            throw new Flight_checkException("没有企业中的飞行数据");
         }
 
         return new JsonResult<>(SUCCESS,OK,list);
@@ -51,7 +51,23 @@ public class Flight_checkController extends BaseController{
     public JsonResult<List<Flight_check>> Flight_checklist2( HttpServletResponse response) throws IOException, ServletException {
         List<Flight_check> list = iFlight_checkService.getFlight_checklist2();
         if (list==null){
-            throw new Flight_checkException("没有飞行数据");
+            throw new Flight_checkException("没有化妆品中的飞行数据");
+        }
+
+        return new JsonResult<>(SUCCESS,OK,list);
+    }
+    /**
+     * 查医疗器械中的飞行检查
+     * @param response
+     * @return
+     * @throws IOException
+     * @throws ServletException
+     */
+    @GetMapping("flight_checkllist3")
+    public JsonResult<List<Flight_check>> Flight_checklist3( HttpServletResponse response) throws IOException, ServletException {
+        List<Flight_check> list = iFlight_checkService.getFlight_checklist3();
+        if (list==null){
+            throw new Flight_checkException("没有医疗器械中的飞行数据");
         }
 
         return new JsonResult<>(SUCCESS,OK,list);

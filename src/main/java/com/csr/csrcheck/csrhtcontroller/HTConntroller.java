@@ -1,5 +1,6 @@
 package com.csr.csrcheck.csrhtcontroller;
 
+import ch.qos.logback.classic.Logger;
 import com.csr.csrcheck.controller.BaseController;
 import com.csr.csrcheck.controller.ex.CompanyException;
 import com.csr.csrcheck.pojo.Company;
@@ -46,6 +47,7 @@ public class HTConntroller extends BaseController {
     public String findCompanyPage(@RequestParam(value = "company_name", required = false) String company_name,
                                   @RequestParam(value = "pageIndex", required = false) String pageIndex,
                                   Model model) {
+
 
         log.info("findCompanyPage----------------------->company_name:" + company_name);
         log.info("findCompanyPage----------------------->pageIndex:" + pageIndex);

@@ -33,7 +33,14 @@ public class Flight_checkServiceImpl implements IFlight_checkService {
         return list;
     }
 
-
+    @Override
+    public List<Flight_check> getFlight_checklist3() {
+        List<Flight_check> list=flight_checkMapper.getFlight_checklist3();
+        if(list==null){
+            throw new Flight_checkException("化妆品中的数据不存在");
+        }
+        return list;
+    }
 
 
 }
