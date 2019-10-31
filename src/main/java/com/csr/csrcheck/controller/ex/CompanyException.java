@@ -10,8 +10,8 @@ import com.csr.csrcheck.service.ex.ServiceException;
  * @modified By:
  */
 public class CompanyException extends RuntimeException {
-    public CompanyException() {
-    }
+    private static final long serialVersionUID = 5216328143694529891L;
+    public CompanyException() { super();}
 
     public CompanyException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);

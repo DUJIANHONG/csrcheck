@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csr.csrcheck.mapper.ProductMapper">
+<select id="listpage" resultType="com.csr.csrcheck.pojo.Product">
+       SELECT p.*,c.`company_name`,zpr.`product_t_name`,zpa.`patent_t_name`,zst.`stage_name`
+      FROM product p,company c,z_patent_type zpa,z_product_type zpr,z_stage zst
+      <trim prefix="where" prefixOverrides="and | or">
+          AND p.`company_id`=c.`id`
+          AND p.`product_type_id`=zpr.`id`
+          AND p.`patent_t_id`=zpa.id
+          AND p.`stage_no`=zst.id
+          AND product_name LIKE CONCAT('%',#{product_name},'%')
+      </trim>
+       ORDER BY product_id
+</select>
+</mapper>

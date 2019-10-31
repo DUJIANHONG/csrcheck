@@ -59,6 +59,9 @@ public class CompanyConntroller extends BaseController{
         if (list2==null) {
             throw new CompanyException("没有数据哦");
         }
+        if (name.equals("") || name==null){
+            throw new com.csr.csrcheck.service.ex.CompanyException("请输入公司名称");
+        }
         return new JsonResult<>(SUCCESS,OK,list2);
    }
 

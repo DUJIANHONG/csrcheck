@@ -41,6 +41,9 @@ public class CompanyServiceImpl implements CompanyService {
         if (list==null){
             throw new CompanyException("数据不存在");
         }
+        if (company_name.equals("")|| company_name==null){
+            throw new CompanyException("请输入公司名称");
+        }
         return list;
     }
 
