@@ -11,7 +11,9 @@
           AND p.`product_type_id`=zpr.`id`
           AND p.`patent_t_id`=zpa.id
           AND p.`stage_no`=zst.id
-          AND product_name LIKE CONCAT('%',#{product_name},'%')
+          <if test="product_name!=null and product_name!=''">
+           and p.product_name LIKE CONCAT('%',#{product_name},'%')
+          </if>
       </trim>
        ORDER BY product_id
 </select>

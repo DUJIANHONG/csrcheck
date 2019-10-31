@@ -4,6 +4,7 @@ import com.csr.csrcheck.controller.BaseController;
 import com.csr.csrcheck.controller.ex.CompanyException;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.service.CompanyService;
+import com.csr.csrcheck.service.ProductService;
 import com.csr.csrcheck.util.Constants;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
@@ -33,6 +34,8 @@ public class HTConntroller extends BaseController {
 
     @Resource
     private CompanyService companyService;
+    @Resource
+    private ProductService productService;
 
     /**
      * 公司信息页面
@@ -89,6 +92,29 @@ public class HTConntroller extends BaseController {
         model.addAttribute("page", pages);
         model.addAttribute("company_name", company_name);
             return "company";
+        }
+
+    /**
+     * 产品信息页面
+     * @param model
+     * @param name
+     * @return
+     */
+        @RequestMapping("product")
+        public String product(@RequestParam(defaultValue = "1") int pageNum,
+                              @RequestParam(defaultValue = "5") int pageSize,
+                              Model model,@RequestParam(value = "name",required = false) String name){
+            log.info("product----------------------->pageNum:" + pageNum);
+            log.info("product----------------------->pageSize:" + pageSize);
+            log.info("product----------------------->name:"+name);
+            PageResult pageResult=productService.listpage(pageNum,pageSize,name);
+            log.info("product----------------------->totalSize:"+pageResult.getTotalSize());
+            if(pageResult==null){
+                throw new CompanyException("没有数据");
+            }
+            model.addAttribute("page",pageResult);
+            model.addAttribute("name",name);
+        return "Product";
         }
     }
 
