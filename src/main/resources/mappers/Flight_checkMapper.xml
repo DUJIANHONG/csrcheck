@@ -22,4 +22,12 @@ c.`company_name`,p.`product_name`,f.`attention`,f.`punish` ,f.content
    WHERE
    p.`company_id`=c.`id` AND f.`product_id`=p.`product_id`AND p.product_type_id=z.id AND z.id=2 ;
     </select>
+
+    <select id="getFlight_checklist3" resultType="com.csr.csrcheck.pojo.Flight_check">
+   SELECT
+c.`company_name`,p.`product_name`,f.`attention`,f.`punish` ,f.content
+   FROM flight_check f,company c,product p,z_product_type z
+   WHERE
+   p.`company_id`=c.`id` AND f.`product_id`=p.`product_id`AND p.product_type_id=z.id AND z.id=3 ;
+    </select>
 </mapper>
