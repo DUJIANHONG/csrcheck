@@ -24,6 +24,17 @@ public class Abnormal_products {
     private String last;                    //结论
     private String provenance;              //出处（此列存放通报excel表存放的路径）
 
+    //产品信息
+    private Product product;
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
     public int getId() {
         return id;
     }
