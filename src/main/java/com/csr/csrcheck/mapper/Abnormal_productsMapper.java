@@ -1,5 +1,10 @@
 package com.csr.csrcheck.mapper;
 
+import com.csr.csrcheck.pojo.Abnormal_products;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 /**
  * @description:
  * @author: dujianhong
@@ -8,4 +13,11 @@ package com.csr.csrcheck.mapper;
  * @modified By:
  */
 public interface Abnormal_productsMapper {
+
+    /**
+     * 根据产品名称查询产品异常通报
+     * @param
+     * @return
+     */
+   public List<Abnormal_products> abnormallsit(@Param(value = "product_name") String product_name);
 }

@@ -38,21 +38,21 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    公司信息管理维护 <i class="fa fa-user"></i><small>
-                   ${userSession.user_name} - 您可以通过搜索或者其他的筛选项对公司的信息进行修改、删除等管理操作。^_^</small>
+                    产品异常通报信息管理维护 <i class="fa fa-user"></i><small>
+                    ${userSession.user_name} - 您可以通过搜索或者其他的筛选项对产品异常通报的信息进行修改、删除等管理操作。^_^</small>
                 </h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <form method="post" action="${pageContext.request.contextPath }/csrht/companyjsp">
-                    <input type="hidden" name="pageIndex" value="1" />
+                <form method="post" action="${pageContext.request.contextPath }/csrht/abnormal">
+                    <input type="hidden" name="pageNum" value="1" />
                     <ul>
                         <li>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">公司名称</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">产品名称</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="company_name" type="text" class="form-control col-md-7 col-xs-12"
-                                           value="${company_name}">
+                                    <input name="name" type="text" class="form-control col-md-7 col-xs-12"
+                                           value="${name}">
                                 </div>
                             </div>
                         </li>
@@ -72,68 +72,64 @@
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
                         <div class="col-sm-12">
-                            <div style="overflow-x: auto; overflow-y: auto; height: 50%; width:100%;">
+                            <div style="overflow-x: auto;overflow-y: auto;width: 100%;height: 50%">
                                 <table id="datatable-responsive"
                                        class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
                                        role="grid" aria-describedby="datatable-responsive_info"
-                                       style="width: 600%;">
+                                       style="width: 120%;">
                                     <thead>
                                     <tr role="row">
                                         <th hidden>主键id</th>
+                                        <th hidden>产品id</th>
                                         <th class="sorting_asc" tabindex="0"
                                             aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                             aria-label="First name: activate to sort column descending"
-                                            aria-sort="ascending">公司名称
+                                            aria-sort="ascending">产品名称
                                         </th>
                                         <th class="sorting" tabindex="0"
                                             aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                             aria-label="Last name: activate to sort column ascending">
-                                            公司地址
+                                            包装规格
                                         </th>
                                         <th class="sorting" tabindex="0"
                                             aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                             aria-label="Last name: activate to sort column ascending">
-                                            所属类型
+                                            批号/生产日期
                                         </th>
                                         <th class="sorting" tabindex="0"
                                             aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                             aria-label="Last name: activate to sort column ascending">
-                                            主营业务
+                                            标称卫生许可证/批准文号
                                         </th>
                                         <th class="sorting" tabindex="0"
                                             aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                             aria-label="Last name: activate to sort column ascending">
-                                            战略重点
+                                            不合格项目
                                         </th>
                                         <th class="sorting" tabindex="0"
                                             aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                             aria-label="Last name: activate to sort column ascending">
-                                            上市/未上市
+                                            检验结果
                                         </th>
                                         <th class="sorting" tabindex="0"
                                             aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                             aria-label="Last name: activate to sort column ascending">
-                                            前十大股东
+                                            标准规定
                                         </th>
                                         <th class="sorting" tabindex="0"
                                             aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                             aria-label="Last name: activate to sort column ascending">
-                                            公司实际控制人
+                                            机构验证
                                         </th>
                                         <th class="sorting" tabindex="0"
                                             aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                             aria-label="Last name: activate to sort column ascending">
-                                            生产范围
+                                            结论
                                         </th>
                                         <th class="sorting" tabindex="0"
                                             aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                             aria-label="Last name: activate to sort column ascending">
-                                            受管辖机构
-                                        </th>
-                                        <th class="sorting" tabindex="0"
-                                            aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                            aria-label="Last name: activate to sort column ascending">
-                                            公司排名
+                                            出处
                                         </th>
                                         <th class="sorting" tabindex="0"
                                             aria-controls="datatable-responsive" rowspan="1" colspan="1"
@@ -144,25 +140,20 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="pages" items="${list}" varStatus="status">
+                                    <c:forEach var="pages" items="${page.content}" varStatus="status">
                                         <tr role="row" class="odd">
                                             <td hidden>${pages.id}</td>
-                                            <td tabindex="0" class="sorting_1">${pages.company_name}</td>
-                                            <td>${pages.company_address}</td>
-                                            <td>${pages.type_ownership}</td>
-                                            <td>${pages.main_business}</td>
-                                            <td>${pages.strategic_focus}</td>
-                                            <c:if test="${pages.listed_unlisted==1}">
-                                                <td>上市</td>
-                                            </c:if>
-                                            <c:if test="${pages.listed_unlisted==2}">
-                                                <td>未上市</td>
-                                            </c:if>
-                                            <td>${pages.ten_shareholders}</td>
-                                            <td>${pages.user_name}</td>
-                                            <td>${pages.production}</td>
-                                            <td>${pages.organization}</td>
-                                            <td>${pages.company_ranking}</td>
+                                            <td hidden>${pages.product_id}</td>
+                                            <td tabindex="0" class="sorting_1">${pages.product.product_name}</td>
+                                            <td>${pages.packing}</td>
+                                            <td>${pages.batch_no}</td>
+                                            <td>${pages.approval_no}</td>
+                                            <td>${pages.disqualification}</td>
+                                            <td>${pages.inspection_result}</td>
+                                            <td>${pages.standard_code}</td>
+                                            <td>${pages.agencies_to_verify}</td>
+                                            <td>${pages.last}</td>
+                                            <td>${pages.provenance}</td>
                                             <td>
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-danger">点击操作</button>
@@ -195,32 +186,32 @@
                     <div class="row" id="row">
                         <div class="col-sm-5">
                             <div class="dataTables_info" id="datatable-responsive_info" role="status"
-                                 aria-live="polite">共<span>${page.totalCount}</span>条记录<span>${page.currentPageNo }/${page.totalPageCount }</span>页
+                                 aria-live="polite">共<span>${page.totalSize}</span>条记录<span>${page.pageNum }/${page.totalPages }</span>页
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="dataTables_paginate paging_simple_numbers" id="datatable-responsive_paginate">
                                 <ul class="pagination">
-                                    <c:if test="${page.currentPageNo > 1}">
+                                    <c:if test="${page.pageNum > 1}">
                                         <li class="paginate_button previous"><a
-                                                href="javascript:page_nav(document.forms[0],1);"
+                                                href="javascript:page_nav2(document.forms[0],1);"
                                                 aria-controls="datatable-responsive" data-dt-idx="0"
                                                 tabindex="0">首页</a>
                                         </li>
                                         <li class="paginate_button "><a
-                                                href="javascript:page_nav(document.forms[0],${page.currentPageNo-1});"
+                                                href="javascript:page_nav2(document.forms[0],${page.pageNum-1});"
                                                 aria-controls="datatable-responsive" data-dt-idx="1"
                                                 tabindex="0">上一页</a>
                                         </li>
                                     </c:if>
-                                    <c:if test="${page.currentPageNo < page.totalPageCount }">
+                                    <c:if test="${page.pageNum < page.totalPages }">
                                         <li class="paginate_button "><a
-                                                href="javascript:page_nav(document.forms[0],${page.currentPageNo+1 });"
+                                                href="javascript:page_nav2(document.forms[0],${page.pageNum+1 });"
                                                 aria-controls="datatable-responsive" data-dt-idx="1"
                                                 tabindex="0">下一页</a>
                                         </li>
                                         <li class="paginate_button next"><a
-                                                href="javascript:page_nav(document.forms[0],${page.totalPageCount });"
+                                                href="javascript:page_nav2(document.forms[0],${page.totalPages });"
                                                 aria-controls="datatable-responsive" data-dt-idx="7"
                                                 tabindex="0">最后一页</a>
                                         </li>

@@ -24,6 +24,17 @@ public class Abnormal_products {
     private String last;                    //结论
     private String provenance;              //出处（此列存放通报excel表存放的路径）
 
+    //产品信息
+    private Product product;
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
     public int getId() {
         return id;
     }
@@ -110,5 +121,36 @@ public class Abnormal_products {
 
     public void setProvenance(String provenance) {
         this.provenance = provenance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Abnormal_products)) return false;
+        Abnormal_products that = (Abnormal_products) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Abnormal_products{" +
+                "id=" + id +
+                ", product_id=" + product_id +
+                ", packing='" + packing + '\'' +
+                ", batch_no='" + batch_no + '\'' +
+                ", approval_no='" + approval_no + '\'' +
+                ", disqualification='" + disqualification + '\'' +
+                ", inspection_result='" + inspection_result + '\'' +
+                ", standard_code='" + standard_code + '\'' +
+                ", agencies_to_verify='" + agencies_to_verify + '\'' +
+                ", last='" + last + '\'' +
+                ", provenance='" + provenance + '\'' +
+                ", product=" + product +
+                '}';
     }
 }

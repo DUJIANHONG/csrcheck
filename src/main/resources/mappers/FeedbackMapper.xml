@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csr.csrcheck.mapper.FeedbackMapper">
+
+    <select id="getfeedback" resultType="com.csr.csrcheck.pojo.Feedback">
+        SELECT `id`,`content`,`information` FROM feedback
+    </select>
+    <insert id="addfeedback" parameterType="com.csr.csrcheck.pojo.Feedback"
+            useGeneratedKeys="true" keyProperty="id">
+          INSERT INTO feedback (`content`,`information`) VALUES (#{content},#{information})
+    </insert>
+</mapper>
