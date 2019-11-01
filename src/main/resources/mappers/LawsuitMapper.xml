@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csr.csrcheck.mapper.LawsuitMapper">
+
+    
+    <select id="getLawsuitlist" resultType="com.csr.csrcheck.pojo.Lawsuit">
+
+        SELECT c.`company_name`,l.`plaintiffs`,l.`court`,l.`casereason`,l.`url`,l.`caseno`,l.`title`,l.`abstracts`,l.`submittime`,
+l.`lawsuitUrl`,l.`casetype`,l.`doctype`,l.`agent`,l.`thirdParties`,l.`defendants`
+ FROM `lawsuit` l,`company` c,`product` p, z_product_type z
+ WHERE l.company_id=c.id AND c.`id`=p.`company_id` AND p.product_type_id=z.id AND z.id=1;
+    </select>
+
+
+</mapper>
