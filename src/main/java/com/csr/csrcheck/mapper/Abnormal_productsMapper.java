@@ -19,5 +19,5 @@ public interface Abnormal_productsMapper {
      * @param
      * @return
      */
-    List<Abnormal_products> abnormallsit();
+   public List<Abnormal_products> abnormallsit(@Param(value = "product_name") String product_name);
 }

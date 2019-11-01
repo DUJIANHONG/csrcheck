@@ -17,7 +17,6 @@ import java.util.List;
 public class ApprovalsServiceImpl implements ApprovalsService {
     @Resource
     private ApprovalsMapper approvalsMapper;
-
     @Override
     public List<Approvals> getApprovalslist() {
         List<Approvals> list=approvalsMapper.getApprovalslist();

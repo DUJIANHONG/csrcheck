@@ -7,5 +7,5 @@ package com.csr.csrcheck.mapper;
  * @version:
  * @modified By:
  */
-public interface certificateMapper {
+public interface CertificateMapper {
 }

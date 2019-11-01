@@ -2,7 +2,12 @@ package com.csr.csrcheck.service;
 
 import com.csr.csrcheck.mapper.Abnormal_productsMapper;
 import com.csr.csrcheck.pojo.Abnormal_products;
+import com.csr.csrcheck.util.PageRequest;
+import com.csr.csrcheck.util.PageResult;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -14,6 +19,8 @@ import java.util.List;
  * @version:
  * @modified By:
  */
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class Abnormal_productsTest {
 
     @Resource
@@ -23,12 +30,10 @@ public class Abnormal_productsTest {
 
     @Test
     public void show(){
-        List<Abnormal_products> list=null;
+      PageResult pageResult =null;
         try {
-            list=abnormal_productsService.abnormallsitpage();
-            for (Abnormal_products abnormal_products : list) {
-                System.out.println(abnormal_products.getProduct().getCompany_name());
-            }
+            pageResult =abnormal_productsService.abnormallsitpage(1,5,"");
+            System.out.println(pageResult);
         } catch (Exception e) {
             e.printStackTrace();
         }

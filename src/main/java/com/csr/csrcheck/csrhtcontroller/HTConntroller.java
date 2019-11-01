@@ -4,6 +4,7 @@ import ch.qos.logback.classic.Logger;
 import com.csr.csrcheck.controller.BaseController;
 import com.csr.csrcheck.controller.ex.CompanyException;
 import com.csr.csrcheck.pojo.Company;
+import com.csr.csrcheck.service.Abnormal_productsService;
 import com.csr.csrcheck.service.CompanyService;
 import com.csr.csrcheck.service.ProductService;
 import com.csr.csrcheck.util.Constants;
@@ -37,7 +38,8 @@ public class HTConntroller extends BaseController {
     private CompanyService companyService;
     @Resource
     private ProductService productService;
-
+    @Resource
+    private Abnormal_productsService abnormal_productsService;
     /**
      * 公司信息页面
      *
@@ -117,6 +119,32 @@ public class HTConntroller extends BaseController {
             model.addAttribute("page",pageResult);
             model.addAttribute("name",name);
         return "Product";
+        }
+
+    /**
+     * 产品异常通报页面
+     * @param pageNum
+     * @param pageSize
+     * @param name
+     * @param model
+     * @return
+     */
+        @RequestMapping("abnormal")
+        public String abnormal(@RequestParam(defaultValue = "1") int pageNum,
+                               @RequestParam(defaultValue = "5") int  pageSize,
+                               @RequestParam(value = "name",required = false)String name,
+                               Model model){
+            log.info("abnormal------------------------->pageNum:"+pageNum);
+            log.info("abnormal------------------------->pageSize:"+pageSize);
+            log.info("abnormal------------------------->name:"+name);
+            PageResult pageResult=abnormal_productsService.abnormallsitpage(pageNum,pageSize,name);
+            log.info("abnormal------------------------->totalSize"+pageResult.getTotalSize());
+            if(pageResult==null){
+                throw  new CompanyException("没有数据");
+            }
+            model.addAttribute("page",pageResult);
+            model.addAttribute("name",name);
+            return "abnormal";
         }
     }
 

@@ -29,7 +29,7 @@ public class CompanyTest {
     @Resource
     private CompanyService companyService;
 
-/*    @Test
+    @Test
     public  void List(){
         List<Company> list=null;
         try {
@@ -40,7 +40,7 @@ public class CompanyTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
 /*@Test
 public void list(){

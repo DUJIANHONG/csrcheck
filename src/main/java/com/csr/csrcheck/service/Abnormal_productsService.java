@@ -16,5 +16,5 @@ import java.util.List;
  */
 public interface Abnormal_productsService {
 
-    List<Abnormal_products> abnormallsitpage( );
+   PageResult abnormallsitpage(int pageNum,int pageSize,String product_name );
 }
