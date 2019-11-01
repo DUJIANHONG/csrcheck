@@ -7,7 +7,7 @@
     <select id="getfeedback" resultType="com.csr.csrcheck.pojo.Feedback">
         SELECT `id`,`content`,`information` FROM feedback
     </select>
-    <insert id="addfeedback" parameterType="com.csr.csrcheck.pojo.Feedback"
+    <insert id="addfeedback"
             useGeneratedKeys="true" keyProperty="id">
           INSERT INTO feedback (`content`,`information`) VALUES (#{content},#{information})
     </insert>

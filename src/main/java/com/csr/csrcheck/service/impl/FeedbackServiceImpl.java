@@ -24,9 +24,6 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Override
     public void addfeedback(Feedback feedback) {
-        if(feedback==null){
-            throw new CompanyException("请输入反馈内容");
-        }
         feedbackMapper.addfeedback(feedback);
     }
 
