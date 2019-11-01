@@ -105,6 +105,12 @@ public class BaseController {
             jr.setState(7001);
         }else if(e instanceof CompanyException){
             jr.setState(7002);
+            //7003-核心人员关联企业异常
+        }else if(e instanceof Actual_controllerException){
+            jr.setState(7003);
+            //7004-法律诉讼异常
+        }else if(e instanceof LawsuitException){
+            jr.setState(7004);
         }
         return jr;
     }

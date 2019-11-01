@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csr.csrcheck.mapper.Business_risksMapper">
+
+    
+    <select id="getBusiness_riskslist" resultType="com.csr.csrcheck.pojo.Business_risks">
+
+        SELECT r.`risk_classify_name`,b.`title`,b.`describe`,t.`risk_type_name`,c.`company_name`
+FROM `risk_classify` r,`risk_type` t,`business_risks` b,`company` c, z_product_type z ,product p
+WHERE c.`id`=b.`company_id`AND c.`id`=p.`company_id` AND r.id=b.`risk_type` AND t.id=r.`id` AND p.product_type_id=z.id AND z.id=1;
+    </select>
+
+
+</mapper>

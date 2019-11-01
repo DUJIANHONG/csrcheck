@@ -21,7 +21,6 @@ public interface CompanyMapper {
      */
     public List<Company> getCommpanylist( );
 
-
     /**
      * 根据公司名称模糊查询
      * @param company_name
@@ -34,7 +33,6 @@ public interface CompanyMapper {
      * @return
      */
     public List<Company> getCompanyPage(@Param(value = "company_name") String company_name);
-
 
     /**
      * 根据公司名称模糊分页查询后台展示
