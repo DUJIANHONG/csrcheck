@@ -4,6 +4,7 @@ import com.csr.csrcheck.mapper.FeedbackMapper;
 import com.csr.csrcheck.pojo.Feedback;
 import com.csr.csrcheck.service.FeedbackService;
 import com.csr.csrcheck.service.ex.CompanyException;
+import com.csr.csrcheck.service.ex.InsertException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,7 +25,13 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Override
     public void addfeedback(Feedback feedback) {
-        feedbackMapper.addfeedback(feedback);
+        if(feedback.getContent().equals("")||feedback.getInformation().equals("")){
+            throw new CompanyException("请输入反馈内容和联系方式");
+        }
+        Integer row=feedbackMapper.addfeedback(feedback);
+        if (row!=1){
+            throw new InsertException("增加失败");
+        }
     }
 
     @Override

@@ -24,5 +24,5 @@ public interface FeedbackMapper {
      * 小程序添加反馈内容
      * @param feedback
      */
-    public Integer addfeedback(@Param(value = "feedback") Feedback feedback);
+    public Integer addfeedback(Feedback feedback);
 }
