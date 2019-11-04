@@ -85,15 +85,15 @@ public class NewsController extends BaseController{
         return rs;
     }
 
-    /**
+   /* *//**
      *增加新闻
      *  @param news
      * @param multipartFile
      * @param request
      * @return
-     */
-    public  JsonResult<Void> addNews(News news,
-                                     @RequestParam(value = "multipartFile",required = false) MultipartFile multipartFile,
+     *//*
+    @RequestMapping("addnews")
+    public  JsonResult<Void> addNews(  News news, @RequestParam(value = "multipartFile") MultipartFile multipartFile,
                                       HttpServletRequest request){
         String imgurl=null;
         if (multipartFile.isEmpty()){
@@ -122,10 +122,13 @@ public class NewsController extends BaseController{
                 throw  new FileTypeException("格式不正确");
             }
         }
+        if(news.getNews_title().equals("")||news.getNews_content().equals("")||news.getImg_url().equals("")){
+            throw new com.csr.csrcheck.service.ex.CompanyException("请输入内容");
+        }
         news.setImg_url(imgurl);
         newsService.addNews(news);
         return new JsonResult<>(SUCCESS, OK);
-    }
+    }*/
 
     /**
      * 分页查询新闻信息
@@ -133,7 +136,7 @@ public class NewsController extends BaseController{
      * @param pageSize
      * @return
      */
-    @RequestMapping("newspage")
+/*    @RequestMapping("newspage")
     public JsonResult<Object> listpage(@RequestParam(defaultValue = "1") int pageNum,
                                            @RequestParam(defaultValue = "5") int pageSize){
         PageResult pageResult=newsService.getNewspage(pageNum,pageSize);
@@ -143,5 +146,5 @@ public class NewsController extends BaseController{
         log.info("listpage---------------------------->pageNum"+pageNum);
         log.info("listpage---------------------------->pageSize"+pageSize);
         return new JsonResult<Object>(SUCCESS,OK,pageResult);
-    }
+    }*/
 }

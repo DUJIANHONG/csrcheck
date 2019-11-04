@@ -39,13 +39,8 @@ public class NewsServiceImpl implements NewsService {
         Integer row=newsMapper.addNews(news);
         if(row>0) {
             flag = true;
-        }else{
-            throw new InsertException("增加失败");
         }
-        if(news.getNews_title().equals("")||news.getNews_content().equals("")||news.getImg_url().equals("")){
-            throw new CompanyException("请输入内容");
-        }
-        return true;
+        return flag;
     }
 
     /**

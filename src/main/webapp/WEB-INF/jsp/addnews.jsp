@@ -1,3 +1,4 @@
+<%@ page language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
@@ -35,7 +36,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>新增新闻信息 <i class="fa fa-user"></i><small></small></h2>
+                <h2>新增新闻信息 <i class="fa fa-user"></i><small>${userSession.user_name}</small></h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -48,7 +49,7 @@
                    </div>
                  </div> -->
                 <div class="clearfix"></div>
-                <form class="form-horizontal form-label-left"  enctype="multipart/form-data">
+                <form class="form-horizontal form-label-left" id="newsid" enctype="multipart/form-data" action="/csrht/add" method="post">
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" >新闻标题 <span class="required">*</span>
                         </label>
@@ -56,6 +57,15 @@
                             <input id="news_title" class="form-control col-md-7 col-xs-12"
                                    data-validate-length-range="20" data-validate-words="1" name="news_title"  required="required"
                                    placeholder="请输入新闻标题" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >原创作者<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="news_name" class="form-control col-md-7 col-xs-12"
+                                   data-validate-length-range="20" data-validate-words="1" name="news_name"  required="required"
+                                   placeholder="请输入原创作者" type="text">
                         </div>
                     </div>
                     <div class="item form-group">
@@ -73,14 +83,14 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" >新闻图片 <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="file" class="form-control col-md-7 col-xs-12" name="img_url"  required="required" id="img_url"/>
-
+                            <input type="file" class="form-control col-md-7 col-xs-12" name="multipartFile"  required="required" id="multipartFile"/>
+                            ${fileUploadError }
                         </div>
                     </div>
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
-                            <button id="send" type="button" class="btn btn-success">保存</button>
+                            <button id="send" type="submit" class="btn btn-success">保存</button>
                             <button type="button" class="btn btn-primary" id="back">返回</button>
                             <br/><br/>
                         </div>
@@ -105,8 +115,5 @@
 <!--<script src="js/rollpage.js"></script>-->
 <script src="../js/jquery.min.js"></script>
 <script src="../js/rollpage.js"></script>
-<script>
-
-</script>
 </body>
 </html>
