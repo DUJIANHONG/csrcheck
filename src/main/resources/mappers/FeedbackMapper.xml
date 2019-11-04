@@ -5,7 +5,7 @@
 <mapper namespace="com.csr.csrcheck.mapper.FeedbackMapper">
 
     <select id="getfeedback" resultType="com.csr.csrcheck.pojo.Feedback">
-        SELECT `id`,`content`,`information`,commitdata FROM feedback
+        SELECT `id`,`content`,`information`,commitdata FROM feedback ORDER BY commitdata
     </select>
     <insert id="addfeedback" parameterType="com.csr.csrcheck.pojo.Feedback"
             useGeneratedKeys="true" keyProperty="id">
