@@ -192,8 +192,9 @@ public class HTConntroller extends BaseController {
             String oldFilename = multipartFile.getOriginalFilename();//原文件名
             String prefix = FilenameUtils.getExtension(oldFilename);//原文件后缀
             int filesize = 500000;
-            if (multipartFile.getSize() > filesize) { //上传大小不得超过50k
+            if (multipartFile.getSize() > filesize) { //上传大小不得超过50kB
                 request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_4);
+                return "addnews";
             } else if (prefix.equalsIgnoreCase("jpg") || prefix.equalsIgnoreCase("jpeg")
                     || prefix.equalsIgnoreCase("png") || prefix.equalsIgnoreCase("pneg")) {//上传图片格式
                 String fliename = System.currentTimeMillis()+"_"+new Random().nextInt(1000)  + ".jpg";//上传图片命名

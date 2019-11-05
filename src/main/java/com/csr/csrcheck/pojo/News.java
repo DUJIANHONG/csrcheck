@@ -19,7 +19,7 @@ public class News implements Serializable {
     private String news_name;     //远创作者
     private String position;      //原创者职位
     private String subheading;    //新闻副标题
-    @JsonFormat(pattern = "yyyy--MMdd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;             //新闻日期
 
     public String getPosition() {

@@ -43,6 +43,14 @@ public class ApprovalsController extends BaseController{
 
         return new JsonResult<>(SUCCESS,OK,list);
     }
+
+    /**
+     * 产品异常通报
+     * @param pageNum
+     * @param pageSize
+     * @param name
+     * @return
+     */
     @GetMapping("page")
     public JsonResult<Object> page(@RequestParam(defaultValue = "1") int pageNum,
                                    @RequestParam(defaultValue = "5") int pageSize,
