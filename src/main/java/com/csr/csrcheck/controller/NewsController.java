@@ -2,6 +2,7 @@ package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.controller.ex.*;
 import com.csr.csrcheck.pojo.News;
+import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.service.impl.NewsServiceImpl;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
@@ -147,4 +148,24 @@ public class NewsController extends BaseController{
         log.info("listpage---------------------------->pageSize"+pageSize);
         return new JsonResult<Object>(SUCCESS,OK,pageResult);
     }*/
+
+    /**
+     * @description  根据id查找新闻内容
+     * @author
+     * @date
+     * @param id
+     * @return
+     */
+    @GetMapping("byidnews")
+    public JsonResult<News> byidnews(@RequestParam(value = "id") Integer id){
+        News news=newsService.getnewsbyid(id);
+        if(news==null){
+            throw new com.csr.csrcheck.service.ex.CompanyException("数据为空");
+        }
+        if (id==0){
+            throw new CompanyException("请输入id");
+        }
+        log.info("byidnews-------------------------->id"+id);
+        return new JsonResult<>(SUCCESS,OK,news);
+    }
 }

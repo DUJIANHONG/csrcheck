@@ -25,10 +25,73 @@
     <link href="${pageContext.request.contextPath }/css/dropzone.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="${pageContext.request.contextPath }/css/custom.min.css" rel="stylesheet">
-
     <!-- add local/css 2016-8-18 -->
     <link href="${pageContext.request.contextPath }/css/appinfoadd.css" rel='stylesheet'>
     <link href="${pageContext.request.contextPath }/css/appinfolist.css" rel='stylesheet'>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding:0;
+        }
+        .wrap{
+            width: 600px;
+            margin: 0px auto;
+
+        }
+        .menu{
+            width: 600px;
+            height: 30px;
+            background: cornflowerblue;
+            position: sticky;
+            top:0px;
+        }
+        .menu ul li{
+            float: left;
+            list-style-type: none;
+            padding: 0 40px;
+        }
+        .content ul li img:hover{
+            transform: scale(1.2);/*当鼠标移动到图片上时实现放大功能*/
+        }
+        .content ul li{
+            height: 100px;
+            overflow: hidden;
+            border-bottom: 1px solid lavender;
+            background: white;
+            list-style-type: none;
+            transition-duration: 0.5s;
+            margin: 10px 10px 5px 0;
+
+        }
+        .content ul li:hover{
+            background-color: lavender;
+            transition-duration: 0.5s;
+        }
+        .content .left{
+            overflow: hidden;/*隐藏溢出图片内容*/
+            transition-duration: 0.5s;
+            width: 140px;
+            height:80px;
+            /*background: green;*/
+            float: left;
+            margin-right:20px;
+        }
+        .content .right{
+            width:400px ;
+            float: left;
+            /*background: pink;*/
+        }
+        .right_top{
+            height:60px;
+        }
+        .right_bottom{
+            margin_top:50px;
+        }
+        .right_bottom_left span{
+            color: darkgray;
+            font-size: 12px;
+        }
+    </style>
 </head>
 <body>
 
@@ -39,7 +102,7 @@
             <div class="x_title">
                 <h2>
                     新闻信息管理维护 <i class="fa fa-user"></i><small>
-                    ${userSession.user_name} - 您可以通过搜索或者其他的筛选项对新闻的信息进行修改、删除等管理操作。</small>
+                    ${userSession.user_name}</small>
                 </h2>
                 <div class="clearfix"></div>
             </div>
@@ -70,96 +133,28 @@
                 <p class="text-muted font-13 m-b-30"></p>
                 <div id="datatable-responsive_wrapper"
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div style="overflow-x: auto; overflow-y: auto; height: 50%; width:100%;">
-                                <table id="datatable-responsive"
-                                       class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
-                                       role="grid" aria-describedby="datatable-responsive_info"
-                                       style="width: 600%;">
-                                    <thead>
-                                    <tr role="row">
-                                        <th hidden>主键id</th>
-                                        <th class="sorting_asc" tabindex="0"
-                                            aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                            aria-label="First name: activate to sort column descending"
-                                            aria-sort="ascending">新闻图片
-                                        </th>
-                                        <th class="sorting_asc" tabindex="0"
-                                            aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                            aria-label="First name: activate to sort column descending"
-                                            aria-sort="ascending">新闻标题
-                                        </th>
-                                        <th class="sorting_asc" tabindex="0"
-                                            aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                            aria-label="First name: activate to sort column descending"
-                                            aria-sort="ascending">新闻副标题
-                                        </th>
-                                        <th class="sorting" tabindex="0"
-                                            aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                            aria-label="Last name: activate to sort column ascending">
-                                            原创作者
-                                        </th>
-                                        <th class="sorting" tabindex="0"
-                                            aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                            aria-label="Last name: activate to sort column ascending">
-                                            原创作者职位
-                                        </th>
-                                        <th class="sorting" tabindex="0"
-                                            aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                            aria-label="Last name: activate to sort column ascending">
-                                            新闻日期
-                                        </th>
-                                        <th class="sorting" tabindex="0"
-                                            aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                            aria-label="Last name: activate to sort column ascending">
-                                            新闻内容
-                                        </th>
-                                        <th class="sorting" tabindex="0"
-                                            aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                            style="width: 124px;"
-                                            aria-label="Last name: activate to sort column ascending">
-                                            操作
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach var="pages" items="${page.content}" varStatus="status">
-                                        <tr role="row" class="odd">
-                                            <td hidden>${pages.id}</td>
-                                            <td tabindex="0" class="sorting_1"><img src="../../${pages.img_url}"/></td>
-                                            <td>${pages.news_title}</td>
-                                            <td>${pages.subheading}</td>
-                                            <td>${pages.news_name}</td>
-                                            <td>${pages.position}</td>
-                                            <td><fmt:formatDate value="${pages.date}" type="date"/></td>
-                                            <td>${pages.news_content}</td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-danger">点击操作</button>
-                                                    <button type="button" class="btn btn-danger dropdown-toggle"
-                                                            data-toggle="dropdown" aria-expanded="false">
-                                                        <span class="caret"></span>
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                    </button>
-                                                    <ul class="dropdown-menu" role="menu">
-                                                        <li><a class="modifyAppInfo" data-toggle="tooltip"
-                                                               data-placement="top" title=""
-                                                               data-original-title="修改公司信息">修改</a></li>
-                                                        <li><a class="viewApp" data-toggle="tooltip"
-                                                               data-placement="top" title=""
-                                                               data-original-title="查看公司信息">查看</a></li>
-                                                        <li><a class="deleteApp" data-toggle="tooltip"
-                                                               data-placement="top" title=""
-                                                               data-original-title="删除公司信息">删除</a></li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div class="wrap">
+                        <div class="content">
+                            <ul>
+                            <c:forEach var="pages" items="${page.content}" varStatus="status">
+                                <a href="/web/news.html/id="+${pages.id}>
+                                <li>
+                                    <span style="display: block" id="nid">${pages.id}</span>
+                                    <div class="left"><img src="../../${pages.img_url}" alt=""></div>
+                                    <div class="right">
+                                        <div class="right_top">
+                                            <h3>${pages.news_title}</h3>
+                                        </div>
+                                        <div class="right_bottom">
+                                            <div class="right_bottom_left">
+                                                <span>${pages.news_name}</span>  <span>${pages.position}</span><span>|</span> <span><fmt:formatDate value="${pages.date}" type="date"/></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                </a>
+                            </c:forEach>
+                            </ul>
                         </div>
                     </div>
                     <!--分页开始-->

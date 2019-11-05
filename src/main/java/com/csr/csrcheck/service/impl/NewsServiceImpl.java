@@ -43,6 +43,18 @@ public class NewsServiceImpl implements NewsService {
         return flag;
     }
 
+    @Override
+    public News getnewsbyid(Integer id) {
+        News news =newsMapper.getnewsbyid(id);
+        if(news==null){
+            throw new CompanyException("数据为空");
+        }
+        if (id==1){
+            throw new CompanyException("请输入id");
+        }
+        return news;
+    }
+
     /**
      * 调用分页插件完成分页
      * @param pageNum

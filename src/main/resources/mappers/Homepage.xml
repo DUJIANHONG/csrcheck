@@ -11,4 +11,8 @@
           INSERT INTO news (`news_title`,`news_name`,`news_content`,`img_url`,`date`,`position`,`subheading`)
           VALUES (#{news_title},#{news_name},#{news_content},#{img_url},#{date},#{position},#{subheading});
     </insert>
+
+    <select id="getnewsbyid" resultType="com.csr.csrcheck.pojo.News">
+        SELECT `news_content` FROM news WHERE `id`=#{id}
+    </select>
 </mapper>

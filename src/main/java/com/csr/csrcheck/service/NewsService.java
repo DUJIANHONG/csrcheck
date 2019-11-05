@@ -2,6 +2,7 @@ package com.csr.csrcheck.service;
 
 import com.csr.csrcheck.pojo.News;
 import com.csr.csrcheck.util.PageResult;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -28,5 +29,12 @@ public interface NewsService {
      * @return
      */
     public boolean addNews(News news);
+
+    /**
+     *根据id 查找新闻内容
+     *  @param id
+     * @return
+     */
+    public News getnewsbyid(@Param(value = "id") Integer id);
 
 }

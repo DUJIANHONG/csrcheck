@@ -243,9 +243,5 @@ public class HTConntroller extends BaseController {
         model.addAttribute("page",pageResult);
         return "news";
     }
-    @RequestMapping("new")
-    public String listpage(Model model){
-        return "new";
-    }
 }
 

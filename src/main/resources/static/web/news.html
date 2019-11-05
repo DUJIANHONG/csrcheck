@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新闻详情</title>
+</head>
+<body>
+<div id="box">
+
+</div>
+<script src="../js/jquery.min.js"></script>
+<script>
+    $.ajax({
+        type:"get",
+        url:"/news/byidnews",
+        data:"id"+id,
+        dataType:"json",
+        success:function (data) {
+            var list=data.data
+            console.log(list.length);
+            for (let i = 0; i <list.length ; i++) {
+                let html="<ul>"
+                    +"<li>news_content</li>"
+                    +"</ul>"
+                html=html.replace("news_content",list[i].news_content)
+            }
+        }
+    })
+</script>
+</body>
+</html>
