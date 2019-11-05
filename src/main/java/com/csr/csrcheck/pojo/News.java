@@ -1,6 +1,9 @@
 package com.csr.csrcheck.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author Karry
@@ -14,6 +17,34 @@ public class News implements Serializable {
     private String news_content;   //新闻内容
     private String img_url;        //图片路径
     private String news_name;     //远创作者
+    private String position;      //原创者职位
+    private String subheading;    //新闻副标题
+    @JsonFormat(pattern = "yyyy--MMdd")
+    private Date date;             //新闻日期
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getSubheading() {
+        return subheading;
+    }
+
+    public void setSubheading(String subheading) {
+        this.subheading = subheading;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public String getNews_name() {
         return news_name;

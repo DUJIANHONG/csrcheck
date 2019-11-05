@@ -60,6 +60,15 @@
                         </div>
                     </div>
                     <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >新闻副标题 <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="subheading" class="form-control col-md-7 col-xs-12"
+                                   data-validate-length-range="20" data-validate-words="1" name="subheading"  required="required"
+                                   placeholder="请输入新闻副标题" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" >原创作者<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -69,11 +78,29 @@
                         </div>
                     </div>
                     <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >原创作者职位<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="position" class="form-control col-md-7 col-xs-12"
+                                   data-validate-length-range="20" data-validate-words="1" name="position"  required="required"
+                                   placeholder="请输入原创作者职位" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >新闻日期<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="newsdate" class="form-control col-md-7 col-xs-12"
+                                   data-validate-length-range="20" data-validate-words="1" name="newsdate"  required="required"
+                                   placeholder="请输入新闻日期" type="date">
+                        </div>
+                    </div>
+                    <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" >新闻内容 <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <textarea id="news_content" class="form-control col-md-7 col-xs-12"  required="required"
-                                      data-validate-length-range="20" data-validate-words="1" name="news_content" rows="20px">
+                                      data-validate-length-range="20" data-validate-words="1" name="news_content" rows="10px">
                             </textarea>
                         </div>
                     </div>

@@ -30,6 +30,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Random;
 
@@ -182,7 +184,7 @@ public class HTConntroller extends BaseController {
      */
     @RequestMapping(value = "add",method = RequestMethod.POST)
     public String addNews(News news, @RequestParam(value = "multipartFile") MultipartFile multipartFile,
-                          HttpServletRequest request) {
+                          HttpServletRequest request,String newsdate) {
         String imgurl = null;
         if (!multipartFile.isEmpty()) {
             String path = request.getSession().getServletContext().getRealPath( "newsFile");
@@ -213,8 +215,13 @@ public class HTConntroller extends BaseController {
             }
         }
         news.setImg_url(imgurl);
+        try {
+            news.setDate(new SimpleDateFormat("yyyy-mm-dd").parse(newsdate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         newsService.addNews(news);
-        return "news";
+        return "redirect:/csrht/newspage";
     }
     /**
      * 分页查询新闻信息

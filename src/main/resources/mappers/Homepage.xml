@@ -8,6 +8,7 @@
     </select>
     <insert id="addNews"
             keyProperty="id" useGeneratedKeys="true" parameterType="com.csr.csrcheck.pojo.News">
-          INSERT INTO news (`news_title`,news_name,`news_content`,`img_url`) VALUES (#{news_title},#{news_name},#{news_content},#{img_url});
+          INSERT INTO news (`news_title`,`news_name`,`news_content`,`img_url`,`date`,`position`,`subheading`)
+          VALUES (#{news_title},#{news_name},#{news_content},#{img_url},#{date},#{position},#{subheading});
     </insert>
 </mapper>

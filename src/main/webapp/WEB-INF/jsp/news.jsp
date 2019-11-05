@@ -90,10 +90,25 @@
                                             aria-label="First name: activate to sort column descending"
                                             aria-sort="ascending">新闻标题
                                         </th>
+                                        <th class="sorting_asc" tabindex="0"
+                                            aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                            aria-label="First name: activate to sort column descending"
+                                            aria-sort="ascending">新闻副标题
+                                        </th>
                                         <th class="sorting" tabindex="0"
                                             aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                             aria-label="Last name: activate to sort column ascending">
                                             原创作者
+                                        </th>
+                                        <th class="sorting" tabindex="0"
+                                            aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                            aria-label="Last name: activate to sort column ascending">
+                                            原创作者职位
+                                        </th>
+                                        <th class="sorting" tabindex="0"
+                                            aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                            aria-label="Last name: activate to sort column ascending">
+                                            新闻日期
                                         </th>
                                         <th class="sorting" tabindex="0"
                                             aria-controls="datatable-responsive" rowspan="1" colspan="1"
@@ -114,7 +129,10 @@
                                             <td hidden>${pages.id}</td>
                                             <td tabindex="0" class="sorting_1"><img src="../../${pages.img_url}"/></td>
                                             <td>${pages.news_title}</td>
+                                            <td>${pages.subheading}</td>
                                             <td>${pages.news_name}</td>
+                                            <td>${pages.position}</td>
+                                            <td><fmt:formatDate value="${pages.date}" type="date"/></td>
                                             <td>${pages.news_content}</td>
                                             <td>
                                                 <div class="btn-group">
