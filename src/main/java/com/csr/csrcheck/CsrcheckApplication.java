@@ -14,7 +14,7 @@ import javax.servlet.MultipartConfigElement;
 @SpringBootApplication
 @MapperScan("com.csr.csrcheck.mapper")
 @Configuration
-public class CsrcheckApplication extends SpringBootServletInitializer {
+public class CsrcheckApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CsrcheckApplication.class, args);
@@ -33,10 +33,5 @@ public class CsrcheckApplication extends SpringBootServletInitializer {
 		/// 总上传数据大小
 		factory.setMaxRequestSize("102400KB");
 		return factory.createMultipartConfig();
-	}
-	@Override//为了打包springboot项目
-	protected SpringApplicationBuilder configure(
-			SpringApplicationBuilder builder) {
-		return builder.sources(this.getClass());
 	}
 }

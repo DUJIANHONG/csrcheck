@@ -11,7 +11,7 @@
     <groupId>com.csr</groupId>
     <artifactId>csrcheck</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>csrcheck</name>
     <description>Demo project for Spring Boot</description>
 
@@ -131,9 +131,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <fork>true</fork>
-                </configuration>
             </plugin>
         </plugins>
     </build>
