@@ -156,16 +156,13 @@ public class NewsController extends BaseController{
      * @param id
      * @return
      */
-    @GetMapping("byidnews")
-    public JsonResult<News> byidnews(@RequestParam(value = "id") Integer id){
+    @GetMapping("byidnews/{id}")
+    public JsonResult<News> byidnews(@PathVariable(value = "id") Integer id){
         News news=newsService.getnewsbyid(id);
         if(news==null){
             throw new com.csr.csrcheck.service.ex.CompanyException("数据为空");
         }
-        if (id==0){
-            throw new CompanyException("请输入id");
-        }
-        log.info("byidnews-------------------------->id"+id);
+        log.info("byidnews-------------------------->id:"+id);
         return new JsonResult<>(SUCCESS,OK,news);
     }
 }

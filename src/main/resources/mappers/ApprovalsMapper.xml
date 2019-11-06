@@ -16,5 +16,14 @@ a.`approval_num`,p.`product_name`,a.`approval_no`,c.`company_name` ,b.approved_t
    p.`company_id`=c.`id`AND p.product_type_id=z.id AND z.id=1;
     </select>
 
-
+<select id="getapprovalspage" resultType="com.csr.csrcheck.pojo.Approvals">
+    SELECT a.`id`,a.`approval_num`,p.`product_name`,a.`approval_no`,app.`approved_t_name`
+    FROM approvals a,`product` p,`approved_by` app
+    <trim prefix="where" prefixOverrides="and | or">
+      and a.`product_id`=p.`product_id` AND a.`approved_by`=app.id
+        <if test="product_name!=null and product_name!=''">
+            AND p.product_name LIKE CONCAT('%',#{name},'%')
+        </if>
+    </trim>
+</select>
 </mapper>

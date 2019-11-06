@@ -47,7 +47,7 @@
                            </form>
                       <div class="clearfix"></div>
                    </div>
-                 </div> -->
+                     </div> -->
                 <div class="clearfix"></div>
                 <form class="form-horizontal form-label-left" id="newsid" enctype="multipart/form-data" action="/csrht/add" method="post">
                     <div class="item form-group">

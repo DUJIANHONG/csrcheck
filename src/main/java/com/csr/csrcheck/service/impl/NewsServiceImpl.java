@@ -49,9 +49,6 @@ public class NewsServiceImpl implements NewsService {
         if(news==null){
             throw new CompanyException("数据为空");
         }
-        if (id==1){
-            throw new CompanyException("请输入id");
-        }
         return news;
     }
 

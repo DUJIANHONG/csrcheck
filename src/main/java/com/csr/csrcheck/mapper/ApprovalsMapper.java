@@ -2,6 +2,7 @@ package com.csr.csrcheck.mapper;
 
 
 import com.csr.csrcheck.pojo.Approvals;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,5 +21,5 @@ public interface ApprovalsMapper {
      * @param name
      * @return
      */
-    public List<Approvals> getapprovalspage(String name);
+    public List<Approvals> getapprovalspage(@Param(value = "name") String name);
 }

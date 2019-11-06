@@ -3,7 +3,7 @@ package com.csr.csrcheck.pojo;
 /**
  * 准字类型表
  */
-public class approved_by {
+public class Approved_by {
     private int id;   //主键（准字表）
     private String approved_t_name;  //准字类型名称
 

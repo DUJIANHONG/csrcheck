@@ -110,19 +110,19 @@
                 <form method="post" action="${pageContext.request.contextPath }">
                     <input type="hidden" name="pageNum" value="1" />
                     <ul>
-                        <li>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="name" type="text" class="form-control col-md-7 col-xs-12"
-                                           value="">
-                                </div>
+                    <li>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input name="name" type="text" class="form-control col-md-7 col-xs-12"
+                                       value="">
                             </div>
-                        </li>
-                        <li>
-                            <button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询</button>
-                        </li>
-                    </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询</button>
+                    </li>
+                </ul>
                 </form>
             </div>
         </div>
@@ -137,9 +137,7 @@
                         <div class="content">
                             <ul>
                             <c:forEach var="pages" items="${page.content}" varStatus="status">
-                                <a href="/web/news.html/id="+${pages.id}>
                                 <li>
-                                    <span style="display: block" id="nid">${pages.id}</span>
                                     <div class="left"><img src="../../${pages.img_url}" alt=""></div>
                                     <div class="right">
                                         <div class="right_top">
@@ -148,11 +146,11 @@
                                         <div class="right_bottom">
                                             <div class="right_bottom_left">
                                                 <span>${pages.news_name}</span>  <span>${pages.position}</span><span>|</span> <span><fmt:formatDate value="${pages.date}" type="date"/></span>
+                                                <span style="color: red;float: right" newsid="${pages.id}" class="btn">查看新闻详情 >>>></span>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
-                                </a>
                             </c:forEach>
                             </ul>
                         </div>
@@ -217,7 +215,14 @@
 <!--<script src="js/rollpage.js"></script>-->
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/rollpage.js"></script>
-</body>
+<script>
+  $(".btn").click(function () {
+      var obj = $(this);
+      window.location.href="/web/news.html?id="+obj.attr("newsid");
+  })
+
+</script>
+</body
 </body>
 </html>
 
