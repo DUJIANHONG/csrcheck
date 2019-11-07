@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <title>新闻详情</title>
     <style>
-        li{
-            list-style: none;
-        }
         a{
             text-decoration: none;
         }
@@ -15,6 +12,21 @@
         }
         a{
             color: #2b303a;
+        }
+        .box2{
+            width: 500px;
+            margin: 0 auto;
+        }
+        .box3{
+            width: 500px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+        h4{
+            color: red;
+        }
+        span{
+            color: #0d8ddb;
         }
     </style>
     <link href="../css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
@@ -30,10 +42,18 @@
         url:"/news/byidnews/"+window.location.search.split("id=")[1],
         dataType:"json",
         success:function (data) {
-                let html="<ul>"
-                    +"<li>news_content</li>"
-                    +"</ul>"
+                let html="<div class='box2'>"
+                    +"<h1>news_title</h1>"
+                    +"<h4>subheading</h4>"
+                    +"<span>news_name</span><span>position</span>|<span>date</span></div>"
+                    +"<div class='box3'>&nbsp;&nbsp;&nbsp;&nbsp;news_content</div>"
                 html=html.replace("news_content",data.data.news_content)
+                html=html.replace("news_title",data.data.news_title)
+                html=html.replace("subheading",data.data.subheading)
+                html=html.replace("news_content",data.data.news_content)
+                html=html.replace("news_name",data.data.news_name)
+                html=html.replace("position",data.data.position)
+                html=html.replace("date",data.data.date)
                 $("#box").append(html);
             }
 
