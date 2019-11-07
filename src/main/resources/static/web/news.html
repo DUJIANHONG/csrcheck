@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新闻详情</title>
+    <style>
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            color: cornflowerblue;
+        }
+        a{
+            color: #2b303a;
+        }
+    </style>
+    <link href="../css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+</head>
+<body>
+<div><i class="fa fa-mail-reply" aria-hidden="true" style="color: #1c84c6"></i><a href="#" onclick="javascript :history.back(-1);">返回</a></div>
+<div id="box">
+</div>
+<script src="../js/jquery.min.js"></script>
+<script>
+    $.ajax({
+        type:"get",
+        url:"/news/byidnews/"+window.location.search.split("id=")[1],
+        dataType:"json",
+        success:function (data) {
+                let html="<ul>"
+                    +"<li>news_content</li>"
+                    +"</ul>"
+                html=html.replace("news_content",data.data.news_content)
+                $("#box").append(html);
+            }
+
+    })
+</script>
+</body>
+</html>

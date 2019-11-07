@@ -1,11 +1,12 @@
 package com.csr.csrcheck.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Objects;
 
 /**
  * @description:意见反馈
  * @author: Administrator
- * @date: Created in 2019/11/1 16:33
+ * @String: Created in 2019/11/1 16:33
  * @version:
  * @modified By:
  */
@@ -14,6 +15,15 @@ public class Feedback {
     private int id;                 //主键id
     private String content;         //反馈内容
     private String information;     //联系方式
+    private String commitdata;        //提交时间
+
+    public String getCommitdata() {
+        return commitdata;
+    }
+
+    public void setCommitdata(String commitdata) {
+        this.commitdata = commitdata;
+    }
 
     public int getId() {
         return id;

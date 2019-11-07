@@ -28,6 +28,7 @@ public class Company {
     @JsonIgnore
     private String introduction_controller_id;  //公司实际控制人id
     private int company_ranking;        //公司排名
+
     private String licence_no;          //许可证编号
     private String production;          //生产范围
     private String organization;        //受管辖机构

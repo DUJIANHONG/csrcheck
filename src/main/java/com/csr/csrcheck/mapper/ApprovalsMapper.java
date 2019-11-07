@@ -1,7 +1,8 @@
 package com.csr.csrcheck.mapper;
 
-import com.csr.csrcheck.pojo.Approvals;
 
+import com.csr.csrcheck.pojo.Approvals;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,4 +15,11 @@ public interface ApprovalsMapper {
      * @paramreturn
      */
     public List<Approvals> getApprovalslist( );
+
+    /**
+     * 根据产品名称分页 查询批文
+     * @param name
+     * @return
+     */
+    public List<Approvals> getapprovalspage(@Param(value = "name") String name);
 }
