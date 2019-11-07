@@ -4,11 +4,14 @@ import com.csr.csrcheck.pojo.Business_risks;
 import com.csr.csrcheck.pojo.Lawsuit;
 import com.csr.csrcheck.service.Business_risksService;
 import com.csr.csrcheck.service.LawsuitService;
+import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.service.ex.LawsuitException;
 import com.csr.csrcheck.util.JsonResult;
+import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -46,6 +49,25 @@ public class Business_risksConntroller extends BaseController{
            throw new LawsuitException("没有数据");
         }
         return new JsonResult<>(SUCCESS,OK,list);
+    }
+
+
+    /**
+     * 分页查询经营风险
+     * @param pageNum
+     * @param pageSize
+     * @param company_name
+     * @return
+     */
+    @RequestMapping("bussiness")
+    public JsonResult<Object> bussiness(@RequestParam(defaultValue = "1") int pageNum,
+                                        @RequestParam(defaultValue = "5") int pageSize,
+                                        @RequestParam(value = "name",required = false) String company_name){
+        PageResult pageResult=business_risksService.getListpage(pageNum,pageSize,company_name);
+        if(pageResult==null){
+            throw new CompanyException("没有数据");
+        }
+        return new JsonResult<>(SUCCESS,OK,pageResult);
     }
 
 }

@@ -7,9 +7,7 @@ import com.csr.csrcheck.controller.ex.FileTypeException;
 import com.csr.csrcheck.controller.ex.FileUploadIOException;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.News;
-import com.csr.csrcheck.service.Abnormal_productsService;
-import com.csr.csrcheck.service.CompanyService;
-import com.csr.csrcheck.service.ProductService;
+import com.csr.csrcheck.service.*;
 import com.csr.csrcheck.service.impl.NewsServiceImpl;
 import com.csr.csrcheck.util.Constants;
 import com.csr.csrcheck.util.JsonResult;
@@ -18,6 +16,7 @@ import com.csr.csrcheck.util.PageSupport;
 import com.sun.deploy.ui.AppInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -55,6 +54,10 @@ public class HTConntroller extends BaseController {
     private Abnormal_productsService abnormal_productsService;
     @Resource
     private NewsServiceImpl newsService;
+    @Resource
+    private ApprovalsService approvalsService;
+    @Resource
+    private Business_risksService business_risksService;
 
     /**
      * 公司信息页面
@@ -242,6 +245,50 @@ public class HTConntroller extends BaseController {
         log.info("listpage---------------------------->pageSize"+pageSize);
         model.addAttribute("page",pageResult);
         return "news";
+    }
+
+    /**
+     * 查询批文信息
+     * @param pageNum
+     * @param pageSize
+     * @param model
+     * @param name
+     * @return
+     */
+    @RequestMapping("approvals")
+    public String approvals(@RequestParam(defaultValue = "1") int pageNum,
+                            @RequestParam(defaultValue = "5") int pageSize,
+                            Model model, String name){
+        PageResult pageResult=approvalsService.getApprovalslistpage(pageNum,pageSize,name);
+        log.info("approvals--------------------------->pageNum:"+pageNum);
+        log.info("approvals--------------------------->pageSize:"+pageSize);
+        log.info("approvals--------------------------->name:"+name);
+        model.addAttribute("page",pageResult);
+        model.addAttribute("name",name);
+        return "approvals";
+    }
+    /**
+     * 分页查询经营风险
+     * @param pageNum
+     * @param pageSize
+     * @param company_name
+     * @return
+     */
+    @RequestMapping("bussiness")
+    public String bussiness(@RequestParam(defaultValue = "1") int pageNum,
+                                        @RequestParam(defaultValue = "5") int pageSize,
+                                        String company_name,
+                            Model model){
+        PageResult pageResult=business_risksService.getListpage(pageNum,pageSize,company_name);
+        if(pageResult==null){
+            throw new com.csr.csrcheck.service.ex.CompanyException("没有数据");
+        }
+        model.addAttribute("page",pageResult);
+        model.addAttribute("name",company_name);
+        log.info("bussiness---------------------------->pageNum:"+pageNum);
+        log.info("bussiness---------------------------->pageSize:"+pageSize);
+        log.info("bussiness---------------------------->company_name:"+company_name);
+        return "bussiness";
     }
 }
 

@@ -10,6 +10,7 @@ import com.csr.csrcheck.service.ex.ClinicException;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,11 +55,31 @@ public class ApprovalsController extends BaseController{
     @GetMapping("page")
     public JsonResult<Object> page(@RequestParam(defaultValue = "1") int pageNum,
                                    @RequestParam(defaultValue = "5") int pageSize,
-                                   String name){
+                                   @RequestParam(value = "name") String name){
         PageResult pageResult=abnormal_productsService.abnormallsitpage(pageNum,pageSize,name);
         if(pageResult==null){
             throw new CompanyException("没有数据");
         }
         return new JsonResult<>(SUCCESS,OK,pageResult);
+    }
+    /**
+     * 查询批文信息
+     * @param pageNum
+     * @param pageSize
+     * @param name
+     * @return
+     */
+    @RequestMapping("appro")
+    public JsonResult<Object> approvals(@RequestParam(defaultValue = "1") int pageNum,
+                            @RequestParam(defaultValue = "5") int pageSize,
+                            String name){
+        PageResult pageResult=approvalsService.getApprovalslistpage(pageNum,pageSize,name);
+        log.info("approvals--------------------------->pageNum:"+pageNum);
+        log.info("approvals--------------------------->pageSize:"+pageSize);
+        log.info("approvals--------------------------->name:"+name);
+        if(pageResult==null){
+            throw new CompanyException("没有数据");
+        }
+        return new JsonResult<Object>(SUCCESS,OK,pageResult);
     }
 }
