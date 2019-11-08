@@ -19,10 +19,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -58,6 +55,14 @@ public class HTConntroller extends BaseController {
     private ApprovalsService approvalsService;
     @Resource
     private Business_risksService business_risksService;
+    @Resource
+    private ClinicService clinicService;
+    @Resource
+    private ContendService contendService;
+    @Resource
+    private EvaluateService evaluateService;
+    @Resource
+    private  Five_SupplierService fiveSupplierService;
 
     /**
      * 公司信息页面
@@ -289,6 +294,95 @@ public class HTConntroller extends BaseController {
         log.info("bussiness---------------------------->pageSize:"+pageSize);
         log.info("bussiness---------------------------->company_name:"+company_name);
         return "bussiness";
+    }
+
+    /**
+     * 根据产品名称分页查询临床
+     * @param pageNum
+     * @param pageSize
+     * @param product_name
+     * @return
+     */
+    @RequestMapping("clinic")
+    public String clinic(@RequestParam(defaultValue = "1") int pageNum,
+                                     @RequestParam(defaultValue = "5") int pageSize,
+                         String product_name,Model model){
+        PageResult pageResult=clinicService.getListpage(pageNum,pageSize,product_name);
+        log.info("clinic---------------------------->pageNum:"+pageNum);
+        log.info("clinic---------------------------->pageSize:"+pageSize);
+        log.info("clinic---------------------------->product_name:"+product_name);
+        model.addAttribute("page",pageResult);
+        model.addAttribute("name",product_name);
+        return "clinic";
+    }
+
+    /**
+     *根据药企名称分页查询药企核心竞争力动态信息
+     *  @param pageNum
+     * @param pageSize
+     * @param company_name
+     * @return
+     */
+    @RequestMapping("contend")
+    public String contend(@RequestParam(defaultValue = "1") int pageNum,
+                                      @RequestParam(defaultValue = "5") int pageSize,
+                                      String company_name,Model model){
+        PageResult pageResult=contendService.getListpage(pageNum,pageSize,company_name);
+        log.info("contend---------------------------------->pageNum:"+pageNum);
+        log.info("contend---------------------------------->pageSize:"+pageSize);
+        log.info("contend---------------------------------->company_name:"+company_name);
+        model.addAttribute("page",pageResult);
+        model.addAttribute("name",company_name);
+        return "contend";
+    }
+    /**
+     * 根据企业名称或者产品名称查询一致性评价信息
+     * @param pageNum
+     * @param pageSize
+     * @param company_name
+     * @param product_name
+     * @return
+     */
+    @RequestMapping("evaluate")
+    public String evaluate(@RequestParam(defaultValue = "1") int pageNum,
+                                       @RequestParam(defaultValue = "5") int pageSize,
+                                       String company_name,
+                                       String product_name,
+                                Model model) {
+        PageResult pageResult=evaluateService.getlistpage(pageNum,pageSize,company_name,product_name);
+        log.info("evaluate--------------------------->pageNum:"+pageNum);
+        log.info("evaluate--------------------------->pageSize:"+pageSize);
+        log.info("evaluate--------------------------->company_name:"+company_name);
+        log.info("evaluate--------------------------->product_name:"+product_name);
+        model.addAttribute("cname",company_name);
+        model.addAttribute("pname",product_name);
+        model.addAttribute("page",pageResult);
+        return "evaluate";
+    }
+    /**
+     *分页查询前五大供应商
+     *  @param pageNum
+     * @param pageSize
+     * @param supplier_name
+     * @return
+     */
+    @RequestMapping("fiveSuppler")
+    public String fiveSuppler(@RequestParam(defaultValue = "1") int pageNum,
+                                              @RequestParam(defaultValue = "5") int pageSize,
+                                              String supplier_name,Model model){
+        PageResult pageResult=null;
+        try {
+            pageResult=fiveSupplierService.getListFive(pageNum,pageSize,supplier_name);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        log.info("fiveSuppler------------------>pageResult"+pageResult);
+        log.info("fiveSuppler------------------>pageNum"+pageNum);
+        log.info("fiveSuppler------------------>pageSize"+pageSize);
+        log.info("fiveSuppler------------------>supplier_name"+supplier_name);
+        model.addAttribute("name",supplier_name);
+        model.addAttribute("page",pageResult);
+        return"fiveSuppler";
     }
 }
 

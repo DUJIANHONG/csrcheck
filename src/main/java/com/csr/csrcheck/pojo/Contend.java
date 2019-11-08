@@ -19,6 +19,16 @@ public class Contend {
      */
     private String company_name;        //公司名称
 
+    private Company company;            //公司
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     public String getCompany_name() {
         return company_name;
     }

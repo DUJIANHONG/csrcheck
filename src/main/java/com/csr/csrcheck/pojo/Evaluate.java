@@ -22,6 +22,25 @@ public class Evaluate {
     private String company_name;        //公司名称
     private String product_name;        //产品名称
 
+    private Company company;            //公司
+    private Product product;            //产品
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
     public String getCompany_name() {
         return company_name;
     }

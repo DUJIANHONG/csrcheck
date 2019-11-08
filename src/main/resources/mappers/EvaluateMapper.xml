@@ -16,4 +16,38 @@
 		WHERE p.product_id=e.`product_id` AND c.id=e.`company_id` AND p.product_type_id=z.id AND z.id=1;
     </select>
 
+    <resultMap id="eid" type="com.csr.csrcheck.pojo.Evaluate">
+        <id column="id" property="id"></id>
+        <result column="accept_no" property="accept_no"></result>
+        <result column="product_id" property="product_id"></result>
+        <result column="english_name" property="english_name"></result>
+        <result column="specification" property="specification"></result>
+        <result column="agent_type" property="agent_type"></result>
+        <result column="adaptation_disease" property="adaptation_disease"></result>
+        <result column="company_id" property="company_id"></result>
+        <association property="company" javaType="com.csr.csrcheck.pojo.Company">
+            <id column="id" property="id"></id>
+            <result column="company_name" property="company_name"></result>
+        </association>
+        <association property="product" javaType="com.csr.csrcheck.pojo.Product">
+            <id column="product_id" property="product_id"></id>
+            <result column="product_name" property="product_name"></result>
+        </association>
+    </resultMap>
+
+    <select id="getEvaluatepage" resultMap="eid">
+            SELECT e.*,c.`company_name`,p.`product_name`
+            FROM evaluate e,company c,product p
+            <trim prefix="where" prefixOverrides="and | or">
+                AND e.`product_id`=p.`product_id`
+                AND e.`company_id`=c.`id`
+                <if test="company_name!=null and company_name!=''">
+                    AND c.company_name LIKE CONCAT('%',#{company_name},'%')
+                </if>
+                <if test="product_name!=null and product_name!=''">
+                    AND p.`product_name` LIKE CONCAT('%',#{product_name},'%')
+                </if>
+            </trim>
+
+    </select>
 </mapper>
