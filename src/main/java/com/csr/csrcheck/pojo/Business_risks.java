@@ -16,6 +16,34 @@ public class Business_risks {
     private String  risk_type_name ;//风险类型名称
     private String company_name;        //公司名称
 
+    private  Company company;     //公司
+    private Risk_type risktype;   //风险类型
+    private Risk_classify risk_classify;//风险分类
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Risk_type getRisktype() {
+        return risktype;
+    }
+
+    public void setRisktype(Risk_type risktype) {
+        this.risktype = risktype;
+    }
+
+    public Risk_classify getRisk_classify() {
+        return risk_classify;
+    }
+
+    public void setRisk_classify(Risk_classify risk_classify) {
+        this.risk_classify = risk_classify;
+    }
+
     public String getRisk_classify_name() {
         return risk_classify_name;
     }

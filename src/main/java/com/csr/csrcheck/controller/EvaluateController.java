@@ -7,9 +7,11 @@ import com.csr.csrcheck.service.EvaluateService;
 import com.csr.csrcheck.service.ex.ClinicException;
 import com.csr.csrcheck.service.ex.EvaluateException;
 import com.csr.csrcheck.util.JsonResult;
+import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -36,5 +38,27 @@ public class EvaluateController extends BaseController{
         }
 
         return new JsonResult<>(SUCCESS,OK,list);
+    }
+
+
+    /**
+     * 根据企业名称或者产品名称查询一致性评价信息
+     * @param pageNum
+     * @param pageSize
+     * @param company_name
+     * @param product_name
+     * @return
+     */
+    @GetMapping("evaluate")
+    public JsonResult<Object> evaluate(@RequestParam(defaultValue = "1") int pageNum,
+                                       @RequestParam(defaultValue = "5") int pageSize,
+                                       @RequestParam(value = "cname",required = false) String company_name,
+                                       @RequestParam(value = "pname",required = false) String product_name) {
+        PageResult pageResult=evaluateService.getlistpage(pageNum,pageSize,company_name,product_name);
+        log.info("evaluate--------------------------->pageNum:"+pageNum);
+        log.info("evaluate--------------------------->pageSize:"+pageSize);
+        log.info("evaluate--------------------------->company_name:"+company_name);
+        log.info("evaluate--------------------------->product_name:"+product_name);
+        return new JsonResult<>(SUCCESS,OK,pageResult);
     }
 }

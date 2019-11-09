@@ -7,9 +7,7 @@ import com.csr.csrcheck.controller.ex.FileTypeException;
 import com.csr.csrcheck.controller.ex.FileUploadIOException;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.News;
-import com.csr.csrcheck.service.Abnormal_productsService;
-import com.csr.csrcheck.service.CompanyService;
-import com.csr.csrcheck.service.ProductService;
+import com.csr.csrcheck.service.*;
 import com.csr.csrcheck.service.impl.NewsServiceImpl;
 import com.csr.csrcheck.util.Constants;
 import com.csr.csrcheck.util.JsonResult;
@@ -18,12 +16,10 @@ import com.csr.csrcheck.util.PageSupport;
 import com.sun.deploy.ui.AppInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -55,6 +51,18 @@ public class HTConntroller extends BaseController {
     private Abnormal_productsService abnormal_productsService;
     @Resource
     private NewsServiceImpl newsService;
+    @Resource
+    private ApprovalsService approvalsService;
+    @Resource
+    private Business_risksService business_risksService;
+    @Resource
+    private ClinicService clinicService;
+    @Resource
+    private ContendService contendService;
+    @Resource
+    private EvaluateService evaluateService;
+    @Resource
+    private  Five_SupplierService fiveSupplierService;
 
     /**
      * 公司信息页面
@@ -242,6 +250,139 @@ public class HTConntroller extends BaseController {
         log.info("listpage---------------------------->pageSize"+pageSize);
         model.addAttribute("page",pageResult);
         return "news";
+    }
+
+    /**
+     * 查询批文信息
+     * @param pageNum
+     * @param pageSize
+     * @param model
+     * @param name
+     * @return
+     */
+    @RequestMapping("approvals")
+    public String approvals(@RequestParam(defaultValue = "1") int pageNum,
+                            @RequestParam(defaultValue = "5") int pageSize,
+                            Model model, String name){
+        PageResult pageResult=approvalsService.getApprovalslistpage(pageNum,pageSize,name);
+        log.info("approvals--------------------------->pageNum:"+pageNum);
+        log.info("approvals--------------------------->pageSize:"+pageSize);
+        log.info("approvals--------------------------->name:"+name);
+        model.addAttribute("page",pageResult);
+        model.addAttribute("name",name);
+        return "approvals";
+    }
+    /**
+     * 分页查询经营风险
+     * @param pageNum
+     * @param pageSize
+     * @param company_name
+     * @return
+     */
+    @RequestMapping("bussiness")
+    public String bussiness(@RequestParam(defaultValue = "1") int pageNum,
+                                        @RequestParam(defaultValue = "5") int pageSize,
+                                        String company_name,
+                            Model model){
+        PageResult pageResult=business_risksService.getListpage(pageNum,pageSize,company_name);
+        if(pageResult==null){
+            throw new com.csr.csrcheck.service.ex.CompanyException("没有数据");
+        }
+        model.addAttribute("page",pageResult);
+        model.addAttribute("name",company_name);
+        log.info("bussiness---------------------------->pageNum:"+pageNum);
+        log.info("bussiness---------------------------->pageSize:"+pageSize);
+        log.info("bussiness---------------------------->company_name:"+company_name);
+        return "bussiness";
+    }
+
+    /**
+     * 根据产品名称分页查询临床
+     * @param pageNum
+     * @param pageSize
+     * @param product_name
+     * @return
+     */
+    @RequestMapping("clinic")
+    public String clinic(@RequestParam(defaultValue = "1") int pageNum,
+                                     @RequestParam(defaultValue = "5") int pageSize,
+                         String product_name,Model model){
+        PageResult pageResult=clinicService.getListpage(pageNum,pageSize,product_name);
+        log.info("clinic---------------------------->pageNum:"+pageNum);
+        log.info("clinic---------------------------->pageSize:"+pageSize);
+        log.info("clinic---------------------------->product_name:"+product_name);
+        model.addAttribute("page",pageResult);
+        model.addAttribute("name",product_name);
+        return "clinic";
+    }
+
+    /**
+     *根据药企名称分页查询药企核心竞争力动态信息
+     *  @param pageNum
+     * @param pageSize
+     * @param company_name
+     * @return
+     */
+    @RequestMapping("contend")
+    public String contend(@RequestParam(defaultValue = "1") int pageNum,
+                                      @RequestParam(defaultValue = "5") int pageSize,
+                                      String company_name,Model model){
+        PageResult pageResult=contendService.getListpage(pageNum,pageSize,company_name);
+        log.info("contend---------------------------------->pageNum:"+pageNum);
+        log.info("contend---------------------------------->pageSize:"+pageSize);
+        log.info("contend---------------------------------->company_name:"+company_name);
+        model.addAttribute("page",pageResult);
+        model.addAttribute("name",company_name);
+        return "contend";
+    }
+    /**
+     * 根据企业名称或者产品名称查询一致性评价信息
+     * @param pageNum
+     * @param pageSize
+     * @param company_name
+     * @param product_name
+     * @return
+     */
+    @RequestMapping("evaluate")
+    public String evaluate(@RequestParam(defaultValue = "1") int pageNum,
+                                       @RequestParam(defaultValue = "5") int pageSize,
+                                       String company_name,
+                                       String product_name,
+                                Model model) {
+        PageResult pageResult=evaluateService.getlistpage(pageNum,pageSize,company_name,product_name);
+        log.info("evaluate--------------------------->pageNum:"+pageNum);
+        log.info("evaluate--------------------------->pageSize:"+pageSize);
+        log.info("evaluate--------------------------->company_name:"+company_name);
+        log.info("evaluate--------------------------->product_name:"+product_name);
+        model.addAttribute("cname",company_name);
+        model.addAttribute("pname",product_name);
+        model.addAttribute("page",pageResult);
+        return "evaluate";
+    }
+    /**
+     *分页查询前五大供应商
+     *  @param pageNum
+     * @param pageSize
+     * @param supplier_name
+     * @return
+     */
+    @RequestMapping("fiveSuppler")
+    public String fiveSuppler(@RequestParam(defaultValue = "1") int pageNum,
+                                              @RequestParam(defaultValue = "5") int pageSize,
+                                              String supplier_name,Model model){
+        PageResult pageResult=null;
+        try {
+            pageResult=fiveSupplierService.getListFive(pageNum,pageSize,supplier_name);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        log.info("fiveSuppler------------------>pageResult"+pageResult);
+        log.info("fiveSuppler------------------>pageNum"+pageNum);
+        log.info("fiveSuppler------------------>pageSize"+pageSize);
+        log.info("fiveSuppler------------------>supplier_name"+supplier_name);
+        model.addAttribute("name",supplier_name);
+        model.addAttribute("page",pageResult);
+        return"fiveSuppler";
     }
 }
 

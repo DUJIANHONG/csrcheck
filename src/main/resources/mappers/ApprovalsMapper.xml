@@ -6,8 +6,29 @@
 <sql id="apprid">
 `id`,`approval_num`,`product_id`,`approval_no`,`approved_by`
 </sql>
-    
-    <select id="getApprovalslist" resultType="com.csr.csrcheck.pojo.Approvals">
+
+    <resultMap id="appid" type="com.csr.csrcheck.pojo.Approvals">
+        <id column="id" property="id"></id>
+        <result column="approval_num" property="approval_num"></result>
+        <result column="product_id" property="product_id"></result>
+        <result column="approval_no" property="approval_no"></result>
+        <result column="approved_by" property="approved_by"></result>
+        <association property="approvedby" javaType="com.csr.csrcheck.pojo.Approved_by">
+            <id column="id" property="id"></id>
+            <result column="approved_t_name" property="approved_t_name"></result>
+        </association>
+        <association property="product" javaType="com.csr.csrcheck.pojo.Product">
+            <id column="product_id" property="product_id"></id>
+            <result column="product_name" property="product_name"></result>
+        </association>
+        <association property="company" javaType="com.csr.csrcheck.pojo.Company">
+            <id column="id" property="id"></id>
+            <result column="company_name" property="company_name"></result>
+        </association>
+    </resultMap>
+
+
+    <select id="getApprovalslist"  resultMap="appid">
 
             SELECT
 a.`approval_num`,p.`product_name`,a.`approval_no`,c.`company_name` ,b.approved_t_name
@@ -16,13 +37,14 @@ a.`approval_num`,p.`product_name`,a.`approval_no`,c.`company_name` ,b.approved_t
    p.`company_id`=c.`id`AND p.product_type_id=z.id AND z.id=1;
     </select>
 
-<select id="getapprovalspage" resultType="com.csr.csrcheck.pojo.Approvals">
-    SELECT a.`id`,a.`approval_num`,p.`product_name`,a.`approval_no`,app.`approved_t_name`
+
+<select id="getapprovalspage" resultMap="appid">
+    SELECT a.*,p.`product_name`,app.`approved_t_name`
     FROM approvals a,`product` p,`approved_by` app
     <trim prefix="where" prefixOverrides="and | or">
       and a.`product_id`=p.`product_id` AND a.`approved_by`=app.id
         <if test="product_name!=null and product_name!=''">
-            AND p.product_name LIKE CONCAT('%',#{name},'%')
+            AND p.product_name LIKE CONCAT('%',#{product_name},'%')
         </if>
     </trim>
 </select>

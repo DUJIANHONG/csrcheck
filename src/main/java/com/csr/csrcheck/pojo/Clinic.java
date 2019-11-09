@@ -28,6 +28,25 @@ public class Clinic {
     private String product_name;        //产品名称
     private String company_name;        //公司名称
 
+    private Product product;            //产品
+    private Company company;            //公司
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     public String getCompany_name() {
         return company_name;
     }

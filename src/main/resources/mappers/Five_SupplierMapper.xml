@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csr.csrcheck.mapper.Five_SupplierMapper">
+
+    <select id="getListFive" resultType="com.csr.csrcheck.pojo.Five_Supplier">
+             SELECT f.*,c.`company_name` FROM five_supplier f,company c
+             <trim prefixOverrides="and | or" prefix="where">
+                 and f.`company_id`=c.id
+                 <if test="supplier_name!=null and supplier_name!='' ">
+                     and supplier_name like concat ('%',#{supplier_name},'%')
+                 </if>
+             </trim>
+        ORDER BY f.ratio
+    </select>
+</mapper>

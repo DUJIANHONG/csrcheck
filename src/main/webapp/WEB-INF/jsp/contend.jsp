@@ -25,73 +25,10 @@
     <link href="${pageContext.request.contextPath }/css/dropzone.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="${pageContext.request.contextPath }/css/custom.min.css" rel="stylesheet">
+
     <!-- add local/css 2016-8-18 -->
     <link href="${pageContext.request.contextPath }/css/appinfoadd.css" rel='stylesheet'>
     <link href="${pageContext.request.contextPath }/css/appinfolist.css" rel='stylesheet'>
-    <style type="text/css">
-        *{
-            margin: 0;
-            padding:0;
-        }
-        .wrap{
-            width: 600px;
-            margin: 0px auto;
-
-        }
-        .menu{
-            width: 600px;
-            height: 30px;
-            background: cornflowerblue;
-            position: sticky;
-            top:0px;
-        }
-        .menu ul li{
-            float: left;
-            list-style-type: none;
-            padding: 0 40px;
-        }
-        .content ul li img:hover{
-            transform: scale(1.2);/*当鼠标移动到图片上时实现放大功能*/
-        }
-        .content ul li{
-            height: 100px;
-            overflow: hidden;
-            border-bottom: 1px solid lavender;
-            background: white;
-            list-style-type: none;
-            transition-duration: 0.5s;
-            margin: 10px 10px 5px 0;
-
-        }
-        .content ul li:hover{
-            background-color: lavender;
-            transition-duration: 0.5s;
-        }
-        .content .left{
-            overflow: hidden;/*隐藏溢出图片内容*/
-            transition-duration: 0.5s;
-            width: 140px;
-            height:80px;
-            /*background: green;*/
-            float: left;
-            margin-right:20px;
-        }
-        .content .right{
-            width:400px ;
-            float: left;
-            /*background: pink;*/
-        }
-        .right_top{
-            height:60px;
-        }
-        .right_bottom{
-            margin_top:50px;
-        }
-        .right_bottom_left span{
-            color: darkgray;
-            font-size: 12px;
-        }
-    </style>
 </head>
 <body>
 
@@ -101,28 +38,28 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    新闻信息管理维护 <i class="fa fa-user"></i><small>
-                    ${userSession.user_name}</small>
+                    企业核心竞争力信息管理维护 <i class="fa fa-user"></i><small>
+                    ${userSession.user_name} - 您可以通过搜索或者其他的筛选项对企业核心竞争力信息进行修改、删除等管理操作。</small>
                 </h2>
                 <div class="clearfix"></div>
             </div>
-            <div class="x_content" style="display: none">
-                <form method="post" action="${pageContext.request.contextPath }">
+            <div class="x_content">
+                <form method="post" action="${pageContext.request.contextPath }/csrht/contend">
                     <input type="hidden" name="pageNum" value="1" />
                     <ul>
-                    <li>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input name="name" type="text" class="form-control col-md-7 col-xs-12"
-                                       value="">
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">企业名称</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input name="company_name" type="text" class="form-control col-md-7 col-xs-12"
+                                           value="${name}">
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li>
-                        <button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询</button>
-                    </li>
-                </ul>
+                        </li>
+                        <li>
+                            <button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询</button>
+                        </li>
+                    </ul>
                 </form>
             </div>
         </div>
@@ -133,27 +70,74 @@
                 <p class="text-muted font-13 m-b-30"></p>
                 <div id="datatable-responsive_wrapper"
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                    <div class="wrap">
-                        <a href="${pageContext.request.contextPath}/csrht/addnews" class="btn btn-success btn-sm">新增新闻信息</a>
-                        <div class="content">
-                            <ul>
-                            <c:forEach var="pages" items="${page.content}" varStatus="status">
-                                <li>
-                                    <div class="left"><img src="../../${pages.img_url}" alt=""></div>
-                                    <div class="right">
-                                        <div class="right_top">
-                                            <h3>${pages.news_title}</h3>
-                                        </div>
-                                        <div class="right_bottom">
-                                            <div class="right_bottom_left">
-                                                <span>${pages.news_name}</span>  <span>${pages.position}</span><span>|</span> <span><fmt:formatDate value="${pages.date}" type="date"/></span>
-                                                <span style="color: red;float: right" newsid="${pages.id}" class="btn">查看新闻详情 >>>></span>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="datatable-responsive"
+                                   class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+                                   role="grid" aria-describedby="datatable-responsive_info"
+                                   style="width: 100%;">
+                                <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        aria-label="First name: activate to sort column descending"
+                                        aria-sort="ascending">企业名称
+                                    </th>
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        竞争力信息标题
+                                    </th>
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        内容
+                                    </th>
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        发布时间
+                                    </th>
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        style="width: 124px;"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        操作
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="pages" items="${page.content}" varStatus="status">
+                                    <tr role="row" class="odd">
+                                        <td tabindex="0" class="sorting_1">${pages.company.company_name}</td>
+                                        <td>${pages.title}</td>
+                                        <td>${pages.content}</td>
+                                        <td><fmt:formatDate value="${pages.time}" type="both"/></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-danger">点击操作</button>
+                                                <button type="button" class="btn btn-danger dropdown-toggle"
+                                                        data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="caret"></span>
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a class="modifyAppInfo" data-toggle="tooltip"
+                                                           data-placement="top" title=""
+                                                           data-original-title="修改公司信息">修改</a></li>
+                                                    <li><a class="viewApp" data-toggle="tooltip"
+                                                           data-placement="top" title=""
+                                                           data-original-title="查看公司信息">查看</a></li>
+                                                    <li><a class="deleteApp" data-toggle="tooltip"
+                                                           data-placement="top" title=""
+                                                           data-original-title="删除公司信息">删除</a></li>
+                                                </ul>
                                             </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </c:forEach>
-                            </ul>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <!--分页开始-->
@@ -216,14 +200,7 @@
 <!--<script src="js/rollpage.js"></script>-->
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/rollpage.js"></script>
-<script>
-  $(".btn").click(function () {
-      var obj = $(this);
-      window.location.href="/web/news.html?id="+obj.attr("newsid");
-  })
-
-</script>
-</body
+</body>
 </body>
 </html>
 
