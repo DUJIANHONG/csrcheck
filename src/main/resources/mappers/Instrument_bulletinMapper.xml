@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csr.csrcheck.mapper.Instrument_bulletinMapper">
+<sql id="clinid">
+`id`,`product_id`,`record_number`,`adaptation_disease`,`record_date`
+</sql>
+    
+    <select id="getImportant_notificationlist" resultType="com.csr.csrcheck.pojo.Important_notification">
+
+        SELECT i.`title`,i.`content`,i.`release_time`,p.`product_name`
+FROM `product` p,`important_notification` i,z_product_type z
+WHERE p.`product_id`=i.`product_id` AND p.product_type_id=z.id AND z.id=3;
+    </select>
+
+
+</mapper>

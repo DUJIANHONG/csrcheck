@@ -18,6 +18,20 @@ public class Important_notification {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date release_time;   //发布时间
 
+    /**
+     * 自定义字段
+     * @return
+     */
+    private String product_name;        //产品名称
+
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
+    }
+
     public int getId() {
         return id;
     }

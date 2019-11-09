@@ -1,9 +1,9 @@
 package com.csr.csrcheck.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Date;
-import java.util.Objects;
 
 /**
  * @description:产品
@@ -32,8 +32,9 @@ public class Product {
     private String approvals_no;        //准字号
     private int domestic_import;        //国产/进口（1国产；2进口）
     private String yieldly;             //产品生产地
-    private int iflegal;                //是否合法（1，合法；2，不合法）
-    private String term_of_validity;    //有效期限
+    private int iflegal;//是否合法
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    private Date term_of_validity;//有效期限
 
     public int getIflegal() {
         return iflegal;
@@ -43,11 +44,11 @@ public class Product {
         this.iflegal = iflegal;
     }
 
-    public String getTerm_of_validity() {
+    public Date getTerm_of_validity() {
         return term_of_validity;
     }
 
-    public void setTerm_of_validity(String term_of_validity) {
+    public void setTerm_of_validity(Date term_of_validity) {
         this.term_of_validity = term_of_validity;
     }
 
