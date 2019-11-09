@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csr.csrcheck.mapper.Important_notificationMapper">
+
+    <select id="getimportant_page" resultType="com.csr.csrcheck.pojo.Important_notification">
+        SELECT i.*,p.`product_name`,z.`product_t_name`
+        FROM important_notification i,product p,`z_product_type` z
+        <trim prefix="where" prefixOverrides="and | or">
+            and i.`product_id`=p.`product_id`
+            AND p.`product_type_id`=z.`id`
+            <if test="product_name!=null and product_name!=''">
+                AND p.`product_name` LIKE CONCAT('%',#{product_name},'%')
+            </if>
+            <if test="product_t_name!=null and product_t_name!=''">
+                AND z.`product_t_name`=#{product_t_name}
+            </if>
+        </trim>
+    </select>
+
+</mapper>

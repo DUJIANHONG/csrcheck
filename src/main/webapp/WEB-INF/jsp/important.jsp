@@ -38,21 +38,36 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    企业风险信息管理维护 <i class="fa fa-user"></i><small>
-                    ${userSession.user_name} - 您可以通过搜索或者其他的筛选项对企业的风险信息进行修改、删除等管理操作。</small>
+                    重要通报 <i class="fa fa-user"></i><small>
+                    ${userSession.user_name} </small>
                 </h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <form method="post" action="${pageContext.request.contextPath }/csrht/bussiness">
+                <form method="post" action="${pageContext.request.contextPath }/csrht/important">
                     <input type="hidden" name="pageNum" value="1" />
                     <ul>
                         <li>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">企业名称</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">产品名称</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="company_name" type="text" class="form-control col-md-7 col-xs-12"
-                                           value="${name}">
+                                    <input name="product_name" type="text" class="form-control col-md-7 col-xs-12"
+                                           value="${product_name}">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">产品类型</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="product_t_name" id="product_t_name" class="form-control">
+                                        <c:if test="${list != null }">
+                                            <option value="">--请选择--</option>
+                                            <c:forEach var="list" items="${list}">
+                                                <option value="${list.product_t_name}">${list.product_t_name}</option>
+                                            </c:forEach>
+                                        </c:if>
+                                    </select>
                                 </div>
                             </div>
                         </li>
@@ -72,7 +87,7 @@
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
                         <div class="col-sm-12">
-                            <a href="${pageContext.request.contextPath}/" class="btn btn-success btn-sm">新增企业风险信息</a>
+                            <a href="${pageContext.request.contextPath}/" class="btn btn-success btn-sm">新增重要通报信息</a>
                             <table id="datatable-responsive"
                                    class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
                                    role="grid" aria-describedby="datatable-responsive_info"
@@ -82,27 +97,27 @@
                                     <th class="sorting_asc" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         aria-label="First name: activate to sort column descending"
-                                        aria-sort="ascending">风险分类的名称
+                                        aria-sort="ascending">标题
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         aria-label="Last name: activate to sort column ascending">
-                                        标题
+                                        通报内容
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         aria-label="Last name: activate to sort column ascending">
-                                        描述
+                                        产品名称
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         aria-label="Last name: activate to sort column ascending">
-                                        风险类型名称
+                                        产品类型
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         aria-label="Last name: activate to sort column ascending">
-                                        公司名称
+                                        发布日期
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
@@ -115,11 +130,11 @@
                                 <tbody>
                                 <c:forEach var="pages" items="${page.content}" varStatus="status">
                                     <tr role="row" class="odd">
-                                        <td tabindex="0" class="sorting_1">${pages.risktype.risk_type_name}</td>
-                                        <td>${pages.title}</td>
-                                        <td>${pages.describe}</td>
-                                        <td>${pages.risk_classify.risk_classify_name}</td>
-                                        <td>${pages.company.company_name}</td>
+                                        <td tabindex="0" class="sorting_1">${pages.title}</td>
+                                        <td>${pages.content}</td>
+                                        <td>${pages.product_name}</td>
+                                        <td>${pages.product_t_name}</td>
+                                        <td><fmt:formatDate value="${pages.release_time}" type="date"></fmt:formatDate></td>
                                         <td>
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-danger">点击操作</button>

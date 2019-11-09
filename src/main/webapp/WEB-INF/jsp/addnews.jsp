@@ -119,6 +119,7 @@
                         <div class="col-md-6 col-md-offset-3">
                             <button id="send" type="submit" class="btn btn-success">保存</button>
                             <button type="reset" class="btn btn-primary">清空</button>
+                            <button type="button" class="btn btn-danger"onclick="javascript :history.back(-1);">返回</button>
                             <br/><br/>
                         </div>
                     </div>

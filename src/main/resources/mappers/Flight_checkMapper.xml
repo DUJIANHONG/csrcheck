@@ -30,4 +30,29 @@ c.`company_name`,p.`product_name`,f.`attention`,f.`punish` ,f.content
    WHERE
    p.`company_id`=c.`id` AND f.`product_id`=p.`product_id`AND p.product_type_id=z.id AND z.id=3 ;
     </select>
+
+    <select id="getListpage" resultType="com.csr.csrcheck.pojo.Flight_check">
+            SELECT f.*,c.`company_name`,p.`product_name`,z.`product_t_name`
+            FROM `flight_check` f,product p,company c,z_product_type z
+             <trim prefix="where" prefixOverrides="and | or">
+                 and  f.`product_id`=p.`product_id`
+                 AND p.`company_id`=c.`id`
+                 AND p.`product_type_id`=z.`id`
+                 <if test="company_name!=null and company_name!=''">
+                     AND c.`company_name` LIKE CONCAT('%',#{company_name},'%')
+                 </if>
+                 <if test="product_name!=null and product_name!=''">
+                     AND p.`product_name` LIKE CONCAT('%',#{product_name},'%')
+                 </if>
+                 <if test="product_t_name!=null and product_t_name!=''">
+                     AND z.`product_t_name`=#{product_t_name}
+                 </if>
+                 <if test="check_no!=null and check_no!=''">
+                     AND f.`check_no`=#{check_no}
+                 </if>
+                 <if test="publication!=null and publication!=''">
+                     AND f.`publication`=#{publication}
+                 </if>
+             </trim>
+    </select>
 </mapper>

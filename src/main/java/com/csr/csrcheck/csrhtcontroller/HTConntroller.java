@@ -6,7 +6,9 @@ import com.csr.csrcheck.controller.ex.FileSizeException;
 import com.csr.csrcheck.controller.ex.FileTypeException;
 import com.csr.csrcheck.controller.ex.FileUploadIOException;
 import com.csr.csrcheck.pojo.Company;
+import com.csr.csrcheck.pojo.Flight_check;
 import com.csr.csrcheck.pojo.News;
+import com.csr.csrcheck.pojo.Product_type;
 import com.csr.csrcheck.service.*;
 import com.csr.csrcheck.service.impl.NewsServiceImpl;
 import com.csr.csrcheck.util.Constants;
@@ -28,6 +30,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -63,6 +66,10 @@ public class HTConntroller extends BaseController {
     private EvaluateService evaluateService;
     @Resource
     private  Five_SupplierService fiveSupplierService;
+    @Resource
+    private IFlight_checkService iFlight_checkService;
+    @Resource
+    private Product_typeService productTypeService;
 
     /**
      * 公司信息页面
@@ -383,6 +390,84 @@ public class HTConntroller extends BaseController {
         model.addAttribute("name",supplier_name);
         model.addAttribute("page",pageResult);
         return"fiveSuppler";
+    }
+
+    /**
+     * 根据企业名称,产品名称、产品类型名称、检查编号、公布日期查询
+     * @param pageNum
+     * @param pageSize
+     * @param company_name
+     * @param product_name
+     * @param product_t_name
+     * @param check_no
+     * @param publication
+     * @return
+     */
+    @RequestMapping("flightcheck")
+    public String flightcheck(@RequestParam(defaultValue = "1") int pageNum,
+                                          @RequestParam(defaultValue = "5") int pageSize,
+                                          String company_name,
+                                          String product_name,
+                                          String product_t_name,
+                                          String check_no,
+                                          String publication,
+                              Model model){
+        PageResult pageResult=iFlight_checkService.getListpage(pageNum,pageSize,company_name,product_name,product_t_name,check_no,publication);
+        if(pageResult==null){
+            throw new com.csr.csrcheck.service.ex.CompanyException("没有数据");
+        }
+        List<Product_type> list=productTypeService.getlist();
+        if(list==null){
+            throw new com.csr.csrcheck.service.ex.CompanyException("数据为空");
+        }
+        log.info("flightcheck--------------------------->pageNum:"+pageNum);
+        log.info("flightcheck--------------------------->pageSize:"+pageSize);
+        log.info("flightcheck--------------------------->company_name:"+company_name);
+        log.info("flightcheck--------------------------->product_name:"+product_name);
+        log.info("flightcheck--------------------------->product_t_name:"+product_t_name);
+        log.info("flightcheck--------------------------->check_no:"+check_no);
+        log.info("flightcheck--------------------------->publication:"+publication);
+        model.addAttribute("page",pageResult);
+        model.addAttribute("company_name",company_name);
+        model.addAttribute("product_name",product_name);
+        model.addAttribute("product_t_name",product_t_name);
+        model.addAttribute("check_no",check_no);
+        model.addAttribute("publication",publication);
+        model.addAttribute("list",list);
+        return "flightcheck";
+    }
+    @Resource
+    private Important_notificationService important_notificationService;
+
+    /**
+     *根据产品名称分页查询重要通报
+     *  @param pageNum
+     * @param pageSize
+     * @param product_name
+     * @param product_t_name
+     * @return
+     */
+    @RequestMapping("important")
+    public String  important(@RequestParam(defaultValue = "1") int pageNum,
+                                        @RequestParam(defaultValue = "5") int pageSize,
+                                        String product_name, String product_t_name,Model model){
+        PageResult pageResult=important_notificationService.getimportant_page(pageNum,pageSize,product_name,product_t_name);
+        if(pageResult==null){
+            throw new CompanyException("数据为空");
+        }
+        List<Product_type> list=productTypeService.getlist();
+        if(list==null){
+            throw new com.csr.csrcheck.service.ex.CompanyException("数据为空");
+        }
+        log.info("important----------------------------->pageNum:"+pageNum);
+        log.info("important----------------------------->pageSize:"+pageSize);
+        log.info("important----------------------------->product_name:"+product_name);
+        log.info("important----------------------------->product_t_name:"+product_t_name);
+        model.addAttribute("page",pageResult);
+        model.addAttribute("product_name",product_name);
+        model.addAttribute("product_t_name",product_t_name);
+        model.addAttribute("list",list);
+        return "important";
     }
 }
 
