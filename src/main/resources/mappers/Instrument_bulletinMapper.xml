@@ -13,6 +13,11 @@
 FROM `product` p,`important_notification` i,z_product_type z
 WHERE p.`product_id`=i.`product_id` AND p.product_type_id=z.id AND z.id=3;
     </select>
+    <select id="getAbnormal_productslist" resultType="com.csr.csrcheck.pojo.Abnormal_products">
 
+        SELECT a.`disqualification`,a.`inspection_result`,a.`standard_code`,a.`last`,p.`product_name`
+       FROM `product` p,`abnormal_products` a,z_product_type z
+       WHERE p.`product_id`=a.`product_id`AND p.product_type_id=z.id AND z.id=3;
+    </select>
 
 </mapper>

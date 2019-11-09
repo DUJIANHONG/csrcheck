@@ -1,5 +1,7 @@
 package com.csr.csrcheck.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Important_notification {
@@ -7,6 +9,7 @@ public class Important_notification {
     private String title ;//标题
     private String  content;//通报内容
     private int product_id;//关联产品id
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date release_time;//发布内容
 
 

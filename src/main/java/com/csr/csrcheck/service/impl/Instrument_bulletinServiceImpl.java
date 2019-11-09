@@ -2,6 +2,7 @@ package com.csr.csrcheck.service.impl;
 
 import com.csr.csrcheck.mapper.ClinicMapper;
 import com.csr.csrcheck.mapper.Instrument_bulletinMapper;
+import com.csr.csrcheck.pojo.Abnormal_products;
 import com.csr.csrcheck.pojo.Clinic;
 import com.csr.csrcheck.pojo.Important_notification;
 import com.csr.csrcheck.service.ClinicService;
@@ -21,6 +22,15 @@ public class Instrument_bulletinServiceImpl implements Instrument_bulletinServic
         List<Important_notification> list=instrument_bulletinMapper.getImportant_notificationlist();
         if(list==null){
             throw new ClinicException("医疗器械重要通报数据不存在");
+        }
+        return list;
+    }
+
+    @Override
+    public List<Abnormal_products> getAbnormal_productslist() {
+        List<Abnormal_products> list=instrument_bulletinMapper.getAbnormal_productslist();
+        if(list==null){
+            throw new ClinicException("医疗器械不合格通报数据不存在");
         }
         return list;
     }

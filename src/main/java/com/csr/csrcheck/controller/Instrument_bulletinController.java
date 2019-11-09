@@ -1,5 +1,6 @@
 package com.csr.csrcheck.controller;
 
+import com.csr.csrcheck.pojo.Abnormal_products;
 import com.csr.csrcheck.pojo.Clinic;
 import com.csr.csrcheck.pojo.Important_notification;
 import com.csr.csrcheck.service.ClinicService;
@@ -28,8 +29,17 @@ public class Instrument_bulletinController extends BaseController{
     @Resource
     private Instrument_bulletinService instrument_bulletinService;
     @GetMapping("Instrument_bulletinlist")
-    public JsonResult<List<Important_notification>> Flight_checklist(HttpServletResponse response) throws IOException, ServletException {
+    public JsonResult<List<Important_notification>> Instrument_bulletinlist(HttpServletResponse response) throws IOException, ServletException {
         List<Important_notification> list = instrument_bulletinService.getImportant_notificationlist();
+        if (list==null){
+            throw new ClinicException("没有数据");
+        }
+
+        return new JsonResult<>(SUCCESS,OK,list);
+    }
+    @GetMapping("Abnormal_productslist")
+    public JsonResult<List<Abnormal_products>> Abnormal_productslist(HttpServletResponse response) throws IOException, ServletException {
+        List<Abnormal_products> list = instrument_bulletinService.getAbnormal_productslist();
         if (list==null){
             throw new ClinicException("没有数据");
         }
