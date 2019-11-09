@@ -1,10 +1,8 @@
 package com.csr.csrcheck.service.impl;
 
-import com.csr.csrcheck.mapper.ClinicMapper;
 import com.csr.csrcheck.mapper.MilitaryMapper;
-import com.csr.csrcheck.pojo.Clinic;
+import com.csr.csrcheck.pojo.Abnormal_products;
 import com.csr.csrcheck.pojo.Product;
-import com.csr.csrcheck.service.ClinicService;
 import com.csr.csrcheck.service.MilitaryService;
 import com.csr.csrcheck.service.ex.ClinicException;
 import org.springframework.stereotype.Service;
@@ -32,5 +30,15 @@ public class MilitaryServiceImpl implements MilitaryService {
             throw new ClinicException("进口不存在");
         }
         return list;
+    }
+
+    @Override
+    public List<Product> getAllLegitimate_producers(int product_t_id) {
+        return militaryMapper.getAllLegitimate_producers(product_t_id);
+    }
+
+    @Override
+    public List<Abnormal_products> getAllabnormal_products(int product_t_id) {
+        return militaryMapper.getAllabnormal_products(product_t_id);
     }
 }

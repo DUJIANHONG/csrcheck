@@ -3,7 +3,7 @@ package com.csr.csrcheck.service.ex;
 /**
  * 产品数据异常
  */
-public class ProductException extends RuntimeException{
+public class ProductException extends ServiceException{
     public ProductException() {
     }
 

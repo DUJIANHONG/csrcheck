@@ -2,20 +2,21 @@ package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.controller.ex.CompanyException;
 import com.csr.csrcheck.pojo.Company;
+import com.csr.csrcheck.pojo.Special_bulletin;
 import com.csr.csrcheck.service.CompanyService;
 import com.csr.csrcheck.util.JsonResult;
-import com.csr.csrcheck.util.PageRequest;
 import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
 
 /**
  * @description:
@@ -55,7 +56,7 @@ public class CompanyConntroller extends BaseController{
      * @return
      */
     @GetMapping("companylist2")
-    public JsonResult<List<Company>> CompanyList2(@RequestParam(value = "name") String name){
+    public JsonResult<List<Company>> CompanyList2(String name){
         List<Company> list2=companyService.getCommpanylistbyname(name);
         if (list2==null) {
             throw new CompanyException("没有数据哦");
@@ -76,4 +77,14 @@ public class CompanyConntroller extends BaseController{
           }
         return new JsonResult<>(SUCCESS,OK,page);
    }
+
+    /**
+     * 查询所有公司的特别公告
+     * @return
+     */
+    @GetMapping("special")
+        public JsonResult<List<Special_bulletin>> getAll(){
+          List<Special_bulletin> list = companyService.getAll();
+          return new JsonResult<>(SUCCESS,OK,list);
+        }
 }

@@ -41,4 +41,10 @@
          c.`business_license`,c.`exequatur`
         FROM company c
     </select>
+    <select id="getAll" resultType="com.csr.csrcheck.pojo.Special_bulletin">
+        SELECT s.`title`,s.`content`,s.`release_time`,c.`company_name`
+        FROM special_bulletin s,company c
+        WHERE s.`company_id`=c.`id`;
+    </select>
+
 </mapper>

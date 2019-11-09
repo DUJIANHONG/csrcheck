@@ -3,10 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.csr.csrcheck.mapper.UserMapper">
-<sql id="userid">
-`user_id`,`user_name`,`password`,`user_roleid`,`user_sex`,`user_age`,
-`user_address`,`create_people`,`create_time`,`login_status`
-</sql>
+    <sql id="userid">
+        `user_id`,`user_name`,`password`,`user_roleid`,`user_sex`,`user_age`,
+        `user_address`,`create_people`,`create_time`,`login_status`
+    </sql>
     
     <select id="findUser_name" resultType="com.csr.csrcheck.pojo.User">
      select

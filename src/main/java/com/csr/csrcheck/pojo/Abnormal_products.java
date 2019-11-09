@@ -1,7 +1,5 @@
 package com.csr.csrcheck.pojo;
 
-import java.util.Objects;
-
 /**
  * @description: 企业
  * @author: Administrator
@@ -23,6 +21,27 @@ public class Abnormal_products {
     private String agencies_to_verify;      //机构验证
     private String last;                    //结论
     private String provenance;              //出处（此列存放通报excel表存放的路径）
+
+
+    //自定义字段
+    private String company_name;        //公司名称
+    private String product_name;        //产品名称
+
+    public String getCompany_name() {
+        return company_name;
+    }
+
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
+    }
+
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
+    }
 
     public int getId() {
         return id;
