@@ -13,25 +13,45 @@
         FROM abnormal_products a,product p
         WHERE a.`product_id`=p.`product_id`
     </select>
-   <!-- <mapper namespace="com.zhengqing.mybatis._07onetomany02.DepartmentMapper">
-        &lt;!&ndash; 一对多: 嵌套结果:只发送1条关联sql 映射文件Mapper结果手动封装ResultMap &ndash;&gt;
-        <select id="findAll" resultMap="DepartmentMap">
-         select d.id,d.name,e.id eid ,e.username eusername ,e.hobby ehobby,e.dept_id
-         from t_department d
-         left join t_employee e on e.dept_id = d.id
+
+    <resultMap id="appid" type="com.csr.csrcheck.pojo.Approvals">
+        <id column="id" property="id"></id>
+        <result column="approval_num" property="approval_num"></result>
+        <result column="product_id" property="product_id"></result>
+        <result column="approval_no" property="approval_no"></result>
+        <result column="approved_by" property="approved_by"></result>
+        <association property="approvedby" javaType="com.csr.csrcheck.pojo.Approved_by">
+            <id column="id" property="id"></id>
+            <result column="approved_t_name" property="approved_t_name"></result>
+        </association>
+        <association property="product" javaType="com.csr.csrcheck.pojo.Product">
+            <id column="product_id" property="product_id"></id>
+            <result column="product_name" property="product_name"></result>
+        </association>
+        <association property="company" javaType="com.csr.csrcheck.pojo.Company">
+            <id column="id" property="id"></id>
+            <result column="company_name" property="company_name"></result>
+        </association>
+    </resultMap>
+
+
+    <select id="getApprovalslist"  resultMap="appid">
+
+            SELECT
+a.`approval_num`,p.`product_name`,a.`approval_no`,c.`company_name` ,b.approved_t_name
+   FROM approvals a,product p,approved_by b,company c,z_product_type z
+   WHERE a.`product_id`=p.`product_id` AND a.approved_by = b.id AND
+   p.`company_id`=c.`id`AND p.product_type_id=z.id AND z.id=1;
     </select>
 
-        &lt;!&ndash; id:唯一标识   type：resultMap的封装结果 -》 就是把数据库的列封装到一个对象的属性上去对应 &ndash;&gt;
-        <resultMap id="DepartmentMap" type="com.zhengqing.mybatis._07onetomany02.Department">
-            &lt;!&ndash; ①先封装主键 column:数据库的列 property：bean类的属性 目的：让它们互相对应，一一关系 &ndash;&gt;
-            <id column="id" property="id" />
-            &lt;!&ndash; ②再封装非主键 &ndash;&gt;
-            <result column="name" property="name" />
-            &lt;!&ndash; ③封装关联属性 property：集合数据 ofType：集合中元素类型 &ndash;&gt;
-            <collection property="list" javaType="list" ofType="com.zhengqing.mybatis._07onetomany02.Employee">
-                <id column="eid" property="id"/>
-                <result column="eusername" property="username"/>
-                <result column="ehobby" property="hobby"/>
-            </collection>
-        </resultMap>-->
-    </mapper>
+<select id="getapprovalspage" resultMap="appid">
+    SELECT a.*,p.`product_name`,app.`approved_t_name`
+    FROM approvals a,`product` p,`approved_by` app
+    <trim prefix="where" prefixOverrides="and | or">
+      and a.`product_id`=p.`product_id` AND a.`approved_by`=app.id
+        <if test="product_name!=null and product_name!=''">
+            AND p.product_name LIKE CONCAT('%',#{product_name},'%')
+        </if>
+    </trim>
+</select>
+</mapper>

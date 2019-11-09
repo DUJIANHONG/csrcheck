@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csr.csrcheck.mapper.Actual_controllerMapper">
+
+    
+    <select id="getActual_controllerlist" resultType="com.csr.csrcheck.pojo.Actual_controller">
+
+       SELECT z.`con_name`,z.`con_sex`,z.`con_introduction`,c.`company_name`
+FROM `company` c, product p, z_product_type d,`z_actual_controller` z
+WHERE c.`id`=z.`relevance_enterprise` AND p.company_id=c.`id` AND p.product_type_id=d.id AND d.id=1;
+    </select>
+
+
+</mapper>

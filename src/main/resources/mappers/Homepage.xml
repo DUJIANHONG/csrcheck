@@ -4,6 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     <mapper namespace="com.csr.csrcheck.mapper.NewsMapper">
     <select id="getAllNews" resultType="com.csr.csrcheck.pojo.News">
-        select * from news;
+        select * from news
+    </select>
+    <insert id="addNews"
+            keyProperty="id" useGeneratedKeys="true" parameterType="com.csr.csrcheck.pojo.News">
+          INSERT INTO news (`news_title`,`news_name`,`news_content`,`img_url`,`date`,`position`,`subheading`)
+          VALUES (#{news_title},#{news_name},#{news_content},#{img_url},#{date},#{position},#{subheading});
+    </insert>
+
+    <select id="getnewsbyid" resultType="com.csr.csrcheck.pojo.News">
+        SELECT * FROM news WHERE `id`=#{id}
     </select>
 </mapper>

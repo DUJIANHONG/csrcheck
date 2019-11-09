@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csr.csrcheck.mapper.Abnormal_productsMapper">
+    <sql id="sid">
+         a.`id`,a.`product_id`,a.`packing`,a.`batch_no`,a.`approval_no`,a.`disqualification`,
+          a.`inspection_result`,
+          a.`standard_code`,a.`agencies_to_verify`,a.`last`,a.`provenance`
+    </sql>
+    <resultMap id="pid" type="com.csr.csrcheck.pojo.Abnormal_products">
+        <id column="id" property="id"></id>
+        <result column="product_id" property="product_id"></result>
+        <result column="packing" property="packing"></result>
+        <result column="batch_no" property="batch_no"></result>
+        <result column="approval_no" property="approval_no"></result>
+        <result column="disqualification" property="disqualification"></result>
+        <result column="inspection_result" property="inspection_result"></result>
+        <result column="standard_code" property="standard_code"></result>
+        <result column="agencies_to_verify" property="agencies_to_verify"></result>
+        <result column="last" property="last"></result>
+        <result column="provenance" property="provenance"></result>
+        <association property="product"  javaType="com.csr.csrcheck.pojo.Product">
+            <id column="product_id" property="product_id"></id>
+            <result column="product_name" property="product_name"></result>
+        </association>
+    </resultMap>
+
+    <select id="abnormallsit" resultMap="pid">
+     SELECT
+     <include refid="sid"></include>,
+     p.`product_name`
+      FROM abnormal_products a,product p
+      <trim prefixOverrides="and | or" prefix="where">
+          and a.`product_id`=p.`product_id`
+      <if test="product_name!=null and product_name!=''">
+          and p.product_name like concat('%',#{product_name},'%')
+      </if>
+      </trim>
+    </select>
+</mapper>

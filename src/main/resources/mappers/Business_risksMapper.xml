@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csr.csrcheck.mapper.Business_risksMapper">
+
+    
+    <select id="getBusiness_riskslist" resultType="com.csr.csrcheck.pojo.Business_risks">
+
+        SELECT r.`risk_classify_name`,b.`title`,b.`describe`,t.`risk_type_name`,c.`company_name`
+FROM `risk_classify` r,`risk_type` t,`business_risks` b,`company` c, z_product_type z ,product p
+WHERE c.`id`=b.`company_id`AND c.`id`=p.`company_id` AND r.id=b.`risk_type` AND t.id=r.`id` AND p.product_type_id=z.id AND z.id=1;
+    </select>
+
+<resultMap id="bid" type="com.csr.csrcheck.pojo.Business_risks">
+    <id column="id" property="id"></id>
+    <result column="risk_type" property="risk_type"></result>
+    <result column="title" property="title"></result>
+    <result column="describe" property="describe"></result>
+    <result column="type_id" property="type_id"></result>
+    <result column="company_id" property="company_id"></result>
+    <association property="company" javaType="com.csr.csrcheck.pojo.Company">
+    <id column="id" property="id"></id>
+    <result column="company_name" property="company_name"></result>
+    </association>
+    <association property="risktype" javaType="com.csr.csrcheck.pojo.Risk_type">
+    <id column="id" property="id"></id>
+    <result column="risk_type_name" property="risk_type_name"></result>
+    </association>
+    <association property="risk_classify" javaType="com.csr.csrcheck.pojo.Risk_classify">
+    <id column="id" property="id"></id>
+    <result column="risk_classify_name" property="risk_classify_name"></result>
+    </association>
+</resultMap>
+
+    <select id="getListpage" resultMap="bid">
+           SELECT b.*,rc.`risk_classify_name`,rt.`risk_type_name`,c.`company_name`
+            FROM `business_risks` b,`risk_classify` rc,`risk_type` rt,company c
+            <trim prefix="where" prefixOverrides="and | or">
+                AND b.`company_id`=c.`id`
+                AND b.`risk_type`=rc.`id`
+                AND b.`type_id`=rt.`id`
+                <if test="company_name!=null and company_name!=''">
+                    AND c.`company_name` LIKE CONCAT('%',#{company_name},'%')
+                </if>
+            </trim>
+    </select>
+
+</mapper>

@@ -7,7 +7,6 @@ import com.csr.csrcheck.service.CompanyService;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,7 +33,7 @@ public class CompanyConntroller extends BaseController{
     private CompanyService companyService;
 
     /**
-     * 查询公司信息
+     * 查询公司信息（wxapi）
      * @param
      * @return
      * @throws IOException
@@ -51,7 +50,7 @@ public class CompanyConntroller extends BaseController{
     }
 
     /**
-     * 根据公司名模糊查询公司信息
+     * 根据公司名模糊查询公司信息（wxapi）
      * @param name
      * @return
      */
@@ -61,6 +60,9 @@ public class CompanyConntroller extends BaseController{
         if (list2==null) {
             throw new CompanyException("没有数据哦");
         }
+        if (name.equals("") || name==null){
+            throw new com.csr.csrcheck.service.ex.CompanyException("请输入公司名称");
+        }
         return new JsonResult<>(SUCCESS,OK,list2);
    }
 
@@ -69,13 +71,13 @@ public class CompanyConntroller extends BaseController{
      * @param
      * @return
      */
-      @GetMapping("companypage")
-       public JsonResult<Object> findCompanyPage(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize, Model model){
-          PageResult page=companyService.findPage(pageNum,pageSize);
+      @RequestMapping("companypage")
+       public Object findCompanyPage(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize,String company_name){
+          PageResult page=companyService.findPage(pageNum,pageSize,company_name);
           if(page==null){
               throw new CompanyException("没有数据");
           }
-        return new JsonResult<>(SUCCESS,OK,page);
+        return page;
    }
 
     /**

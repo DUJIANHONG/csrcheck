@@ -9,10 +9,37 @@
     
     <select id="getCliniclist" resultType="com.csr.csrcheck.pojo.Clinic">
 
-        SELECT c.`id`,c.`record_number`,c.`adaptation_disease`,p.`product_name`,c.`record_date`
-       FROM clinic c, product p, z_product_type z
+        SELECT c.`id`,c.`record_number`,c.`adaptation_disease`,p.`product_name`,c.`record_date`, o.`company_name`
+       FROM clinic c, product p, z_product_type z,company o
        WHERE
-       p.product_id=c.`product_id` AND p.product_type_id=z.id AND z.id=1;
+       p.`company_id`=o.`id` AND p.product_id=c.`product_id` AND p.product_type_id=z.id AND z.id=1;
+    </select>
+
+    <resultMap id="CID" type="com.csr.csrcheck.pojo.Clinic">
+        <id property="id" column="id"></id>
+        <result column="product_id" property="product_id"></result>
+        <result column="record_number" property="record_number"></result>
+        <result column="adaptation_disease" property="adaptation_disease"></result>
+        <result column="record_date" property="record_date"></result>
+     <association property="product" javaType="com.csr.csrcheck.pojo.Product">
+         <id column="product_id" property="product_id"></id>
+         <result property="product_name" column="product_name"></result>
+     </association>
+     <association property="company" javaType="com.csr.csrcheck.pojo.Company">
+         <id column="id" property="id"></id>
+         <result property="company_name" column="company_name"></result>
+     </association>
+    </resultMap>
+
+    <select id="getCliniclistpage" resultMap="CID" parameterType="java.lang.String">
+        SELECT c.*,p.`product_name`,o.`company_name`
+        FROM clinic c, product p, z_product_type z,company o
+        <trim prefix="where" prefixOverrides="and | or">
+        AND p.`company_id`=o.`id` AND p.product_id=c.`product_id` AND p.product_type_id=z.id
+       <if test="product_name!=null and product_name!=''">
+           AND p.`product_name` LIKE CONCAT('%',#{product_name},'%')
+       </if>
+        </trim>
     </select>
 
 

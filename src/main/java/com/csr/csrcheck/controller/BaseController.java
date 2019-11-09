@@ -2,6 +2,7 @@ package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.controller.ex.ProductException;
 import com.csr.csrcheck.controller.ex.*;
+import com.csr.csrcheck.controller.ex.CompanyException;
 import com.csr.csrcheck.service.ex.*;
 import com.csr.csrcheck.util.JsonResult;
 import org.apache.tomcat.util.http.fileupload.FileUploadException;
@@ -103,6 +104,14 @@ public class BaseController {
         }else if (e instanceof ApprovalsException) {
             // 7001-批文数据查询异常
             jr.setState(7001);
+        }else if(e instanceof CompanyException){
+            jr.setState(7002);
+            //7003-核心人员关联企业异常
+        }else if(e instanceof Actual_controllerException){
+            jr.setState(7003);
+            //7004-法律诉讼异常
+        }else if(e instanceof LawsuitException){
+            jr.setState(7004);
         }
         return jr;
     }

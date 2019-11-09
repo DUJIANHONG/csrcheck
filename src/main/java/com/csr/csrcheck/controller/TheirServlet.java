@@ -1,7 +1,6 @@
 package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.controller.ex.ProductException;
-import com.csr.csrcheck.pojo.Important_notification;
 import com.csr.csrcheck.pojo.Product;
 import com.csr.csrcheck.service.impl.TheirServiceImpl;
 import com.csr.csrcheck.util.JsonResult;
@@ -18,7 +17,6 @@ import java.util.List;
  */
 
 @Controller
-
 @RequestMapping("their")
 public class TheirServlet extends BaseController{
 
@@ -67,5 +65,14 @@ public class TheirServlet extends BaseController{
     public JsonResult<List<Important_notification>> getAllNotification(){
         List<Important_notification> list = theirService.getAllNotification();
         return new JsonResult<>(SUCCESS,OK,list);
+    }
+
+    @RequestMapping("/index")
+    public String index(){
+        return "index";
+    }
+    @RequestMapping("/index2")
+    public String indexjsp(){
+        return "index";
     }
 }

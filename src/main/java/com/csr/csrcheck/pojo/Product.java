@@ -1,5 +1,10 @@
 package com.csr.csrcheck.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.Date;
+import java.util.Objects;
+
 /**
  * @description:产品
  * @author: Administrator
@@ -12,13 +17,17 @@ public class Product {
 
     private int product_id;             //主键，产品编号
     private String product_name;        //产品名称
-    private int product_type_id;        //产品类型
+    @JsonIgnore
+    private int product_type_id;        //产品类型id
+    @JsonIgnore
     private int company_id;             //关联公司id
     private String product_territory;   //产品领域
     private int study_appear;           //在研/上市（1：在研，2：上市）
     private String registered;          //注册分类（化1，化2，化3，化4，化5，老化6）
+    @JsonIgnore
     private int stage_no;               //阶段编号
     private String patent_no;           //专利号
+    @JsonIgnore
     private int patent_t_id;            //专利类型id
     private String approvals_no;        //准字号
     private int domestic_import;        //国产/进口（1国产；2进口）
@@ -57,9 +66,13 @@ public class Product {
     private String company_name;//公司名称
     private String patent_t_name;//产品类型名称
     private String stage_name;  //阶段名称
+    @JsonIgnore
     private String licence_no;  //许可证号
+    @JsonIgnore
     private String production;  //生产范围
+    @JsonIgnore
     private String organization;//受管辖机构
+    @JsonIgnore
     private String expire_date; //许可证到期时间
 
     public String getPatent_t_name() {
