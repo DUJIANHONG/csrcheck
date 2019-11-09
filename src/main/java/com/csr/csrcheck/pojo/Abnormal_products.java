@@ -1,5 +1,7 @@
 package com.csr.csrcheck.pojo;
 
+import java.util.Objects;
+
 /**
  * @description: 企业
  * @author: Administrator

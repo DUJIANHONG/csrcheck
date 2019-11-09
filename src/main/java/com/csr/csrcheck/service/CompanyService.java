@@ -1,6 +1,7 @@
 package com.csr.csrcheck.service;
 
 import com.csr.csrcheck.pojo.Company;
+import com.csr.csrcheck.pojo.Special_bulletin;
 import com.csr.csrcheck.util.PageResult;
 import org.apache.ibatis.annotations.Param;
 
