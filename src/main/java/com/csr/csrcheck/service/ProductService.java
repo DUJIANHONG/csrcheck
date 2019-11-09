@@ -21,12 +21,10 @@ public interface ProductService {
      */
     public List<Product> getProductlistbyname(@Param(value = "product_name") String product_name);
 
-
     /**
      * 根据产品名称模糊查询&分页展示查询结果
      * @param product_name
      * @return
      */
     PageResult listpage(int pageNum, int pageSize, String product_name);
-
 }

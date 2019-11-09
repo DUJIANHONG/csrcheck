@@ -1,5 +1,6 @@
 package com.csr.csrcheck.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Date;
@@ -24,7 +25,6 @@ public class Product {
     private String product_territory;   //产品领域
     private int study_appear;           //在研/上市（1：在研，2：上市）
     private String registered;          //注册分类（化1，化2，化3，化4，化5，老化6）
-    @JsonIgnore
     private int stage_no;               //阶段编号
     private String patent_no;           //专利号
     @JsonIgnore
@@ -32,6 +32,25 @@ public class Product {
     private String approvals_no;        //准字号
     private int domestic_import;        //国产/进口（1国产；2进口）
     private String yieldly;             //产品生产地
+    private int iflegal;//是否合法
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    private Date term_of_validity;//有效期限
+
+    public int getIflegal() {
+        return iflegal;
+    }
+
+    public void setIflegal(int iflegal) {
+        this.iflegal = iflegal;
+    }
+
+    public Date getTerm_of_validity() {
+        return term_of_validity;
+    }
+
+    public void setTerm_of_validity(Date term_of_validity) {
+        this.term_of_validity = term_of_validity;
+    }
 
     public int getCompany_id() {
         return company_id;

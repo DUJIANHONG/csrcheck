@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csr.csrcheck.mapper.Product_apparatusMapper">
+    <resultMap id="Prid" type="com.csr.csrcheck.pojo.Product">
+        <id property="product_id"  column="product_id"/>
+        <result property="product_name" column="product_name"/>
+        <result property="product_type_id" column="product_type_id"/>
+        <result property="company_id" column="company_id"/>
+        <result property="product_territory" column="product_territory"/>
+        <result property="study_appear" column="study_appear"/>
+        <result property="registered" column="registered"/>
+        <result property="stage_no" column="stage_no"/>
+        <result property="patent_no" column="patent_no"/>
+        <result property="patent_t_id" column="patent_t_id"/>
+        <result property="approvals_no" column="approvals_no"/>
+        <result property="domestic_import" column="domestic_import"/>
+        <result property="yieldly" column="yieldly"/>
+        <result property="iflegal" column="iflegal"/>
+        <result property="term_of_validity" column="term_of_validity"/>
+    </resultMap>
+    <select id="getProductlistbyname" resultMap="Prid">
+        SELECT p.`product_name`,p.`product_territory`,p.`study_appear`,
+        s.`stage_name`,p.`patent_no`,
+        p.`approvals_no`,p.`domestic_import`,p.`yieldly`,
+        p.`term_of_validity`
+        FROM `product` p,`company` c,`z_stage` s,z_product_type z
+        <trim prefix="where" prefixOverrides="and | or">
+            AND s.`id`=p.`product_id`
+            AND p.`company_id`=c.`id`
+            AND p.product_type_id=z.id
+            AND z.id=3
+            <if test="product_name != null and product_name != ''">
+                and product_name like CONCAT ('%',#{product_name},'%')
+            </if>
+        </trim>
+        ORDER BY `product_id`
+    </select>
+</mapper>
