@@ -2,7 +2,9 @@ package com.csr.csrcheck.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+
 import java.io.Serializable;
+
 import java.util.Date;
 
 /**
@@ -16,11 +18,35 @@ public class News implements Serializable {
     private String news_title;     //新闻标题
     private String news_content;   //新闻内容
     private String img_url;        //图片路径
-    private String news_name;     //远创作者
-    private String position;      //原创者职位
-    private String subheading;    //新闻副标题
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date date;             //新闻日期
+
+    private String news_name;      //原创者
+    private String position;       //原创者职位
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    private Date date;           //新闻日期
+    private String  subheading ;   //新闻副标题
+
+
+
+
+
+
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getNews_name() {
+        return news_name;
+    }
+
+    public void setNews_name(String news_name) {
+        this.news_name = news_name;
+    }
+
 
     public String getPosition() {
         return position;
@@ -38,21 +64,6 @@ public class News implements Serializable {
         this.subheading = subheading;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getNews_name() {
-        return news_name;
-    }
-
-    public void setNews_name(String news_name) {
-        this.news_name = news_name;
-    }
 
     public int getId() {
         return id;
