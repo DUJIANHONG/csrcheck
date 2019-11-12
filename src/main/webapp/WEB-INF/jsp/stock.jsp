@@ -38,21 +38,42 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    企业核心竞争力信息管理维护 <i class="fa fa-user"></i><small>
-                    ${userSession.user_name} - 您可以通过搜索或者其他的筛选项对企业核心竞争力信息进行修改、删除等管理操作。</small>
+                    股权变更 <i class="fa fa-user"></i><small>
+                    ${userSession.user_name} </small>
                 </h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <form method="post" action="${pageContext.request.contextPath }/csrht/contend">
+                <form method="post" action="${pageContext.request.contextPath }/csrht/stock">
                     <input type="hidden" name="pageNum" value="1" />
                     <ul>
                         <li>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">企业名称</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">股权名称</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="company_name" type="text" class="form-control col-md-7 col-xs-12"
-                                           value="${name}">
+                                    <input name="shareholder_name" type="text" class="form-control col-md-7 col-xs-12"
+                                           value="${shareholder_name}">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">变更时间</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input name="change_time" type="date" class="form-control col-md-7 col-xs-12"
+                                           value="${change_time}">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">股东类型</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="type" id="type" class="form-control">
+                                            <option value="">--请选择--</option>
+                                                    <option value="1">公司</option>
+                                                    <option value="2">个人</option>
+                                    </select>
                                 </div>
                             </div>
                         </li>
@@ -72,33 +93,47 @@
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
                         <div class="col-sm-12">
-                            <a href="${pageContext.request.contextPath}/" class="btn btn-success btn-sm">新增企业核心竞争力信息</a>
-                            <div style="overflow-x: auto;overflow-y: auto;width: 100%;height: 50%">
+                            <a href="${pageContext.request.contextPath}/" class="btn btn-success btn-sm">新增股权变更信息</a>
                             <table id="datatable-responsive"
                                    class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
                                    role="grid" aria-describedby="datatable-responsive_info"
-                                   style="width: 1000%;">
+                                   style="width: 100%;">
                                 <thead>
                                 <tr role="row">
                                     <th class="sorting_asc" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         aria-label="First name: activate to sort column descending"
-                                        aria-sort="ascending">企业名称
+                                        aria-sort="ascending">股东名称
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         aria-label="Last name: activate to sort column ascending">
-                                        竞争力信息标题
+                                        股东类型（1公司；2个人）
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         aria-label="Last name: activate to sort column ascending">
-                                        内容
+                                        变更后
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         aria-label="Last name: activate to sort column ascending">
-                                        发布时间
+                                        变更前
+                                    </th>
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        持股变化（股）
+                                    </th>
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        增减情况
+                                    </th>
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        变更时间
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
@@ -111,10 +146,18 @@
                                 <tbody>
                                 <c:forEach var="pages" items="${page.content}" varStatus="status">
                                     <tr role="row" class="odd">
-                                        <td tabindex="0" class="sorting_1">${pages.company.company_name}</td>
-                                        <td>${pages.title}</td>
-                                        <td>${pages.content}</td>
-                                        <td><fmt:formatDate value="${pages.time}" type="both"/></td>
+                                        <td tabindex="0" class="sorting_1">${pages.shareholder_name}</td>
+                                        <c:if test="${pages.type==1}">
+                                            <td>公司</td>
+                                        </c:if>
+                                        <c:if test="${pages.type==2}">
+                                            <td>个人</td>
+                                        </c:if>
+                                        <td>${pages.ratio_after}</td>
+                                        <td>${pages.ratio_before}</td>
+                                        <td>${pages.share_change}</td>
+                                        <td>${pages.increase_decrease}</td>
+                                        <td><fmt:formatDate value="${pages.change_time}" type="date"></fmt:formatDate></td>
                                         <td>
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-danger">点击操作</button>
@@ -140,7 +183,6 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
-                            </div>
                         </div>
                     </div>
                     <!--分页开始-->

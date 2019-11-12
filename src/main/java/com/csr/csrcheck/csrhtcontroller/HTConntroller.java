@@ -5,12 +5,14 @@ import com.csr.csrcheck.controller.ex.CompanyException;
 import com.csr.csrcheck.controller.ex.FileSizeException;
 import com.csr.csrcheck.controller.ex.FileTypeException;
 import com.csr.csrcheck.controller.ex.FileUploadIOException;
+import com.csr.csrcheck.mapper.Special_bulletinMapper;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.Flight_check;
 import com.csr.csrcheck.pojo.News;
 import com.csr.csrcheck.pojo.Product_type;
 import com.csr.csrcheck.service.*;
 import com.csr.csrcheck.service.impl.NewsServiceImpl;
+import com.csr.csrcheck.service.impl.RecallServiceImpl;
 import com.csr.csrcheck.util.Constants;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
@@ -468,6 +471,156 @@ public class HTConntroller extends BaseController {
         model.addAttribute("product_t_name",product_t_name);
         model.addAttribute("list",list);
         return "important";
+    }
+    @Resource
+    private LawsuitService lawsuitService;
+    /**
+     * 根据企业名称、案件类型、文书类型、被告、发布时间 分页查询法律诉讼
+     * @param pageNum
+     * @param pageSize
+     * @param company_name
+     * @param casetype
+     * @param doctype
+     * @param defendants
+     * @param submittime
+     * @return
+     */
+    @RequestMapping("lawsuit")
+    public String  lawsuit(@RequestParam(defaultValue = "1") int pageNum,
+                           @RequestParam(defaultValue = "5") int pageSize,
+                           String company_name,
+                           String casetype,
+                           String doctype,
+                           String defendants,
+                           String submittime,Model model){
+        PageResult pageResult=lawsuitService.getlistpage(pageNum,pageSize,company_name,casetype,doctype,defendants,submittime);
+        if(pageResult==null){
+            throw new CompanyException("数据为空");
+        }
+        log.info("lawsuit-------------------------------------->pageNum:"+pageNum);
+        log.info("lawsuit-------------------------------------->pageSize:"+pageSize);
+        log.info("lawsuit-------------------------------------->company_name:"+company_name);
+        log.info("lawsuit-------------------------------------->casetype:"+casetype);
+        log.info("lawsuit-------------------------------------->doctype:"+doctype);
+        log.info("lawsuit-------------------------------------->defendants:"+defendants);
+        log.info("lawsuit-------------------------------------->submittime:"+submittime);
+        model.addAttribute("page",pageResult);
+        model.addAttribute("company_name",company_name);
+        model.addAttribute("casetype",casetype);
+        model.addAttribute("doctype",doctype);
+        model.addAttribute("defendants",defendants);
+        model.addAttribute("submittime",submittime);
+        return "lawsuit";
+    }
+    @Resource
+    private RecallServiceImpl recallService;
+    /**
+     * 根据产品名称，产品类型名称，企业名称分页查询产品召回内容
+     * @param pageNum
+     * @param pageSize
+     * @param company_name
+     * @param product_name
+     * @param product_t_name
+     * @return
+     */
+    @RequestMapping("recall")
+    public String productrecall(@RequestParam(defaultValue = "1") int pageNum,
+                                            @RequestParam(defaultValue = "5") int pageSize,
+                                            String company_name, String product_name,
+                                            String product_t_name,Model model){
+        PageResult pageResult=recallService.getlistpage(pageNum,pageSize,company_name,product_name,product_t_name);
+        if(pageResult==null){
+            throw new CompanyException("没有数据");
+        }
+        List<Product_type> list=productTypeService.getlist();
+        if(list==null){
+            throw new com.csr.csrcheck.service.ex.CompanyException("数据为空");
+        }
+        log.info("productrecall----------------------------------------->pageNum:"+pageNum);
+        log.info("productrecall----------------------------------------->pageSize:"+pageSize);
+        log.info("productrecall----------------------------------------->company_name:"+company_name);
+        log.info("productrecall----------------------------------------->product_name:"+product_name);
+        log.info("productrecall----------------------------------------->product_t_name:"+product_t_name);
+        model.addAttribute("page",pageResult);
+        model.addAttribute("company_name",company_name);
+        model.addAttribute("product_name",product_name);
+        model.addAttribute("product_t_name",product_t_name);
+        model.addAttribute("list",list);
+        return "recall";
+    }
+    @Resource
+    private ShareholderService shareholderService;
+
+    /**
+     * 根据公司名称、股东名称，股份类型分页查询
+     * @param pageNum
+     * @param pageSize
+     * @param shareholder_name
+     * @param share_type
+     * @param company_name
+     * @param model
+     * @return
+     */
+    @RequestMapping("shareholder")
+    public String shareholder(@RequestParam(defaultValue = "1") int pageNum,
+                              @RequestParam(defaultValue = "5") int pageSize,String shareholder_name,
+                              String share_type,
+                              String company_name,Model model){
+        PageResult pageResult=shareholderService.getListPage(pageNum,pageSize,shareholder_name,share_type,company_name);
+        if(pageResult==null){
+            throw  new CompanyException("没有数据");
+        }
+        model.addAttribute("page",pageResult);
+        model.addAttribute("shareholder_name",shareholder_name);
+        model.addAttribute("share_type",share_type);
+        model.addAttribute("company_name",company_name);
+        return "shareholder";
+    }
+    @Resource
+    private Special_bulletinService special_bulletinService;
+
+    /**
+     * 根据企业名称和发布时间查询企业特别公告
+     * @param release_time
+     * @param company_name
+     * @param pageNum
+     * @param pageSize
+     * @param model
+     * @return
+     */
+    @RequestMapping("special")
+    public String special(String release_time, String company_name,
+                          @RequestParam(defaultValue = "1") int pageNum,
+                          @RequestParam(defaultValue = "5") int pageSize,Model model){
+        PageResult pageResult=special_bulletinService.getlistpage(release_time,company_name,pageNum,pageSize);
+        if(pageResult==null){
+            throw new CompanyException("数据为空");
+        }
+        model.addAttribute("page",pageResult);
+        model.addAttribute("company_name",company_name);
+        model.addAttribute("release_time",release_time);
+        return "special";
+    }
+
+    @Resource
+    private Stock_alterationService stock_alterationService;
+
+    @RequestMapping("stock")
+    public String stock(@RequestParam(defaultValue = "1") int pageNum,
+                        @RequestParam(defaultValue = "5") int pageSize,
+                        String shareholder_name, String  type, String change_time, Model model) {
+        PageResult pageResult=null;
+        try {
+            pageResult = stock_alterationService.getlistPage(pageNum, pageSize, shareholder_name, type, change_time);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("page",pageResult);
+        model.addAttribute("type",type);
+        model.addAttribute("change_time",change_time);
+        model.addAttribute("shareholder_name",shareholder_name);
+        log.info("stock------------------------->type:"+type);
+        return "stock";
     }
 }
 

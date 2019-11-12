@@ -38,13 +38,13 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    企业核心竞争力信息管理维护 <i class="fa fa-user"></i><small>
-                    ${userSession.user_name} - 您可以通过搜索或者其他的筛选项对企业核心竞争力信息进行修改、删除等管理操作。</small>
+                    产品召回 <i class="fa fa-user"></i><small>
+                    ${userSession.user_name} </small>
                 </h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <form method="post" action="${pageContext.request.contextPath }/csrht/contend">
+                <form method="post" action="${pageContext.request.contextPath }/csrht/recall">
                     <input type="hidden" name="pageNum" value="1" />
                     <ul>
                         <li>
@@ -52,7 +52,31 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">企业名称</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input name="company_name" type="text" class="form-control col-md-7 col-xs-12"
-                                           value="${name}">
+                                           value="${company_name}">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">产品名称</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input name="product_name" type="text" class="form-control col-md-7 col-xs-12"
+                                           value="${product_name}">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">产品类型</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="product_t_name" id="product_t_name" class="form-control">
+                                        <c:if test="${list != null }">
+                                            <option value="">--请选择--</option>
+                                            <c:forEach var="list" items="${list}">
+                                                <option value="${list.product_t_name}">${list.product_t_name}</option>
+                                            </c:forEach>
+                                        </c:if>
+                                    </select>
                                 </div>
                             </div>
                         </li>
@@ -72,12 +96,11 @@
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
                         <div class="col-sm-12">
-                            <a href="${pageContext.request.contextPath}/" class="btn btn-success btn-sm">新增企业核心竞争力信息</a>
-                            <div style="overflow-x: auto;overflow-y: auto;width: 100%;height: 50%">
+                            <a href="${pageContext.request.contextPath}/" class="btn btn-success btn-sm">新增产品召回信息</a>
                             <table id="datatable-responsive"
                                    class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
                                    role="grid" aria-describedby="datatable-responsive_info"
-                                   style="width: 1000%;">
+                                   style="width: 100%;">
                                 <thead>
                                 <tr role="row">
                                     <th class="sorting_asc" tabindex="0"
@@ -88,17 +111,22 @@
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         aria-label="Last name: activate to sort column ascending">
-                                        竞争力信息标题
+                                        产品名称
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         aria-label="Last name: activate to sort column ascending">
-                                        内容
+                                        产品类型
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         aria-label="Last name: activate to sort column ascending">
-                                        发布时间
+                                        关键词备注
+                                    </th>
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        召回内容
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
@@ -111,10 +139,11 @@
                                 <tbody>
                                 <c:forEach var="pages" items="${page.content}" varStatus="status">
                                     <tr role="row" class="odd">
-                                        <td tabindex="0" class="sorting_1">${pages.company.company_name}</td>
-                                        <td>${pages.title}</td>
-                                        <td>${pages.content}</td>
-                                        <td><fmt:formatDate value="${pages.time}" type="both"/></td>
+                                        <td tabindex="0" class="sorting_1">${pages.company_name}</td>
+                                        <td>${pages.product_name}</td>
+                                        <td>${pages.product_t_name}</td>
+                                        <td>${pages.keywords_remarks}</td>
+                                        <td>${pages.recall_content}</td>
                                         <td>
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-danger">点击操作</button>
@@ -140,7 +169,6 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
-                            </div>
                         </div>
                     </div>
                     <!--分页开始-->

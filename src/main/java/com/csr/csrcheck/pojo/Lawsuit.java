@@ -1,5 +1,9 @@
 package com.csr.csrcheck.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
+
 public class Lawsuit {
     private int id ;//主键（法律诉讼）
     private int  company_id;//相关公司id
@@ -10,7 +14,8 @@ public class Lawsuit {
     private String caseno;//案号
     private String title;//标题
     private String abstracts;//摘要
-    private String submittime;//发布时间
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date submittime;//发布时间
     private String lawsuitUrl ;//药企通显示url
     private String casetype;//案件类型
     private String doctype;// 文书类型
@@ -104,11 +109,11 @@ public class Lawsuit {
         this.abstracts = abstracts;
     }
 
-    public String getSubmittime() {
+    public Date getSubmittime() {
         return submittime;
     }
 
-    public void setSubmittime(String submittime) {
+    public void setSubmittime(Date submittime) {
         this.submittime = submittime;
     }
 

@@ -14,6 +14,15 @@ public interface LawsuitMapper {
      */
     public List<Lawsuit> getLawsuitlist();
 
+    /**
+     * 根据企业名称、案件类型、文书类型、被告、发布时间 分页查询法律诉讼
+     * @param company_name
+     * @param casetype
+     * @param doctype
+     * @param defendants
+     * @param submittime
+     * @return
+     */
     List<Lawsuit> getListpage(@Param(value = "company_name") String company_name,
                               @Param(value = "casetype") String casetype,
                               @Param(value = "doctype") String doctype,
