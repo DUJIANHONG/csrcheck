@@ -15,6 +15,24 @@ public class Product_recall {
 
     //自定义字段
     private String company_name;     //公司名称
+    private String product_name;     //产品名称
+    private String product_t_name;   //产品类型名称
+
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
+    }
+
+    public String getProduct_t_name() {
+        return product_t_name;
+    }
+
+    public void setProduct_t_name(String product_t_name) {
+        this.product_t_name = product_t_name;
+    }
 
     public int getId() {
         return id;

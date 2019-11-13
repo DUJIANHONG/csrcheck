@@ -2,7 +2,9 @@ package com.csr.csrcheck.mapper;
 
 
 import com.csr.csrcheck.pojo.Flight_check;
+import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,4 +33,19 @@ public interface Flight_checkMapper {
      * @return
      */
     public List<Flight_check> getFlight_checklist3();
+
+    /**
+     * 根据企业名称,产品名称、产品类型名称、检查编号、公布日期查询
+     * @param company_name
+     * @param product_name
+     * @param product_t_name
+     * @param check_no
+     * @param publication
+     * @return
+     */
+    List<Flight_check> getListpage(@Param(value = "company_name") String company_name,
+                                   @Param(value = "product_name") String product_name,
+                                   @Param(value = "product_t_name") String product_t_name,
+                                   @Param(value = "check_no") String check_no,
+                                   @Param(value = "publication") String publication);
 }

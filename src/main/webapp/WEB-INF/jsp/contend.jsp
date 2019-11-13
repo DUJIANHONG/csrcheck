@@ -72,10 +72,12 @@
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
                         <div class="col-sm-12">
+                            <a href="${pageContext.request.contextPath}/" class="btn btn-success btn-sm">新增企业核心竞争力信息</a>
+                            <div style="overflow-x: auto;overflow-y: auto;width: 100%;height: 50%">
                             <table id="datatable-responsive"
                                    class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
                                    role="grid" aria-describedby="datatable-responsive_info"
-                                   style="width: 100%;">
+                                   style="width: 1000%;">
                                 <thead>
                                 <tr role="row">
                                     <th class="sorting_asc" tabindex="0"
@@ -138,6 +140,7 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
+                            </div>
                         </div>
                     </div>
                     <!--分页开始-->

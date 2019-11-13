@@ -72,6 +72,7 @@
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
                         <div class="col-sm-12">
+                            <a href="${pageContext.request.contextPath}/" class="btn btn-success btn-sm">新增企业风险信息</a>
                             <table id="datatable-responsive"
                                    class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
                                    role="grid" aria-describedby="datatable-responsive_info"
