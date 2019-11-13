@@ -32,7 +32,7 @@ public class ResearchConntroller extends BaseController {
     }
 
     /**
-     *根据药企名称分页查询药企核心竞争力动态信息
+     *根据药企名称分页查询药企商务信用研究
      *  @param pageNum
      * @param pageSize
      * @param company_name

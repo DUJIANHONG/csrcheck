@@ -27,7 +27,7 @@ public class OtherServiceImpl implements OtherService {
     public List<Other> getOtherList() {
         List<Other> list=otherMapper.getOtherList();
         if(list==null){
-            throw new ApprovalsException("药企信用研究信息数据不存在");
+            throw new ApprovalsException("其他信息数据不存在");
         }
         return list;
     }

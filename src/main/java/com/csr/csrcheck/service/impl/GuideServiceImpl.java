@@ -29,7 +29,7 @@ public class GuideServiceImpl implements GuideService {
     public List<Guide> getGuideList() {
         List<Guide> list=guideMapper.getGuideList();
         if(list==null){
-            throw new ApprovalsException("药企指南信息数据不存在");
+            throw new ApprovalsException("行业指导药企CSR指南信息数据不存在");
         }
         return list;
     }

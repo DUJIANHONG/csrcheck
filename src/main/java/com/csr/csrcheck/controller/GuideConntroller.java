@@ -32,7 +32,7 @@ public class GuideConntroller extends BaseController {
     }
 
     /**
-     *根据药企名称分页查询药企核心竞争力动态信息
+     *根据药企名称分页查询行业指导药企CSR指南信息
      *  @param pageNum
      * @param pageSize
      * @param company_name

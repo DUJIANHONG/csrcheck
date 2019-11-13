@@ -31,7 +31,7 @@ public class ResearchServiceImpl implements ResearchService {
     public List<Research> getResearchList() {
         List<Research> list=researchMapper.getResearchList();
         if(list==null){
-            throw new ApprovalsException("药企信用研究信息数据不存在");
+            throw new ApprovalsException("药企商务信用研究信息数据不存在");
         }
         return list;
     }

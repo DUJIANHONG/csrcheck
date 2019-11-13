@@ -26,7 +26,7 @@ public class ExponentServiceImpl implements ExponentService {
     public List<Exponent> getExponentList() {
         List<Exponent> list=exponentMapper.getExponentList();
         if(list==null){
-            throw new ApprovalsException("药企指南信息数据不存在");
+            throw new ApprovalsException("指数发布数据不存在");
         }
         return list;
     }
