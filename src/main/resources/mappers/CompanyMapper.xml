@@ -15,6 +15,7 @@
         FROM company c
     </select>
 
+
     <select id="getCommpanylistbyname" resultType="com.csr.csrcheck.pojo.Company">
         SELECT c.*,(SELECT `con_name` FROM z_actual_controller WHERE id=c.`introduction_controller_id`) AS user_name,
         (SELECT certificate_no FROM `certificate` WHERE id=c.`certificate_id`) AS certificate_no
@@ -60,4 +61,5 @@
             </if>
         </trim>
     </select>
+
 </mapper>
