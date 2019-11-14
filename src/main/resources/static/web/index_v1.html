@@ -69,7 +69,7 @@
             <ul class="nav" id="side-menu">
                 <li class="nav-header">
                     <div>
-                        <span><img alt="image" class="img-circle" height="60" width="60" src="/newsFile/1573001948946_37.jpg"/></span>
+                        <span><img alt="image" class="img-circle" height="60" width="60" src="/newsFile/1573638009058_244.jpg"/></span>
                         <h3 class="" style="color: #ffffff">
                             </i>CSR药企通管理系统
                         </h3>
@@ -274,22 +274,29 @@
                 url:"/users/logout",
                 dataType:"json",
                 success:function () {
+                    var ii = layer.load();
                     window.location.href="login.html";
+                    layer.close(ii);
                 }
             })
         }
         //弹出层
         $('#parentIframe').on('click', function(){
-            var ii = layer.load();
             layer.open({
                 type: 2,
                 title: '个人设置',
                 maxmin: true,
                 shadeClose: true, //点击遮罩关闭层
                 area : ['800px' , '600px'],
-                content: 'personal.html'
+                content: '/csrht/personal'
             });
-            layer.close(ii);
+        });
+
+        $(".nav-second-level li a").click(function(){
+            var ii = layer.load();
+            setTimeout(function(){
+                layer.close(ii);
+            }, 1000);
         });
 
 /*        //弹出隐藏层

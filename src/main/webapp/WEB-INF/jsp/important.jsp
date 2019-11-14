@@ -38,7 +38,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    重要通报 <i class="fa fa-user"></i><small>
+                    重要通报 <i class="fa fa-user"></i><small>${userSession.role_name}-
                     ${userSession.user_name} </small>
                 </h2>
                 <div class="clearfix"></div>

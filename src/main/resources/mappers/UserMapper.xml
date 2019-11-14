@@ -4,14 +4,29 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.csr.csrcheck.mapper.UserMapper">
 <sql id="userid">
-`user_id`,`user_name`,`password`,`user_roleid`,`user_sex`,`user_age`,
-`user_address`,`create_people`,`create_time`,`login_status`
+u.`user_id`,u.`user_name`,u.`password`,u.`user_roleid`,u.`user_sex`,u.`user_age`,
+u.`user_address`,u.`create_people`,u.`create_time`,
 </sql>
     
     <select id="findUser_name" resultType="com.csr.csrcheck.pojo.User">
      select
      <include refid="userid"></include>
-     from user
-     where user_name=#{user_name}
+     r.role_name
+     from user u,z_role r
+     where u.user_roleid=role_id
+     and u.user_name=#{user_name}
+    </select>
+
+    <update id="UpdatePassword">
+        UPDATE `user` SET `password`= #{newpassworld} WHERE user_id=#{user_id}
+    </update>
+
+    <select id="findUser" resultType="com.csr.csrcheck.pojo.User">
+    select
+    <include refid="userid"></include>
+        r.role_name
+        from user u,z_role r
+        where u.user_roleid=role_id
+        and u.user_id=#{user_id}
     </select>
 </mapper>

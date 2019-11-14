@@ -3,6 +3,7 @@ package com.csr.csrcheck.service.impl;
 import com.csr.csrcheck.mapper.UserMapper;
 import com.csr.csrcheck.pojo.User;
 import com.csr.csrcheck.service.IUserService;
+import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.service.ex.PasswordNotMatchException;
 import com.csr.csrcheck.service.ex.UserNotFoundException;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,44 @@ public class UserServiceImpl implements IUserService {
         result.setUser_id(0);*/
         return result;
     }
+
+    /**
+     * 修改密码
+     * @param user_id
+     * @param oldpassword  原密码
+     * @param newpassworld 新密码
+     */
+    @Override
+    public void UpdatePassword(int user_id,String oldpassword,String newpassworld) {
+        User user=userMapper.findUser(user_id);
+        if (user==null){
+            throw new CompanyException("用户数据不存在");
+        }
+        String oldMd5password=getMd5Password(oldpassword);
+        if(!user.getPassword().equals(oldMd5password)){
+            throw new PasswordNotMatchException("原密码错误");
+        }
+        String newMd5passworld=getMd5Password(newpassworld);
+        Integer row = userMapper.UpdatePassword(user_id, newMd5passworld);
+        if(row!=1){
+            throw new CompanyException("更新失败");
+        }
+    }
+
+    /**
+     *根据user_id查找
+     * @param user_id
+     * @return
+     */
+    @Override
+    public User finduser(int user_id) {
+        User user=userMapper.findUser(user_id);
+        if (user==null){
+            throw new CompanyException("数据不存在");
+        }
+        return user;
+    }
+
     /**
      * 执行密码加密
      * @param password 原密码
@@ -56,4 +95,5 @@ public class UserServiceImpl implements IUserService {
         }
         return str;
     }
+
 }

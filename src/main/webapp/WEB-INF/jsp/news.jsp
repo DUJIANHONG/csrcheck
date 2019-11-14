@@ -101,7 +101,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    新闻信息管理维护 <i class="fa fa-user"></i><small>
+                    新闻信息管理维护 <i class="fa fa-user"></i><small>${userSession.role_name}-
                     ${userSession.user_name}</small>
                 </h2>
                 <div class="clearfix"></div>

@@ -1,7 +1,9 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
-<meta charset="utf-8">
 
+<%@ page language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<!DOCTYPE html>
+<meta charset="utf-8">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +11,13 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/animate.css" />
-    <link rel="stylesheet" href="../css/font-awesome.css" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/iCheck/custom.css" />
-    <link rel="stylesheet" href="../css/cropper.css" />
-    <link rel="stylesheet" href="../js/plugins/layer/laydate/skins/default/laydate.css" />
-    <link rel="stylesheet" href="../css/gg-bootdo.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/animate.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/font-awesome.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/style.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/iCheck/custom.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/cropper.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/gg-bootdo.css" />
 </head>
 
 <body class="gray-bg">
@@ -31,6 +32,7 @@
                             <li class="active"><a href="#basic_info" data-toggle="tab">基本资料</a></li>
                             <li><a href="#photo_info" data-toggle="tab">头像修改</a></li>
                             <li><a href="#pwd_info" data-toggle="tab">修改密码</a></li>
+                            <li><a href="#gl" data-toggle="tab">添加管理员</a></li>
                         </ul>
                     </div>
                 </div>
@@ -38,14 +40,14 @@
                     <!--basic info-->
                     <div class="ibox-content tab-pane fade in active"  id="basic_info">
                         <form class="gg-form" role="form" id="basicInfoForm">
-                            <input name="userId" type="hidden" th:value="${user.userId}"/>
+                            <input name="userId" type="hidden" value=""/>
                             <div class="gg-formGroup">
                                 <div class="gg-formTitle">
                                     <em class="gg-star">*</em>
-                                    <span>姓名:</span>
+                                    <span>用户名:</span>
                                 </div>
                                 <div class="gg-formDetail">
-                                    <input type="text" class="form-control" id="userName" name="name" th:value="${user.name}"  placeholder="请输入姓名" />
+                                    <input type="text" class="form-control" id="userName" name="name" value=""  placeholder="请输入用户名" />
                                 </div>
                             </div>
                             <div class="gg-formGroup">
@@ -55,8 +57,8 @@
                                 </div>
                                 <div class="gg-formDetail">
                                     <div class="radio i-checks">
-                                        <label class="radio-inline" th:each="sex:${sexList}"> <input
-                                                th:field="*{user.sex}" type="radio" name="sex" th:value="${sex.id}" th:text="${sex.name}"/>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="sex" />
                                         </label>
                                     </div>
                                 </div>
@@ -64,72 +66,19 @@
                             <div class="gg-formGroup">
                                 <div class="gg-formTitle">
                                     <em class="gg-star">*</em>
-                                    <span>出生年月:</span>
+                                    <span>年龄:</span>
                                 </div>
                                 <div class="gg-formDetail">
-                                    <input type="text" class="laydate-icon layer-date form-control" id="birth" name="birth" th:value="${user.birth}==null?null:${#dates.format(user.birth,'yyyy-MM-dd')}" placeholder="请选择出生年月"
-                                           onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="background-color: #fff;" readonly="readonly"/>
+                                    <input type="text" class="form-control" id="age" name="age"  placeholder="请输入年龄" />
                                 </div>
                             </div>
                             <div class="gg-formGroup">
                                 <div class="gg-formTitle">
                                     <em class="gg-star">*</em>
-                                    <span>手机:</span>
+                                    <span>居住地址:</span>
                                 </div>
                                 <div class="gg-formDetail">
-                                    <input type="text" class="form-control" id="phone" name="mobile"  th:value="${user.mobile}" placeholder="请输入手机号" />
-                                </div>
-                            </div>
-                            <div class="gg-formGroup">
-                                <div class="gg-formTitle">
-                                    <em class="gg-star">*</em>
-                                    <span>邮箱:</span>
-                                </div>
-                                <div class="gg-formDetail">
-                                    <input type="text" class="form-control" id="email" name="email" th:value="${user.email}" placeholder="请输入邮箱" />
-                                </div>
-                            </div>
-                            <div class="gg-formGroup">
-                                <div class="gg-formTitle">
-                                    <em class="gg-star">*</em>
-                                    <span>居住地:</span>
-                                </div>
-                                <div class="gg-formDetail gg-font0" data-toggle="distpicker"  th:attr="data-province=${user.province},data-city=${user.city},data-district=${user.district}">
-                                    <div class="gg-area">
-                                        <select class="form-control" id="province" name="province">
-                                        </select>
-                                    </div>
-                                    <div class="gg-area">
-                                        <select class="form-control" id="city" name="city">
-                                        </select>
-                                    </div>
-                                    <div class="gg-area">
-                                        <select class="form-control" id="district" name="district">
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="gg-formGroup">
-                                <div class="gg-formTitle">
-                                    <em class="gg-star">*</em>
-                                    <span>联系地址:</span>
-                                </div>
-                                <div class="gg-formDetail">
-                                    <input type="text" class="form-control" id="address" name="liveAddress" th:value="${user.liveAddress}" placeholder="请输入居住地址" />
-                                </div>
-                            </div>
-                            <div class="gg-formGroup">
-                                <div class="gg-formTitle">
-                                    <em class="gg-star">*</em>
-                                    <span>爱好:</span>
-                                </div>
-                                <div class="gg-formDetail">
-                                    <div class="checxbox i-checks" >
-                                        <input type="hidden" name="hobby" id="hobby"/>
-                                        <label th:each="hobby : ${hobbyList}">
-                                            <input type="checkbox" class="hobby"  th:value="${hobby.id}" th:text="${hobby.name}" th:checked="${hobby.remarks}=='true'"/>
-                                        </label>
-                                    </div>
+                                    <input type="text" class="form-control" id="address" name="liveAddress"  placeholder="请输入居住地址" />
                                 </div>
                             </div>
                         </form>
@@ -140,7 +89,7 @@
                     <!--photo_info-->
                     <div class="ibox-content tab-pane fade gg" id="photo_info">
                         <div class="ggcontainer" id="crop-avatar">
-                            <form class="avatar-form" action="/sys/user/uploadImg" enctype="multipart/form-data" method="post">
+                            <form class="avatar-form" action="" enctype="multipart/form-data" method="post">
                                 <div class="avatar-body">
                                     <div class="avatar-upload">
                                         <input class="avatar-src" name="avatar_src" type="hidden">
@@ -188,15 +137,14 @@
                     <!--pwd_info-->
                     <div class="ibox-content tab-pane fade" id="pwd_info">
                         <form class="gg-form" role="form" id="modifyPwd">
-                            <a id="logout" class="hidden" href="/logout"></a>
-                            <input type="hidden" name ="userDO.userId" th:value="${user.userId}"/>
+                            <input type="hidden" value=""/>
                             <div class="gg-formGroup">
                                 <div class="gg-formTitle">
                                     <em class="gg-star">*</em>
                                     <span>旧密码:</span>
                                 </div>
                                 <div class="gg-formDetail gg-dashed">
-                                    <input type="password" class="form-control gg-border0" id="pwdOld" name="pwdOld" placeholder="请输入旧密码" />
+                                    <input type="password" class="form-control gg-border0" id="pwdOld" name="oldPassword" placeholder="请输入旧密码" />
                                     <span class="fa fa-eye gg-faeye" title="鼠标移入显示内容"></span>
                                 </div>
                             </div>
@@ -206,7 +154,7 @@
                                     <span>新密码:</span>
                                 </div>
                                 <div class="gg-formDetail gg-dashed">
-                                    <input type="password" class="form-control gg-border0" id="pwdNew" name="pwdNew" placeholder="请输入新密码" />
+                                    <input type="password" class="form-control gg-border0" id="pwdNew" name="newPassword" placeholder="请输入新密码" />
                                     <span class="fa fa-eye gg-faeye" title="鼠标移入显示内容"></span>
                                 </div>
                             </div>
@@ -225,25 +173,23 @@
                             <button type="button" class="btn btn-sm btn-primary" id="pwd_save">保存</button>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
 </div>
-    <script type="text/javascript" src="../js/jquery.min.js" ></script>
-    <script type="text/javascript" src="../js/bootstrap.min.js" ></script>
-    <script type="text/javascript" src="../js/icheck.min.js"></script>
-    <script type="text/javascript" src="../js/cropper.min.js"></script>
-    <script type="text/javascript" src="../js/plugins/layer/laydate/laydate.js" ></script>
-    <script type="text/javascript" src="../js/distpicker.data.min.js"></script>
-    <script type="text/javascript" src="../js/distpicker.min.js"></script>
-    <script type="text/javascript" src="../js/gg-bootdo.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.min.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/icheck.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/cropper.min.js"></script>
+
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/distpicker.data.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/distpicker.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/gg-bootdo.js"></script>
     <!--校验插件-->
-    <script src="../js/jquery.validate.min.js"></script>
-    <script src="../js/jquery.validate.extend.js"></script>
-    <script src="../js/messages_zh.min.js"></script>
-<script type="text/javascript" src="../js/personal.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery.validate.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery.validate.extend.js"></script>
+    <script src="${pageContext.request.contextPath }/js/messages_zh.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/personal.js"></script>
 </body>
 </html>

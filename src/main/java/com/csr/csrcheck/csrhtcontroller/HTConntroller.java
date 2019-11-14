@@ -605,6 +605,16 @@ public class HTConntroller extends BaseController {
     @Resource
     private Stock_alterationService stock_alterationService;
 
+    /**
+     *根据股东名称、股东类型，变更时间查询
+     *  @param pageNum
+     * @param pageSize
+     * @param shareholder_name
+     * @param type
+     * @param change_time
+     * @param model
+     * @return
+     */
     @RequestMapping("stock")
     public String stock(@RequestParam(defaultValue = "1") int pageNum,
                         @RequestParam(defaultValue = "5") int pageSize,
@@ -621,6 +631,11 @@ public class HTConntroller extends BaseController {
         model.addAttribute("shareholder_name",shareholder_name);
         log.info("stock------------------------->type:"+type);
         return "stock";
+    }
+
+    @RequestMapping("personal")
+    public String personzl(){
+        return "personal";
     }
 }
 
