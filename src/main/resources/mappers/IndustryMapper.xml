@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csr.csrcheck.mapper.IndustryMapper">
+    <select id="getIndustryList" resultType="com.csr.csrcheck.pojo.Industry">
+  SELECT i.`title`,i.`content`,i.`time`,c.`company_name`
+FROM `company` c,`industry` i
+WHERE c.`id`=i.`company_id`;
+    </select>
+
+
+    <resultMap id="gid" type="com.csr.csrcheck.pojo.Industry">
+        <id column="id" property="id"></id>
+        <result column="company_id" property="company_id"></result>
+        <result column="title" property="title"></result>
+        <result column="content" property="content"></result>
+        <result column="time" property="time"></result>
+        <association property="company" javaType="com.csr.csrcheck.pojo.Company">
+            <id column="id" property="id"></id>
+            <result column="company_name" property="company_name"></result>
+        </association>
+    </resultMap>
+
+    <select id="getIndustryListpage" resultMap="gid">
+        SELECT i.*,co.`company_name`
+              FROM industry i,company co
+              <trim prefix="where" prefixOverrides="and | or">
+                  <if test="company_name!=null and company_name!=''">
+                      AND co.`company_name` LIKE CONCAT('%',#{company_name},'%')
+                  </if>
+                  AND i.`company_id`=co.id
+              </trim>
+    </select>
+</mapper>

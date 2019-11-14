@@ -1,5 +1,6 @@
 package com.csr.csrcheck.mapper;
 
+import com.csr.csrcheck.pojo.Actual_controller;
 import com.csr.csrcheck.pojo.Company;
 import org.apache.ibatis.annotations.Param;
 

@@ -1,5 +1,6 @@
 package com.csr.csrcheck.service;
 
+import com.csr.csrcheck.pojo.Actual_controller;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.util.PageRequest;
 import com.csr.csrcheck.util.PageResult;
@@ -21,7 +22,6 @@ public interface CompanyService {
      * @return
      */
     public List<Company> getCommpanylist();
-
 
     /**
      *根据公司名称模糊查询公司信息

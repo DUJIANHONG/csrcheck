@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csr.csrcheck.mapper.ResearchMapper">
+    <select id="getResearchList" resultType="com.csr.csrcheck.pojo.Research">
+  SELECT r.`title`,r.`content`,r.`time`,c.`company_name`
+FROM `company` c,`research` r
+WHERE c.`id`=r.`company_id`;
+    </select>
+
+
+    <resultMap id="rid" type="com.csr.csrcheck.pojo.Research">
+        <id column="id" property="id"></id>
+        <result column="company_id" property="company_id"></result>
+        <result column="title" property="title"></result>
+        <result column="content" property="content"></result>
+        <result column="time" property="time"></result>
+        <association property="company" javaType="com.csr.csrcheck.pojo.Company">
+            <id column="id" property="id"></id>
+            <result column="company_name" property="company_name"></result>
+        </association>
+    </resultMap>
+
+    <select id="getResearchListpage" resultMap="rid">
+        SELECT r.*,co.`company_name`
+              FROM research r,company co
+              <trim prefix="where" prefixOverrides="and | or">
+                  <if test="company_name!=null and company_name!=''">
+                      AND co.`company_name` LIKE CONCAT('%',#{company_name},'%')
+                  </if>
+                  AND r.`company_id`=co.id
+              </trim>
+    </select>
+</mapper>

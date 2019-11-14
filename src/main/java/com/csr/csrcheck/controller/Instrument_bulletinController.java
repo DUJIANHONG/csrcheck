@@ -22,12 +22,18 @@ import java.util.List;
 //@Controller
 @RestController
 @Slf4j
-/**
- * 查药企中的临床
- */
+
 public class Instrument_bulletinController extends BaseController{
     @Resource
     private Instrument_bulletinService instrument_bulletinService;
+
+    /**
+     * 查医疗器械中的重要通报
+     * @param response
+     * @return
+     * @throws IOException
+     * @throws ServletException
+     */
     @GetMapping("Instrument_bulletinlist")
     public JsonResult<List<Important_notification>> Instrument_bulletinlist(HttpServletResponse response) throws IOException, ServletException {
         List<Important_notification> list = instrument_bulletinService.getImportant_notificationlist();
@@ -37,6 +43,14 @@ public class Instrument_bulletinController extends BaseController{
 
         return new JsonResult<>(SUCCESS,OK,list);
     }
+
+    /**
+     * 查医疗器械中的不合格通报
+     * @param response
+     * @return
+     * @throws IOException
+     * @throws ServletException
+     */
     @GetMapping("Abnormal_productslist")
     public JsonResult<List<Abnormal_products>> Abnormal_productslist(HttpServletResponse response) throws IOException, ServletException {
         List<Abnormal_products> list = instrument_bulletinService.getAbnormal_productslist();
