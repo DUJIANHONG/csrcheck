@@ -286,17 +286,17 @@
                 type: 2,
                 title: '个人设置',
                 maxmin: true,
-                shadeClose: true, //点击遮罩关闭层
+                shadeClose: false, //点击遮罩关闭层
                 area : ['800px' , '600px'],
                 content: '/csrht/personal'
             });
         });
-
+        //弹出一个loading层
         $(".nav-second-level li a").click(function(){
             var ii = layer.load();
             setTimeout(function(){
                 layer.close(ii);
-            }, 1000);
+            }, 500);
         });
 
 /*        //弹出隐藏层

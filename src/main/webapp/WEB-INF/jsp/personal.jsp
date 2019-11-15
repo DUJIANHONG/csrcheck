@@ -47,7 +47,7 @@
                                     <span>用户名:</span>
                                 </div>
                                 <div class="gg-formDetail">
-                                    <input type="text" class="form-control" id="userName" name="name" value=""  placeholder="请输入用户名" />
+                                    <input type="text" class="form-control" id="userName" name="user_name" value="${user.user_name}"  placeholder="请输入用户名" />
                                 </div>
                             </div>
                             <div class="gg-formGroup">
@@ -57,9 +57,12 @@
                                 </div>
                                 <div class="gg-formDetail">
                                     <div class="radio i-checks">
-                                        <label class="radio-inline">
-                                            <input type="radio" name="sex" />
-                                        </label>
+                                               <label class="radio-inline">
+                                                   <input type="radio" name="user_sex" value="1" <c:if test="${user.user_sex==1}">checked="checked"</c:if>/>男
+                                               </label>
+                                               <label class="radio-inline">
+                                                   <input type="radio" name="user_sex" value="2" <c:if test="${user.user_sex==2}">checked="checked"</c:if>/>女
+                                               </label>
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +72,7 @@
                                     <span>年龄:</span>
                                 </div>
                                 <div class="gg-formDetail">
-                                    <input type="text" class="form-control" id="age" name="age"  placeholder="请输入年龄" />
+                                    <input type="text" class="form-control" id="age" name="user_age"  value="${user.user_age}" placeholder="请输入年龄" />
                                 </div>
                             </div>
                             <div class="gg-formGroup">
@@ -78,7 +81,7 @@
                                     <span>居住地址:</span>
                                 </div>
                                 <div class="gg-formDetail">
-                                    <input type="text" class="form-control" id="address" name="liveAddress"  placeholder="请输入居住地址" />
+                                    <input type="text" class="form-control" id="address" name="user_address"  value="${user.user_address}" placeholder="请输入居住地址" />
                                 </div>
                             </div>
                         </form>

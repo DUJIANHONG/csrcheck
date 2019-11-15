@@ -20,7 +20,16 @@ public class User {
     private String user_address; //住址
     private String create_people;//创建人
     private Date create_time;    //创建时间
+    private String user_photo;   //用户头像
 
+
+    public String getUser_photo() {
+        return user_photo;
+    }
+
+    public void setUser_photo(String user_photo) {
+        this.user_photo = user_photo;
+    }
 
     private String role_name;     //角色名称
 

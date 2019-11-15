@@ -5,7 +5,7 @@
 <mapper namespace="com.csr.csrcheck.mapper.UserMapper">
 <sql id="userid">
 u.`user_id`,u.`user_name`,u.`password`,u.`user_roleid`,u.`user_sex`,u.`user_age`,
-u.`user_address`,u.`create_people`,u.`create_time`,
+u.`user_address`,u.`create_people`,u.`create_time`,u.user_photo,
 </sql>
     
     <select id="findUser_name" resultType="com.csr.csrcheck.pojo.User">
@@ -29,4 +29,12 @@ u.`user_address`,u.`create_people`,u.`create_time`,
         where u.user_roleid=role_id
         and u.user_id=#{user_id}
     </select>
+    <update id="UpdateUser">
+        UPDATE `user` SET `user_name`=#{user_name},`user_sex`=#{user_sex},`user_age`=#{user_age},`user_address`=#{user_address}
+        WHERE `user_id`=#{user_id}
+    </update>
+
+    <update id="UpdatePhoto" parameterType="com.csr.csrcheck.pojo.User">
+        UPDATE `user` SET user_photo=#{user_photo} where user_id=#{user_id}
+    </update>
 </mapper>

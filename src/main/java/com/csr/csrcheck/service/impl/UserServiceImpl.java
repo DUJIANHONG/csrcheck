@@ -5,11 +5,19 @@ import com.csr.csrcheck.pojo.User;
 import com.csr.csrcheck.service.IUserService;
 import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.service.ex.PasswordNotMatchException;
+import com.csr.csrcheck.service.ex.UpdateException;
 import com.csr.csrcheck.service.ex.UserNotFoundException;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.util.Random;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -81,6 +89,24 @@ public class UserServiceImpl implements IUserService {
         }
         return user;
     }
+
+    /**
+     * 根据user_id修改用户信息
+     * @param user_id
+     * @param user_name
+     * @param user_sex
+     * @param user_age
+     * @param user_address
+     */
+    @Override
+    public void UpdateUser(int user_id, String user_name, int user_sex, int user_age, String user_address) {
+        Integer row=userMapper.UpdateUser(user_id,user_name,user_sex,user_age,user_address);
+        if(row!=1){
+            throw new UpdateException("修改失败");
+        }
+    }
+
+
 
     /**
      * 执行密码加密

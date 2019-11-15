@@ -3,29 +3,27 @@
  * 基本信息提交
  */
 $("#base_save").click(function () {
-    var hobbyStr = getHobbyStr();
-    $("#hobby").val(hobbyStr);
     if($("#basicInfoForm").valid()){
             $.ajax({
                 cache : true,
                 type : "POST",
-                url :"",
+                url :"/users/change_user",
                 data : $('#basicInfoForm').serialize(),
                 async : false,
-                error : function(request) {
-                    laryer.alert("Connection error");
-                },
                 success : function(data) {
-                    if (data.code == 0) {
+                    if (data.state == 2000) {
                         parent.layer.msg("更新成功");
                     } else {
-                        parent.layer.alert(data.msg)
+                        parent.layer.alert(data.message)
                     }
                 }
             });
         }
 
 });
+/**
+ * 修改密码
+ */
 $("#pwd_save").click(function () {
     if($("#modifyPwd").valid()){
         $.ajax({

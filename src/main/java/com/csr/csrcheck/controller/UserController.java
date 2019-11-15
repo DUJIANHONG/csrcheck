@@ -5,8 +5,10 @@ import com.csr.csrcheck.service.IUserService;
 import com.csr.csrcheck.util.Constants;
 import com.csr.csrcheck.util.JsonResult;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -66,6 +68,24 @@ public class UserController extends BaseController {
             Integer userid=getUidFromSession(session);
             log.info("changePassword-------------------->userid:"+userid);
             userService.UpdatePassword(userid,oldPassword,newPassword);
+        return new JsonResult<>(SUCCESS,OK);
+    }
+
+    /**
+     *根据id修改用户信息
+     *  @param user_name
+     * @param user_sex
+     * @param user_age
+     * @param user_address
+     * @param session
+     * @return
+     */
+    @RequestMapping(path="change_user", method=RequestMethod.POST)
+    public JsonResult<Void> chageUser(String user_name,
+                                      int user_sex,int user_age,
+                                      String user_address,HttpSession session){
+        int id=getUidFromSession(session);
+        userService.UpdateUser(id,user_name,user_sex,user_age,user_address);
         return new JsonResult<>(SUCCESS,OK);
     }
 }

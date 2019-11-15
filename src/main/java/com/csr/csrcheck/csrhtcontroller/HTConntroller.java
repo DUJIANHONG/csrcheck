@@ -6,10 +6,7 @@ import com.csr.csrcheck.controller.ex.FileSizeException;
 import com.csr.csrcheck.controller.ex.FileTypeException;
 import com.csr.csrcheck.controller.ex.FileUploadIOException;
 import com.csr.csrcheck.mapper.Special_bulletinMapper;
-import com.csr.csrcheck.pojo.Company;
-import com.csr.csrcheck.pojo.Flight_check;
-import com.csr.csrcheck.pojo.News;
-import com.csr.csrcheck.pojo.Product_type;
+import com.csr.csrcheck.pojo.*;
 import com.csr.csrcheck.service.*;
 import com.csr.csrcheck.service.impl.NewsServiceImpl;
 import com.csr.csrcheck.service.impl.RecallServiceImpl;
@@ -29,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -632,9 +630,13 @@ public class HTConntroller extends BaseController {
         log.info("stock------------------------->type:"+type);
         return "stock";
     }
-
+    @Resource
+    private IUserService userService;
     @RequestMapping("personal")
-    public String personzl(){
+    public String personzl(Model model, HttpSession session){
+        int id=getUidFromSession(session);
+        User  user=userService.finduser(id);
+        model.addAttribute("user",user);
         return "personal";
     }
 }

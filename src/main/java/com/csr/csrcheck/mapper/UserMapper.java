@@ -32,4 +32,22 @@ public interface UserMapper {
      */
     User findUser(int user_id);
 
+    /**
+     *根据user_id修改用户信息
+     *  @param user_id
+     * @param user_name
+     * @param user_sex
+     * @param user_age
+     * @param user_address
+     * @return
+     */
+    Integer UpdateUser(int user_id,String user_name,int user_sex,int user_age,String user_address);
+
+    /**
+     * 根据用户id修改用户头像
+     * @param user_photo
+     * @return
+     */
+    Integer UpdatePhoto(String user_photo,int user_id);
+
 }
