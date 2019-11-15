@@ -69,7 +69,7 @@
             <ul class="nav" id="side-menu">
                 <li class="nav-header">
                     <div>
-                        <span><img alt="image" class="img-circle" height="60" width="60" src="/newsFile/1573638009058_244.jpg"/></span>
+                        <span id="img_user"></span>
                         <h3 class="" style="color: #ffffff">
                             </i>CSR药企通管理系统
                         </h3>
@@ -268,7 +268,25 @@
 <!-- Toastr script -->
 <script src="../js/plugins/toastr/toastr.min.js"></script>
 <script>
-        function logout(){
+    $(function () {
+        $.ajax({
+            type:"get",
+            url:"/users/img",
+            dataType:"json",
+            success:function (data) {
+                if (data.state==2000) {
+                    let html = "<img alt='image' class='img-circle' height='60' width='60'src='#{img}'/>"
+                    html = html.replace(/#{img}/g, data.data.user_photo);
+                    $("#img_user").append(html);
+                }else{
+                    layer.msg("用户头像加载失败");
+                }
+            }
+        })
+    })
+
+
+    function logout(){
             $.ajax({
                 type:"get",
                 url:"/users/logout",

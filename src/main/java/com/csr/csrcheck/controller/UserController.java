@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -87,5 +89,33 @@ public class UserController extends BaseController {
         int id=getUidFromSession(session);
         userService.UpdateUser(id,user_name,user_sex,user_age,user_address);
         return new JsonResult<>(SUCCESS,OK);
+    }
+
+    /**
+     * 更新用户头像
+     * @param
+     * @param request
+     * @param file
+     * @param session
+     * @return
+     */
+    @RequestMapping(path="change_Img", method=RequestMethod.POST)
+    public JsonResult<Void> chageUserImg(HttpServletRequest request,
+                                         MultipartFile file,HttpSession session){
+        int id=getUidFromSession(session);
+        userService.UpdateUser_photo(id,request,file);
+        return new JsonResult<>(SUCCESS,OK);
+    }
+
+    /**
+     * 显示用户头像
+     * @param session
+     * @return
+     */
+    @GetMapping("img")
+    public JsonResult<User> findImg(HttpSession session){
+        int id=getUidFromSession(session);
+       User user=userService.finduser(id);
+       return new JsonResult<>(SUCCESS,OK,user);
     }
 }

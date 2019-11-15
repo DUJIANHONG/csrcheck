@@ -92,45 +92,15 @@
                     <!--photo_info-->
                     <div class="ibox-content tab-pane fade gg" id="photo_info">
                         <div class="ggcontainer" id="crop-avatar">
-                            <form class="avatar-form" action="" enctype="multipart/form-data" method="post">
+                            <form class="avatar-form"  enctype="multipart/form-data" id="imgform">
                                 <div class="avatar-body">
                                     <div class="avatar-upload">
-                                        <input class="avatar-src" name="avatar_src" type="hidden">
-                                        <input class="avatar-data" name="avatar_data" type="hidden">
                                         <label for="avatarInput">选取文件</label>
-                                        <input class="avatar-input" id="avatarInput" name="avatar_file" type="file">
+                                        <input class="avatar-input" id="avatarInput" name="file" type="file">
                                     </div>
-                                    <!-- Crop and preview -->
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <div class="avatar-wrapper"></div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="avatar-preview preview-lg"></div>
-                                            <div class="avatar-preview preview-md"></div>
-                                            <div class="avatar-preview preview-sm"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row avatar-btns">
-                                        <div class="col-md-9">
-                                            <div class="btn-group">
-                                                <button class="btn btn-primary" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees">左旋转</button>
-                                                <button class="btn btn-primary" data-method="rotate" data-option="-15" type="button">-15°</button>
-                                                <button class="btn btn-primary" data-method="rotate" data-option="-30" type="button">-30°</button>
-                                                <button class="btn btn-primary" data-method="rotate" data-option="-45" type="button">-45°</button>
-                                            </div>
-                                            <div class="btn-group">
-                                                <button class="btn btn-primary" data-method="rotate" data-option="90" type="button" title="Rotate 90 degrees">右旋转</button>
-                                                <button class="btn btn-primary" data-method="rotate" data-option="15" type="button">15°</button>
-                                                <button class="btn btn-primary" data-method="rotate" data-option="30" type="button">30°</button>
-                                                <button class="btn btn-primary" data-method="rotate" data-option="45" type="button">45°</button>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-primary btn-block avatar-save" type="submit">完成裁剪</button>
-                                        </div>
-                                    </div>
+                                </div>
+                                <div class="col-md-3" style="text-align: center;margin-top: 50%">
+                                    <button type="button" class="btn btn-sm btn-primary" id="update">更新</button>
                                 </div>
                             </form>
                             <!-- Loading state -->
@@ -188,7 +158,8 @@
 
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/distpicker.data.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/distpicker.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/js/gg-bootdo.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/gg-bootdo.js "></script>
+
     <!--校验插件-->
     <script src="${pageContext.request.contextPath }/js/jquery.validate.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery.validate.extend.js"></script>

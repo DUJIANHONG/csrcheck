@@ -2,36 +2,33 @@ package com.csr.csrcheck.csrhtcontroller;
 
 import com.csr.csrcheck.controller.BaseController;
 import com.csr.csrcheck.controller.ex.CompanyException;
-import com.csr.csrcheck.controller.ex.FileSizeException;
-import com.csr.csrcheck.controller.ex.FileTypeException;
-import com.csr.csrcheck.controller.ex.FileUploadIOException;
-import com.csr.csrcheck.mapper.Special_bulletinMapper;
-import com.csr.csrcheck.pojo.*;
+import com.csr.csrcheck.pojo.Company;
+import com.csr.csrcheck.pojo.News;
+import com.csr.csrcheck.pojo.Product_type;
+import com.csr.csrcheck.pojo.User;
 import com.csr.csrcheck.service.*;
 import com.csr.csrcheck.service.impl.NewsServiceImpl;
 import com.csr.csrcheck.service.impl.RecallServiceImpl;
 import com.csr.csrcheck.util.Constants;
-import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
 import com.csr.csrcheck.util.PageSupport;
-import com.sun.deploy.ui.AppInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -632,6 +629,13 @@ public class HTConntroller extends BaseController {
     }
     @Resource
     private IUserService userService;
+
+    /**
+     * 用户个人资料
+     * @param model
+     * @param session
+     * @return
+     */
     @RequestMapping("personal")
     public String personzl(Model model, HttpSession session){
         int id=getUidFromSession(session);

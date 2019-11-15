@@ -1,6 +1,7 @@
 package com.csr.csrcheck.service;
 
 import com.csr.csrcheck.pojo.User;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -40,6 +41,12 @@ public interface IUserService {
      */
     public void UpdateUser(int user_id,String user_name,int user_sex,int user_age,String user_address);
 
-   void UpdateUser_photo(int user_id,String user_photo,HttpServletRequest request);
+    /**
+     * 修改图片
+     * @param user_id
+     * @param
+     * @param request
+     */
+   void UpdateUser_photo(int user_id,HttpServletRequest request, MultipartFile file);
 
 }

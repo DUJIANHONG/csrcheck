@@ -13,10 +13,9 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
-import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
 @Service
@@ -106,6 +105,35 @@ public class UserServiceImpl implements IUserService {
         }
     }
 
+    @Override
+    public void UpdateUser_photo(int user_id,HttpServletRequest request, MultipartFile file) {
+            String url=null;
+            if(!file.isEmpty()){
+                String path=request.getSession().getServletContext().getRealPath("newsFile");
+                String oldFilename=file.getOriginalFilename();
+                String prefix= FilenameUtils.getExtension(oldFilename);
+                if(prefix.equalsIgnoreCase("jpg")||prefix.equalsIgnoreCase("png")
+                        ||prefix.equalsIgnoreCase("jpeg")||prefix.equalsIgnoreCase("pneg")){
+                    String filename=System.currentTimeMillis()+"_"+new Random().nextInt(1000)+".png";
+                    File targetfile=new File(path,filename);
+                    if(!targetfile.exists()){
+                        targetfile.mkdirs();
+                    }
+                    try {
+                        file.transferTo(targetfile);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    url=request.getContextPath() + "/newsFile/" + filename;
+                }else{
+                    throw  new CompanyException("上传文件格式不正确");
+                }
+                int row=userMapper.UpdatePhoto(url,user_id);
+                if(row!=1){
+                    throw new CompanyException("更新失败");
+                }
+            }
+    }
 
 
     /**

@@ -42,3 +42,36 @@ $("#pwd_save").click(function () {
         });
     }
 });
+
+//修改头像
+$("#update").on('click',function(){
+    $("#imgform").submit();
+});
+
+$("body").keydown(keyDownLogon);
+$.validator.setDefaults({
+    submitHandler: function () {
+       update();
+    }
+});
+
+function update(){
+    if($("#imgform").valid()){
+        var formData = new FormData($("#imgform")[0]);
+        $.ajax({
+            cache : true,
+            type : "POST",
+            url :"/users/change_Img",
+            data :formData,
+            async : false,
+            success : function(json) {
+                if (json.state==2000) {
+                    parent.layer.alert("更新头像成功",function(){window.location.reload()});
+                } else {
+                    parent.layer.alert(json.message)
+                }
+            }
+        });
+    }
+}
+
