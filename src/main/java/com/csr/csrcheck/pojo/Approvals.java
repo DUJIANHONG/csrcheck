@@ -10,7 +10,7 @@ public class Approvals {
     private int id;             //主键
     private int approval_num;   //批文编号
     private int product_id;     //关联产品id
-    private int approval_no;    //批文号
+    private String approval_no;    //批文号
     private int approved_by;    //所属准字
 
     /**
@@ -97,11 +97,11 @@ public class Approvals {
         this.product_id = product_id;
     }
 
-    public int getApproval_no() {
+    public String  getApproval_no() {
         return approval_no;
     }
 
-    public void setApproval_no(int approval_no) {
+    public void setApproval_no(String approval_no) {
         this.approval_no = approval_no;
     }
 

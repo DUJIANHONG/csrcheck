@@ -27,6 +27,7 @@ public class LoginInterceptorConfigurer implements WebMvcConfigurer {
 		paths.add("/users/login");
 		paths.add("/company/companylist");
 		paths.add("/company/companylist2");
+		paths.add("/approvals/approvalslist");//批文
 		registry.addInterceptor(interceptor).addPathPatterns("/**").excludePathPatterns(paths);
 	}
 	
