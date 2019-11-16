@@ -4,6 +4,7 @@ import com.csr.csrcheck.pojo.User;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 public interface IUserService {
     /**
@@ -48,5 +49,11 @@ public interface IUserService {
      * @param request
      */
    void UpdateUser_photo(int user_id,HttpServletRequest request, MultipartFile file);
+
+    /**
+     * 增加管理员
+     * @param user
+     */
+   void  addUser(String user_name, String password, int   user_sex, int  user_age, String user_address, String create_people, Date create_time);
 
 }

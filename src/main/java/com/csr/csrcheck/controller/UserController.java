@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 
 @RestController
@@ -117,5 +118,23 @@ public class UserController extends BaseController {
         int id=getUidFromSession(session);
        User user=userService.finduser(id);
        return new JsonResult<>(SUCCESS,OK,user);
+    }
+
+    /**
+     * 增加管理员
+     * @param
+     * @param session
+     * @return
+     */
+    @RequestMapping(path="adduser", method=RequestMethod.POST)
+    public JsonResult<Void> addUser(String user_name, String password, int   user_sex, int  user_age, String user_address,HttpSession session){
+        String name=getUsernameFromSession(session);
+       Date time=new Date();
+        try {
+            userService.addUser(user_name,password,user_sex,user_age,user_address,name,time);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new JsonResult<>(SUCCESS,OK);
     }
 }

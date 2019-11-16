@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Random;
 
 @Service
@@ -133,6 +134,19 @@ public class UserServiceImpl implements IUserService {
                     throw new CompanyException("更新失败");
                 }
             }
+    }
+
+    /**
+     * 添加管理员
+     * @param
+     */
+    @Override
+    public void addUser(String user_name, String password, int   user_sex, int  user_age, String user_address, String create_people, Date create_time) {
+        String md5password=getMd5Password(password);
+        int row = userMapper.addUser(user_name,md5password,user_sex,user_age,user_address,create_people,create_time);
+        if (row!=1){
+            throw new CompanyException("增加失败");
+        }
     }
 
 

@@ -269,6 +269,7 @@
 <script src="../js/plugins/toastr/toastr.min.js"></script>
 <script>
     $(function () {
+        //加载用户头像
         $.ajax({
             type:"get",
             url:"/users/img",
@@ -285,7 +286,7 @@
         })
     })
 
-
+//退出
     function logout(){
             $.ajax({
                 type:"get",
@@ -306,7 +307,10 @@
                 maxmin: true,
                 shadeClose: false, //点击遮罩关闭层
                 area : ['800px' , '600px'],
-                content: '/csrht/personal'
+                content: '/csrht/personal',
+                end: function () {
+                    location.reload();
+                }
             });
         });
         //弹出一个loading层

@@ -1,7 +1,8 @@
 package com.csr.csrcheck.mapper;
 
 import com.csr.csrcheck.pojo.User;
-import org.apache.ibatis.annotations.Param;
+
+import java.util.Date;
 
 /**
  * @description:
@@ -49,5 +50,12 @@ public interface UserMapper {
      * @return
      */
     Integer UpdatePhoto(String user_photo,int user_id);
+
+    /**
+     * 添加管理员
+     * @param user
+     * @return
+     */
+    Integer addUser(String user_name,String password,int   user_sex,int  user_age,String user_address,String create_people,Date create_time);
 
 }

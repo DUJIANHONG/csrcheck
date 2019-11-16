@@ -15,6 +15,13 @@ $(function(){
 		$('#pwd').prop('type', 'password'); 
 		$('#confirm_password').prop('type', 'password');
 	});
+	$(".gg-faeye2").on('mouseover',function(){
+		$('#password').prop('type', 'text');
+	});
+	$(".gg-faeye2").on('mouseout',function(){
+		$('#password').prop('type', 'password');
+	});
 });
+
 
 

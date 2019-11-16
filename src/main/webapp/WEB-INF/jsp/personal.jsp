@@ -32,7 +32,9 @@
                             <li class="active"><a href="#basic_info" data-toggle="tab">基本资料</a></li>
                             <li><a href="#photo_info" data-toggle="tab">头像修改</a></li>
                             <li><a href="#pwd_info" data-toggle="tab">修改密码</a></li>
-                            <li><a href="#gl" data-toggle="tab">添加管理员</a></li>
+                            <c:if test="${user.user_roleid==1}">
+                                <li><a href="#gl" data-toggle="tab">添加管理员</a></li>
+                            </c:if>
                         </ul>
                     </div>
                 </div>
@@ -92,17 +94,22 @@
                     <!--photo_info-->
                     <div class="ibox-content tab-pane fade gg" id="photo_info">
                         <div class="ggcontainer" id="crop-avatar">
-                            <form class="avatar-form"  enctype="multipart/form-data" id="imgform">
+                            <form   enctype="multipart/form-data" id="imgform">
                                 <div class="avatar-body">
                                     <div class="avatar-upload">
                                         <label for="avatarInput">选取文件</label>
                                         <input class="avatar-input" id="avatarInput" name="file" type="file">
                                     </div>
                                 </div>
-                                <div class="col-md-3" style="text-align: center;margin-top: 50%">
-                                    <button type="button" class="btn btn-sm btn-primary" id="update">更新</button>
-                                </div>
                             </form>
+                            <div style="margin-top: 10%">
+                            <div class="col-md-3" style="border: 1px solid silver;width:220px;height: 200px;margin: 0 auto;">
+                              <img src="" alt="" class='img-circle' width="190px" height="195px">
+                            </div>
+                            </div>
+                            <div class="col-md-3" style="text-align: center;margin-top: 10%">
+                                <button type="button" class="btn btn-sm btn-primary" id="update">更新</button>
+                            </div>
                             <!-- Loading state -->
                             <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
                         </div>
@@ -144,6 +151,68 @@
                         </form>
                         <div class="gg-btnGroup">
                             <button type="button" class="btn btn-sm btn-primary" id="pwd_save">保存</button>
+                        </div>
+                    </div>
+                    <!--#gl增加管理员-->
+                    <div class="ibox-content tab-pane fade" id="gl">
+                        <form class="gg-form" role="form" id="userinfo">
+                            <input name="userId" type="hidden" value=""/>
+                            <div class="gg-formGroup">
+                                <div class="gg-formTitle">
+                                    <em class="gg-star">*</em>
+                                    <span>用户名:</span>
+                                </div>
+                                <div class="gg-formDetail">
+                                    <input type="text" class="form-control" id="user_name" name="user_name" value=""  placeholder="请输入用户名" />
+                                </div>
+                            </div>
+                            <div class="gg-formGroup">
+                                <div class="gg-formTitle">
+                                    <em class="gg-star">*</em>
+                                    <span>密码:</span>
+                                </div>
+                                <div class="gg-formDetail">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码" />
+                                    <span class="fa fa-eye gg-faeye2" title="鼠标移入显示内容"></span>
+                                </div>
+                            </div>
+                            <div class="gg-formGroup">
+                                <div class="gg-formTitle">
+                                    <em class="gg-star">*</em>
+                                    <span>性别:</span>
+                                </div>
+                                <div class="gg-formDetail">
+                                    <div class="radio i-checks">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="user_sex" value="1" />男
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="user_sex" value="2"/>女
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gg-formGroup">
+                                <div class="gg-formTitle">
+                                    <em class="gg-star">*</em>
+                                    <span>年龄:</span>
+                                </div>
+                                <div class="gg-formDetail">
+                                    <input type="text" class="form-control" id="user_age" name="user_age"  value="" placeholder="请输入年龄" />
+                                </div>
+                            </div>
+                            <div class="gg-formGroup">
+                                <div class="gg-formTitle">
+                                    <em class="gg-star">*</em>
+                                    <span>居住地址:</span>
+                                </div>
+                                <div class="gg-formDetail">
+                                    <input type="text" class="form-control" id="user_address" name="user_address"  value="" placeholder="请输入居住地址" />
+                                </div>
+                            </div>
+                        </form>
+                        <div class="gg-btnGroup">
+                            <button type="button" class="btn btn-sm btn-primary" id="save">保存</button>
                         </div>
                     </div>
                 </div>

@@ -37,4 +37,11 @@ u.`user_address`,u.`create_people`,u.`create_time`,u.user_photo,
     <update id="UpdatePhoto" parameterType="com.csr.csrcheck.pojo.User">
         UPDATE `user` SET user_photo=#{user_photo} where user_id=#{user_id}
     </update>
+
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="user_id" parameterType="com.csr.csrcheck.pojo.User">
+        INSERT INTO `user`
+        (`user_name`,`password`,`user_roleid`,`user_sex`,`user_age`,`user_address`,
+        `create_people`,`create_time`,`user_photo`)
+        VALUE(#{user_name},#{password},2,#{user_sex},#{user_age},#{user_address},#{create_people},#{create_time},'/newsFile/1573868898961_767.png')
+    </insert>
 </mapper>

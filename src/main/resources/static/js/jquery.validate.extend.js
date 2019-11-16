@@ -123,11 +123,11 @@ $(document).ready(function(){
 		 debug:false, //表示校验通过后是否直接提交表单
 		 onkeyup:false, //表示按键松开时候监听验证
 		rules:{
-			pwdOld:{
+			oldPassword:{
 				required:true,
 				minlength:6
 			},
-            pwdNew:{
+			newPassword:{
 			   required:true,
 			   minlength:6,
 			   isdiff:true,
@@ -141,11 +141,11 @@ $(document).ready(function(){
 		  
 		   },
 		messages:{
-			 	pwdOld : {
+			oldPassword : {
 					 required:'必填',
 					 minlength:$.validator.format('密码长度要大于6')
 				},
-            	pwdNew:{
+			newPassword:{
 				   required:'必填',
 				   minlength:$.validator.format('密码长度要大于6'),
 				   isdiff:'原密码与新密码不能重复',
@@ -166,4 +166,93 @@ $(document).ready(function(){
 
 		}
 	});
+//校验上传图片
+	$("#imgform").validate({
+		onfocusout: function(element) { $(element).valid()},
+		debug:false, //表示校验通过后是否直接提交表单
+		onkeyup:false, //表示按键松开时候监听验证
+		rules:{
+			file:{
+				required:true,
+			}
+		},
+		messages:{
+			file : {
+				required:'请选择图片',
+
+			}
+		},
+		errorElement:"mes",
+		errorClass:"gg-star",
+		errorPlacement: function(error, element)
+		{
+			element.closest('.avatar-input').append(error);
+
+		}
+	})
+});
+//校验添加管理员信息表单
+$("#userinfo").validate({
+	errorElement:'span',
+	errorClass:'help-block error-mes',
+	rules:{
+		user_name:{
+			required:true,
+			isName:true
+		},
+		password:{
+			required:true,
+			minlength:6
+		},
+		user_sex:{
+			required:true
+		},
+		user_age:{
+			required:true,
+			isUser_age:true
+		},
+		user_address:{
+			required:true,
+			isUser_address:true
+		},
+	},
+	messages:{
+		user_name:{
+			required:"请输入用户名",
+			isName:"姓名只能数字或字母"
+		},
+		password:{
+			required:"请输入密码",
+			minlength:$.validator.format('密码长度要大于6')
+		},
+		user_sex:{
+			required:"请选择性别"
+		},
+		user_age:{
+			required:"请输入年龄",
+			isUser_age:"年龄只能输入数字"
+		},
+		user_address:{
+			required:"请输入居住地址",
+			isUser_address:"居住地址只能输入汉字"
+		}
+	},
+
+	errorPlacement:function(error,element){
+		element.next().remove();
+		element.closest('.gg-formGroup').append(error);
+	},
+
+	highlight:function(element){
+		$(element).closest('.gg-formGroup').addClass('has-error has-feedback');
+	},
+	success:function(label){
+		var el = label.closest('.gg-formGroup').find("input");
+		el.next().remove();
+		label.closest('.gg-formGroup').removeClass('has-error').addClass("has-feedback has-success");
+		label.remove();
+	},
+	submitHandler:function(form){
+		alert("保存成功!");
+	}
 });
