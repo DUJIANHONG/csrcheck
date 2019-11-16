@@ -6,13 +6,13 @@
 
     
     <select id="getOrganlist" resultType="com.csr.csrcheck.pojo.Company">
-       SELECT c.ten_shareholders
+       SELECT DISTINCT c.company_name,c.ten_shareholders
 FROM company c, product p, z_product_type d
 WHERE p.company_id=c.`id`AND c.`id`=p.`company_id` AND p.product_type_id=d.id AND d.id=1 ;
     </select>
 
     <select id="getOrganlist2" resultType="com.csr.csrcheck.pojo.Company">
-SELECT c.`company_name`,c.`company_address`,c.`type_ownership`,c.`main_business`,
+SELECT DISTINCT c.`company_name`,c.`company_address`,c.`type_ownership`,c.`main_business`,
        c.`strategic_focus`,c.`listed_unlisted`,
     c.`company_ranking`,c.`licence_no`,c.`production`,c.`organization`,c.`expire_date`,
     c.`business_license`,c.`exequatur`
