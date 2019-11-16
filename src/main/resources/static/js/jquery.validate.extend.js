@@ -5,29 +5,35 @@ $(document).ready(function(){
 		 		form.submit();    
 		}       
 	});  
-	//手机号码验证身份证正则合并：(^\d{15}$)|(^\d{17}([0-9]|X)$)
+	/*//手机号码验证身份证正则合并：(^\d{15}$)|(^\d{17}([0-9]|X)$)
 	jQuery.validator.addMethod("isPhone",function(value,element){
 		var length = value.length;
 		var phone=/^1[3|4|5|7|8][0-9]\d{8}$/;
 		return this.optional(element)||(length == 11 && phone.test(value));
-	},"请填写正确的11位手机号");
+	},"请填写正确的11位手机号");*/
 	//电话号码验证
-	jQuery.validator.addMethod("isTel",function(value,element){
+	/*jQuery.validator.addMethod("isTel",function(value,element){
 		var tel = /^(0\d{2,3}-)?\d{7,8}$/g;//区号3,4位,号码7,8位
 		return this.optional(element) || (tel.test(value));
-	},"请填写正确的座机号码");
-	//姓名校验
+	},"请填写正确的座机号码");*/
+	//用户名校验
 	jQuery.validator.addMethod("isName",function(value,element){
-		var name=/^[\u4e00-\u9fa5]{2,6}$/;
-		return this.optional(element) || (name.test(value));
-	},"姓名只能用汉字,长度2-4位");
-	//校验用户名
-	jQuery.validator.addMethod("isUserName",function(value,element){
-		var userName=/^[a-zA-Z0-9]{2,13}$/;
-		return this.optional(element) || (userName).test(value);
-	},'请输入数字或者字母,不包含特殊字符');
-	
-	//校验身份证
+		var user_name=/^[a-zA-Z0-9]{2,13}$/;
+		return this.optional(element) || (user_name.test(value));
+	},"请输入数字或者字母,不包含特殊字符");
+	//校验年龄
+	jQuery.validator.addMethod("isUser_age",function(value,element){
+		var user_age=/^(?:[1-9][0-9]?|1[01][0-9]|120)$/;;
+		return this.optional(element) || (user_age).test(value);
+	},'请输入数字');
+	//居住地址校验
+	jQuery.validator.addMethod("isUser_address",function(value,element){
+		var user_address=/^[\u4e00-\u9fa5]+$/;
+		return this.optional(element) || (user_address.test(value));
+	},"请输入中文汉字,不包含特殊字符");
+
+
+	/*//校验身份证
 	jQuery.validator.addMethod("isIdentity",function(value,element){
 		var id= /^(\d{15}$|^\d{18}$|^\d{17}(\d|X))$/;
 		return this.optional(element) || (id.test(value));
@@ -36,7 +42,9 @@ $(document).ready(function(){
 	jQuery.validator.addMethod("isBirth",function(value,element){
 		var birth = /^(19|20)\d{2}-(1[0-2]|0?[1-9])-(0?[1-9]|[1-2][0-9]|3[0-1])$/;
 		return this.optional(element) || (birth).test(value);
-	},"出生日期格式示例2000-01-01");
+	},"出生日期格式示例2000-01-01");*/
+
+
 	//校验新旧密码是否相同
 	jQuery.validator.addMethod("isdiff",function(){
 		var p1=$("#pwdOld").val();
@@ -62,39 +70,31 @@ $(document).ready(function(){
 		errorElement:'span',
 		errorClass:'help-block error-mes',
 		rules:{
-			name:{
+			user_name:{
 				required:true,
 				isName:true
 			},
-			sex:"required",
-			birth:"required",
-            mobile:{
+			user_age:{
 				required:true,
-				isPhone:true
+				isUser_age:true
 			},
-			email:{
+			user_address:{
 				required:true,
-				email:true
-			}
+				isUser_address:true
+			},
 		},
 		messages:{
-			name:{
-				required:"请输入中文姓名",
-				isName:"姓名只能为汉字"
+			user_name:{
+				required:"请输入用户名",
+				isName:"姓名只能数字或字母"
 			},
-			sex:{
-				required:"请输入性别"
+			user_age:{
+				required:"请输入年龄",
+				isUser_age:"年龄只能输入数字"
 			},
-			birth:{
-				required:"请输入出生年月"
-			},
-            mobile:{
-				required:"请输入手机号",
-				isPhone:"请填写正确的11位手机号"
-			},
-			email:{
-				required:"请输入邮箱",
-				email:"请填写正确的邮箱格式"
+			user_address:{
+				required:"请输入居住地址",
+				isUser_address:"居住地址只能输入汉字"
 			}
 		},
 	
