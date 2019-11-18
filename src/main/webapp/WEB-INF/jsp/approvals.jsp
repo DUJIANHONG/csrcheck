@@ -213,7 +213,7 @@
                 title: '添加产品批文',
                 maxmin: true,
                 shadeClose: false, //点击遮罩关闭层
-                area: ['800px', '600px'],
+                area: ['900px', '600px'],
                 content: '${pageContext.request.contextPath }/web/addapprovals.html',
                 end: function () {
                     location.reload();
