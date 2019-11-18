@@ -17,4 +17,8 @@
       </trim>
        ORDER BY product_id
 </select>
+
+    <select id="list" resultType="com.csr.csrcheck.pojo.Product">
+       SELECT `product_id`,`product_name` FROM `product`
+    </select>
 </mapper>

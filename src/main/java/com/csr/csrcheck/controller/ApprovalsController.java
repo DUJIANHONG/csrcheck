@@ -2,8 +2,12 @@ package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.controller.ex.CompanyException;
 import com.csr.csrcheck.pojo.Approvals;
+import com.csr.csrcheck.pojo.Approved_by;
+import com.csr.csrcheck.pojo.Product;
 import com.csr.csrcheck.service.Abnormal_productsService;
 import com.csr.csrcheck.service.ApprovalsService;
+import com.csr.csrcheck.service.Approved_byService;
+import com.csr.csrcheck.service.ProductService;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
@@ -75,9 +79,43 @@ public class ApprovalsController extends BaseController{
         }
         return new JsonResult<Object>(SUCCESS,OK,pageResult);
     }
+
+    /**
+     * 添加批文
+     * @param approvals
+     * @return
+     */
     @RequestMapping(path="addapprovals", method= RequestMethod.POST)
     public JsonResult<Object> addapprovals(Approvals approvals){
         approvalsService.addApprovals(approvals);
+        log.info("add================================>approvals："+approvals);
         return new JsonResult<>(SUCCESS,OK);
+    }
+
+
+    @Resource
+    private ProductService productService;
+
+    /**
+     * 下拉框展示产品数据
+     * @return
+     */
+    @RequestMapping(path="listproduct", method= RequestMethod.POST)
+    public JsonResult<List<Product>> listproduct(){
+        List list=productService.list();
+        return new JsonResult<>(SUCCESS,OK,list);
+    }
+
+    @Resource
+    private Approved_byService approved_byService;
+
+    /**
+     * 下拉框展示准字信息
+     * @return
+     */
+    @RequestMapping(path="listapproved_by", method= RequestMethod.POST)
+    public JsonResult<List<Approved_by>> listapproved_by(){
+        List<Approved_by> list = approved_byService.listApprovde_by();
+        return new JsonResult<>(SUCCESS,OK,list);
     }
 }

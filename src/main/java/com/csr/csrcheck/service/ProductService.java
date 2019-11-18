@@ -1,6 +1,5 @@
 package com.csr.csrcheck.service;
 
-import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.Product;
 import com.csr.csrcheck.util.PageResult;
 import org.apache.ibatis.annotations.Param;
@@ -27,4 +26,10 @@ public interface ProductService {
      * @return
      */
     PageResult listpage(int pageNum, int pageSize, String product_name);
+
+    /**
+     *查询产品id和产品名称
+     *  @return
+     */
+    List<Product> list();
 }

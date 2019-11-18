@@ -29,8 +29,8 @@ public class LoginInterceptorConfigurer implements WebMvcConfigurer {
 		paths.add("/web/login.html");
 		paths.add("/users/login");
 		paths.add("/users/img");
+		paths.add("/users/img");
 		paths.add("/company/companylist");
-		paths.add("/company/companylist2");
 		paths.add("/news/newlist");
 		paths.add("/news/byidnews/{id}");
 		paths.add("/flight_check/flight_checkllist");//查企业中的飞行检查

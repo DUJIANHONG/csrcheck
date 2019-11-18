@@ -1,38 +1,30 @@
 $().ready(function() {
 	loadType();
+	loadType2();
 	validateRule();
 });
 
-$.validator.setDefaults({
-	submitHandler : function() {
-		save();
-	}
-});
-function save() {
-	$.ajax({
-		cache : true,
-		type : "POST",
-		url : "/oa/notify/save",
-		data : $('#signupForm').serialize(),// 你的formid
-		async : false,
-		error : function(request) {
-			parent.layer.alert("Connection error");
-		},
-		success : function(data) {
-			if (data.code == 0) {
-				parent.layer.msg("操作成功");
-				parent.reLoad();
-				var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
-				parent.layer.close(index);
+$("#save").click(function () {
+	if ($("#signupForm").valid()) {
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: "/approvals/addapprovals",
+			data: $('#signupForm').serialize(),// 你的formid
+			async: false,
+			dataType:'json',
+			success: function (data) {
+				if (data.state == 2000) {
+					parent.layer.msg("操作成功");
+				} else {
+					parent.layer.alert(data.msg)
+				}
 
-			} else {
-				parent.layer.alert(data.msg)
 			}
+		});
 
-		}
-	});
-
-}
+	}
+})
 function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
 	$("#signupForm").validate({
@@ -43,7 +35,7 @@ function validateRule() {
 		},
 		messages : {
 			name : {
-				required : icon + "请输入姓名"
+				required : icon + ""
 			}
 		}
 	})
@@ -51,11 +43,13 @@ function validateRule() {
 function loadType(){
 	var html = "";
 	$.ajax({
-		url : '/common/dict/list/oa_notify_type',
+		url : '/approvals/listproduct',
+		type:'POST',
 		success : function(data) {
 			//加载数据
-			for (var i = 0; i < data.length; i++) {
-				html += '<option value="' + data[i].value + '">' + data[i].name + '</option>'
+			var list=data.data;
+			for (var i = 0; i < list.length; i++) {
+				html += '<option value="' + list[i].product_id + '">' + list[i].product_name + '</option>'
 			}
 			$(".chosen-select").append(html);
 			$(".chosen-select").chosen({
@@ -74,17 +68,34 @@ function loadType(){
 		}
 	});
 }
+function loadType2(){
+	var html = "";
+	$.ajax({
+		url : '/approvals/listapproved_by',
+		type:'POST',
+		success : function(data) {
+			//加载数据
+			var list=data.data;
+			for (var i = 0; i < list.length; i++) {
+				html += '<option value="' + list[i].id + '">' + list[i].approved_t_name + '</option>'
+			}
+			$(".chosen-select2").append(html);
+			$(".chosen-select2").chosen({
+				maxHeight : 200
+			});
+			//点击事件
+			$('.chosen-select2').on('change', function(e, params) {
+				console.log(params.selected);
 
-var openUser = function(){
-	layer.open({
-		type:2,
-		title:"选择人员",
-		area : [ '300px', '450px' ],
-		content:"/sys/user/treeView"
-	})
+				var opt = {
+					query : {
+						type : params.selected,
+					}
+				}
+				$('#exampleTable').bootstrapTable('refresh', opt);
+			});
+		}
+	});
 }
 
-function loadUser(userIds,userNames){
-	$("#userIds").val(userIds);
-	$("#userNames").val(userNames);
-}
+

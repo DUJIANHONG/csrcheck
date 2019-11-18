@@ -1,11 +1,8 @@
 package com.csr.csrcheck.service.impl;
 
 import com.csr.csrcheck.mapper.ProductMapper;
-
-import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.Product;
 import com.csr.csrcheck.service.ProductService;
-
 import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.service.ex.ProductException;
 import com.csr.csrcheck.util.PageResult;
@@ -42,6 +39,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public PageResult listpage(int pageNum, int pageSize, String product_name) {
         return PageUtils.getPageResult(pageNum,pageSize,getpageinfo(pageNum,pageSize,product_name));
+    }
+
+    @Override
+    public List<Product> list() {
+        List list=productMapper.list();
+        if(list==null){
+            throw new CompanyException("数据为空");
+        }
+        return list;
     }
 
     /**

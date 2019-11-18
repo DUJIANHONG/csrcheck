@@ -24,6 +24,14 @@ public class ProductController extends BaseController {
 
     @Resource
     private ProductService productService;
+
+    /**
+     *分页查询产品
+     *  @param pageNum
+     * @param pageSize
+     * @param product_name
+     * @return
+     */
     @RequestMapping("productpage")
     public JsonResult<Object> productpage(@RequestParam(defaultValue = "1") int pageNum,
                                                  @RequestParam(defaultValue = "5") int pageSize,
