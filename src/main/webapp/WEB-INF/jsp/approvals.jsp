@@ -202,25 +202,24 @@
 <!--<script src="js/rollpage.js"></script>-->
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/rollpage.js"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/layer/layer.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/layer/layer.js"></script>
 <script src="${pageContext.request.contextPath }/js/layui.js" charset="utf-8"></script>
 <script type="text/javascript">
-    layui.use("layer",function() {
-        var layer = layui.layer;  //layer初始化
         //弹出层
         $('#addapprovals').on('click', function () {
             layer.open({
-                type: 1,
+                type: 2,
                 title: '添加产品批文',
                 maxmin: true,
                 shadeClose: false, //点击遮罩关闭层
                 area: ['800px', '600px'],
-                content: '/web/addapprovals.html',
+                content: '${pageContext.request.contextPath }/web/addapprovals.html',
                 end: function () {
                     location.reload();
                 }
             });
         });
-    })
 </script>
 </body>
 </body>
