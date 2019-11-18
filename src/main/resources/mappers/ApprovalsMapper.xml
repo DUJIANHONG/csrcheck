@@ -48,4 +48,9 @@ a.`approval_num`,p.`product_name`,a.`approval_no`,c.`company_name` ,b.approved_t
         </if>
     </trim>
 </select>
+
+    <insert id="addApprovals" useGeneratedKeys="true" keyProperty="id" parameterType="com.csr.csrcheck.pojo.Approvals">
+        INSERT INTO `approvals` (`approval_num`,`product_id`,`approval_no`,`approved_by`)
+        VALUE (#{approval_num},#{product_id},#{approval_no},#{approved_by})
+    </insert>
 </mapper>

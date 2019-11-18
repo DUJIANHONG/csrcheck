@@ -1,13 +1,9 @@
 package com.csr.csrcheck.service.impl;
 
 import com.csr.csrcheck.mapper.ApprovalsMapper;
-import com.csr.csrcheck.mapper.ClinicMapper;
 import com.csr.csrcheck.pojo.Approvals;
-import com.csr.csrcheck.pojo.Clinic;
 import com.csr.csrcheck.service.ApprovalsService;
-import com.csr.csrcheck.service.ClinicService;
 import com.csr.csrcheck.service.ex.ApprovalsException;
-import com.csr.csrcheck.service.ex.ClinicException;
 import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.util.PageResult;
 import com.csr.csrcheck.util.PageUtils;
@@ -41,6 +37,14 @@ public class ApprovalsServiceImpl implements ApprovalsService {
     @Override
     public PageResult getApprovalslistpage(int pageNum, int pageSize, String product_name) {
         return PageUtils.getPageResult(pageNum,pageSize,getpageinfo(pageNum,pageSize,product_name));
+    }
+
+    @Override
+    public void addApprovals(Approvals approvals) {
+        int row=approvalsMapper.addApprovals(approvals);
+        if(row!=1){
+            throw new CompanyException("增加失败");
+        }
     }
 
     /**

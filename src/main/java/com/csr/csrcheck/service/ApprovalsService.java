@@ -21,4 +21,10 @@ public interface ApprovalsService {
      * @return
      */
     public PageResult getApprovalslistpage(int pageNum,int pageSize,String product_name);
+
+    /**
+     * 增加批文
+     * @param approvals
+     */
+    public void addApprovals(Approvals approvals);
 }

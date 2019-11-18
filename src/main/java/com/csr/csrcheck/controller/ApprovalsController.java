@@ -2,19 +2,12 @@ package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.controller.ex.CompanyException;
 import com.csr.csrcheck.pojo.Approvals;
-import com.csr.csrcheck.pojo.Clinic;
 import com.csr.csrcheck.service.Abnormal_productsService;
 import com.csr.csrcheck.service.ApprovalsService;
-import com.csr.csrcheck.service.ClinicService;
-import com.csr.csrcheck.service.ex.ClinicException;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sun.applet.AppletIOException;
 
 import javax.annotation.Resource;
@@ -81,5 +74,10 @@ public class ApprovalsController extends BaseController{
             throw new CompanyException("没有数据");
         }
         return new JsonResult<Object>(SUCCESS,OK,pageResult);
+    }
+    @RequestMapping(path="addapprovals", method= RequestMethod.POST)
+    public JsonResult<Object> addapprovals(Approvals approvals){
+        approvalsService.addApprovals(approvals);
+        return new JsonResult<>(SUCCESS,OK);
     }
 }

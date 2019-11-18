@@ -29,6 +29,7 @@
     <!-- add local/css 2016-8-18 -->
     <link href="${pageContext.request.contextPath }/css/appinfoadd.css" rel='stylesheet'>
     <link href="${pageContext.request.contextPath }/css/appinfolist.css" rel='stylesheet'>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/layui.css"  media="all">
 </head>
 <body>
 
@@ -72,7 +73,7 @@
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
                         <div class="col-sm-12">
-                            <a href="${pageContext.request.contextPath}/" class="btn btn-success btn-sm">新增产品批文信息</a>
+                            <a href="javascript:;" id="addapprovals" class="btn btn-success btn-sm">新增产品批文信息</a>
                                 <table id="datatable-responsive"
                                        class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
                                        role="grid" aria-describedby="datatable-responsive_info"
@@ -201,6 +202,26 @@
 <!--<script src="js/rollpage.js"></script>-->
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/rollpage.js"></script>
+<script src="${pageContext.request.contextPath }/js/layui.js" charset="utf-8"></script>
+<script type="text/javascript">
+    layui.use("layer",function() {
+        var layer = layui.layer;  //layer初始化
+        //弹出层
+        $('#addapprovals').on('click', function () {
+            layer.open({
+                type: 1,
+                title: '添加产品批文',
+                maxmin: true,
+                shadeClose: false, //点击遮罩关闭层
+                area: ['800px', '600px'],
+                content: '/web/addapprovals.html',
+                end: function () {
+                    location.reload();
+                }
+            });
+        });
+    })
+</script>
 </body>
 </body>
 </html>
