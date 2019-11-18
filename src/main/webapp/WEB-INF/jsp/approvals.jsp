@@ -30,6 +30,7 @@
     <link href="${pageContext.request.contextPath }/css/appinfoadd.css" rel='stylesheet'>
     <link href="${pageContext.request.contextPath }/css/appinfolist.css" rel='stylesheet'>
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/layui.css"  media="all">
+
 </head>
 <body>
 

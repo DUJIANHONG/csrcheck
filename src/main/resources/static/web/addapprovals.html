@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>增加产品批文</title>
-    <link rel="stylesheet" href="../css/layui.css"  media="all">
-
+    <link rel="stylesheet" href="../layui/dist/css/layui.css"  media="all">
 </head>
 <body>
 <div style="margin:  0 auto">
@@ -47,18 +46,16 @@
         </div>
     </form>
 </div>
-<script src="../js/layui.all.js" charset="utf-8"></script>
+<script src="../layui/dist/layui.all.js" charset="utf-8"></script>
 <script>
     //Demo
-    layui.use('form', function(){
-        var form = layui.form;
 
+        var form = layui.form;
         //监听提交
         form.on('submit(formDemo)', function(data){
             layer.msg(JSON.stringify(data.field));
             return false;
         });
-    });
 </script>
 </body>
 </html>
