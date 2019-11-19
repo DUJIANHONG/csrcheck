@@ -6,9 +6,12 @@ import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.Special_bulletin;
 import com.csr.csrcheck.service.CompanyService;
 import com.csr.csrcheck.service.ex.CompanyException;
+import com.csr.csrcheck.util.PageRequest;
 import com.csr.csrcheck.util.PageResult;
 import com.csr.csrcheck.util.PageUtils;
 import com.github.pagehelper.PageHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
@@ -39,9 +42,6 @@ public class CompanyServiceImpl implements CompanyService {
     public List<Company> getCommpanylistbyname(String company_name){
         List<Company> list=companyMapper.getCommpanylistbyname(company_name);
         Company company=new Company();
-        if (company_name == null || company_name.equals("")){
-            throw new CompanyException("请输入公司名称");
-        }
         if (list==null){
             throw new CompanyException("数据不存在");
         }
@@ -71,7 +71,10 @@ public class CompanyServiceImpl implements CompanyService {
         return count;
     }
 
-
+    @Override
+    public Company getCommpanyByid() {
+        return companyMapper.getCommpanyByid();
+    }
 
     /**
      * 调用分页插件完成分页

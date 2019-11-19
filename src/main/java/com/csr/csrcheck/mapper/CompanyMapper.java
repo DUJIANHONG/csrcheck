@@ -1,6 +1,5 @@
 package com.csr.csrcheck.mapper;
 
-import com.csr.csrcheck.pojo.Actual_controller;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.Special_bulletin;
 import org.apache.ibatis.annotations.Param;
@@ -59,4 +58,10 @@ public interface CompanyMapper {
      * @return
      */
      int getCompanyCount(@Param(value = "company_name") String company_name);
+
+    /**
+     * 下拉框显示公司信息
+     * @return
+     */
+    Company getCommpanyByid();
 }

@@ -68,4 +68,8 @@
     </select>
 
 
+    <select id="getCommpanyByid" resultType="com.csr.csrcheck.pojo.Company">
+        select c.* from  company c
+    </select>
+
 </mapper>
