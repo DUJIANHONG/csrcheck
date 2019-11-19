@@ -16,5 +16,54 @@
           </if>
       </trim>
        ORDER BY product_id
-</select>
+    </select>
+    
+    <!--增加产品页需要查询的关联数据-->
+    <select id="selectProduct_type" resultType="com.csr.csrcheck.pojo.Product_type">
+        SELECT * FROM z_product_type;
+    </select>
+    <select id="selectPatent" resultType="com.csr.csrcheck.pojo.Patent_type">
+        SELECT * FROM z_patent_type;
+    </select>
+    <select id="selectCompany" resultType="com.csr.csrcheck.pojo.Company">
+        SELECT * FROM company;
+    </select>
+    <select id="selectStage" resultType="com.csr.csrcheck.pojo.Stage">
+        SELECT * FROM z_stage;
+    </select>
+
+    <!--增加产品sql-->
+    <insert id="addproduct" parameterType="com.csr.csrcheck.pojo.Product">
+        insert into product(
+                product_name,
+                product_type_id,
+                product_territory,
+                study_appear,
+                registered,
+                stage_no,
+                company_id,
+                patent_no,
+                patent_t_id,
+                approvals_no,
+                domestic_import,
+                yieldly,
+                iflegal,
+                term_of_validity
+                )values (
+                #{product_name,jdbcType=INTEGER},
+                #{product_type_id,jdbcType=INTEGER},
+                #{product_territory,jdbcType=VARCHAR},
+                #{study_appear,jdbcType=VARCHAR},
+                #{registered,jdbcType=INTEGER},
+                #{stage_no,jdbcType=INTEGER},
+                #{company_id,jdbcType=INTEGER},
+                #{patent_no,jdbcType=VARCHAR},
+                #{patent_t_id},
+                #{approvals_no,jdbcType=VARCHAR},
+                #{domestic_import,jdbcType=INTEGER},
+                #{yieldly,jdbcType=VARCHAR},
+                #{iflegal,jdbcType=VARCHAR},
+                #{term_of_validity}
+                );
+    </insert>
 </mapper>

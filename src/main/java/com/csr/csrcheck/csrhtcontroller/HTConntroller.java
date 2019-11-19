@@ -2,24 +2,21 @@ package com.csr.csrcheck.csrhtcontroller;
 
 import com.csr.csrcheck.controller.BaseController;
 import com.csr.csrcheck.controller.ex.CompanyException;
-import com.csr.csrcheck.controller.ex.FileSizeException;
-import com.csr.csrcheck.controller.ex.FileTypeException;
-import com.csr.csrcheck.controller.ex.FileUploadIOException;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.News;
 import com.csr.csrcheck.service.*;
 import com.csr.csrcheck.service.impl.NewsServiceImpl;
 import com.csr.csrcheck.util.Constants;
-import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
 import com.csr.csrcheck.util.PageSupport;
-import com.sun.deploy.ui.AppInfo;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.java.Log;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -40,7 +37,7 @@ import java.util.Random;
  */
 @RequestMapping("csrht")
 @Controller
-@Slf4j
+@Log
 public class HTConntroller extends BaseController {
 
     @Resource
@@ -359,7 +356,7 @@ public class HTConntroller extends BaseController {
         model.addAttribute("page",pageResult);
         return "evaluate";
     }
-    /**
+     /**
      *分页查询前五大供应商
      *  @param pageNum
      * @param pageSize
@@ -384,5 +381,6 @@ public class HTConntroller extends BaseController {
         model.addAttribute("page",pageResult);
         return"fiveSuppler";
     }
+
 }
 

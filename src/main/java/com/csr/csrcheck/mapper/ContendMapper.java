@@ -1,7 +1,6 @@
 package com.csr.csrcheck.mapper;
 
 import com.csr.csrcheck.pojo.Contend;
-import com.csr.csrcheck.pojo.Patent;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

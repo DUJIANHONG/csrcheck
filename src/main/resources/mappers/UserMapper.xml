@@ -5,7 +5,7 @@
 <mapper namespace="com.csr.csrcheck.mapper.UserMapper">
     <sql id="userid">
         `user_id`,`user_name`,`password`,`user_roleid`,`user_sex`,`user_age`,
-        `user_address`,`create_people`,`create_time`,`login_status`
+        `user_address`,`create_people`,`create_time`
     </sql>
     
     <select id="findUser_name" resultType="com.csr.csrcheck.pojo.User">

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.csr.csrcheck.mapper.Five_SupplierMapper">
 
-    <select id="getListFive" resultType="com.csr.csrcheck.pojo.Five_Supplier">
+    <select id="getListFive" resultType="com.csr.csrcheck.pojo.Five_supplier">
              SELECT f.*,c.`company_name` FROM five_supplier f,company c
              <trim prefixOverrides="and | or" prefix="where">
                  and f.`company_id`=c.id

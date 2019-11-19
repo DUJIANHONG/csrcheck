@@ -6,7 +6,7 @@
 
     
     <select id="getAllSupplier" resultType="com.csr.csrcheck.pojo.Five_supplier">
-        SELECT f.`supplier_name`,f.`announcement_date`,f.`amt`,f.`alias`,f.`relationship`,f.`dataSource`,f.`ratio`
+        SELECT f.`supplier_name`,f.`announcement_date`,f.`amt`,f.`alias`,f.`relationship`,f.`dataSource`,f.`ratio`,c.company_name
         FROM five_supplier f,company c
         WHERE f.`company_id`=c.`id`
         AND c.`id`=#{company_id};

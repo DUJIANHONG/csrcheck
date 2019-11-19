@@ -1,6 +1,5 @@
 package com.csr.csrcheck.controller;
 
-import com.csr.csrcheck.pojo.Five_Supplier;
 import com.csr.csrcheck.service.Five_SupplierService;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @description:

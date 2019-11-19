@@ -23,4 +23,6 @@ public interface TheirMapper {
 
     //查询所有重要通报
     public List<Important_notification> getAllNotification();
+    //增加化妆品
+    int addTheir(Product product);
 }

@@ -19,7 +19,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("their")
-public class TheirServlet extends BaseController{
+public class        TheirServlet extends BaseController{
 
     @Resource
     private TheirServiceImpl theirService;
