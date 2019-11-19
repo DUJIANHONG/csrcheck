@@ -18,6 +18,45 @@
     <link href="../css/style.css?v=4.1.0" rel="stylesheet">
 <title>CSR药企通</title>
 </head>
+<style>
+/*    .black_overlay{
+        display: none;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        z-index:1001;
+        -moz-opacity: 0.8;
+        opacity:.80;
+        filter: alpha(opacity=80);
+    }
+    .white_content {
+        display: none;
+        position: absolute;
+        top: 10%;
+        left: 10%;
+        width: 80%;
+        height: 80%;
+        border: 16px solid lightblue;
+        background-color: white;
+        z-index:1002;
+        overflow: auto;
+    }
+    .white_content_small {
+        display: none;
+        position: absolute;
+        top: 20%;
+        left: 30%;
+        width: 40%;
+        height: 50%;
+        border: 16px solid lightblue;
+        background-color: white;
+        z-index:1002;
+        overflow: auto;
+    }*/
+</style>
 <body class="fixed-sidebar full-height-layout gray-bg"
       style="overflow: hidden">
 <div id="wrapper">
@@ -30,34 +69,10 @@
             <ul class="nav" id="side-menu">
                 <li class="nav-header">
                     <div>
-                        <span><!--<img alt="image" class="img-circle" height="60" width="60" th:src="${picUrl}"/>--></span>
+                        <span id="img_user"></span>
                         <h3 class="" style="color: #ffffff">
                             </i>CSR药企通管理系统
                         </h3>
-                    </div>
-                    <div class="dropdown profile-element hidden">
-
-         <!--               <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear">
-                            <span class="block m-t-xs"><strong class="font-bold"
-                                                               th:text="${username}">admin</strong></span>
-                            <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
-                             </span>
-                        </a>-->
-<!--                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a @click="personal" href="#">修改头像</a>
-                            </li>
-                            <li><a @click="personal" href="#">个人资料</a>
-                            </li>
-                            <li><a @click="personal" href="#">密码修改</a>
-                            </li>
-                            <li><a @click="personal" href="#">信箱</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a href="/logout">安全退出</a>
-                            </li>
-                        </ul>-->
-                        <div class="logo-element"></div>
                     </div>
                 </li>
                 <li><a href="#"> <i class="fa fa-home"></i> <span
@@ -66,8 +81,15 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="/csrht/companyjsp">企业信息</a></li>
                     </ul>
-
-
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="/csrht/shareholder">股东信息</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="/csrht/special">企业特别公告</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="/csrht/stock">股权变更</a></li>
+                    </ul>
                 </li>
 
                 <li><a href="#"> <i class="fa fa-stethoscope"></i> <span
@@ -80,7 +102,10 @@
                         <li><a class="J_menuItem" href="/csrht/abnormal">产品异常通报</a></li>
                     </ul>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="">增加产品信息</a></li>
+                        <li><a class="J_menuItem" href="/csrht/important">产品重要通报</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="/csrht/recall">产品召回</a></li>
                     </ul>
                 </li>
 
@@ -90,9 +115,6 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="/csrht/approvals">批文信息</a></li>
                     </ul>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="">增加批文信息</a></li>
-                    </ul>
                 </li>
 
                 <li><a href="#"> <i class="fa fa-yelp"></i> <span
@@ -101,9 +123,6 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="/csrht/bussiness">风险信息</a></li>
                     </ul>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="">增加风险信息</a></li>
-                    </ul>
                 </li>
 
                 <li><a href="#"> <i class="fa fa-plus-square"></i> <span
@@ -111,9 +130,6 @@
                 </a>
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="/csrht/clinic">临床信息</a></li>
-                    </ul>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="">增加临床信息</a></li>
                     </ul>
                 </li>
 
@@ -124,9 +140,6 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="/csrht/contend">核心竞争力信息</a></li>
                     </ul>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="">增加核心竞争力信息</a></li>
-                    </ul>
                 </li>
 
                 <li><a href="#"> <i class="fa fa-thumbs-o-up"></i> <span
@@ -135,9 +148,6 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="/csrht/evaluate">一致性评价信息</a></li>
                     </ul>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="">增加一致性评价信息</a></li>
-                    </ul>
                 </li>
 
                 <li><a href="#"> <i class="fa fa-users"></i> <span
@@ -145,6 +155,24 @@
                 </a>
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="/csrht/fiveSuppler">前五大供应商</a></li>
+                    </ul>
+                </li>
+
+
+                <li><a href="#"> <i class="fa fa-space-shuttle"></i> <span
+                        class="nav-label">飞行检查</span> <span class="fa arrow"></span>
+                </a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="/csrht/flightcheck">飞行检查信息</a></li>
+                    </ul>
+                </li>
+
+
+                <li><a href="#"> <i class="fa fa-balance-scale"></i> <span
+                        class="nav-label">法律</span> <span class="fa arrow"></span>
+                </a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="/csrht/lawsuit">法律诉讼</a></li>
                     </ul>
                 </li>
 
@@ -163,7 +191,6 @@
                         <li><a class="J_menuItem" href="/web/wxfk.html">反馈信息</a></li>
                     </ul>
                 </li>
-
             </ul>
         </div>
     </nav>
@@ -176,49 +203,10 @@
                 <div class="navbar-header">
 
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-default "
-                       href="#" title="收起菜单"><i class="fa fa-bars"></i> </a>
-       <!--             <form role="search" class="navbar-form-custom"
-                          method="post" action="">
-                        <div class="form-group">
-                            <input type="text" placeholder="请输入您需要查找的内容 …"
-                                   class="form-control" name="top-search" id="top-search">
-                        </div>
-                    </form>-->
+                       href="#" title="收起菜单"><i class="fa fa-bars "></i> </a>
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
-                   <!-- <li class="dropdown">&lt;!&ndash;<a class="dropdown-toggle count-info"
-                                            data-toggle="dropdown" href="#"> <i class="fa fa-envelope"></i>
-                        <span class="label label-warning">{{total}}</span>通知
-                    </a>&ndash;&gt;
-                        <ul class="dropdown-menu dropdown-messages">
-                            <li v-for="row in rows" class="m-t-xs">
-                                <div class="dropdown-messages-box">
-                                    <a class="pull-left"> <i
-                                            class="fa fa-server"></i>
-                                    </a>
-                                    <div class="media-body">
-                                        <small class="pull-right">{{row.before}}</small>
-                                        <strong>{{row.sender}}</strong>
-                                        {{row.title}} <br>
-                                        <small class="text-muted">{{row.updateDate}}</small>
-                                    </div>
-                                </div>
-                                <div class="divider"></div>
-                            </li>
-                            <li>
-                   &lt;!&ndash;             <div class="text-center link-block">
-                                    <a class="J_menuItem" href="/oa/notify/selfNotify"> <i
-                                            class="fa fa-envelope"></i> <strong> 查看所有消息</strong>
-                                    </a>
-                                </div>&ndash;&gt;
-                            </li>
-                        </ul>
-                    </li>-->
-                    <li class="hidden-xs"><a @click="personal" href="#" ><i class="fa fa-id-card"></i> 个人</a></li>
-       <!--             <li class="dropdown hidden-xs"><a
-                            class="right-sidebar-toggle" aria-expanded="false"> <i
-                            class="fa fa-tasks"></i> 主题
-                    </a></li>-->
+                    <li class="hidden-xs"><a href="javascript:;" id="parentIframe"><i class="fa fa-id-card"></i>个人</a></li>
                 </ul>
             </nav>
         </div>
@@ -252,118 +240,13 @@
         <div class="row J_mainContent" id="content-main">
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%"
                     src="" frameborder="0" data-id="index_v1.html">
-
             </iframe>
         </div>
         <div class="footer">
             <div class="pull-right">CSR药企通管理系统</div>
         </div>
     </div>
-    <!--右侧部分结束-->
-    <!--右侧边栏开始-->
-   <!-- <div id="right-sidebar">
-        <div class="sidebar-container">
-            <ul class="nav nav-tabs navs-3">
-
-                <li class="active"><a data-toggle="tab" href="#tab-1"> <i
-                        class="fa fa-gear"></i> 主题
-                </a></li>-->
-           <!--     <li class=""><a data-toggle="tab" href="#tab-2"> 通知 </a></li>
-                <li><a data-toggle="tab" href="#tab-3"> 项目进度 </a></li>-->
-          <!--  </ul>-->
-            <!--<div class="tab-content">
-               &lt;!&ndash; <div id="tab-1" class="tab-pane active">
-                    <div class="sidebar-title">
-                        <h3>
-                            <i class="fa fa-comments-o"></i> 主题设置
-                        </h3>
-                        <small><i class="fa fa-tim"></i>
-                            你可以从这里选择和预览主题的布局和样式，这些设置会被保存在本地，下次打开的时候会直接应用这些设置。
-                        </small>
-                    </div>
-                    <div class="skin-setttings">
-                        <div class="title">主题设置</div>
-                        <div class="setings-item">
-                            <span>收起左侧菜单</span>
-                            <div class="switch">
-                                <div class="onoffswitch">
-                                    <input type="checkbox" name="collapsemenu"
-                                           class="onoffswitch-checkbox" id="collapsemenu"> <label
-                                        class="onoffswitch-label" for="collapsemenu"> <span
-                                        class="onoffswitch-inner"></span> <span
-                                        class="onoffswitch-switch"></span>
-                                </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="setings-item">
-                            <span>固定顶部</span>
-
-                            <div class="switch">
-                                <div class="onoffswitch">
-                                    <input type="checkbox" name="fixednavbar"
-                                           class="onoffswitch-checkbox" id="fixednavbar"> <label
-                                        class="onoffswitch-label" for="fixednavbar"> <span
-                                        class="onoffswitch-inner"></span> <span
-                                        class="onoffswitch-switch"></span>
-                                </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="setings-item">
-                            <span> 固定宽度 </span>
-                            <div class="switch">
-                                <div class="onoffswitch">
-                                    <input type="checkbox" name="boxedlayout"
-                                           class="onoffswitch-checkbox" id="boxedlayout"> <label
-                                        class="onoffswitch-label" for="boxedlayout"> <span
-                                        class="onoffswitch-inner"></span> <span
-                                        class="onoffswitch-switch"></span>
-                                </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="title">皮肤选择</div>
-                        <div class="setings-item default-skin nb">
-								<span class="skin-name "> <a href="#" class="s-skin-0">
-										默认皮肤 </a>
-								</span>
-                        </div>
-                        <div class="setings-item blue-skin nb">
-								<span class="skin-name "> <a href="#" class="s-skin-1">
-										蓝色主题 </a>
-								</span>
-                        </div>
-                        <div class="setings-item yellow-skin nb">
-								<span class="skin-name "> <a href="#" class="s-skin-3">
-										黄色/紫色主题 </a>
-								</span>
-                        </div>
-                    </div>
-                </div>&ndash;&gt;
-       &lt;!&ndash;         <div id="tab-2" class="tab-pane">
-
-                    <div class="sidebar-title">
-                        <h3>
-                            <i class="fa fa-comments-o"></i> 最新通知
-                        </h3>
-                        <small><i class="fa fa-tim"></i> 您当前有10条未读信息</small>
-                    </div>
-                </div>&ndash;&gt;
-              &lt;!&ndash;  <div id="tab-3" class="tab-pane">
-
-                    <div class="sidebar-title">
-                        <h3>
-                            <i class="fa fa-cube"></i> 最新任务
-                        </h3>
-                        <small><i class="fa fa-tim"></i> 您当前有14个任务，10个已完成</small>
-                    </div>
-                </div>&ndash;&gt;
-            </div>-->
-
         </div>
-    </div>
-</div>
 <!-- 全局js -->
 <script src="../js/jquery.min.js?v=2.1.4"></script>
 <script src="../js/bootstrap.min.js?v=3.3.6"></script>
@@ -384,86 +267,84 @@
 <script src="../js/stomp.min.js"></script>
 <!-- Toastr script -->
 <script src="../js/plugins/toastr/toastr.min.js"></script>
-<!--<script type="text/javascript">
-    var stompClient = null;
-    $(function () {
-      /*  connect();*/
-    });
-
-    /*function connect() {
-        var sock = new SockJS("/endpointChat");
-        var stomp = Stomp.over(sock);
-        stomp.connect('guest', 'guest', function(frame) {
-
-            /!**  订阅了/user/queue/notifications 发送的消息,这里雨在控制器的 convertAndSendToUser 定义的地址保持一致, 
-             *  这里多用了一个/user,并且这个user 是必须的,使用user 才会发送消息到指定的用户。 
-             *  *!/
-            stomp.subscribe("/user/queue/notifications", handleNotification);
-            stomp.subscribe('/topic/getResponse', function (response) { //订阅/topic/getResponse 目标发送的消息。这个是在控制器的@SendTo中定义的。
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "progressBar": true,
-                    "positionClass": "toast-bottom-right",
-                    "onclick": null,
-                    "showDuration": "400",
-                    "hideDuration": "1000",
-                    "timeOut": "7000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
-                toastr.info(JSON.parse(response.body).responseMessage);
-            });
-        });
-        function handleNotification(message) {
-            wrapper.notify();
-            toastr.info(message.body);
-        }
-    }*/
-
-    var wrapper = new Vue({
-        el: '#wrapper',
-        data: {
-            total: '',
-            rows: '',
-        },
-        methods: {
-/*            notify: function () {
-                $.getJSON('/oa/notify/message', function (r) {
-                    wrapper.total = r.total;
-                    wrapper.rows = r.rows;
-                });
-            },*/
-            personal: function () {
-                layer.open({
-                    type: 2,
-                    title: '个人设置',
-                    maxmin: true,
-                    shadeClose: false,
-                    area: ['800px', '600px'],
-                    content: '/sys/user/personal'
-                });
-            }
-        },
-        created: function () {
-            this.notify()
-        }
-    })
-</script>-->
 <script>
-        function logout(){
+    $(function () {
+        //加载用户头像
+        $.ajax({
+            type:"get",
+            url:"/users/img",
+            dataType:"json",
+            success:function (data) {
+                if (data.state==2000) {
+                    let html = "<img alt='image' class='img-circle' height='60' width='60'src='#{img}'/>"
+                    html = html.replace(/#{img}/g, data.data.user_photo);
+                    $("#img_user").append(html);
+                }else{
+                    layer.msg("用户头像加载失败");
+                }
+            }
+        })
+    })
+
+//退出
+    function logout(){
             $.ajax({
                 type:"get",
                 url:"/users/logout",
                 dataType:"json",
                 success:function () {
+                    var ii = layer.load();
                     window.location.href="login.html";
+                    layer.close(ii);
                 }
             })
         }
+        //弹出层
+        $('#parentIframe').on('click', function(){
+            layer.open({
+                type: 2,
+                title: '个人设置',
+                maxmin: true,
+                shadeClose: false, //点击遮罩关闭层
+                area : ['800px' , '600px'],
+                content: '/csrht/personal',
+                end: function () {
+                    location.reload();
+                }
+            });
+        });
+        //弹出一个loading层
+        $(".nav-second-level li a").click(function(){
+            var ii = layer.load();
+            setTimeout(function(){
+                layer.close(ii);
+            }, 500);
+        });
+
+/*        //弹出隐藏层
+        function ShowDiv(show_div,bg_div){
+            document.getElementById(show_div).style.display='block';
+            document.getElementById(bg_div).style.display='block' ;
+            var bgdiv = document.getElementById(bg_div);
+            bgdiv.style.width = document.body.scrollWidth;
+// bgdiv.style.height = $(document).height();
+            $("#"+bg_div).height($(document).height());
+        };
+        //关闭弹出层
+        function CloseDiv(show_div,bg_div)
+        {
+            document.getElementById(show_div).style.display='none';
+            document.getElementById(bg_div).style.display='none';
+        };*/
 </script>
 </body>
+<!--id="Button1" href="javascript:;" onclick="ShowDiv('MyDiv','fade')"-->
+<!--弹出层时背景层DIV-->
+<!--<div id="fade" class="black_overlay">
+</div>
+<div id="MyDiv" class="white_content">
+    <div style="text-align: right; cursor: default; height: 40px;">
+        <span style="font-size: 16px;" onclick="CloseDiv('MyDiv','fade')">关闭</span>
+    </div>
+</div>-->
 </html>

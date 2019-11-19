@@ -36,7 +36,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>新增新闻信息 <i class="fa fa-user"></i><small>${userSession.user_name}</small></h2>
+                <h2>新增新闻信息 <i class="fa fa-user"></i><small>${userSession.role_name}-${userSession.user_name}</small></h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -119,6 +119,7 @@
                         <div class="col-md-6 col-md-offset-3">
                             <button id="send" type="submit" class="btn btn-success">保存</button>
                             <button type="reset" class="btn btn-primary">清空</button>
+                            <button type="button" class="btn btn-danger"onclick="javascript :history.back(-1);">返回</button>
                             <br/><br/>
                         </div>
                     </div>

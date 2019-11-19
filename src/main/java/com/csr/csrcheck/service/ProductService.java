@@ -27,6 +27,12 @@ public interface ProductService {
      */
     PageResult listpage(int pageNum, int pageSize, String product_name);
 
+    /**
+     *查询产品id和产品名称
+     *  @return
+     */
+    List<Product> list();
+
 
     /**
      * 新增产品页面所需的关联查询

@@ -38,7 +38,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    公司信息管理维护 <i class="fa fa-user"></i><small>
+                    公司信息管理维护 <i class="fa fa-user"></i><small>${userSession.role_name}-
                    ${userSession.user_name} - 您可以通过搜索或者其他的筛选项对公司的信息进行修改、删除等管理操作。</small>
                 </h2>
                 <div class="clearfix"></div>
@@ -73,11 +73,11 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <a href="${pageContext.request.contextPath}/" class="btn btn-success btn-sm">新增企业信息</a>
-                            <div style="overflow-x: auto; overflow-y: auto; height: 50%; width:100%;">
+                            <div style="overflow-x: auto;overflow-y: auto;width: 100%;height: 50%">
                                 <table id="datatable-responsive"
                                        class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
                                        role="grid" aria-describedby="datatable-responsive_info"
-                                       style="width: 600%;">
+                                       style="width: 150%;" >
                                     <thead>
                                     <tr role="row">
                                         <th hidden>主键id</th>
@@ -149,21 +149,21 @@
                                         <tr role="row" class="odd">
                                             <td hidden>${pages.id}</td>
                                             <td tabindex="0" class="sorting_1">${pages.company_name}</td>
-                                            <td>${pages.company_address}</td>
-                                            <td>${pages.type_ownership}</td>
-                                            <td>${pages.main_business}</td>
-                                            <td>${pages.strategic_focus}</td>
+                                            <td >${pages.company_address}</td>
+                                            <td >${pages.type_ownership}</td>
+                                            <td >${pages.main_business}</td>
+                                            <td >${pages.strategic_focus}</td>
                                             <c:if test="${pages.listed_unlisted==1}">
                                                 <td>上市</td>
                                             </c:if>
                                             <c:if test="${pages.listed_unlisted==2}">
                                                 <td>未上市</td>
                                             </c:if>
-                                            <td>${pages.ten_shareholders}</td>
-                                            <td>${pages.user_name}</td>
-                                            <td>${pages.production}</td>
-                                            <td>${pages.organization}</td>
-                                            <td>${pages.company_ranking}</td>
+                                            <td >${pages.ten_shareholders}</td>
+                                            <td >${pages.user_name}</td>
+                                            <td >${pages.production}</td>
+                                            <td >${pages.organization}</td>
+                                            <td >${pages.company_ranking}</td>
                                             <td>
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-danger">点击操作</button>

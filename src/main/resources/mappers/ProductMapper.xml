@@ -17,7 +17,7 @@
       </trim>
        ORDER BY product_id
     </select>
-    
+
     <!--增加产品页需要查询的关联数据-->
     <select id="selectProduct_type" resultType="com.csr.csrcheck.pojo.Product_type">
         SELECT * FROM z_product_type;
@@ -66,4 +66,8 @@
                 #{term_of_validity}
                 );
     </insert>
+
+    <select id="list" resultType="com.csr.csrcheck.pojo.Product">
+       SELECT `product_id`,`product_name` FROM `product`
+    </select>
 </mapper>

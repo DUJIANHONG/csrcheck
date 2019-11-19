@@ -80,6 +80,14 @@ ul{
     color: #666;
 
 }
+.gg-faeye2{
+	position: absolute;
+    top: 24%;
+    left: 80%;
+    padding: 10px;
+    color: #666;
+
+}
 /*头像裁剪上传部分*/
 .avatar-view {
   display: block;
@@ -211,3 +219,6 @@ ul{
 	margin-top: -10%;
 	margin-bottom: 12%;
 }
+
+
+

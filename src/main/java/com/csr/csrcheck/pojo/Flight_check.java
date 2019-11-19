@@ -1,6 +1,7 @@
 package com.csr.csrcheck.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -18,6 +19,7 @@ public class Flight_check {
     private String attention;//特别关注
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date publication;//公布日期
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date term_of_validity;//有效期限
     private String content;//飞行检查内容
 
@@ -29,6 +31,15 @@ public class Flight_check {
      */
     private String company_name; //公司名称
     private String product_name;//产品名称
+    private String product_t_name;//产品类型名称
+
+    public String getProduct_t_name() {
+        return product_t_name;
+    }
+
+    public void setProduct_t_name(String product_t_name) {
+        this.product_t_name = product_t_name;
+    }
 
     public String getCompany_name() {
         return company_name;

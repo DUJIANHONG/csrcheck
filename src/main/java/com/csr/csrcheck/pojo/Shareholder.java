@@ -13,6 +13,8 @@ public class Shareholder {
     private String proportion;      //占流通股本比例
     private int company_id;         //关联企业id
 
+    private String company_name;              //公司名称
+
     public int getId() {
         return id;
     }
@@ -59,5 +61,13 @@ public class Shareholder {
 
     public void setCompany_id(int company_id) {
         this.company_id = company_id;
+    }
+
+    public String getCompany_name() {
+        return company_name;
+    }
+
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
     }
 }

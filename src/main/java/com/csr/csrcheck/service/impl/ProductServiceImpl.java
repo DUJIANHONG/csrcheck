@@ -41,6 +41,15 @@ public class ProductServiceImpl implements ProductService {
         return PageUtils.getPageResult(pageNum,pageSize,getpageinfo(pageNum,pageSize,product_name));
     }
 
+    @Override
+    public List<Product> list() {
+        List list=productMapper.list();
+        if(list==null){
+            throw new CompanyException("数据为空");
+        }
+        return list;
+    }
+
     /**
      * 调用分页插件完成分页
      * @param pageNum

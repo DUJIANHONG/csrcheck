@@ -1,6 +1,7 @@
 package com.csr.csrcheck.service.impl;
 
 import com.csr.csrcheck.mapper.CompanyMapper;
+import com.csr.csrcheck.pojo.Actual_controller;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.Special_bulletin;
 import com.csr.csrcheck.service.CompanyService;

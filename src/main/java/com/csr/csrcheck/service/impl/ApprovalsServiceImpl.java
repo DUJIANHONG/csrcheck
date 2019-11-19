@@ -1,13 +1,9 @@
 package com.csr.csrcheck.service.impl;
 
 import com.csr.csrcheck.mapper.ApprovalsMapper;
-import com.csr.csrcheck.mapper.ClinicMapper;
 import com.csr.csrcheck.pojo.Approvals;
-import com.csr.csrcheck.pojo.Clinic;
 import com.csr.csrcheck.service.ApprovalsService;
-import com.csr.csrcheck.service.ClinicService;
 import com.csr.csrcheck.service.ex.ApprovalsException;
-import com.csr.csrcheck.service.ex.ClinicException;
 import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.util.PageResult;
 import com.csr.csrcheck.util.PageUtils;
@@ -41,6 +37,55 @@ public class ApprovalsServiceImpl implements ApprovalsService {
     @Override
     public PageResult getApprovalslistpage(int pageNum, int pageSize, String product_name) {
         return PageUtils.getPageResult(pageNum,pageSize,getpageinfo(pageNum,pageSize,product_name));
+    }
+
+    /**
+     * 增加批文
+     * @param approvals
+     */
+    @Override
+    public void addApprovals(Approvals approvals) {
+        int row=approvalsMapper.addApprovals(approvals);
+        if(row!=1){
+            throw new CompanyException("增加失败");
+        }
+    }
+
+    /**
+     * 修改批文
+     * @param approvals
+     * @return
+     */
+    @Override
+    public int updateApprovals(Approvals approvals) {
+       int row =approvalsMapper.updateApprovals(approvals);
+       if (row!=1){
+           throw new CompanyException("修改失败");
+       }
+        return row;
+    }
+
+    /**
+     * 根据id查找批文
+     * @param id
+     * @return
+     */
+    @Override
+    public Approvals findapprovalsByid(int id) {
+        Approvals list=approvalsMapper.findapprovalsByid(id);
+        if(list==null){
+            throw new CompanyException("数据为空");
+        }
+        return list;
+    }
+
+    @Override
+    public int deleteapprovalsByid(int id) {
+        int row=approvalsMapper.deleteapprovalsByid(id);
+        if(row!=1){
+            throw new CompanyException("删除失败");
+        }
+        return row;
     }
 
     /**

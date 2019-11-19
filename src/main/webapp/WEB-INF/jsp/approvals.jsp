@@ -29,6 +29,8 @@
     <!-- add local/css 2016-8-18 -->
     <link href="${pageContext.request.contextPath }/css/appinfoadd.css" rel='stylesheet'>
     <link href="${pageContext.request.contextPath }/css/appinfolist.css" rel='stylesheet'>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/layui.css"  media="all">
+
 </head>
 <body>
 
@@ -38,7 +40,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    产品批文信息管理维护 <i class="fa fa-user"></i><small>
+                    产品批文信息管理维护 <i class="fa fa-user"></i><small>${userSession.role_name}-
                     ${userSession.user_name} - 您可以通过搜索或者其他的筛选项对批文的信息进行修改、删除等管理操作。</small>
                 </h2>
                 <div class="clearfix"></div>
@@ -72,6 +74,7 @@
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
                         <div class="col-sm-12">
+                            <a href="javascript:;" id="addapprovals" class="btn btn-success btn-sm">新增产品批文信息</a>
                                 <table id="datatable-responsive"
                                        class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
                                        role="grid" aria-describedby="datatable-responsive_info"
@@ -107,7 +110,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="pages" items="${page.content}" varStatus="status">
+                                    <c:forEach var="pages" items="${page.content}" varStatus="status" >
                                         <tr role="row" class="odd">
                                             <td tabindex="0" class="sorting_1">${pages.approval_num}</td>
                                             <td>${pages.product.product_name}</td>
@@ -124,13 +127,10 @@
                                                     <ul class="dropdown-menu" role="menu">
                                                         <li><a class="modifyAppInfo" data-toggle="tooltip"
                                                                data-placement="top" title=""
-                                                               data-original-title="修改公司信息">修改</a></li>
-                                                        <li><a class="viewApp" data-toggle="tooltip"
-                                                               data-placement="top" title=""
-                                                               data-original-title="查看公司信息">查看</a></li>
-                                                        <li><a class="deleteApp" data-toggle="tooltip"
-                                                               data-placement="top" title=""
-                                                               data-original-title="删除公司信息">删除</a></li>
+                                                               data-original-title="修改批文信息" id="uppdateapprovals" approvalsid="${pages.id}">修改</a></li>
+                                                        <li><a class="modifyAppInfo" data-toggle="tooltip"
+                                                               data-placement="top" title="" id="deleteapprovals"
+                                                               data-original-title="删除批文信息" deleteapprovalsid="${pages.id}">删除</a></li>
                                                     </ul>
                                                 </div>
                                             </td>
@@ -195,11 +195,71 @@
 <!-- jQuery custom content scroller -->
 <script src="${pageContext.request.contextPath }/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <!-- Custom Theme Scripts -->
-<%--<script src="${pageContext.request.contextPath }/js/custom.min.js"></script>--%>
+
 <script src="${pageContext.request.contextPath }/js/dropzone.js"></script>
-<!--<script src="js/rollpage.js"></script>-->
+
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/rollpage.js"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/layer/layer.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/layer/layer.js"></script>
+<script src="${pageContext.request.contextPath }/js/layui.js" charset="utf-8"></script>
+<script type="text/javascript">
+        //增加弹出层
+        $('#addapprovals').on('click', function () {
+            layer.open({
+                type: 2,
+                title: '添加产品批文',
+                maxmin: true,
+                shadeClose: false, //点击遮罩关闭层
+                area: ['900px', '600px'],
+                content: '${pageContext.request.contextPath }/web/addapprovals.html',
+                end: function () {
+                    location.reload();
+                }
+            });
+        });
+        //修改弹出层
+        $('#uppdateapprovals ').on('click', function () {
+            var obj=$(this);
+            console.log(obj.attr('approvalsid'))
+            layer.open({
+                type: 2,
+                title: '修改产品批文',
+                maxmin: true,
+                shadeClose: false, //点击遮罩关闭层
+                area: ['900px', '600px'],
+                content: '${pageContext.request.contextPath }/web/updateapprovals.html?id='+obj.attr("approvalsid"),
+                end: function () {
+                    location.reload();
+                }
+            });
+        });
+        //删除
+        $('#deleteapprovals').on('click',function () {
+            var obj=$(this);
+            console.log(obj.attr('deleteapprovalsid'))
+            parent.layer.confirm("确定要删除这条记录吗？",{btn:['确定','取消']},function (confirm) {
+                layer.close(confirm);
+                $.ajax({
+                    type:"post",
+                    url:"/approvals/deleteapprovals/"+obj.attr("deleteapprovalsid"),
+                    dataType:"json",
+                    success:function (data) {
+                        if(data.state==2000){
+                            parent.layer.msg("操作成功",{icon:6});
+                           location.reload();
+                        }else{
+                            parent.layer.msg(data.message);
+                        }
+                    }
+                });
+            },function (confirms) {
+                layer.close(confirms);
+                parent.layer.msg("已取消删除");
+            });
+
+        });
+</script>
 </body>
 </body>
 </html>

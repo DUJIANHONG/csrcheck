@@ -1,11 +1,8 @@
 package com.csr.csrcheck.service.impl;
 
 import com.csr.csrcheck.mapper.Business_risksMapper;
-import com.csr.csrcheck.mapper.LawsuitMapper;
 import com.csr.csrcheck.pojo.Business_risks;
-import com.csr.csrcheck.pojo.Lawsuit;
 import com.csr.csrcheck.service.Business_risksService;
-import com.csr.csrcheck.service.LawsuitService;
 import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.service.ex.LawsuitException;
 import com.csr.csrcheck.util.PageResult;
@@ -36,6 +33,41 @@ public class Business_risksServiceImpl implements Business_risksService {
     @Override
     public PageResult getListpage(int pageNum, int pageSize, String company_name) {
         return PageUtils.getPageResult(pageNum,pageSize,getPageInfo(pageNum,pageSize,company_name));
+    }
+
+    /**
+     * 增加
+     * @param business_risks
+     */
+    @Override
+    public void addBusiness(Business_risks business_risks) {
+        int row=business_risksMapper.addBusiness(business_risks);
+        if(row!=1){
+            throw new CompanyException("增加失败");
+        }
+    }
+
+    /**
+     *修改
+     *  @param business_risks
+     * @return
+     */
+    @Override
+    public int updateBusiness(Business_risks business_risks) {
+        int row = business_risksMapper.updateBusiness(business_risks);
+        if(row!=1){
+            throw new CompanyException("修改失败");
+        }
+        return row;
+    }
+
+    @Override
+    public int deleteBusiness(int id) {
+        int row=business_risksMapper.deleteBusiness(id);
+        if(row!=1){
+            throw new CompanyException("删除失败");
+        }
+        return row;
     }
 
     /**

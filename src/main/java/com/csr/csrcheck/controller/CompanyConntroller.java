@@ -1,6 +1,7 @@
 package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.controller.ex.CompanyException;
+import com.csr.csrcheck.pojo.Actual_controller;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.Special_bulletin;
 import com.csr.csrcheck.service.CompanyService;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Generated;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -48,6 +51,14 @@ public class CompanyConntroller extends BaseController{
         }
         return new JsonResult<>(SUCCESS,OK,list);
     }
+    /**
+     * 添加公司信息
+     */
+  /*  @GetMapping("reg")
+    public JsonResult<Void> reg(Company company) {
+        companyService.reg(company);
+        return new JsonResult<>();
+    }*/
 
     /**
      * 根据公司名模糊查询公司信息（wxapi）

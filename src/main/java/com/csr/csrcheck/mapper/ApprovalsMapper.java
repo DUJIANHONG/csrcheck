@@ -3,7 +3,6 @@ package com.csr.csrcheck.mapper;
 
 import com.csr.csrcheck.pojo.Approvals;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -23,4 +22,33 @@ public interface ApprovalsMapper {
      * @return
      */
     public List<Approvals> getapprovalspage(@Param(value = "product_name") String product_name);
+
+
+    /**
+     * 增加批文
+     * @param approvals
+     * @return
+     */
+    public int addApprovals(Approvals approvals);
+
+    /**
+     * 修改批文
+     * @param approvals
+     * @return
+     */
+    int updateApprovals(Approvals approvals);
+
+    /**
+     * 根据id查找批文
+     * @param id
+     * @return
+     */
+    Approvals findapprovalsByid(int id);
+
+    /**
+     *根据id删除批文
+     *  @param id
+     * @return
+     */
+    int deleteapprovalsByid(int id);
 }

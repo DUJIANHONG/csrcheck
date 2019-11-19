@@ -40,7 +40,7 @@ public class BaseController {
      * @return 当前登录的用户的id
      */
     protected Integer getUidFromSession(HttpSession session) {
-        return Integer.valueOf(session.getAttribute("uid").toString());
+        return Integer.valueOf(session.getAttribute("user_id").toString());
     }
 
     /**
@@ -50,7 +50,7 @@ public class BaseController {
      */
     protected String getUsernameFromSession(HttpSession session) {
 
-        return session.getAttribute("username").toString();
+        return session.getAttribute("user_name").toString();
     }
 
     @ExceptionHandler({ServiceException.class, FileUploadException.class})

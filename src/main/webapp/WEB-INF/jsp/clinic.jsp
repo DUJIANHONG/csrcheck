@@ -38,7 +38,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    临床信息管理维护 <i class="fa fa-user"></i><small>
+                    临床信息管理维护 <i class="fa fa-user"></i><small>${userSession.role_name}-
                     ${userSession.user_name} - 您可以通过搜索或者其他的筛选项对临床信息进行修改、删除等管理操作。</small>
                 </h2>
                 <div class="clearfix"></div>
@@ -72,6 +72,7 @@
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
                         <div class="col-sm-12">
+                            <a href="${pageContext.request.contextPath}/" class="btn btn-success btn-sm">新增临床信息</a>
                             <table id="datatable-responsive"
                                    class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
                                    role="grid" aria-describedby="datatable-responsive_info"

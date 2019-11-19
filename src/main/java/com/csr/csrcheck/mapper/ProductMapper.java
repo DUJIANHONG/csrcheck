@@ -51,4 +51,10 @@ public interface ProductMapper {
      * 新增产品
      */
     int addproduct(Product product);
+
+    /**
+     *查询产品id和产品名称
+     *  @return
+     */
+    List<Product> list();
 }

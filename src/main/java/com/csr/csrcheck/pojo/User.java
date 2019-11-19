@@ -20,7 +20,26 @@ public class User {
     private String user_address; //住址
     private String create_people;//创建人
     private Date create_time;    //创建时间
-    private String login_status; //最近登录状态
+    private String user_photo;   //用户头像
+
+
+    public String getUser_photo() {
+        return user_photo;
+    }
+
+    public void setUser_photo(String user_photo) {
+        this.user_photo = user_photo;
+    }
+
+    private String role_name;     //角色名称
+
+    public String getRole_name() {
+        return role_name;
+    }
+
+    public void setRole_name(String role_name) {
+        this.role_name = role_name;
+    }
 
     public int getUser_id() {
         return user_id;
@@ -94,13 +113,8 @@ public class User {
         this.create_time = create_time;
     }
 
-    public String getLogin_status() {
-        return login_status;
-    }
 
-    public void setLogin_status(String login_status) {
-        this.login_status = login_status;
-    }
+
 
     @Override
     public String toString() {
@@ -114,7 +128,6 @@ public class User {
                 ", user_address='" + user_address + '\'' +
                 ", create_people='" + create_people + '\'' +
                 ", create_time=" + create_time +
-                ", login_status='" + login_status + '\'' +
                 '}';
     }
 
@@ -131,12 +144,11 @@ public class User {
                 Objects.equals(password, user.password) &&
                 Objects.equals(user_address, user.user_address) &&
                 Objects.equals(create_people, user.create_people) &&
-                Objects.equals(create_time, user.create_time) &&
-                Objects.equals(login_status, user.login_status);
+                Objects.equals(create_time, user.create_time);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user_id, user_name, password, user_roleid, user_sex, user_age, user_address, create_people, create_time, login_status);
+        return Objects.hash(user_id, user_name, password, user_roleid, user_sex, user_age, user_address, create_people, create_time);
     }
 }
