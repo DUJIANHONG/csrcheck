@@ -1,17 +1,15 @@
 package com.csr.csrcheck.service.impl;
 
 import com.csr.csrcheck.mapper.CompanyMapper;
-import com.csr.csrcheck.pojo.Actual_controller;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.service.CompanyService;
 import com.csr.csrcheck.service.ex.CompanyException;
-import com.csr.csrcheck.util.PageRequest;
 import com.csr.csrcheck.util.PageResult;
 import com.csr.csrcheck.util.PageUtils;
 import com.github.pagehelper.PageHelper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageInfo;
+import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -66,6 +64,11 @@ public class CompanyServiceImpl implements CompanyService {
     public int getCompanyCount(String company_name) {
         int count=companyMapper.getCompanyCount(company_name);
         return count;
+    }
+
+    @Override
+    public Company getCommpanyByid() {
+        return companyMapper.getCommpanyByid();
     }
 
     /**

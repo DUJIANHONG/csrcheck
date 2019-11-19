@@ -1,18 +1,15 @@
 package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.pojo.Business_risks;
-import com.csr.csrcheck.pojo.Lawsuit;
+import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.service.Business_risksService;
-import com.csr.csrcheck.service.LawsuitService;
+import com.csr.csrcheck.service.CompanyService;
 import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.service.ex.LawsuitException;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -70,4 +67,41 @@ public class Business_risksConntroller extends BaseController{
         return new JsonResult<>(SUCCESS,OK,pageResult);
     }
 
+    /**
+     *增加经营风险
+     *  @param business_risks
+     * @return
+     */
+    @RequestMapping(path = "addbussiness",method = RequestMethod.POST)
+    public JsonResult<Void> addbussiness(Business_risks business_risks){
+        business_risksService.addBusiness(business_risks);
+        return new JsonResult<>(SUCCESS,OK);
+    }
+
+    /**
+     *修改经营风险
+     *  @param business_risks
+     * @return
+     */
+    @RequestMapping(path = "updatebussiness",method = RequestMethod.POST)
+    public JsonResult<Void> updatebussiness(Business_risks business_risks){
+        business_risksService.updateBusiness(business_risks);
+        return new JsonResult<>(SUCCESS,OK);
+    }
+    /**
+     *删除经营风险
+     *  @param id
+     * @return
+     */
+    @RequestMapping(path = "deletebussiness/{id}",method = RequestMethod.POST)
+    public JsonResult<Void> deletebussiness(@PathVariable(value = "id") int id){
+        business_risksService.deleteBusiness(id);
+        return new JsonResult<>(SUCCESS,OK);
+    }
+    @Resource
+    private CompanyService companyService;
+    @RequestMapping(path = "getcompany",method = RequestMethod.POST)
+    public JsonResult<Company> getcompany(){
+        return new JsonResult<>(SUCCESS,OK);
+    }
 }

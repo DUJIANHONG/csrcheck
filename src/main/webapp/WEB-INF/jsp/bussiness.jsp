@@ -29,6 +29,7 @@
     <!-- add local/css 2016-8-18 -->
     <link href="${pageContext.request.contextPath }/css/appinfoadd.css" rel='stylesheet'>
     <link href="${pageContext.request.contextPath }/css/appinfolist.css" rel='stylesheet'>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/layui.css"  media="all">
 </head>
 <body>
 
@@ -72,7 +73,7 @@
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
                         <div class="col-sm-12">
-                            <a href="${pageContext.request.contextPath}/" class="btn btn-success btn-sm">新增企业风险信息</a>
+                            <a href="javascript:;" id="addbussiiness" class="btn btn-success btn-sm">新增企业风险信息</a>
                             <table id="datatable-responsive"
                                    class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
                                    role="grid" aria-describedby="datatable-responsive_info"
@@ -207,6 +208,25 @@
 <!--<script src="js/rollpage.js"></script>-->
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/rollpage.js"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/layer/layer.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/layer/layer.js"></script>
+<script src="${pageContext.request.contextPath }/js/layui.js" charset="utf-8"></script>
+<script type="text/javascript">
+   //增加经营风险
+    $("#addbussiiness").on('click',function () {
+        layer.open({
+            type:2,
+            title:'添加企业经营风险',
+            maxmin:true,
+            shadeClose:false,
+            area:['900px','600px'],
+            content:'/web/addBusiness_risks.html',
+            end:function () {
+                location.reload();
+            }
+        })
+    })
+</script>
 </body>
 </body>
 </html>
