@@ -1,10 +1,9 @@
 package com.csr.csrcheck.pojo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
-import java.util.Objects;
 
 /**
  * @description:产品
@@ -20,11 +19,11 @@ public class Product {
     private String product_name;        //产品名称
     @JsonIgnore
     private int product_type_id;        //产品类型id
-    @JsonIgnore
     private int company_id;             //关联公司id
     private String product_territory;   //产品领域
     private int study_appear;           //在研/上市（1：在研，2：上市）
     private String registered;          //注册分类（化1，化2，化3，化4，化5，老化6）
+    @JsonIgnore
     private int stage_no;               //阶段编号
     private String patent_no;           //专利号
     @JsonIgnore
@@ -32,8 +31,8 @@ public class Product {
     private String approvals_no;        //准字号
     private int domestic_import;        //国产/进口（1国产；2进口）
     private String yieldly;             //产品生产地
-    private int iflegal;//是否合法
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    private int iflegal;               //是否合法
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date term_of_validity;//有效期限
 
     public int getIflegal() {
@@ -65,15 +64,11 @@ public class Product {
      *自定义字段
      */
     private String company_name;//公司名称
-    private String patent_t_name;//产品类型名称
+    private String patent_t_name;//专利类型名称
     private String stage_name;  //阶段名称
-    @JsonIgnore
     private String licence_no;  //许可证号
-    @JsonIgnore
     private String production;  //生产范围
-    @JsonIgnore
     private String organization;//受管辖机构
-    @JsonIgnore
     private String expire_date; //许可证到期时间
 
     public String getPatent_t_name() {

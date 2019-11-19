@@ -1,6 +1,6 @@
 package com.csr.csrcheck.mapper;
 
-import com.csr.csrcheck.pojo.Five_Supplier;
+import com.csr.csrcheck.pojo.Five_supplier;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -18,5 +18,5 @@ public interface Five_SupplierMapper {
      * 查询前五大供应商
      * @return
      */
-    List<Five_Supplier> getListFive(@Param(value = "supplier_name") String supplier_name);
+    List<Five_supplier> getListFive(@Param(value = "supplier_name") String supplier_name);
 }

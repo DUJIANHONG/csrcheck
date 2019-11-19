@@ -1,7 +1,6 @@
 package com.csr.csrcheck.service;
 
 import com.csr.csrcheck.pojo.Contend;
-import com.csr.csrcheck.pojo.Patent;
 import com.csr.csrcheck.util.PageResult;
 
 import java.util.List;

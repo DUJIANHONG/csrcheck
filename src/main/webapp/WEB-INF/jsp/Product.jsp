@@ -44,6 +44,11 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <button type="submit" class="btn btn-primary" id="add">新增产品</button>
+                        </div>
+                    </div>
                 <form method="post" action="${pageContext.request.contextPath }/csrht/product">
                     <input type="hidden" name="pageNum" value="1" />
                     <ul>
@@ -264,6 +269,22 @@
 <!--<script src="js/rollpage.js"></script>-->
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/rollpage.js"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/layer/layer.js"></script>
+<script type="application/javascript">
+    $(function () {
+        $("#add").click(function () {
+            layer.open({
+                type: 2,
+                title: '新增产品',
+                shadeClose: true,
+                shade: false,
+                maxmin: true, //开启最大化最小化按钮
+                area: ['893px', '600px'],
+                content: '/product/addproduct'
+            });
+        });
+    });
+</script>
 </body>
 </body>
 </html>

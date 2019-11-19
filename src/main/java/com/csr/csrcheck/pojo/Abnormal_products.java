@@ -24,12 +24,18 @@ public class Abnormal_products {
     private String last;                    //结论
     private String provenance;              //出处（此列存放通报excel表存放的路径）
 
-    //产品信息
-    private Product product;
-    /**
-     * 自定义字段
-     */
+
+    //自定义字段
+    private String company_name;        //公司名称
     private String product_name;        //产品名称
+
+    public String getCompany_name() {
+        return company_name;
+    }
+
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
+    }
 
     public String getProduct_name() {
         return product_name;
@@ -38,6 +44,12 @@ public class Abnormal_products {
     public void setProduct_name(String product_name) {
         this.product_name = product_name;
     }
+
+    //产品信息
+    private Product product;
+    /**
+     * 自定义字段
+     */
 
     public Product getProduct() {
         return product;

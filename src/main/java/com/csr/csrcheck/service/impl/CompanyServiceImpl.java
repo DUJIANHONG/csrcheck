@@ -1,12 +1,17 @@
 package com.csr.csrcheck.service.impl;
 
 import com.csr.csrcheck.mapper.CompanyMapper;
+import com.csr.csrcheck.pojo.Actual_controller;
 import com.csr.csrcheck.pojo.Company;
+import com.csr.csrcheck.pojo.Special_bulletin;
 import com.csr.csrcheck.service.CompanyService;
 import com.csr.csrcheck.service.ex.CompanyException;
+import com.csr.csrcheck.util.PageRequest;
 import com.csr.csrcheck.util.PageResult;
 import com.csr.csrcheck.util.PageUtils;
 import com.github.pagehelper.PageHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
@@ -80,6 +85,11 @@ public class CompanyServiceImpl implements CompanyService {
         PageHelper.startPage(pageNum, pageSize);
         List<Company> companyList=companyMapper.getCompanyPage(company_name);
         return new PageInfo<Company>(companyList);
+    }
+
+    @Override
+    public List<Special_bulletin> getAll() {
+        return companyMapper.getAll()   ;
     }
 
 }

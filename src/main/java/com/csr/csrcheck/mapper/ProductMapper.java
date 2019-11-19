@@ -1,7 +1,7 @@
 package com.csr.csrcheck.mapper;
 
 
-import com.csr.csrcheck.pojo.Product;
+import com.csr.csrcheck.pojo.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -34,6 +34,23 @@ public interface ProductMapper {
      * @return
      */
     List<Product> listpage(@Param(value = "product_name") String product_name);
+
+    /**
+     *
+     * 新增产品页面所需的关联查询
+     */
+    List<Product_type> selectProduct_type();
+
+    List<Patent_type> selectPatent();
+
+    List<Company> selectCompany();
+
+    List<Stage> selectStage();
+
+    /**
+     * 新增产品
+     */
+    int addproduct(Product product);
 
     /**
      *查询产品id和产品名称

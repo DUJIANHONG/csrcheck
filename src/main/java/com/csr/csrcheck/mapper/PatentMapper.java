@@ -1,6 +1,6 @@
 package com.csr.csrcheck.mapper;
 
-import com.csr.csrcheck.pojo.Patent;
+import com.csr.csrcheck.pojo.Product;
 
 import java.util.List;
 
@@ -11,6 +11,6 @@ import java.util.List;
 public interface PatentMapper {
 
     //查询該公司旗下的所有专利
-    public List<Patent> getListByProduct(int company_id);
+    public List<Product> getListByProduct(int company_id);
 
 }

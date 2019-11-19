@@ -1,7 +1,7 @@
 package com.csr.csrcheck.service.impl;
 
 import com.csr.csrcheck.mapper.ProductMapper;
-import com.csr.csrcheck.pojo.Product;
+import com.csr.csrcheck.pojo.*;
 import com.csr.csrcheck.service.ProductService;
 import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.service.ex.ProductException;
@@ -66,4 +66,28 @@ public class ProductServiceImpl implements ProductService {
         return new PageInfo<Product>(list);
     }
 
+    @Override
+    public List<Product_type> selectProduct_type() {
+        return productMapper.selectProduct_type();
+    }
+
+    @Override
+    public List<Patent_type> selectPatent() {
+        return productMapper.selectPatent();
+    }
+
+    @Override
+    public List<Company> selectCompany() {
+        return productMapper.selectCompany();
+    }
+
+    @Override
+    public List<Stage> selectStage() {
+        return productMapper.selectStage();
+    }
+
+    @Override
+    public int addproduct(Product product) {
+        return productMapper.addproduct(product);
+    }
 }

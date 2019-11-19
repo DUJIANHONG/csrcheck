@@ -1,19 +1,17 @@
 package com.csr.csrcheck.pojo;
 
 /**
- * @description:
- * @author: Administrator
- * @date: Created in 2019/11/12 10:22
- * @version:
- * @modified By:
+ * @author Karry
+ * @create 2019-11-02 15:23
  */
 public class Shareholder {
-    private int id;
-    private String shareholder_name;            //股东名称
-    private String share_type;                  //股份类型
-    private String number_of_shares;            //持股数（单位：万/亿）
-    private String proportion;                 //占流通股本比例
-    private int company_id;                   //关联公司id
+    //股东表
+    private int id;                 //主键
+    private String shareholder_name;//股东名称
+    private String share_type;      //股份类型
+    private String number_of_shares;//持股数（单位：万/亿）
+    private String proportion;      //占流通股本比例
+    private int company_id;         //关联企业id
 
     private String company_name;              //公司名称
 

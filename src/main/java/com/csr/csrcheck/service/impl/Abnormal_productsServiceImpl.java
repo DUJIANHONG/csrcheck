@@ -22,22 +22,23 @@ import java.util.List;
  */
 @Service
 public class Abnormal_productsServiceImpl implements Abnormal_productsService {
-
     @Resource
     private Abnormal_productsMapper abnormal_productsMapper;
 
-    @Override
     public PageResult abnormallsitpage(int pageNum, int pageSize, String product_name) {
         return PageUtils.getPageResult(pageNum,pageSize,getPageInfo(pageNum,pageSize,product_name));
     }
 
 
-    private PageInfo getPageInfo(int pageNum,int pageSize,String product_name){
-        PageHelper.startPage(pageNum,pageSize);
-        List<Abnormal_products> list=abnormal_productsMapper.abnormallsit(product_name);
-        if(list==null){
+    private PageInfo getPageInfo(int pageNum,int pageSize,String product_name) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Abnormal_products> list = abnormal_productsMapper.abnormallsit(product_name);
+        if (list == null) {
             throw new CompanyException("没有数据");
         }
         return new PageInfo(list);
+    }
+    public List<Abnormal_products> getAllProduct() {
+        return abnormal_productsMapper.getAllProduct();
     }
 }

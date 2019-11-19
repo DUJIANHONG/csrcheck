@@ -1,7 +1,6 @@
 package com.csr.csrcheck.service;
 
-import com.csr.csrcheck.pojo.Patent;
-import org.springframework.stereotype.Service;
+import com.csr.csrcheck.pojo.Product;
 
 import java.util.List;
 
@@ -12,5 +11,5 @@ import java.util.List;
 
 public interface PatentService {
     //查询該公司旗下的所有专利
-    public List<Patent> getListByProduct(int company_id);
+    public List<Product> getListByProduct(int company_id);
 }

@@ -8,14 +8,13 @@
         `registered`,`stage_no`,`patent_no`,`patent_type_id`,
         `domestic_import`,`yieldly`
     </sql>-->
-
-    <select id="getAlltheirByproduct_id" resultType="com.csr.csrcheck.pojo.Product">
+    <!--模糊查询化妆品-->
+    <select id="getAlltheirByproduct_name" resultType="com.csr.csrcheck.pojo.Product">
         select p.product_name,p.product_territory,p.yieldly FROM product p
         <where>
-            product_type_id = #{id}
-            <if test="product_name!=null and product_name!= ''">
-                and p.product_name LIKE concat ('%',#{product_name},'%');
-            </if>
+                <if test="product_name != null and product_name != ''">
+                    p.product_name LIKE concat ('%',#{product_name},'%');
+                </if>
         </where>
     </select>
 
@@ -32,4 +31,7 @@
          WHERE p.`company_id`=c.`id` AND p.`product_type_id`=z.`id` AND p.`product_type_id`=#{t_id};
     </select>
 
+    <select id="getAllNotification" resultType="com.csr.csrcheck.pojo.Important_notification">
+         SELECT i.`title`,i.`content`,i.`release_time` FROM important_notification i;
+    </select>
 </mapper>

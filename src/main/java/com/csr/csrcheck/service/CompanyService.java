@@ -1,6 +1,7 @@
 package com.csr.csrcheck.service;
 
 import com.csr.csrcheck.pojo.Company;
+import com.csr.csrcheck.pojo.Special_bulletin;
 import com.csr.csrcheck.util.PageResult;
 import org.apache.ibatis.annotations.Param;
 
@@ -57,6 +58,9 @@ public interface CompanyService {
      */
     int getCompanyCount(@Param(value = "company_name") String company_name);
 
+
+    //查询公司特别公告
+    public List<Special_bulletin> getAll();
     /**
      * 下拉框显示公司信息
      * @return

@@ -2,10 +2,17 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.csr.csrcheck.mapper.ApprovalsMapper">
+<mapper namespace="com.csr.csrcheck.mapper.Abnormal_productsMapper">
 <sql id="apprid">
 `id`,`approval_num`,`product_id`,`approval_no`,`approved_by`
 </sql>
+    
+    <select id="getAllProduct" resultType="com.csr.csrcheck.pojo.Abnormal_products">
+        SELECT p.`product_name`,a.`packing`,a.`batch_no`,a.`approval_no`,a.`disqualification`,
+               a.`inspection_result`,a.`standard_code`,a.`agencies_to_verify`,a.`last`,a.`provenance`
+        FROM abnormal_products a,product p
+        WHERE a.`product_id`=p.`product_id`
+    </select>
 
     <resultMap id="appid" type="com.csr.csrcheck.pojo.Approvals">
         <id column="id" property="id"></id>
@@ -36,7 +43,6 @@ a.`approval_num`,p.`product_name`,a.`approval_no`,c.`company_name` ,b.approved_t
    WHERE a.`product_id`=p.`product_id` AND a.approved_by = b.id AND
    p.`company_id`=c.`id`AND p.product_type_id=z.id AND z.id=1;
     </select>
-
 
 <select id="getapprovalspage" resultMap="appid">
     SELECT a.*,p.`product_name`,app.`approved_t_name`

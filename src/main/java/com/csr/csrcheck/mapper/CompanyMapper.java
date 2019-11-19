@@ -1,6 +1,7 @@
 package com.csr.csrcheck.mapper;
 
 import com.csr.csrcheck.pojo.Company;
+import com.csr.csrcheck.pojo.Special_bulletin;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -44,6 +45,11 @@ public interface CompanyMapper {
      List<Company> getCommpanylistpage(@Param(value = "company_name") String company_name,
                                              @Param(value = "currentPageNo") Integer currentPageNo,
                                              @Param(value = "pageSize") Integer pageSize);
+
+
+    //查询公司特别公告
+    public List<Special_bulletin> getAll();
+
 
 
     /**

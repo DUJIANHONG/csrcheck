@@ -5,24 +5,49 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 
 /**
- * @description:
- * @author: Administrator
- * @date: Created in 2019/11/12 11:24
- * @version:
- * @modified By:
+ * @author Karry
+ * @create 2019-11-01 10:44
  */
 public class Stock_alteration {
-
-    private int id;             //主键（股权变更表）
-    private int investor_id;    //关联的股东id
-    private String  type;           //股东类型（1公司；2人）
-    private String ratio_after; //变更后
-    private String ratio_before;//变更前
-    private String share_change;//持股变化（股）
+    //股权变更
+    private int id;                  //主键
+    private int investor_id;         //关联的股东id
+    private int type;                //股东类型（1公司；2人）
+    private String ratio_after;      //变更后
+    private String ratio_before;     //变更前
+    private String share_change;     //持股变化（股）
     private String increase_decrease;//增减情况
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date change_time;    //变更时间
-    private String shareholder_name; //股东名称
+    private Date change_time;        //变更时间
+
+    //自定义字段
+    private String shareholder_name;    //股东名称
+    private String share_type;          //股份类型
+    private String number_of_shares;    //持股数（单位：万/亿）
+
+    public String getShareholder_name() {
+        return shareholder_name;
+    }
+
+    public void setShareholder_name(String shareholder_name) {
+        this.shareholder_name = shareholder_name;
+    }
+
+    public String getShare_type() {
+        return share_type;
+    }
+
+    public void setShare_type(String share_type) {
+        this.share_type = share_type;
+    }
+
+    public String getNumber_of_shares() {
+        return number_of_shares;
+    }
+
+    public void setNumber_of_shares(String number_of_shares) {
+        this.number_of_shares = number_of_shares;
+    }
 
     public int getId() {
         return id;
@@ -40,14 +65,6 @@ public class Stock_alteration {
         this.investor_id = investor_id;
     }
 
-    public String  getType() {
-        return type;
-    }
-
-    public void setType(String  type) {
-        this.type = type;
-    }
-
     public String getRatio_after() {
         return ratio_after;
     }
@@ -62,6 +79,14 @@ public class Stock_alteration {
 
     public void setRatio_before(String ratio_before) {
         this.ratio_before = ratio_before;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public String getShare_change() {
@@ -86,13 +111,5 @@ public class Stock_alteration {
 
     public void setChange_time(Date change_time) {
         this.change_time = change_time;
-    }
-
-    public String getShareholder_name() {
-        return shareholder_name;
-    }
-
-    public void setShareholder_name(String shareholder_name) {
-        this.shareholder_name = shareholder_name;
     }
 }

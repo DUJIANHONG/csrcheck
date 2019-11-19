@@ -1,9 +1,7 @@
 package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.pojo.Contend;
-import com.csr.csrcheck.pojo.Patent;
 import com.csr.csrcheck.service.ContendService;
-import com.csr.csrcheck.service.impl.PatentSerciceImpl;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;

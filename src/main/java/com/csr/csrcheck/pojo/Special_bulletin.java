@@ -1,23 +1,24 @@
 package com.csr.csrcheck.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 /**
- * @description:
- * @author: Administrator
- * @date: Created in 2019/11/12 10:53
- * @version:
- * @modified By:
+ * @author Karry
+ * @create 2019-10-26 11:21
  */
 public class Special_bulletin {
-
-    private int id;             //主键（企业特别公告表）
+    //企业特别公告
+    private int id;             //主键
     private String title;       //公告标题
-    private String content;     //公告内容
+    private String content;     //.pdf的存放路径
     private int company_id;     //关联公司id
-    private Date release_time;  //发布时间
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date release_time;  //公告发布时间
 
-    private String company_name;    //公司名称
+    //自定义字段
+    private String company_name;//公司名称
 
     public int getId() {
         return id;

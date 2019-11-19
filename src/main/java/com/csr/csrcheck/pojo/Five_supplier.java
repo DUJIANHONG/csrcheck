@@ -9,7 +9,7 @@ import java.util.Objects;
  * @version:
  * @modified By:
  */
-public class Five_Supplier {
+public class Five_supplier {
     private int id;                                 //主键（前五大供应商）
     private int company_id;                         //供应商关联公司的id
     private String supplier_name;                   //供应商名称
@@ -19,6 +19,8 @@ public class Five_Supplier {
     private String relationship;                    //关联关系
     private String dataSource;                      //数据来源
     private String ratio;                           //采购占比
+
+
 
     //映射字段
     private String company_name;   //公司名称
@@ -106,8 +108,8 @@ public class Five_Supplier {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Five_Supplier)) return false;
-        Five_Supplier that = (Five_Supplier) o;
+        if (!(o instanceof Five_supplier)) return false;
+        Five_supplier that = (Five_supplier) o;
         return id == that.id;
     }
 

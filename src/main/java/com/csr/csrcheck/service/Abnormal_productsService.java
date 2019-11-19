@@ -2,19 +2,18 @@ package com.csr.csrcheck.service;
 
 import com.csr.csrcheck.pojo.Abnormal_products;
 import com.csr.csrcheck.util.PageResult;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * @description:
- * @author: Administrator
- * @date: Created in 2019/11/1 11:08
- * @version:
- * @modified By:
+ * @author Karry
+ * @create 2019-10-25 17:15
  */
 public interface Abnormal_productsService {
+    //查询所有不合格产品
+    public List<Abnormal_products> getAllProduct();
 
-   PageResult abnormallsitpage(int pageNum,int pageSize,String product_name );
+    //根据产品名称分页查询
+    public PageResult abnormallsitpage(int pageNum, int pageSize, String product_name);
+
 }

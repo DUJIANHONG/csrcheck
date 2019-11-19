@@ -1,7 +1,7 @@
 package com.csr.csrcheck.service.impl;
 
 import com.csr.csrcheck.mapper.Five_SupplierMapper;
-import com.csr.csrcheck.pojo.Five_Supplier;
+import com.csr.csrcheck.pojo.Five_supplier;
 import com.csr.csrcheck.service.Five_SupplierService;
 import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.util.PageResult;
@@ -31,9 +31,9 @@ public class Five_SupplierServiceImpl implements Five_SupplierService {
         return PageUtils.getPageResult(pageNum,pageSize,getPageInfo(pageNum,pageSize,supplier_name));
     }
 
-    private PageInfo<Five_Supplier> getPageInfo(int pageNum,int pageSize,String supplier_name){
+    private PageInfo<Five_supplier> getPageInfo(int pageNum, int pageSize, String supplier_name){
         PageHelper.startPage(pageNum,pageSize);
-        List<Five_Supplier> list=fiveSupplierMapper.getListFive(supplier_name);
+        List<Five_supplier> list=fiveSupplierMapper.getListFive(supplier_name);
         if(list==null){
             throw new CompanyException("数据为空");
         }

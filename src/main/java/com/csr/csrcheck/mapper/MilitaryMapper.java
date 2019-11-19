@@ -1,5 +1,6 @@
 package com.csr.csrcheck.mapper;
 
+import com.csr.csrcheck.pojo.Abnormal_products;
 import com.csr.csrcheck.pojo.Product;
 
 import java.util.List;
@@ -16,4 +17,13 @@ public interface MilitaryMapper {
      */
     public List<Product> getMilitarylist2();
 
+    /**
+     * 查询医疗器械合法厂家
+     */
+    public List<Product> getAllLegitimate_producers(int product_t_id);
+
+    /**
+     * 查询医疗器械不合格通报
+     */
+    public List<Abnormal_products> getAllabnormal_products(int product_t_id);
 }
