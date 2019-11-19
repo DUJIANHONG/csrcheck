@@ -56,7 +56,23 @@ public class LoginInterceptorConfigurer implements WebMvcConfigurer {
 		paths.add("/exponent/exponentlist");//指数发布
 		paths.add("/other/otherlist");//其他
 		paths.add("/speech/speechlist");//社会责任报告撰写咨询
-		paths.add("/enabled/enabledlist");//药企产业链生态圈赋能
+		paths.add("/enabled/enabledlist");//药企产业链生态圈赋能（小程序）
+		paths.add("/com_news/news");//企业新闻舆情（小程序）
+		paths.add("/ecosphere/five_suplier");//查询前五大供应商（小程序）
+		paths.add("/their/domestic");//国产化妆品查询（小程序）
+		paths.add("/their/theirlist");//化妆品名称模糊查询（小程序）
+		paths.add("/military/medical");//查询医疗器械不合格通报（小程序）
+		paths.add("/military/legitimate");//查询医疗器械的合法厂家（小程序）
+		paths.add("/ecosphere/alteration");//查询股权变更（小程序）
+		paths.add("/their/Notification");//化妆品重要通报查询（小程序）
+		paths.add("/company/special");//企业==>特别公告（小程序）
+		paths.add("/abnormal/product");//查询不合格化妆品通报（小程序）
+		paths.add("/their/company");//查询化妆品生产厂家（小程序）
+		paths.add("/their/import");//查询进口化妆品（小程序）
+		paths.add("/news/newlist");//查询新闻列表（小程序）
+		paths.add("/patent/patentlist");//查询专利列表（小程序）
+		paths.add("/recall/recalllist");//查询产品召回（小程序）
+
 
 
 		registry.addInterceptor(interceptor).addPathPatterns("/**").excludePathPatterns(paths);

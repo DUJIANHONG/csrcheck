@@ -50,15 +50,6 @@ public class Abnormal_products {
     /**
      * 自定义字段
      */
-    private String product_name;        //产品名称
-
-    public String getProduct_name() {
-        return product_name;
-    }
-
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
-    }
 
     public Product getProduct() {
         return product;
