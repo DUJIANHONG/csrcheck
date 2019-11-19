@@ -53,4 +53,18 @@ a.`approval_num`,p.`product_name`,a.`approval_no`,c.`company_name` ,b.approved_t
         INSERT INTO `approvals` (`approval_num`,`product_id`,`approval_no`,`approved_by`)
         VALUE (#{approval_num},#{product_id},#{approval_no},#{approved_by})
     </insert>
+
+    <update id="updateApprovals" parameterType="com.csr.csrcheck.pojo.Approvals">
+        update `approvals`
+        set approval_num=#{approval_num},product_id=#{product_id},approval_no=#{approval_no},approved_by=#{approved_by}
+        where id=#{id}
+    </update>
+
+    <select id="findapprovalsByid" resultType="com.csr.csrcheck.pojo.Approvals">
+        select a.* from approvals a where a.id=#{id}
+    </select>
+
+    <delete id="deleteapprovalsByid">
+        delete from approvals where id=#{id}
+    </delete>
 </mapper>

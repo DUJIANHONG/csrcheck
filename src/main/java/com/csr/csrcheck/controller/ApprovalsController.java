@@ -118,4 +118,43 @@ public class ApprovalsController extends BaseController{
         List<Approved_by> list = approved_byService.listApprovde_by();
         return new JsonResult<>(SUCCESS,OK,list);
     }
+
+    /**
+     * 修改批文
+     * @param approvals
+     * @return
+     */
+    @RequestMapping(path="updateapprovals", method= RequestMethod.POST)
+    public JsonResult<Void> updateapprovals(Approvals approvals){
+        approvalsService.updateApprovals(approvals);
+        return new JsonResult<>(SUCCESS,OK);
+    }
+
+    /**
+     * 根据id查找批文
+     * @param id
+     * @return
+     */
+    @RequestMapping(path="findApprovalsByid/{id}", method= RequestMethod.POST)
+    public JsonResult<Approvals> findApprovalsByid(@PathVariable(value = "id") int id){
+        Approvals list=null;
+        try {
+            list=approvalsService.findapprovalsByid(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new JsonResult<>(SUCCESS,OK,list);
+    }
+
+    /**
+     *根据id删除批文信息
+     *  @param id
+     * @return
+     */
+    @RequestMapping(path="deleteapprovals/{id}", method= RequestMethod.POST)
+    public JsonResult<Void> deleteapprovals(@PathVariable(value = "id") int id){
+        approvalsService.deleteapprovalsByid(id);
+        log.info("删除成功-------------------------》id:"+id);
+        return new JsonResult<>(SUCCESS,OK);
+    }
 }

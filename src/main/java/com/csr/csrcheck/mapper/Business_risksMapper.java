@@ -1,7 +1,6 @@
 package com.csr.csrcheck.mapper;
 
 import com.csr.csrcheck.pojo.Business_risks;
-import com.csr.csrcheck.pojo.Lawsuit;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -20,4 +19,26 @@ public interface Business_risksMapper {
      * @return
      */
     public List<Business_risks> getListpage(@Param(value = "company_name") String company_name);
+
+
+    /**
+     * 增加企业风险
+     * @param business_risks
+     * @return
+     */
+    int addBusiness(Business_risks business_risks);
+
+    /**
+     * 修改企业风险
+     * @param business_risks
+     * @return
+     */
+    int updateBusiness(Business_risks business_risks);
+
+    /**
+     *删除企业风险
+     *  @param id
+     * @return
+     */
+    int deleteBusiness(int id);
 }

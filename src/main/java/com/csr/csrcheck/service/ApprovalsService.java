@@ -27,4 +27,24 @@ public interface ApprovalsService {
      * @param approvals
      */
     public void addApprovals(Approvals approvals);
+
+    /**
+     * 修改批文
+     * @param approvals
+     * @return
+     */
+    int updateApprovals(Approvals approvals);
+    /**
+     * 根据id查找批文
+     * @param id
+     * @return
+     */
+    Approvals findapprovalsByid(int id);
+
+    /**
+     *根据id删除批文
+     *  @param id
+     * @return
+     */
+    int deleteapprovalsByid(int id);
 }

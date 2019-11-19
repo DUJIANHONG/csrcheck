@@ -22,17 +22,18 @@ public class LoginInterceptorConfigurer implements WebMvcConfigurer {
 		paths.add("/css/**");
 		paths.add("/images/**");
 		paths.add("/img/**");
-		paths.add("/newsFile/**");
+		paths.add("/newsFile/**");//上传的图片
 		paths.add("/fonts/**");
 		paths.add("/bootstrap3/**");
 		paths.add("/districts/**");
-		paths.add("/web/login.html");
-		paths.add("/users/login");
+		paths.add("/web/login.html");//登录
+		paths.add("/users/login");//登录
 		paths.add("/users/img");
 		paths.add("/users/img");
-		paths.add("/company/companylist");
-		paths.add("/news/newlist");
-		paths.add("/news/byidnews/{id}");
+		paths.add("/company/companylist");//查询企业
+		paths.add("/company/companylist2");//根据企业名称查询
+		paths.add("/news/newlist");//查询新闻
+		paths.add("/news/byidnews/{id}");//根据id查询新闻
 		paths.add("/flight_check/flight_checkllist");//查企业中的飞行检查
 		paths.add("/clinic/cliniclist");//查企业中的临床：
 		paths.add("/approvals/approvalslist");//查企业中的批文
