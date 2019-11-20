@@ -63,5 +63,5 @@ public interface CompanyMapper {
      * 下拉框显示公司信息
      * @return
      */
-    Company getCommpanyByid();
+    List<Company> getCommpanyByid();
 }

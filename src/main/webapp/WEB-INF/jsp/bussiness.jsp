@@ -218,8 +218,10 @@
             type:2,
             title:'添加企业经营风险',
             maxmin:true,
-            shadeClose:false,
-            area:['900px','600px'],
+            shadeClose:true,
+            anim:2,
+            shade: [0.8, '#393D49'],
+            area:['800px','600px'],
             content:'/web/addBusiness_risks.html',
             end:function () {
                 location.reload();

@@ -2,6 +2,8 @@ package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.pojo.Business_risks;
 import com.csr.csrcheck.pojo.Company;
+import com.csr.csrcheck.pojo.Risk_classify;
+import com.csr.csrcheck.pojo.Risk_type;
 import com.csr.csrcheck.service.Business_risksService;
 import com.csr.csrcheck.service.CompanyService;
 import com.csr.csrcheck.service.ex.CompanyException;
@@ -100,8 +102,33 @@ public class Business_risksConntroller extends BaseController{
     }
     @Resource
     private CompanyService companyService;
+
+    /**
+     * 下拉列表显示企业信息
+     * @return
+     */
     @RequestMapping(path = "getcompany",method = RequestMethod.POST)
-    public JsonResult<Company> getcompany(){
-        return new JsonResult<>(SUCCESS,OK);
+    public JsonResult<List<Company>> getcompany(){
+       List<Company>  list=companyService.getCommpanyByid();
+        return new JsonResult<>(SUCCESS,OK,list);
+    }
+
+    /**
+     *下拉列表显示分险分类
+     *  @return
+     */
+    @RequestMapping(path = "getriskclassify",method = RequestMethod.POST)
+    public JsonResult<List<Risk_classify>> getriskclassify(){
+        List<Risk_classify> list=business_risksService.findbylistclassify();
+        return new JsonResult<>(SUCCESS,OK,list);
+    }
+    /**
+     *下拉列表显示分险类型
+     *  @return
+     */
+    @RequestMapping(path = "getsriktype",method = RequestMethod.POST)
+    public JsonResult< List<Risk_type>> getsriktype(){
+        List<Risk_type> list=business_risksService.findbylisttype();
+        return new JsonResult<>(SUCCESS,OK,list);
     }
 }

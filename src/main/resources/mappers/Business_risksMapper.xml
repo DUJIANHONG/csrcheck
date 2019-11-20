@@ -47,17 +47,24 @@ WHERE c.`id`=b.`company_id`AND c.`id`=p.`company_id` AND r.id=b.`risk_type` AND 
     </select>
 
    <insert id="addBusiness" keyProperty="id" useGeneratedKeys="true" parameterType="com.csr.csrcheck.pojo.Business_risks">
-INSERT INTO `business_risks` (`risk_type`,`title`,`describe`,`type_id`,`company_id`)
-VALUE (#{risk_type},#{title},#{describe},#{type_id},#{company_id})
+        INSERT INTO `business_risks` (`risk_type`,`title`,`describe`,`type_id`,`company_id`)
+        VALUE (#{risk_type},#{title},#{describe},#{type_id},#{company_id})
    </insert>
 
     <update id="updateBusiness" parameterType="com.csr.csrcheck.pojo.Business_risks" useGeneratedKeys="true" keyProperty="id">
-UPDATE `business_risks` SET `risk_type`=#{risk_type},`title`=#{title},`describe`=#{describe},`type_id`=#{type_id},`company_id`=#{company_id}
-where id=#{id}
+        UPDATE `business_risks` SET `risk_type`=#{risk_type},`title`=#{title},`describe`=#{describe},`type_id`=#{type_id},`company_id`=#{company_id}
+        where id=#{id}
     </update>
 
     <delete id="deleteBusiness">
-DELETE FROM `business_risks` WHERE id=#{id}
+        DELETE FROM `business_risks` WHERE id=#{id}
     </delete>
 
+    <select id="findbylistclassify" resultType="com.csr.csrcheck.pojo.Risk_classify">
+        SELECT rc.* FROM `risk_classify` rc
+    </select>
+
+    <select id="findbylisttype" resultType="com.csr.csrcheck.pojo.Risk_type">
+        SELECT rt.* FROM `risk_type` rt
+    </select>
 </mapper>

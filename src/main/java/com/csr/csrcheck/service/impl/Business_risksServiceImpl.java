@@ -2,6 +2,8 @@ package com.csr.csrcheck.service.impl;
 
 import com.csr.csrcheck.mapper.Business_risksMapper;
 import com.csr.csrcheck.pojo.Business_risks;
+import com.csr.csrcheck.pojo.Risk_classify;
+import com.csr.csrcheck.pojo.Risk_type;
 import com.csr.csrcheck.service.Business_risksService;
 import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.service.ex.LawsuitException;
@@ -61,6 +63,11 @@ public class Business_risksServiceImpl implements Business_risksService {
         return row;
     }
 
+    /**
+     *删除
+     *  @param id
+     * @return
+     */
     @Override
     public int deleteBusiness(int id) {
         int row=business_risksMapper.deleteBusiness(id);
@@ -68,6 +75,16 @@ public class Business_risksServiceImpl implements Business_risksService {
             throw new CompanyException("删除失败");
         }
         return row;
+    }
+
+    @Override
+    public List<Risk_classify> findbylistclassify() {
+        return business_risksMapper.findbylistclassify();
+    }
+
+    @Override
+    public List<Risk_type> findbylisttype() {
+        return business_risksMapper.findbylisttype();
     }
 
     /**

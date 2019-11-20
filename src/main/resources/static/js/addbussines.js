@@ -1,9 +1,10 @@
 $().ready(function() {
     loadType();
     loadType2();
+    loadType3();
     validateRule();
 });
-
+//添加
 $("#save").click(function () {
     if ($("#signupForm").valid()) {
         $.ajax({
@@ -15,7 +16,7 @@ $("#save").click(function () {
             dataType:'json',
             success: function (data) {
                 if (data.state == 2000) {
-                    parent.layer.msg("操作成功");
+                    parent.layer.msg("操作成功",{icon:1});
                 } else {
                     parent.layer.alert(data.msg)
                 }
@@ -40,16 +41,17 @@ function validateRule() {
         }
     })
 }
+//企业信息
 function loadType(){
     var html = "";
     $.ajax({
-        url : '',
+        url : '/business_risks/getcompany',
         type:'POST',
         success : function(data) {
             //加载数据
             var list=data.data;
             for (var i = 0; i < list.length; i++) {
-                html += '<option value="' + list[i].product_id + '">' + list[i].product_name + '</option>'
+                html += '<option value="' + list[i].id + '">' + list[i].company_name + '</option>'
             }
             $(".chosen-select").append(html);
             $(".chosen-select").chosen({
@@ -68,16 +70,17 @@ function loadType(){
         }
     });
 }
+//风险分类
 function loadType2(){
     var html = "";
     $.ajax({
-        url : '',
+        url : '/business_risks/getriskclassify',
         type:'POST',
         success : function(data) {
             //加载数据
             var list=data.data;
             for (var i = 0; i < list.length; i++) {
-                html += '<option value="' + list[i].id + '">' + list[i].approved_t_name + '</option>'
+                html += '<option value="' + list[i].id + '">' + list[i].risk_classify_name + '</option>'
             }
             $(".chosen-select2").append(html);
             $(".chosen-select2").chosen({
@@ -85,6 +88,36 @@ function loadType2(){
             });
             //点击事件
             $('.chosen-select2').on('change', function(e, params) {
+                console.log(params.selected);
+
+                var opt = {
+                    query : {
+                        type : params.selected,
+                    }
+                }
+                $('#exampleTable').bootstrapTable('refresh', opt);
+            });
+        }
+    });
+}
+//风险类型
+function loadType3(){
+    var html = "";
+    $.ajax({
+        url : '/business_risks/getsriktype',
+        type:'POST',
+        success : function(data) {
+            //加载数据
+            var list=data.data;
+            for (var i = 0; i < list.length; i++) {
+                html += '<option value="' + list[i].id + '">' + list[i].risk_type_name + '</option>'
+            }
+            $(".chosen-select3").append(html);
+            $(".chosen-select3").chosen({
+                maxHeight : 200
+            });
+            //点击事件
+            $('.chosen-select3').on('change', function(e, params) {
                 console.log(params.selected);
 
                 var opt = {
