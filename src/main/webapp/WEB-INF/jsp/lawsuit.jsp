@@ -113,7 +113,7 @@
                                 <table id="datatable-responsive"
                                        class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
                                        role="grid" aria-describedby="datatable-responsive_info"
-                                       style="width: 120%;">
+                                       style="width: 150%;">
                                     <thead>
                                     <tr role="row">
                                         <th class="sorting_asc" tabindex="0"

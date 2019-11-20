@@ -6,24 +6,31 @@ $().ready(function() {
 });
 //添加
 $("#save").click(function () {
-    if ($("#signupForm").valid()) {
-        $.ajax({
-            cache: true,
-            type: "POST",
-            url: "/business_risks/addbussiness",
-            data: $('#signupForm').serialize(),// 你的formid
-            async: false,
-            dataType:'json',
-            success: function (data) {
-                if (data.state == 2000) {
-                    parent.layer.msg("操作成功",{icon:1});
-                } else {
-                    parent.layer.alert(data.msg)
+    if($("#risk_type").val()==null||$("#risk_type").val()==''){
+        layer.msg("请选择风险分类",{icon:5});
+    }else if($("#type_id").val()==null||$("#type_id").val()==''){
+        layer.msg("请选择风险类型",{icon:5});
+    }else if($("#company_id").val()==null||$("#company_id").val()=='') {
+        layer.msg("请选择所属企业", {icon: 5});
+    }else {
+        if ($("#signupForm").valid()) {
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: "/business_risks/addbussiness",
+                data: $('#signupForm').serialize(),// 你的formid
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.state == 2000) {
+                        parent.layer.msg("操作成功", {icon: 1});
+                    } else {
+                        parent.layer.alert(data.msg)
+                    }
+
                 }
-
-            }
-        });
-
+            });
+        }
     }
 })
 function validateRule() {
