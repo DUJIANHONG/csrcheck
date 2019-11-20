@@ -17,21 +17,13 @@ public class Approvals {
      * 自定义字段
      * @return
      */
-/*    private String approved_t_name;  //准字类型名称
+   /* private String approved_t_name;  //准字类型名称
     private String product_name;        //产品名称
     private String company_name;        //公司名称*/
 
     private Approved_by approvedby;    //准字类型
     private Product product;           //产品
     private Company company;
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
 
     public Approved_by getApprovedby() {
         return approvedby;
@@ -41,6 +33,15 @@ public class Approvals {
         this.approvedby = approvedby;
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+
     public Product getProduct() {
         return product;
     }
@@ -49,7 +50,7 @@ public class Approvals {
         this.product = product;
     }
 
-    /*public String getCompany_name() {
+  /*  public String getCompany_name() {
         return company_name;
     }
 

@@ -97,7 +97,7 @@ public class ApprovalsServiceImpl implements ApprovalsService {
      */
     private PageInfo<Approvals> getpageinfo(int pageNum,int pageSize,String product_name){
         PageHelper.startPage(pageNum,pageSize);
-        List<Approvals> list=approvalsMapper.getapprovalspage(product_name);
+        List<Approvals> list=approvalsMapper.getpage(product_name);
         if(list==null){
             throw new CompanyException("没有数据");
         }

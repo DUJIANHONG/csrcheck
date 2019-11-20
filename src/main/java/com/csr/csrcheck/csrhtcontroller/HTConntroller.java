@@ -136,7 +136,7 @@ public class HTConntroller extends BaseController {
      */
     @RequestMapping("product")
     public String product(@RequestParam(defaultValue = "1") int pageNum,
-                          @RequestParam(defaultValue = "5") int pageSize,
+                          @RequestParam(defaultValue = "10") int pageSize,
                           Model model, @RequestParam(value = "name", required = false) String name) {
         log.info("product----------------------->pageNum:" + pageNum);
         log.info("product----------------------->pageSize:" + pageSize);
@@ -162,7 +162,7 @@ public class HTConntroller extends BaseController {
      */
     @RequestMapping("abnormal")
     public String abnormal(@RequestParam(defaultValue = "1") int pageNum,
-                           @RequestParam(defaultValue = "5") int pageSize,
+                           @RequestParam(defaultValue = "10") int pageSize,
                            @RequestParam(value = "name", required = false) String name,
                            Model model) {
         log.info("abnormal------------------------->pageNum:" + pageNum);
@@ -245,7 +245,7 @@ public class HTConntroller extends BaseController {
      */
     @RequestMapping("newspage")
     public String listpage(@RequestParam(defaultValue = "1") int pageNum,
-                                       @RequestParam(defaultValue = "5") int pageSize,
+                                       @RequestParam(defaultValue = "10") int pageSize,
                            Model model){
         PageResult pageResult=newsService.getNewspage(pageNum,pageSize);
         if(pageResult==null){
@@ -267,7 +267,7 @@ public class HTConntroller extends BaseController {
      */
     @RequestMapping("approvals")
     public String approvals(@RequestParam(defaultValue = "1") int pageNum,
-                            @RequestParam(defaultValue = "5") int pageSize,
+                            @RequestParam(defaultValue = "10") int pageSize,
                             Model model, String name){
         PageResult pageResult=approvalsService.getApprovalslistpage(pageNum,pageSize,name);
         log.info("approvals--------------------------->pageNum:"+pageNum);
@@ -286,7 +286,7 @@ public class HTConntroller extends BaseController {
      */
     @RequestMapping("bussiness")
     public String bussiness(@RequestParam(defaultValue = "1") int pageNum,
-                                        @RequestParam(defaultValue = "5") int pageSize,
+                                        @RequestParam(defaultValue = "10") int pageSize,
                                         String company_name,
                             Model model){
         PageResult pageResult=business_risksService.getListpage(pageNum,pageSize,company_name);
@@ -310,7 +310,7 @@ public class HTConntroller extends BaseController {
      */
     @RequestMapping("clinic")
     public String clinic(@RequestParam(defaultValue = "1") int pageNum,
-                                     @RequestParam(defaultValue = "5") int pageSize,
+                                     @RequestParam(defaultValue = "10") int pageSize,
                          String product_name,Model model){
         PageResult pageResult=clinicService.getListpage(pageNum,pageSize,product_name);
         log.info("clinic---------------------------->pageNum:"+pageNum);
@@ -330,7 +330,7 @@ public class HTConntroller extends BaseController {
      */
     @RequestMapping("contend")
     public String contend(@RequestParam(defaultValue = "1") int pageNum,
-                                      @RequestParam(defaultValue = "5") int pageSize,
+                                      @RequestParam(defaultValue = "10") int pageSize,
                                       String company_name,Model model){
         PageResult pageResult=contendService.getListpage(pageNum,pageSize,company_name);
         log.info("contend---------------------------------->pageNum:"+pageNum);
@@ -350,7 +350,7 @@ public class HTConntroller extends BaseController {
      */
     @RequestMapping("evaluate")
     public String evaluate(@RequestParam(defaultValue = "1") int pageNum,
-                                       @RequestParam(defaultValue = "5") int pageSize,
+                                       @RequestParam(defaultValue = "10") int pageSize,
                                        String company_name,
                                        String product_name,
                                 Model model) {
@@ -373,7 +373,7 @@ public class HTConntroller extends BaseController {
      */
     @RequestMapping("fiveSuppler")
     public String fiveSuppler(@RequestParam(defaultValue = "1") int pageNum,
-                                              @RequestParam(defaultValue = "5") int pageSize,
+                                              @RequestParam(defaultValue = "10") int pageSize,
                                               String supplier_name,Model model){
         PageResult pageResult=null;
         try {
@@ -403,7 +403,7 @@ public class HTConntroller extends BaseController {
      */
     @RequestMapping("flightcheck")
     public String flightcheck(@RequestParam(defaultValue = "1") int pageNum,
-                                          @RequestParam(defaultValue = "5") int pageSize,
+                                          @RequestParam(defaultValue = "10") int pageSize,
                                           String company_name,
                                           String product_name,
                                           String product_t_name,
@@ -447,7 +447,7 @@ public class HTConntroller extends BaseController {
      */
     @RequestMapping("important")
     public String  important(@RequestParam(defaultValue = "1") int pageNum,
-                                        @RequestParam(defaultValue = "5") int pageSize,
+                                        @RequestParam(defaultValue = "10") int pageSize,
                                         String product_name, String product_t_name,Model model){
         PageResult pageResult=important_notificationService.getimportant_page(pageNum,pageSize,product_name,product_t_name);
         if(pageResult==null){
@@ -482,7 +482,7 @@ public class HTConntroller extends BaseController {
      */
     @RequestMapping("lawsuit")
     public String  lawsuit(@RequestParam(defaultValue = "1") int pageNum,
-                           @RequestParam(defaultValue = "5") int pageSize,
+                           @RequestParam(defaultValue = "10") int pageSize,
                            String company_name,
                            String casetype,
                            String doctype,
@@ -520,7 +520,7 @@ public class HTConntroller extends BaseController {
      */
     @RequestMapping("recall")
     public String productrecall(@RequestParam(defaultValue = "1") int pageNum,
-                                            @RequestParam(defaultValue = "5") int pageSize,
+                                            @RequestParam(defaultValue = "10") int pageSize,
                                             String company_name, String product_name,
                                             String product_t_name,Model model){
         PageResult pageResult=recallService.getlistpage(pageNum,pageSize,company_name,product_name,product_t_name);
@@ -558,7 +558,7 @@ public class HTConntroller extends BaseController {
      */
     @RequestMapping("shareholder")
     public String shareholder(@RequestParam(defaultValue = "1") int pageNum,
-                              @RequestParam(defaultValue = "5") int pageSize,String shareholder_name,
+                              @RequestParam(defaultValue = "10") int pageSize,String shareholder_name,
                               String share_type,
                               String company_name,Model model){
         PageResult pageResult=shareholderService.getListPage(pageNum,pageSize,shareholder_name,share_type,company_name);
@@ -586,7 +586,7 @@ public class HTConntroller extends BaseController {
     @RequestMapping("special")
     public String special(String release_time, String company_name,
                           @RequestParam(defaultValue = "1") int pageNum,
-                          @RequestParam(defaultValue = "5") int pageSize,Model model){
+                          @RequestParam(defaultValue = "10") int pageSize,Model model){
         PageResult pageResult=special_bulletinService.getlistpage(release_time,company_name,pageNum,pageSize);
         if(pageResult==null){
             throw new CompanyException("数据为空");
@@ -612,7 +612,7 @@ public class HTConntroller extends BaseController {
      */
     @RequestMapping("stock")
     public String stock(@RequestParam(defaultValue = "1") int pageNum,
-                        @RequestParam(defaultValue = "5") int pageSize,
+                        @RequestParam(defaultValue = "10") int pageSize,
                         String shareholder_name, String  type, String change_time, Model model) {
         PageResult pageResult=null;
         try {

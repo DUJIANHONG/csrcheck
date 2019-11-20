@@ -72,9 +72,6 @@ public class LoginInterceptorConfigurer implements WebMvcConfigurer {
 		paths.add("/news/newlist");//查询新闻列表（小程序）
 		paths.add("/patent/patentlist");//查询专利列表（小程序）
 		paths.add("/recall/recalllist");//查询产品召回（小程序）
-
-
-
 		registry.addInterceptor(interceptor).addPathPatterns("/**").excludePathPatterns(paths);
 	}
 	

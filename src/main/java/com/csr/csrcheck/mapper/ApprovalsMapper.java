@@ -21,7 +21,7 @@ public interface ApprovalsMapper {
      * @param product_name
      * @return
      */
-    public List<Approvals> getapprovalspage(@Param(value = "product_name") String product_name);
+    public List<Approvals> getpage(@Param(value = "product_name") String product_name);
 
 
     /**

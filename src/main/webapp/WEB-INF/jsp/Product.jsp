@@ -77,7 +77,6 @@
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
                         <div class="col-sm-12">
-                            <a href="${pageContext.request.contextPath}/" class="btn btn-success btn-sm">新增产品信息</a>
                             <div style="overflow-x: auto;overflow-y: auto;width: 100%;height: 50%">
                                 <table id="datatable-responsive"
                                        class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
@@ -277,7 +276,6 @@
                 type: 2,
                 title: '新增产品',
                 shadeClose: true,
-                shade: false,
                 maxmin: true, //开启最大化最小化按钮
                 area: ['893px', '600px'],
                 content: '/product/addproduct'

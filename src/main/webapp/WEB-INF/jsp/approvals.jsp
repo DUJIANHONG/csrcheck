@@ -29,7 +29,6 @@
     <!-- add local/css 2016-8-18 -->
     <link href="${pageContext.request.contextPath }/css/appinfoadd.css" rel='stylesheet'>
     <link href="${pageContext.request.contextPath }/css/appinfolist.css" rel='stylesheet'>
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/layui.css"  media="all">
 
 </head>
 <body>
@@ -200,18 +199,20 @@
 
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/rollpage.js"></script>
-<script src="${pageContext.request.contextPath }/js/plugins/layer/layer.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/plugins/layer/layer.js"></script>
-<script src="${pageContext.request.contextPath }/js/layui.js" charset="utf-8"></script>
 <script type="text/javascript">
+    $(function () {
+
+
         //增加弹出层
         $('#addapprovals').on('click', function () {
             layer.open({
                 type: 2,
+                anim:1,
                 title: '添加产品批文',
                 maxmin: true,
-                shadeClose: false, //点击遮罩关闭层
-                area: ['900px', '600px'],
+                shadeClose: true, //点击遮罩关闭层
+                area: ['600px', '500px'],
                 content: '${pageContext.request.contextPath }/web/addapprovals.html',
                 end: function () {
                     location.reload();
@@ -226,8 +227,9 @@
                 type: 2,
                 title: '修改产品批文',
                 maxmin: true,
-                shadeClose: false, //点击遮罩关闭层
-                area: ['900px', '600px'],
+                shadeClose: true, //点击遮罩关闭层
+                anim:1,
+                area: ['600px', '500px'],
                 content: '${pageContext.request.contextPath }/web/updateapprovals.html?id='+obj.attr("approvalsid"),
                 end: function () {
                     location.reload();
@@ -259,6 +261,7 @@
             });
 
         });
+    })
 </script>
 </body>
 </body>
