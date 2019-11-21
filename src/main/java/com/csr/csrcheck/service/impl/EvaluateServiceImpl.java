@@ -1,12 +1,8 @@
 package com.csr.csrcheck.service.impl;
 
-import com.csr.csrcheck.mapper.ClinicMapper;
 import com.csr.csrcheck.mapper.EvaluateMapper;
-import com.csr.csrcheck.pojo.Clinic;
 import com.csr.csrcheck.pojo.Evaluate;
-import com.csr.csrcheck.service.ClinicService;
 import com.csr.csrcheck.service.EvaluateService;
-import com.csr.csrcheck.service.ex.ClinicException;
 import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.service.ex.EvaluateException;
 import com.csr.csrcheck.util.PageResult;
@@ -34,6 +30,38 @@ public class EvaluateServiceImpl implements EvaluateService {
     @Override
     public PageResult getlistpage(int pageNum, int pageSize, String company_name,String product_name) {
         return PageUtils.getPageResult(pageNum,pageSize,getPageInfo(pageNum,pageSize,company_name,product_name));
+    }
+
+    @Override
+    public int addevlaute(Evaluate evaluate) {
+        int row=evaluateMapper.addevlaute(evaluate);
+        if(row!=1){
+            throw new CompanyException("增加失败");
+        }
+        return row;
+    }
+
+    @Override
+    public int updateevlaute(Evaluate evaluate) {
+        int row=evaluateMapper.updateevlaute(evaluate);
+        if(row!=1){
+            throw new CompanyException("修改失败");
+        }
+        return row;
+    }
+
+    @Override
+    public int deleteevlaute(int id) {
+        int row=evaluateMapper.deleteevlaute(id);
+        if(row!=1){
+            throw new CompanyException("删除失败");
+        }
+        return row;
+    }
+
+    @Override
+    public Evaluate findevluateByid(int id) {
+        return evaluateMapper.findevluateByid(id);
     }
 
     /**

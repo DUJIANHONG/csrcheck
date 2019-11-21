@@ -48,6 +48,20 @@
                     AND p.`product_name` LIKE CONCAT('%',#{product_name},'%')
                 </if>
             </trim>
+    </select>
 
+    <insert id="addevlaute" useGeneratedKeys="true" keyProperty="id" parameterType="com.csr.csrcheck.pojo.Evaluate">
+        INSERT INTO `evaluate` (`accept_no`,`product_id`,`english_name`,`specification`,`agent_type`,`adaptation_disease`,`company_id`)
+   VALUE (#{accept_no},#{product_id},#{english_name},#{specification},#{agent_type},#{adaptation_disease},#{company_id})
+    </insert>
+    <update id="updateevlaute" parameterType="com.csr.csrcheck.pojo.Evaluate">
+        UPDATE `evaluate` SET `accept_no`=#{accept_no},`product_id`=#{product_id},`english_name`=#{english_name},`specification`=#{specification},
+            `agent_type`=#{agent_type},`adaptation_disease`=#{adaptation_disease},`company_id`=#{company_id} where id=#{id}
+    </update>
+    <delete id="deleteevlaute">
+        DELETE FROM `evaluate` WHERE id=#{id}
+    </delete>
+    <select id="findevluateByid" resultType="com.csr.csrcheck.pojo.Evaluate">
+            SELECT e.* FROM `evaluate` e WHERE e.id=#{id}
     </select>
 </mapper>

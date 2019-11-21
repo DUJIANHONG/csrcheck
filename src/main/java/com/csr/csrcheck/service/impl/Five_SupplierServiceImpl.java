@@ -31,6 +31,38 @@ public class Five_SupplierServiceImpl implements Five_SupplierService {
         return PageUtils.getPageResult(pageNum,pageSize,getPageInfo(pageNum,pageSize,supplier_name));
     }
 
+    @Override
+    public int addFivesupplier(Five_supplier five_Supplier) {
+        int row=fiveSupplierMapper.addFivesupplier(five_Supplier);
+        if(row!=1){
+            throw new CompanyException("添加失败");
+        }
+        return row;
+    }
+
+    @Override
+    public int updateFiveSupplier(Five_supplier five_Supplier) {
+        int row=fiveSupplierMapper.updateFiveSupplier(five_Supplier);
+        if(row!=1){
+            throw new CompanyException("修改失败");
+        }
+        return row;
+    }
+
+    @Override
+    public int deleteFiveSupplier(int id) {
+        int row=fiveSupplierMapper.deleteFiveSupplier(id);
+        if(row!=1){
+            throw new CompanyException("删除失败");
+        }
+        return row;
+    }
+
+    @Override
+    public Five_supplier fingfiveByid(int id) {
+        return fiveSupplierMapper.fingfiveByid(id);
+    }
+
     private PageInfo<Five_supplier> getPageInfo(int pageNum, int pageSize, String supplier_name){
         PageHelper.startPage(pageNum,pageSize);
         List<Five_supplier> list=fiveSupplierMapper.getListFive(supplier_name);

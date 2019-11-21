@@ -1,6 +1,7 @@
 package com.csr.csrcheck.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -10,7 +11,8 @@ public class Contend {
     private int company_id;//关联公司ID
     private String title;//竞争力信息标题
     private String content;//内容
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")//转换时间格式
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date  time;//发布时间
 
     /**

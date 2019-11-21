@@ -18,24 +18,29 @@ $().ready(function() {
 });
 
 $("#update").click(function () {
-    if ($("#signupForm").valid()) {
-        $.ajax({
-            cache: true,
-            type: "POST",
-            url: "/approvals/updateapprovals",
-            data: $('#signupForm').serialize(),// 你的formid
-            async: false,
-            dataType:'json',
-            success: function (data) {
-                if (data.state == 2000) {
-                    parent.layer.msg("操作成功");
-                } else {
-                    parent.layer.alert(data.msg)
+    if($("#product_id").val()==null||$("#product_id").val()==''){
+        layer.msg("请选择产品",{icon:5,anim:6});
+    }else if($("#approved_by").val()==null||$("#approved_by").val()==''){
+        layer.msg("请选择所属准字",{icon:5,anim:6});
+    }else {
+        if ($("#signupForm").valid()) {
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: "/approvals/updateapprovals",
+                data: $('#signupForm').serialize(),// 你的formid
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.state == 2000) {
+                        parent.layer.msg("操作成功");
+                    } else {
+                        parent.layer.alert(data.message)
+                    }
+
                 }
-
-            }
-        });
-
+            });
+        }
     }
 })
 function validateRule() {

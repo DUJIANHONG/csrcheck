@@ -3,7 +3,6 @@ package com.csr.csrcheck.service;
 
 import com.csr.csrcheck.pojo.Evaluate;
 import com.csr.csrcheck.util.PageResult;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -24,4 +23,32 @@ public interface EvaluateService {
      * @return
      */
     PageResult getlistpage(int pageNum,int pageSize,String company_name,String product_name);
+
+    /**
+     * 增加一致性评价
+     * @param evaluate
+     * @return
+     */
+    int addevlaute(Evaluate evaluate);
+
+    /**
+     *修改一致性评价
+     *  @param evaluate
+     * @return
+     */
+    int updateevlaute(Evaluate evaluate);
+
+    /**
+     *删除一致性评价
+     *  @param id
+     * @return
+     */
+    int deleteevlaute(int id);
+
+    /**
+     * 根据id查找一致性评价
+     * @param id
+     * @return
+     */
+    public Evaluate findevluateByid(int id);
 }

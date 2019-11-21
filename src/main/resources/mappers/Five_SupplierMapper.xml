@@ -14,4 +14,22 @@
              </trim>
         ORDER BY f.ratio
     </select>
+
+    <insert id="addFivesupplier" parameterType="com.csr.csrcheck.pojo.Five_supplier" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO `five_supplier` (`company_id`,`supplier_name`,`announcement_date`,`amt`,`alias`,`relationship`,`dataSource`,`ratio`)
+        VALUE (#{company_id},#{supplier_name},#{announcement_date},#{amt},#{alias},#{relationship},#{dataSource},#{ratio})
+    </insert>
+    <update id="updateFiveSupplier" parameterType="com.csr.csrcheck.pojo.Five_supplier">
+        UPDATE `five_supplier` SET `company_id`=#{company_id},`supplier_name`=#{supplier_name},`announcement_date`=#{announcement_date},
+        `amt`=#{amt},`alias`=#{alias},`relationship`=#{relationship},`dataSource`=#{dataSource},`ratio`=#{ratio}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteFiveSupplier">
+         DELETE FROM `five_supplier` WHERE id=#{id}
+    </delete>
+
+    <select id="fingfiveByid" resultType="com.csr.csrcheck.pojo.Five_supplier">
+         SELECT f.* FROM `five_supplier` f WHERE f.id=#{id}
+    </select>
 </mapper>

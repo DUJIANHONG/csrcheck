@@ -1,23 +1,40 @@
 $().ready(function() {
-    loadType();
-    loadType2();
-    loadType3();
     validateRule();
+
+    $.ajax({
+        type: "POST",
+        url: "/business_risks/getbussinessbyid/" + window.location.search.split("id=")[1],
+        dataType: "JSON",
+        success: function (data) {
+            loadType();
+            loadType2();
+            loadType3();
+            console.log(data.data.risk_type);
+            console.log(data.data.type_id);
+            console.log(data.data.company_id);
+            console.log(data.data.describe);
+            console.log(data.data.title);
+            $("#title").val(data.data.title);
+            $("#describe").val(data.data.describe);
+            $("#id").val(data.data.id);
+            }
+    });
 });
-//添加
-$("#save").click(function () {
+
+//更新
+$("#update").click(function () {
     if($("#risk_type").val()==null||$("#risk_type").val()==''){
         layer.msg("请选择风险分类",{icon:5,anim:6});
     }else if($("#type_id").val()==null||$("#type_id").val()==''){
         layer.msg("请选择风险类型",{icon:5,anim:6});
     }else if($("#company_id").val()==null||$("#company_id").val()=='') {
         layer.msg("请选择所属企业", {icon: 5,anim:6});
-    }else {
+    } else{
         if ($("#signupForm").valid()) {
             $.ajax({
                 cache: true,
                 type: "POST",
-                url: "/business_risks/addbussiness",
+                url: "/business_risks/updatebussiness",
                 data: $('#signupForm').serialize(),// 你的formid
                 async: false,
                 dataType: 'json',
@@ -137,5 +154,6 @@ function loadType3(){
         }
     });
 }
+
 
 
