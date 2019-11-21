@@ -6,9 +6,9 @@ $().ready(function() {
 
 $("#save").click(function () {
 	if($("#product_id").val()==null||$("#product_id").val()==''){
-		layer.msg("请选择产品",{icon:5});
+		layer.msg("请选择产品",{icon:5,anim:6});
 	}else if($("#approved_by").val()==null||$("#approved_by").val()==''){
-		layer.msg("请选择所属准字",{icon:5});
+		layer.msg("请选择所属准字",{icon:5,anim:6});
 	}else {
 		if ($("#signupForm").valid()) {
 			$.ajax({

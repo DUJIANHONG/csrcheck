@@ -7,11 +7,11 @@ $().ready(function() {
 //添加
 $("#save").click(function () {
     if($("#risk_type").val()==null||$("#risk_type").val()==''){
-        layer.msg("请选择风险分类",{icon:5});
+        layer.msg("请选择风险分类",{icon:5,anim:6});
     }else if($("#type_id").val()==null||$("#type_id").val()==''){
-        layer.msg("请选择风险类型",{icon:5});
+        layer.msg("请选择风险类型",{icon:5,anim:6});
     }else if($("#company_id").val()==null||$("#company_id").val()=='') {
-        layer.msg("请选择所属企业", {icon: 5});
+        layer.msg("请选择所属企业", {icon: 5,anim:6});
     }else {
         if ($("#signupForm").valid()) {
             $.ajax({
