@@ -115,7 +115,7 @@
                                         <td tabindex="0" class="sorting_1">${pages.company.company_name}</td>
                                         <td>${pages.title}</td>
                                         <td>${pages.content}</td>
-                                        <td><fmt:formatDate value="${pages.time}" type="both"/></td>
+                                        <td><fmt:formatDate value="${pages.time}" type="date"/></td>
                                         <td>
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-danger">点击操作</button>
@@ -128,7 +128,7 @@
                                                     <li><a class="updatecontend" contendid="${pages.id}" data-toggle="tooltip"
                                                            data-placement="top" title=""
                                                            data-original-title="修改公司信息">修改</a></li>
-                                                    <li><a class="deletecontend" contendid="${pages.id}" data-toggle="tooltip"
+                                                    <li><a class="deletecontend" deleteid="${pages.id}" data-toggle="tooltip"
                                                            data-placement="top" title=""
                                                            data-original-title="删除公司信息">删除</a></li>
                                                 </ul>
@@ -242,12 +242,12 @@
     //删除
     $(".deletecontend").on('click',function () {
         var obj=$(this);
-        console.log(obj.attr("contendid"));
+        console.log(obj.attr("deleteid"));
         parent.layer.confirm("确定要删除这条记录吗？",{btn:['确定','取消']},function (confirm) {
             layer.close(confirm);
             $.ajax({
-                type:"post",
-                url:"/content/deletecontend/"+obj.attr("contendid"),
+                type:"POST",
+                url:"/contend/deletecontend/"+obj.attr("deleteid"),
                 dataType:"json",
                 success:function (data) {
                     if(data.state==2000){

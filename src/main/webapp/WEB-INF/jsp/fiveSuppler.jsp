@@ -29,6 +29,7 @@
     <!-- add local/css 2016-8-18 -->
     <link href="${pageContext.request.contextPath }/css/appinfoadd.css" rel='stylesheet'>
     <link href="${pageContext.request.contextPath }/css/appinfolist.css" rel='stylesheet'>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/layui.css"  media="all">
 </head>
 <body>
 
@@ -49,7 +50,7 @@
                     <ul>
                         <li>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">供应商名称</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">供应商</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input name="supplier_name" type="text" class="form-control col-md-7 col-xs-12"
                                            value="${name}">
@@ -72,7 +73,7 @@
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
                         <div class="col-sm-12">
-                            <a href="${pageContext.request.contextPath}/" class="btn btn-success btn-sm">新增供应商信息</a>
+                            <a href="javascript:;" class="btn btn-success btn-sm" id="addfive">新增供应商信息</a>
                             <table id="datatable-responsive"
                                    class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
                                    role="grid" aria-describedby="datatable-responsive_info"
@@ -147,14 +148,11 @@
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
-                                                    <li><a class="modifyAppInfo" data-toggle="tooltip"
-                                                           data-placement="top" title=""
+                                                    <li><a class="updatefive" data-toggle="tooltip"
+                                                           data-placement="top" title="" updateid="${pages.id}"
                                                            data-original-title="修改公司信息">修改</a></li>
-                                                    <li><a class="viewApp" data-toggle="tooltip"
-                                                           data-placement="top" title=""
-                                                           data-original-title="查看公司信息">查看</a></li>
-                                                    <li><a class="deleteApp" data-toggle="tooltip"
-                                                           data-placement="top" title=""
+                                                    <li><a class="deletefive" data-toggle="tooltip"
+                                                           data-placement="top" title="" deleteid="${pages.id}"
                                                            data-original-title="删除公司信息">删除</a></li>
                                                 </ul>
                                             </div>
@@ -225,6 +223,70 @@
 <!--<script src="js/rollpage.js"></script>-->
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/rollpage.js"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/layer/layer.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/layer/layer.js"></script>
+<script src="${pageContext.request.contextPath }/js/layui.js" charset="utf-8"></script>
+<script type="text/javascript">
+    //增加弹出层
+    $("#addfive").on('click',function () {
+        layer.open({
+            type:2,
+            title:'增加前五大供应商',
+            maxmin:true,
+            shadeClose:true,
+            anim:2,
+            shade:[0.8,'#393D49'],
+            area:['800px','600px'],
+            content:'/web/addfive.html',
+            end:function () {
+                location.reload();
+            }
+        })
+    });
+    //修改弹出层
+    $(".updatefive").on('click',function () {
+        var obj=$(this);
+        console.log(obj.attr("updateid"));
+        layer.open({
+            type: 2,
+            title:'修改前五大供应商',
+            maxmin:true,
+            shadeClose: true,
+            anim: 4,
+            shade:[0.8,'#393D49'],
+            area:['800px','600px'],
+            content: '/web/updatefive.html?id='+obj.attr('updateid'),
+            end:function () {
+                location.reload();
+            }
+        })
+    });
+    //删除
+    $(".deletefive").on('click',function () {
+        var obj=$(this);
+        console.log(obj.attr("deleteid"));
+        parent.layer.confirm("确定要删除这条记录吗？",{btn:['确定','取消']},function (confirm) {
+            layer.close(confirm);
+            $.ajax({
+                type:"POST",
+                url:"/Five/deleteFive/"+obj.attr("deleteid"),
+                dataType:"json",
+                success:function (data) {
+                    if(data.state==2000){
+                        parent.layer.msg("操作成功",{icon:6});
+                        location.reload();
+                    }else{
+                        parent.layer.msg(data.message);
+                    }
+                }
+            });
+        },function (confirms) {
+            layer.close(confirms);
+            parent.layer.msg("已取消删除");
+        });
+
+    });
+</script>
 </body>
 </body>
 </html>
