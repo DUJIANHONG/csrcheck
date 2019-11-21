@@ -1,6 +1,7 @@
 package com.csr.csrcheck.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -17,7 +18,7 @@ public class Stock_alteration {
     private String ratio_before;     //变更前
     private String share_change;     //持股变化（股）
     private String increase_decrease;//增减情况
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date change_time;        //变更时间
 
     //自定义字段

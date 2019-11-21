@@ -1,6 +1,7 @@
 package com.csr.csrcheck.service.impl;
 
 import com.csr.csrcheck.mapper.Stock_alterationMapper;
+import com.csr.csrcheck.pojo.Clinic;
 import com.csr.csrcheck.pojo.Shareholder;
 import com.csr.csrcheck.pojo.Stock_alteration;
 import com.csr.csrcheck.service.Stock_alterationService;
@@ -40,6 +41,7 @@ public class Stock_alterationServiceImpl implements Stock_alterationService {
         return PageUtils.getPageResult(pageNum,pageSize,getPageInfo(pageNum,pageSize,shareholder_name,type,change_time));
     }
 
+
     /**
      * 调用分页插件完成分页
      * @param pageNum
@@ -56,5 +58,39 @@ public class Stock_alterationServiceImpl implements Stock_alterationService {
             throw new CompanyException("没有数据");
         }
         return new PageInfo<>(list);
+    }
+    @Override
+    public void addStock_alteration(Stock_alteration stock_alteration) {
+        int row = stock_alterationMapper.addStock_alteration(stock_alteration);
+        if (row != 1) {
+            throw new CompanyException("增加失败");
+        }
+    }
+
+    @Override
+    public int updateStock_alteration(Stock_alteration stock_alteration) {
+        int row =stock_alterationMapper.updateStock_alteration(stock_alteration);
+        if (row!=1){
+            throw new CompanyException("修改失败");
+        }
+        return row;
+    }
+
+    @Override
+    public Stock_alteration findstock_alterationByid(int id) {
+        Stock_alteration list = stock_alterationMapper.findstock_alterationByid(id);
+        if (list == null) {
+            throw new CompanyException("数据为空");
+        }
+        return list;
+    }
+
+    @Override
+    public int deletestock_alterationByid(int id) {
+        int row=stock_alterationMapper.deletestock_alterationByid(id);
+        if(row!=1){
+            throw new CompanyException("删除失败");
+        }
+        return row;
     }
 }

@@ -21,4 +21,31 @@
         </trim>
     </select>
 
+    <insert id="addShareholder" useGeneratedKeys="true" keyProperty="id" parameterType="com.csr.csrcheck.pojo.Shareholder">
+        INSERT INTO `shareholder` (`company_id`,`shareholder_name`,`share_type`,
+        `number_of_shares`,`proportion`)
+        VALUE (#{company_id},#{shareholder_name},#{share_type},
+        #{number_of_shares},#{proportion})
+    </insert>
+
+    <select id="list" resultType="com.csr.csrcheck.pojo.Shareholder">
+       SELECT `id`,`shareholder_name` FROM `shareholder`
+    </select>
+
+    <!--修改 -->
+    <update id="updateShareholder" parameterType="com.csr.csrcheck.pojo.Shareholder">
+        update `shareholder`
+        set
+        company_id=#{company_id},shareholder_name=#{shareholder_name},
+        share_type=#{share_type},number_of_shares=#{number_of_shares},
+        proportion=#{proportion}
+        where id=#{id}
+    </update>
+
+    <select id="findshareholderByid" resultType="com.csr.csrcheck.pojo.Shareholder">
+        select s.* from shareholder s where s.id=#{id}
+    </select>
+    <delete id="deleteshareholderByid">
+        delete from shareholder where id=#{id}
+    </delete>
 </mapper>

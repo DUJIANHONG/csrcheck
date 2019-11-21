@@ -71,5 +71,40 @@
     <select id="getCommpanyByid" resultType="com.csr.csrcheck.pojo.Company">
         select c.* from  company c
     </select>
+<!--添加-->
+    <insert id="addCommpany" useGeneratedKeys="true" keyProperty="id" parameterType="com.csr.csrcheck.pojo.Company">
+        INSERT INTO `company`
+        (`company_name`,`company_address`,`type_ownership`,`main_business`,
+        `strategic_focus`,`listed_unlisted`,`ten_shareholders`,`introduction_controller_id`,
+        `production`, `organization`,`company_ranking`)
+        VALUE
+        (#{company_name},#{company_address},#{type_ownership},#{main_business},
+        #{strategic_focus},#{listed_unlisted},#{ten_shareholders},#{introduction_controller_id},
+        #{production},#{organization},#{company_ranking})
+    </insert>
+
+    <select id="list" resultType="com.csr.csrcheck.pojo.Company">
+       SELECT `id`,`company_name` FROM `company`
+    </select>
+    <!--修改 -->
+    <update id="updateCompany" parameterType="com.csr.csrcheck.pojo.Company">
+        update `company`
+        set
+        company_name=#{company_name},company_address=#{company_address},
+        type_ownership=#{type_ownership},main_business=#{main_business},
+        strategic_focus=#{strategic_focus},listed_unlisted=#{listed_unlisted},
+        ten_shareholders=#{ten_shareholders},introduction_controller_id=#{introduction_controller_id},
+        production=#{production},organization=#{organization},
+        company_ranking=#{company_ranking}
+        where id=#{id}
+    </update>
+
+    <select id="findcompanyByid" resultType="com.csr.csrcheck.pojo.Company">
+        select c.* from company c where c.id=#{id}
+    </select>
+
+    <delete id="deletecompanyByid">
+        delete from company where id=#{id}
+    </delete>
 
 </mapper>

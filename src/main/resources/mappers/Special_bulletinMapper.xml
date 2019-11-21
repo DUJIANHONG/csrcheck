@@ -17,4 +17,28 @@
             </if>
         </trim>
     </select>
+
+    <insert id="addSpecial_bulletin" useGeneratedKeys="true" keyProperty="id" parameterType="com.csr.csrcheck.pojo.Special_bulletin">
+        INSERT INTO `special_bulletin` (`company_id`,`title`,`content`,
+        `release_time`)
+        VALUE (#{company_id},#{title},#{content},
+        #{release_time})
+    </insert>
+
+    <!--修改 -->
+    <update id="updateSpecial_bulletin" parameterType="com.csr.csrcheck.pojo.Special_bulletin">
+        update `special_bulletin`
+        set
+        company_id=#{company_id},title=#{title},
+        content=#{content},release_time=#{release_time}
+        where id=#{id}
+    </update>
+
+    <select id="findspecial_bulletinByid" resultType="com.csr.csrcheck.pojo.Special_bulletin">
+        select s.* from special_bulletin s where s.id=#{id}
+    </select>
+
+    <delete id="deletespecial_bulletinByid">
+        delete from special_bulletin where id=#{id}
+    </delete>
 </mapper>

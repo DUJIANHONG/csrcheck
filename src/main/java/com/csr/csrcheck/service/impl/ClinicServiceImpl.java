@@ -33,6 +33,41 @@ public class ClinicServiceImpl implements ClinicService {
         return PageUtils.getPageResult(pageNum,pageSize,getPageInfo(pageNum,pageSize,product_name));
     }
 
+    @Override
+    public void addClinic(Clinic clinic) {
+        int row=clinicMapper.addClinic(clinic);
+        if(row!=1){
+            throw new CompanyException("增加失败");
+        }
+    }
+
+    @Override
+    public int updateClinic(Clinic clinic) {
+        int row =clinicMapper.updateClinic(clinic);
+        if (row!=1){
+            throw new CompanyException("修改失败");
+        }
+        return row;
+    }
+
+    @Override
+    public Clinic findclinicByid(int id) {
+        Clinic list = clinicMapper.findclinicByid(id);
+        if (list == null) {
+            throw new CompanyException("数据为空");
+        }
+        return list;
+    }
+
+    @Override
+    public int deleteclinicByid(int id) {
+        int row=clinicMapper.deleteclinicByid(id);
+        if(row!=1){
+            throw new CompanyException("删除失败");
+        }
+        return row;
+    }
+
 
     /**
      * 调用分页插件完成分页
