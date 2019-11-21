@@ -1,3 +1,6 @@
+laydate.render({
+    elem: '#time', //指定元素
+});
 $().ready(function() {
     validateRule();
     $.ajax({
@@ -35,7 +38,7 @@ $("#update").click(function () {
                     if (data.state == 2000) {
                         parent.layer.msg("操作成功", {icon: 1});
                     } else {
-                        parent.layer.alert(data.msg)
+                        parent.layer.alert(data.message)
                     }
 
                 }

@@ -10,7 +10,8 @@ public class Contend {
     private int company_id;//关联公司ID
     private String title;//竞争力信息标题
     private String content;//内容
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")//转换时间格式
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date  time;//发布时间
 
     /**

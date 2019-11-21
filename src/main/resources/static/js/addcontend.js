@@ -1,5 +1,5 @@
 laydate.render({
-    elem: '#time' //指定元素
+    elem: '#time', //指定元素
 });
 $().ready(function() {
     loadType();
@@ -14,7 +14,7 @@ $("#save").click(function () {
             $.ajax({
                 cache: true,
                 type: "POST",
-                url: "/business_risks/addbussiness",
+                url: "/contend/addcontend",
                 data: $('#signupForm').serialize(),// 你的formid
                 async: false,
                 dataType: 'json',
@@ -22,7 +22,7 @@ $("#save").click(function () {
                     if (data.state == 2000) {
                         parent.layer.msg("操作成功", {icon: 1});
                     } else {
-                        parent.layer.alert(data.msg)
+                        parent.layer.alert(data.message)
                     }
 
                 }

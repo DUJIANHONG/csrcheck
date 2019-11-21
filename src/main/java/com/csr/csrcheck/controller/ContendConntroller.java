@@ -8,9 +8,13 @@ import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -104,6 +108,11 @@ public class ContendConntroller extends BaseController {
     public JsonResult<List<Company>> showcompany(){
         List<Company> list = companyService.getCommpanylist();
         return new JsonResult<>(SUCCESS,OK,list);
+    }
+    @InitBinder
+    public void initBinder(ServletRequestDataBinder binder){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 }
 

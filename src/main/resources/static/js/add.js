@@ -22,7 +22,7 @@ $("#save").click(function () {
 					if (data.state == 2000) {
 						parent.layer.msg("操作成功");
 					} else {
-						parent.layer.alert(data.msg)
+						parent.layer.alert(data.message)
 					}
 
 				}
