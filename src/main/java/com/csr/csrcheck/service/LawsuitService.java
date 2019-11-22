@@ -33,4 +33,30 @@ public interface LawsuitService {
                            String doctype,
                           String defendants,
                           String submittime);
+
+    /**
+     * 增加
+     * @param lawsuit
+     * @return
+     */
+    int addlawsuit(Lawsuit lawsuit);
+    /**
+     * 修改
+     * @param lawsuit
+     * @return
+     */
+    int updatelawsuit(Lawsuit lawsuit);
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
+    int deletelawsuit(int id);
+
+    /**
+     * 根据id查找
+     * @param id
+     * @return
+     */
+    Lawsuit findlawsuit(int id);
 }

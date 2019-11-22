@@ -28,6 +28,8 @@
 
     <!-- add local/css 2016-8-18 -->
     <link href="${pageContext.request.contextPath }/css/appinfoadd.css" rel='stylesheet'>
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/layui.css"  media="all">
     <link href="${pageContext.request.contextPath }/css/appinfolist.css" rel='stylesheet'>
 </head>
 <body>
@@ -115,7 +117,7 @@
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
                         <div class="col-sm-12">
-                            <a href="${pageContext.request.contextPath}/" class="btn btn-success btn-sm">新增飞行检查信息</a>
+                            <a href="javascript:;" id="addflight" class="btn btn-success btn-sm">新增飞行检查信息</a>
                             <div style="overflow-x: auto; overflow-y: auto; height: 50%;width: 100%">
                             <table id="datatable-responsive"
                                    class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
@@ -197,14 +199,11 @@
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
-                                                    <li><a class="modifyAppInfo" data-toggle="tooltip"
-                                                           data-placement="top" title=""
+                                                    <li><a class="updateflight" data-toggle="tooltip"
+                                                           data-placement="top" title="" updateid="${pages.id}"
                                                            data-original-title="修改公司信息">修改</a></li>
-                                                    <li><a class="viewApp" data-toggle="tooltip"
-                                                           data-placement="top" title=""
-                                                           data-original-title="查看公司信息">查看</a></li>
-                                                    <li><a class="deleteApp" data-toggle="tooltip"
-                                                           data-placement="top" title=""
+                                                    <li><a class="deleteflight" data-toggle="tooltip"
+                                                           data-placement="top" title="" deleteid="${pages.id}"
                                                            data-original-title="删除公司信息">删除</a></li>
                                                 </ul>
                                             </div>
@@ -276,6 +275,71 @@
 <!--<script src="js/rollpage.js"></script>-->
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/rollpage.js"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/layer/layer.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/layer/layer.js"></script>
+<script src="${pageContext.request.contextPath }/js/layui.js" charset="utf-8"></script>
+<script type="text/javascript">
+    //增加
+   $("#addflight").on('click',function () {
+       layer.open({
+           type: 2,
+           title: '添加飞行检查',
+           maxmin: true,
+           shadeClose: true,
+           anim: 2,
+           shade: [0.8, '#393D49'],
+           area: ['800px', '600px'],
+           content: '/web/addFlight.html',
+           end: function () {
+               location.reload();
+           }
+       })
+   })
+    //修改
+    $(".updateflight").on('click',function () {
+        var obj=$(this);
+        console.log(obj.attr("updateid"))
+        layer.open({
+            type: 2,
+            title:'修改经营分险信息',
+            maxmin:true,
+            shadeClose: true,
+            anim: 4,
+            shade:[0.8,'#393D49'],
+            area:['800px','600px'],
+            content: '/web/updateflight.html?id='+obj.attr('updateid'),
+            end:function () {
+                location.reload();
+            }
+        })
+    })
+    //删除
+    $(".deleteflight").on('click',function () {
+        var obj=$(this);
+        console.log(obj.attr("deleteid"));
+        parent.layer.confirm("确定要删除这条记录吗？",{btn:['确定','取消']},function (confirm) {
+            layer.close(confirm);
+            $.ajax({
+                type:"post",
+                url:"/flight_check/deleteflight/"+obj.attr("deleteid"),
+                dataType:"json",
+                success:function (data) {
+                    if(data.state==2000){
+                        parent.layer.msg("操作成功",{icon:6});
+                        location.reload();
+                    }else{
+                        parent.layer.msg(data.message);
+                    }
+                }
+            });
+        },function (confirms) {
+            layer.close(confirms);
+            parent.layer.msg("已取消删除");
+        });
+
+    });
+</script>
+
 </body>
 </body>
 </html>

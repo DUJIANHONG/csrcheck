@@ -1,6 +1,7 @@
 package com.csr.csrcheck.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -15,6 +16,7 @@ public class Lawsuit {
     private String title;//标题
     private String abstracts;//摘要
     @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date submittime;//发布时间
     private String lawsuitUrl ;//药企通显示url
     private String casetype;//案件类型
