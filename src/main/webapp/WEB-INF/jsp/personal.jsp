@@ -220,8 +220,8 @@
         </div>
     </div>
 </div>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.min.js" ></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.min.js?v=2.1.4" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/bootstrap.min.js?v=3.3.6" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/icheck.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/cropper.min.js"></script>
 
@@ -230,9 +230,11 @@
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/gg-bootdo.js "></script>
 
     <!--校验插件-->
-    <scripts rc="${pageContext.request.contextPath }/js/jquery.validate.min.js"></scripts>
-    <script src="${pageContext.request.contextPath }/js/jquery.validate.extend.js"></script>
-    <script src="${pageContext.request.contextPath }/js/messages_zh.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/validate/messages_zh.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/validate/jquery.validate.extend.js"></script>
+
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/personal.js"></script>
+
 </body>
 </html>
