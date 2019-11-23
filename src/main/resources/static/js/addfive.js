@@ -3,10 +3,7 @@ $().ready(function() {
     loadType();
     validateRule();
 });
-jQuery.validator.addMethod("announcement_dates",function(value,element){
-    var announcement=/^[0-9]*$/;
-    return this.optional(element) || (announcement).test(value);
-},'请输入数字');
+
 //添加
 $("#save").click(function () {
     if($("#company_id").val()==null||$("#company_id").val()=='') {
@@ -38,17 +35,11 @@ function validateRule() {
         rules : {
             name : {
                 required : true
-            },
-            announcement_date:{
-                announcement_dates:true
             }
         },
         messages : {
             name : {
                 required : icon + ""
-            },
-            announcement_date:{
-                announcement_dates: "请输入数字"
             }
         },
         errorPlacement:function(error,element){
