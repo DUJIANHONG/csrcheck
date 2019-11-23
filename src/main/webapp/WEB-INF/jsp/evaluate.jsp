@@ -256,7 +256,7 @@
         console.log(obj.attr("updateid"));
         layer.open({
             type: 2,
-            title:'修改核心竞争力',
+            title:'修改一致性评价',
             maxmin:true,
             shadeClose: true,
             anim: 4,

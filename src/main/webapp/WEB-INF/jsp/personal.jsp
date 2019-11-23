@@ -230,7 +230,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/gg-bootdo.js "></script>
 
     <!--校验插件-->
-    <script src="${pageContext.request.contextPath }/js/jquery.validate.min.js"></script>
+    <scripts rc="${pageContext.request.contextPath }/js/jquery.validate.min.js"></scripts>
     <script src="${pageContext.request.contextPath }/js/jquery.validate.extend.js"></script>
     <script src="${pageContext.request.contextPath }/js/messages_zh.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/personal.js"></script>

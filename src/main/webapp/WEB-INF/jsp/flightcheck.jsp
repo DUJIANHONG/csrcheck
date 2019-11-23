@@ -301,7 +301,7 @@
         console.log(obj.attr("updateid"))
         layer.open({
             type: 2,
-            title:'修改经营分险信息',
+            title:'修改飞行检查信息',
             maxmin:true,
             shadeClose: true,
             anim: 4,

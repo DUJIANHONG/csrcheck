@@ -1,8 +1,12 @@
 laydate.render({
     elem: '#term_of_validity', //指定元素
+    eventElem: '.yx'
+    ,trigger: 'click'
 });
 laydate.render({
     elem: '#publication', //指定元素
+    eventElem: '.gb'
+    ,trigger: 'click'
 });
 $().ready(function() {
     validateRule();

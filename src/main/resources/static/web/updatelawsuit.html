@@ -25,6 +25,17 @@
     <link href="../css/animate.css" rel="stylesheet">
     <link href="../css/plugins/toastr/chosen/chosen.css" rel="stylesheet">
     <link href="../css/style.css?v=4.1.0" rel="stylesheet">
+    <style>
+        .fa-calendar{
+            position: absolute;
+            right: 20px;
+            top: -0.5px;
+            margin-top: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #1E9FFF;
+        }
+    </style>
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content ">
@@ -70,7 +81,8 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">发布时间：</label>
                             <div class="col-sm-8">
-                                <input id="submittime" name="submittime" class="form-control layui-input" placeholder="年-月-日" type="text" required>
+                                <input id="submittime" name="submittime" class="form-control" placeholder="年-月-日"  required>
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div class="form-group">

@@ -1,5 +1,7 @@
 laydate.render({
     elem: '#submittime', //指定元素
+    eventElem: '.fa-calendar'
+    ,trigger: 'click'
 });
 $().ready(function() {
     validateRule();

@@ -10,7 +10,7 @@ $().ready(function() {
             $("#company_id").prop('value',data.data.company_id);
             console.log(data.data.announcement_date)
             $("#supplier_name").val(data.data.supplier_name);
-            $("#announcement_date").attr(data.data.announcement_date);
+            $("#announcement_date").val(data.data.announcement_date);
             $("#amt").val(data.data.amt);
             $("#alias").val(data.data.alias);
             $("#dataSource").val(data.data.dataSource);

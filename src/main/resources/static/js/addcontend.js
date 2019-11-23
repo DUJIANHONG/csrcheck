@@ -1,5 +1,7 @@
 laydate.render({
     elem: '#time', //指定元素
+    eventElem: '.fa-calendar'
+    ,trigger: 'click'
 });
 $().ready(function() {
     loadType();

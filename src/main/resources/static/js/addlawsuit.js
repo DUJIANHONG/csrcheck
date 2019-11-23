@@ -1,9 +1,12 @@
-laydate.render({
-    elem: '#submittime', //指定元素
-});
+
 $().ready(function() {
     loadType();
     validateRule();
+    laydate.render({
+        elem: '#submittime', //指定元素
+        eventElem: '.fa-calendar'
+        ,trigger: 'click'
+    });
 });
 
 $("#save").click(function () {
