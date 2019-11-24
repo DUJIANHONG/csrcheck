@@ -124,10 +124,10 @@
                                                         <span class="sr-only">Toggle Dropdown</span>
                                                     </button>
                                                     <ul class="dropdown-menu" role="menu">
-                                                        <li><a class="modifyAppInfo" data-toggle="tooltip"
+                                                        <li><a class="uppdateapprovals" data-toggle="tooltip"
                                                                data-placement="top" title=""
                                                                data-original-title="修改批文信息" id="uppdateapprovals" approvalsid="${pages.id}">修改</a></li>
-                                                        <li><a class="modifyAppInfo" data-toggle="tooltip"
+                                                        <li><a class="deleteapprovals" data-toggle="tooltip"
                                                                data-placement="top" title="" id="deleteapprovals"
                                                                data-original-title="删除批文信息" deleteapprovalsid="${pages.id}">删除</a></li>
                                                     </ul>
@@ -220,7 +220,7 @@
             });
         });
         //修改弹出层
-        $('#uppdateapprovals ').on('click', function () {
+        $('.uppdateapprovals ').on('click', function () {
             var obj=$(this);
             console.log(obj.attr('approvalsid'))
             layer.open({
@@ -237,7 +237,7 @@
             });
         });
         //删除
-        $('#deleteapprovals').on('click',function () {
+        $('.deleteapprovals').on('click',function () {
             var obj=$(this);
             console.log(obj.attr('deleteapprovalsid'))
             parent.layer.confirm("确定要删除这条记录吗？",{btn:['确定','取消']},function (confirm) {

@@ -42,5 +42,28 @@
         </trim>
     </select>
 
+    <insert id="addClinic" useGeneratedKeys="true" keyProperty="id" parameterType="com.csr.csrcheck.pojo.Clinic">
+        INSERT INTO `clinic` (`product_id`,`record_number`,`adaptation_disease`,
+        `record_date`)
+        VALUE (#{product_id},#{record_number},#{adaptation_disease},
+        #{record_date})
+    </insert>
 
+    <!--修改 -->
+    <update id="updateClinic" parameterType="com.csr.csrcheck.pojo.Clinic">
+        update `clinic`
+        set
+        product_id=#{product_id},record_number=#{record_number},
+        adaptation_disease=#{adaptation_disease},
+        record_date=#{record_date}
+        where id=#{id}
+    </update>
+
+    <select id="findclinicByid" resultType="com.csr.csrcheck.pojo.Clinic">
+        select c.* from clinic c where c.id=#{id}
+    </select>
+
+    <delete id="deleteclinicByid">
+        delete from clinic where id=#{id}
+    </delete>
 </mapper>

@@ -1,6 +1,7 @@
 package com.csr.csrcheck.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -14,6 +15,7 @@ public class Special_bulletin {
     private String title;       //公告标题
     private String content;     //.pdf的存放路径
     private int company_id;     //关联公司id
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date release_time;  //公告发布时间
 

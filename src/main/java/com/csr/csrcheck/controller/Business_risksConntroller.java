@@ -131,4 +131,15 @@ public class Business_risksConntroller extends BaseController{
         List<Risk_type> list=business_risksService.findbylisttype();
         return new JsonResult<>(SUCCESS,OK,list);
     }
+
+    /**
+     * 根据id查找企业分险信息
+     * @param id
+     * @return
+     */
+    @RequestMapping(path = "getbussinessbyid/{id}",method = RequestMethod.POST)
+    public JsonResult<Business_risks> getbussinessbyid(@PathVariable(value = "id") int id){
+        Business_risks business_risks=business_risksService.findlistbyid(id);
+        return new JsonResult<>(SUCCESS,OK,business_risks);
+    }
 }

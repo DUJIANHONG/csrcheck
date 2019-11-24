@@ -1,4 +1,6 @@
 $().ready(function() {
+    loadType();
+    loadType2();
     validateRule();
     $.ajax({
         type:"POST",
@@ -10,32 +12,42 @@ $().ready(function() {
             $("#approval_no").val(data.data.approval_no);
             $("#approval_num").val(data.data.approval_num);
             $("#id").val(data.data.id);
-
+            var product=data.data.product_id;
+            var approved=data.data.approved_by;
             loadType2();
             loadType();
+            $("#product_id").find("option[value=" + product + "]").attr("selected", true).trigger("chosen:updated");
+            $("#approved_by").find("option[value=" + approved + "]").attr("selected", true).trigger("chosen:updated");
+            /*$("#product_id option[value='"+product+"']").attr("selected",true);
+            $("#approved_by option[value='"+approved+"']").attr("selected",true);*/
         }
     })
 });
 
 $("#update").click(function () {
-    if ($("#signupForm").valid()) {
-        $.ajax({
-            cache: true,
-            type: "POST",
-            url: "/approvals/updateapprovals",
-            data: $('#signupForm').serialize(),// 你的formid
-            async: false,
-            dataType:'json',
-            success: function (data) {
-                if (data.state == 2000) {
-                    parent.layer.msg("操作成功");
-                } else {
-                    parent.layer.alert(data.msg)
+    if($("#product_id").val()==null||$("#product_id").val()==""){
+        layer.msg("请选择产品",{icon:5,anim:6});
+    }else if($("#approved_by").val()==null||$("#approved_by").val()==""){
+        layer.msg("请选择所属准字",{icon:5,anim:6});
+    }else {
+        if ($("#signupForm").valid()) {
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: "/approvals/updateapprovals",
+                data: $('#signupForm').serialize(),// 你的formid
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.state == 2000) {
+                        parent.layer.msg("操作成功");
+                    } else {
+                        parent.layer.alert(data.message)
+                    }
+
                 }
-
-            }
-        });
-
+            });
+        }
     }
 })
 function validateRule() {
@@ -65,19 +77,9 @@ function loadType(){
             for (var i = 0; i < list.length; i++) {
                 html += '<option value="' + list[i].product_id + '">' + list[i].product_name + '</option>'
             }
-            $(".chosen-select").append(html);
-            $(".chosen-select").chosen({
+            $("#product_id").append(html);
+            $("#product_id").chosen({
                 maxHeight : 200
-            });
-            //点击事件
-            $('.chosen-select').on('change', function(e, params) {
-                console.log(params.selected);
-                var opt = {
-                    query : {
-                        type : params.selected,
-                    }
-                }
-                $('#exampleTable').bootstrapTable('refresh', opt);
             });
         }
     });
@@ -94,20 +96,9 @@ function loadType2(){
             for (var i = 0; i < list.length; i++) {
                 html += '<option value="' + list[i].id + '">' + list[i].approved_t_name + '</option>'
             }
-            $(".chosen-select2").append(html);
-            $(".chosen-select2").chosen({
+            $("#approved_by").append(html);
+            $("#approved_by").chosen({
                 maxHeight : 200
-            });
-            //点击事件
-            $('.chosen-select2').on('change', function(e, params) {
-                console.log(params.selected);
-
-                var opt = {
-                    query : {
-                        type : params.selected,
-                    }
-                }
-                $('#exampleTable').bootstrapTable('refresh', opt);
             });
         }
     });

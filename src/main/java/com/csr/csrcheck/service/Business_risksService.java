@@ -57,4 +57,10 @@ public interface Business_risksService {
      * @return
      */
     List<Risk_type> findbylisttype();
+    /**
+     * 根据id查找企业分险
+     * @param id
+     * @return
+     */
+    Business_risks findlistbyid(int id);
 }

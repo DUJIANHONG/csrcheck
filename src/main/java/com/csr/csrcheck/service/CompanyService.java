@@ -1,5 +1,7 @@
 package com.csr.csrcheck.service;
 
+import com.csr.csrcheck.pojo.Actual_controller;
+import com.csr.csrcheck.pojo.Approvals;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.Special_bulletin;
 import com.csr.csrcheck.util.PageResult;
@@ -66,5 +68,33 @@ public interface CompanyService {
      * @return
      */
     List<Company> getCommpanyByid();
+    /**
+     *查询id和名称
+     *  @return
+     */
+    List<Company> list();
+    /**
+     * 增加公司
+     * @param company
+     */
+    public void addCompany(Company company);
 
+    /**
+     * 修改公司
+     * @param company
+     * @return
+     */
+    int updateCompany(Company company);
+    /**
+     * 根据id查找公司
+     * @param id
+     * @return
+     */
+    Company findcompanyByid(int id);
+    /**
+     *根据id删除公司
+     *  @param id
+     * @return
+     */
+    int deletecompanyByid(int id);
 }

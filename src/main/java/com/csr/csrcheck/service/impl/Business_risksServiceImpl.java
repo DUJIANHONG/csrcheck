@@ -76,15 +76,25 @@ public class Business_risksServiceImpl implements Business_risksService {
         }
         return row;
     }
-
+//下拉表展示风险分类
     @Override
     public List<Risk_classify> findbylistclassify() {
         return business_risksMapper.findbylistclassify();
     }
-
+//下拉列表展示风险类型
     @Override
     public List<Risk_type> findbylisttype() {
         return business_risksMapper.findbylisttype();
+    }
+
+    /**
+     * 根据id查找企业分险
+     * @param id
+     * @return
+     */
+    @Override
+    public Business_risks findlistbyid(int id) {
+        return business_risksMapper.findlistbyid(id);
     }
 
     /**

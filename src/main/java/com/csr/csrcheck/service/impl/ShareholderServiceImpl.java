@@ -1,6 +1,7 @@
 package com.csr.csrcheck.service.impl;
 
 import com.csr.csrcheck.mapper.ShareholderMapper;
+import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.Shareholder;
 import com.csr.csrcheck.service.ShareholderService;
 import com.csr.csrcheck.service.ex.CompanyException;
@@ -35,6 +36,50 @@ public class ShareholderServiceImpl implements ShareholderService {
     @Override
     public PageResult getListPage(int pageNum,int pageSize,String shareholder_name, String share_type, String company_name) {
         return PageUtils.getPageResult(pageNum,pageSize,getPageInfo(pageNum,pageSize,shareholder_name,share_type,company_name));
+    }
+
+    @Override
+    public void addShareholder(Shareholder shareholder) {
+        int row=shareholderMapper.addShareholder(shareholder);
+        if(row!=1){
+            throw new CompanyException("增加失败");
+        }
+    }
+
+    @Override
+    public List<Shareholder> list() {
+        List list=shareholderMapper.list();
+        if(list==null){
+            throw new CompanyException("数据为空");
+        }
+        return list;
+    }
+
+    @Override
+    public int updateShareholder(Shareholder shareholder) {
+        int row =shareholderMapper.updateShareholder(shareholder);
+        if (row!=1){
+            throw new CompanyException("修改失败");
+        }
+        return row;
+    }
+
+    @Override
+    public Shareholder findshareholderByid(int id) {
+        Shareholder list=shareholderMapper.findshareholderByid(id);
+        if(list==null){
+            throw new CompanyException("数据为空");
+        }
+        return list;
+    }
+
+    @Override
+    public int deleteshareholderByid(int id) {
+        int row=shareholderMapper.deleteshareholderByid(id);
+        if(row!=1){
+            throw new CompanyException("删除失败");
+        }
+        return row;
     }
 
     /**

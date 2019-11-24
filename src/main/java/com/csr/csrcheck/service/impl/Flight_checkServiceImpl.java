@@ -53,6 +53,38 @@ public class Flight_checkServiceImpl implements IFlight_checkService {
         return PageUtils.getPageResult(pageNum,pageSize,getPageInfo(pageNum,pageSize,company_name,product_name,product_t_name,check_no,publication));
     }
 
+    @Override
+    public int addFlightcheck(Flight_check flight_check) {
+        int row = flight_checkMapper.addFlightcheck(flight_check);
+        if(row!=1){
+            throw new CompanyException("增加失败");
+        }
+        return row;
+    }
+
+    @Override
+    public int updateFlightcheck(Flight_check flight_check) {
+        int row = flight_checkMapper.updateFlightcheck(flight_check);
+        if (row!=1){
+            throw new CompanyException("修改失败");
+        }
+        return row;
+    }
+
+    @Override
+    public int deleteFlightcheck(int id) {
+       int row =flight_checkMapper.deleteFlightcheck(id);
+        if (row != 1) {
+            throw new CompanyException("删除失败");
+        }
+        return row;
+    }
+
+    @Override
+    public Flight_check findflightByid(int id) {
+        return flight_checkMapper.findflightByid(id);
+    }
+
 
     /**
      * 调用分页插件完成分页

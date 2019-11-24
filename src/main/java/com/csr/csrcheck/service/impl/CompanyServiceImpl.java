@@ -1,6 +1,7 @@
 package com.csr.csrcheck.service.impl;
 
 import com.csr.csrcheck.mapper.CompanyMapper;
+import com.csr.csrcheck.pojo.Approvals;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.Special_bulletin;
 import com.csr.csrcheck.service.CompanyService;
@@ -71,6 +72,51 @@ public class CompanyServiceImpl implements CompanyService {
     public List<Company> getCommpanyByid() {
         return companyMapper.getCommpanyByid();
     }
+
+    @Override
+    public List<Company> list() {
+        List list=companyMapper.list();
+        if(list==null){
+            throw new CompanyException("数据为空");
+        }
+        return list;
+    }
+
+    @Override
+    public void addCompany(Company company) {
+        int row=companyMapper.addCommpany(company);
+        if(row!=1){
+            throw new CompanyException("增加失败");
+        }
+    }
+
+    @Override
+    public int updateCompany(Company company) {
+        int row =companyMapper.updateCompany(company);
+        if (row!=1){
+            throw new CompanyException("修改失败");
+        }
+        return row;
+    }
+
+    @Override
+    public Company findcompanyByid(int id) {
+        Company list=companyMapper.findcompanyByid(id);
+        if(list==null){
+            throw new CompanyException("数据为空");
+        }
+        return list;
+    }
+
+    @Override
+    public int deletecompanyByid(int id) {
+        int row=companyMapper.deletecompanyByid(id);
+        if(row!=1){
+            throw new CompanyException("删除失败");
+        }
+        return row;
+    }
+
 
     /**
      * 调用分页插件完成分页

@@ -1,9 +1,7 @@
 package com.csr.csrcheck.service.impl;
 
 import com.csr.csrcheck.mapper.ContendMapper;
-import com.csr.csrcheck.pojo.Approvals;
 import com.csr.csrcheck.pojo.Contend;
-
 import com.csr.csrcheck.service.ContendService;
 import com.csr.csrcheck.service.ex.ApprovalsException;
 import com.csr.csrcheck.service.ex.CompanyException;
@@ -34,6 +32,38 @@ public class ContendServiceImpl implements ContendService {
     @Override
     public PageResult getListpage(int pageNum, int pageSize, String company_name) {
         return PageUtils.getPageResult(pageNum,pageSize,getPageInfo(pageNum,pageSize,company_name));
+    }
+
+    @Override
+    public int addcontend(Contend contend) {
+        int row=contendMapper.addcontend(contend);
+        if(row!=1){
+            throw new CompanyException("增加失败");
+        }
+        return row;
+    }
+
+    @Override
+    public int updatecontend(Contend contend) {
+        int row=contendMapper.updatecontend(contend);
+        if(row!=1){
+            throw new CompanyException("修改失败");
+        }
+        return row;
+    }
+
+    @Override
+    public int deletecontend(int id) {
+        int row=contendMapper.deletecontend(id);
+        if(row!=1){
+            throw new CompanyException("删除失败");
+        }
+        return row;
+    }
+
+    @Override
+    public Contend findcontendByid(int id) {
+        return contendMapper.findcontendByid(id);
     }
 
     /**

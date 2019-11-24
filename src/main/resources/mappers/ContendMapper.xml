@@ -32,4 +32,17 @@ WHERE c.`company_id`=o.`id`;
                   AND c.`company_id`=co.id
               </trim>
     </select>
+
+    <insert useGeneratedKeys="true" keyProperty="id" id="addcontend" parameterType="com.csr.csrcheck.pojo.Contend">
+         INSERT INTO `contend` (`company_id`,`title`,`content`,`time`) VALUE (#{company_id},#{title},#{content},#{time})
+    </insert>
+    <update id="updatecontend" parameterType="com.csr.csrcheck.pojo.Contend">
+         UPDATE `contend` SET `company_id`=#{company_id},`title`=#{title},`content`=#{content},`time`=#{time} where id=#{id}
+    </update>
+    <delete id="deletecontend">
+        delete FROM `contend` WHERE id=#{id}
+    </delete>
+    <select id="findcontendByid" resultType="com.csr.csrcheck.pojo.Contend">
+         SELECT c.* FROM `contend` c WHERE c.id=#{id}
+    </select>
 </mapper>

@@ -1,18 +1,15 @@
 package com.csr.csrcheck.controller;
 
-import com.csr.csrcheck.pojo.Clinic;
-import com.csr.csrcheck.pojo.Flight_check;
+import com.csr.csrcheck.pojo.*;
 import com.csr.csrcheck.service.ClinicService;
 import com.csr.csrcheck.service.IFlight_checkService;
+import com.csr.csrcheck.service.ProductService;
 import com.csr.csrcheck.service.ex.ClinicException;
 import com.csr.csrcheck.service.ex.Flight_checkException;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -55,5 +52,67 @@ public class ClinicController extends BaseController{
         log.info("clinic---------------------------->pageSize:"+pageSize);
         log.info("clinic---------------------------->product_name:"+product_name);
         return new JsonResult<>(SUCCESS,OK,pageResult);
+    }
+
+    /**
+     * 添加临床
+     * @param clinic
+     * @return
+     */
+    @RequestMapping(path="addclinic", method= RequestMethod.POST)
+
+    public JsonResult<Object> addclinic(Clinic clinic){
+        clinicService.addClinic(clinic);
+        log.info("add================================>approvals："+clinic);
+        return new JsonResult<>(SUCCESS,OK);
+    }
+    @Resource
+    private ProductService productService;
+    /**
+     * 下拉框展示产品数据
+     * @return
+     */
+    @RequestMapping(path="listproduct", method= RequestMethod.POST)
+    public JsonResult<List<Product>> listproduct(){
+        List list=productService.list();
+        return new JsonResult<>(SUCCESS,OK,list);
+    }
+
+    /**
+     * 修改临床
+     * @param clinic
+     * @return
+     */
+    @RequestMapping(path="updateclinic", method= RequestMethod.POST)
+    public JsonResult<Void> updateclinic(Clinic clinic){
+        clinicService.updateClinic(clinic);
+        return new JsonResult<>(SUCCESS,OK);
+    }
+    /**
+     * 根据id查找临床
+     * @param id
+     * @return
+     */
+    @RequestMapping(path="findClinicByid/{id}", method= RequestMethod.POST)
+    public JsonResult<Clinic> findCompanyByid(@PathVariable(value = "id") int id){
+        Clinic list=null;
+        try {
+            list=clinicService.findclinicByid(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new JsonResult<>(SUCCESS,OK,list);
+    }
+
+    /**
+     *根据id删除临床信息
+     *  @param id
+     * @return
+     */
+    @RequestMapping(path="deleteclinic/{id}", method= RequestMethod.POST)
+    public JsonResult<Void> deleteclinic(@PathVariable(value = "id") int id){
+        clinicService.deleteclinicByid(id);
+        log.info("删除成功-------------------------》id:"+id);
+        return new JsonResult<>(SUCCESS,OK);
     }
 }

@@ -21,4 +21,32 @@ public interface ContendMapper {
      */
     public List<Contend> getContendListpage(@Param(value = "company_name") String company_name);
 
+
+    /**
+     * 增加核心竞争力
+     * @param contend
+     * @return
+     */
+    int addcontend(Contend contend);
+
+    /**
+     * 修改核心竞争力
+     * @param contend
+     * @return
+     */
+    int updatecontend(Contend contend);
+
+    /**
+     *删除核心竞争力
+     *  @param id
+     * @return
+     */
+    int deletecontend(int id);
+
+    /**
+     * 根据id查询核心竞争力
+     * @param id
+     * @return
+     */
+    public Contend findcontendByid(int id);
 }

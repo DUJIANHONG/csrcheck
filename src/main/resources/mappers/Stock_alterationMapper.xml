@@ -20,5 +20,32 @@
             </if>
         </trim>
     </select>
+   
+    <insert id="addStock_alteration" useGeneratedKeys="true" keyProperty="id" parameterType="com.csr.csrcheck.pojo.Stock_alteration">
+        INSERT INTO `stock_alteration` (`investor_id`,`type`,`ratio_after`,
+        `ratio_before`,`share_change`,`increase_decrease`,`change_time`)
+        VALUE (#{investor_id},#{type},#{ratio_after},
+        #{ratio_before},#{share_change},#{increase_decrease},
+        #{change_time})
+    </insert>
+
+    <!--修改 -->
+    <update id="updateStock_alteration" parameterType="com.csr.csrcheck.pojo.Stock_alteration">
+        update `stock_alteration`
+        set
+         investor_id=#{investor_id},
+        type=#{type},ratio_after=#{ratio_after},
+        ratio_before=#{ratio_before},share_change=#{share_change},
+        increase_decrease=#{increase_decrease},change_time=#{change_time}
+        where id=#{id}
+    </update>
+
+    <select id="findstock_alterationByid" resultType="com.csr.csrcheck.pojo.Stock_alteration">
+        select s.* from stock_alteration s where s.id=#{id}
+    </select>
+
+    <delete id="deletestock_alterationByid">
+        delete from stock_alteration where id=#{id}
+    </delete>
 
 </mapper>

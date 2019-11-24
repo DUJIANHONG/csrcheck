@@ -1,5 +1,7 @@
 package com.csr.csrcheck.mapper;
 
+import com.csr.csrcheck.pojo.Actual_controller;
+import com.csr.csrcheck.pojo.Approvals;
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.Special_bulletin;
 import org.apache.ibatis.annotations.Param;
@@ -64,4 +66,37 @@ public interface CompanyMapper {
      * @return
      */
     List<Company> getCommpanyByid();
+    /**
+     * 增加批文
+     * @param company
+     * @return
+     */
+    public int addCommpany(Company company);
+
+    /**
+     *查询id和名称
+     *  @return
+     */
+    List<Company> list();
+
+    /**
+     * 修改公司信息
+     * @param company
+     * @return
+     */
+    int updateCompany(Company company);
+
+    /**
+     * 根据id查找公司
+     * @param id
+     * @return
+     */
+    Company findcompanyByid(int id);
+
+    /**
+     *根据id删除公司
+     *  @param id
+     * @return
+     */
+    int deletecompanyByid(int id);
 }

@@ -1,17 +1,14 @@
 package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.controller.ex.CompanyException;
-import com.csr.csrcheck.pojo.Actual_controller;
-import com.csr.csrcheck.pojo.Company;
-import com.csr.csrcheck.pojo.Special_bulletin;
+import com.csr.csrcheck.pojo.*;
+import com.csr.csrcheck.service.Actual_controllerService;
 import com.csr.csrcheck.service.CompanyService;
+import com.csr.csrcheck.service.ProductService;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Generated;
 import javax.annotation.Resource;
@@ -51,14 +48,6 @@ public class CompanyConntroller extends BaseController{
         }
         return new JsonResult<>(SUCCESS,OK,list);
     }
-    /**
-     * 添加公司信息
-     */
-  /*  @GetMapping("reg")
-    public JsonResult<Void> reg(Company company) {
-        companyService.reg(company);
-        return new JsonResult<>();
-    }*/
 
     /**
      * 根据公司名模糊查询公司信息（wxapi）
@@ -100,4 +89,64 @@ public class CompanyConntroller extends BaseController{
           List<Special_bulletin> list = companyService.getAll();
           return new JsonResult<>(SUCCESS,OK,list);
         }
+    /**
+     * 添加公司信息
+     * @param company
+     * @return
+     */
+    @RequestMapping(path="addcompany", method= RequestMethod.POST)
+    public JsonResult<Object> addcompany(Company company){
+        companyService.addCompany(company);
+        log.info("add================================>approvals："+company);
+        return new JsonResult<>(SUCCESS,OK);
+    }
+    @Resource
+    private Actual_controllerService actual_controllerService;
+
+    /**
+     * 下拉框展示产品数据
+     * @return
+     */
+    @RequestMapping(path="listactual", method= RequestMethod.POST)
+    public JsonResult<List<Actual_controller>> listactual(){
+        List list=actual_controllerService.list();
+        return new JsonResult<>(SUCCESS,OK,list);
+    }
+    /**
+     * 修改公司
+     * @param company
+     * @return
+     */
+    @RequestMapping(path="updatecompany", method= RequestMethod.POST)
+    public JsonResult<Void> updatecompany(Company company){
+        companyService.updateCompany(company);
+        return new JsonResult<>(SUCCESS,OK);
+    }
+    /**
+     * 根据id查找公司
+     * @param id
+     * @return
+     */
+    @RequestMapping(path="findCompanyByid/{id}", method= RequestMethod.POST)
+    public JsonResult<Company> findCompanyByid(@PathVariable(value = "id") int id){
+        Company list=null;
+        try {
+            list=companyService.findcompanyByid(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new JsonResult<>(SUCCESS,OK,list);
+    }
+
+    /**
+     *根据id删除公司信息
+     *  @param id
+     * @return
+     */
+    @RequestMapping(path="deletecompany/{id}", method= RequestMethod.POST)
+    public JsonResult<Void> deletecompany(@PathVariable(value = "id") int id){
+        companyService.deletecompanyByid(id);
+        log.info("删除成功-------------------------》id:"+id);
+        return new JsonResult<>(SUCCESS,OK);
+    }
 }

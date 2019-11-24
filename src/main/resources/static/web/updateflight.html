@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/animate.css" />
+    <link rel="stylesheet" href="../css/font-awesome.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/iCheck/custom.css" />
+    <link rel="stylesheet" href="../css/cropper.css" />
+    <link rel="stylesheet" href="../css/gg-bootdo.css" />
+    <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../css/plugins/toastr/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="../css/plugins/toastr/jsTree/style.min.css" rel="stylesheet">
+    <link href="../css/plugins/toastr/jqTreeGrid/jquery.treegrid.css" rel="stylesheet">
+    <!--summernote css -->
+    <link href="../css/plugins/toastr/summernote/summernote-0.8.8.css" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/plugins/toastr/chosen/chosen.css" rel="stylesheet">
+    <link href="../css/style.css?v=4.1.0" rel="stylesheet">
+    <style>
+        .gb{
+            position: absolute;
+            right: 20px;
+            top: -0.5px;
+            margin-top: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #1E9FFF;
+        }
+        .yx{
+            position: absolute;
+            right: 20px;
+            top: -0.5px;
+            margin-top: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #1E9FFF;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content ">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="signupForm">
+                        <input type="hidden" id="id" name="id"/>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">所属产品：</label>
+                            <div class="col-sm-8">
+                                <select data-placeholder="--选择所属准字--" name="product_id" id="product_id"
+                                        class="form-control chosen-select" tabindex="2" required>
+                                    <option value="">--选择所属产品--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">检查编号：</label>
+                            <div class="col-sm-8">
+                                <input id="check_no" name="check_no" class="form-control" type="text" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">所受处罚：</label>
+                            <div class="col-sm-8">
+                                <input id="punish" name="punish" class="form-control" type="text" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">特别关注：</label>
+                            <div class="col-sm-8">
+                                <input id="attention" name="attention" class="form-control" type="text" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">公布日期：</label>
+                            <div class="col-sm-8">
+                                <input id="publication" name="publication" class="form-control" placeholder="年-月-日" type="text" required>
+                                <i class="fa fa-calendar gb" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">有效期限：</label>
+                            <div class="col-sm-8">
+                                <input id="term_of_validity" name="term_of_validity" class="form-control" placeholder="年-月-日"  required>
+                                <i class="fa fa-calendar yx" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">飞行检查内容：</label>
+                            <div class="col-sm-8">
+                                <input id="content" name="content" class="form-control" type="text" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <button type="button" class="btn btn-primary" id="update">提交</button>
+                                <button type="reset" class="btn btn-group">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../laydate/laydate.js" ></script>
+<script type="text/javascript" src="../js/jquery.min.js" ></script>
+<script type="text/javascript" src="../js/bootstrap.min.js" ></script>
+<script type="text/javascript" src="../js/icheck.min.js"></script>
+<script type="text/javascript" src="../js/cropper.min.js"></script>
+
+<script type="text/javascript" src="../js/distpicker.data.min.js"></script>
+<script type="text/javascript" src="../js/distpicker.min.js"></script>
+
+
+<!--校验插件-->
+<script src="../js/jquery.validate.min.js"></script>
+<script src="../js/jquery.validate.extend.js"></script>
+<script src="../js/messages_zh.min.js"></script>
+<script src="../js/updateflight.js"></script>
+
+<script src="../js/jquery.min.js?v=2.1.4"></script>
+<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+<script src="../js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="../js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="../js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../js/plugins/validate/jquery.validate.min.js"></script>
+<script src="../js/plugins/validate/messages_zh.min.js"></script>
+<script src="../js/plugins/jsTree/jstree.min.js"></script>
+<script src="../js/plugins/jqTreeGrid/jquery.treegrid.min.js"></script>
+<script src="../js/plugins/jqTreeGrid/jquery.treegrid.extension.js"></script>
+<script src="../js/plugins/jqTreeGrid/jquery.treegrid.bootstrap3.js"></script>
+<script src="../js/plugins/chosen/chosen.jquery.js"></script>
+<script src="../js/plugins/layer/layer.js"></script>
+<script src="../js/content.js?v=1.0.0"></script>
+<!--summernote-->
+<script src="../js/plugins/summernote/summernote.js"></script>
+<script src="../js/plugins/summernote/summernote-zh-CN.min.js"></script>
+<script src="../js/ajax-util.js"></script>
+</body>
+</html>

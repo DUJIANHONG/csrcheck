@@ -72,7 +72,7 @@
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
                         <div class="col-sm-12">
-                            <a href="${pageContext.request.contextPath}/" class="btn btn-success btn-sm">新增临床信息</a>
+                            <a href="javascript:;" id="addclinic" class="btn btn-success btn-sm">新增临床信息</a>
                             <table id="datatable-responsive"
                                    class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
                                    role="grid" aria-describedby="datatable-responsive_info"
@@ -129,15 +129,12 @@
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
+                                                    <li><a class="modifyAppInfo1" data-toggle="tooltip"
+                                                           data-placement="top" title=""
+                                                           data-original-title="修改临床信息" id="updateclinic" clinicid="${pages.id}">修改</a></li>
                                                     <li><a class="modifyAppInfo" data-toggle="tooltip"
                                                            data-placement="top" title=""
-                                                           data-original-title="修改公司信息">修改</a></li>
-                                                    <li><a class="viewApp" data-toggle="tooltip"
-                                                           data-placement="top" title=""
-                                                           data-original-title="查看公司信息">查看</a></li>
-                                                    <li><a class="deleteApp" data-toggle="tooltip"
-                                                           data-placement="top" title=""
-                                                           data-original-title="删除公司信息">删除</a></li>
+                                                           data-original-title="删除临床信息" deleteclinicid="${pages.id}">删除</a></li>
                                                 </ul>
                                             </div>
                                         </td>
@@ -207,6 +204,75 @@
 <!--<script src="js/rollpage.js"></script>-->
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/rollpage.js"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/layer/layer.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+
+        //增加弹出层
+        $('#addclinic').on('click', function () {
+
+            layer.open({
+                type: 2,
+                anim:1,
+                title: '添加临床信息',
+                maxmin: true,
+                shadeClose: true, //点击遮罩关闭层
+                area: ['600px', '500px'],
+                content: '${pageContext.request.contextPath }/web/addclinic.html',
+                end: function () {
+                    location.reload();
+                }
+            });
+        });
+
+        //修改弹出层
+        $('#updateclinic ').on('click', function () {
+
+            var obj=$(this);
+            console.log(obj.attr('clinicid'))
+            layer.open({
+                type: 2,
+                title: '修改临床信息',
+                maxmin: true,
+                shadeClose: true, //点击遮罩关闭层
+                anim:1,
+                area: ['600px', '500px'],
+                content: '${pageContext.request.contextPath }/web/updateclinic.html?id='+obj.attr("clinicid"),
+                end: function () {
+                    location.reload();
+                }
+            });
+
+        });
+
+        //删除
+        $('.modifyAppInfo').on('click',function () {
+            var obj=$(this);
+            console.log(obj.attr('deleteclinicid'))
+            parent.layer.confirm("确定要删除这条记录吗？",{btn:['确定','取消']},function (confirm) {
+                layer.close(confirm);
+                $.ajax({
+                    type:"post",
+                    url:"/clinic/deleteclinic/"+obj.attr("deleteclinicid"),
+                    dataType:"json",
+                    success:function (data) {
+                        if(data.state==2000){
+                            parent.layer.msg("操作成功",{icon:6});
+                            location.reload();
+                        }else{
+                            parent.layer.msg(data.message);
+                        }
+                    }
+                });
+            },function (confirms) {
+                layer.close(confirms);
+                parent.layer.msg("已取消删除");
+            });
+
+        });
+    })
+</script>
 </body>
 </body>
 </html>

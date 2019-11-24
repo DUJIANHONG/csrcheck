@@ -50,6 +50,38 @@ public class LawsuitServiceImpl implements LawsuitService {
         return PageUtils.getPageResult(pageNum,pageSize,getPageInfo(pageNum,pageSize,company_name,casetype,doctype,defendants,submittime));
     }
 
+    @Override
+    public int addlawsuit(Lawsuit lawsuit) {
+        int row = lawsuitMapper.addlawsuit(lawsuit);
+        if(row!=1){
+            throw new CompanyException("增加失败");
+        }
+        return row;
+    }
+
+    @Override
+    public int updatelawsuit(Lawsuit lawsuit) {
+        int row = lawsuitMapper.updatelawsuit(lawsuit);
+        if (row != 1) {
+            throw new CompanyException("修改失败");
+        }
+        return row;
+    }
+
+    @Override
+    public int deletelawsuit(int id) {
+        int row = lawsuitMapper.deletelawsuit(id);
+        if (row != 1) {
+            throw new CompanyException("删除失败");
+        }
+        return row;
+    }
+
+    @Override
+    public Lawsuit findlawsuit(int id) {
+        return lawsuitMapper.findlawsuit(id);
+    }
+
 
     /**
      *调用分页插件完成分页

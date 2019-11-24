@@ -24,4 +24,32 @@ public interface EvaluateMapper {
      */
     public List<Evaluate> getEvaluatepage(@Param(value = "company_name") String company_name,
                                           @Param(value = "product_name") String product_name);
+
+    /**
+     * 增加一致性评价
+     * @param evaluate
+     * @return
+     */
+    int addevlaute(Evaluate evaluate);
+
+    /**
+     *修改一致性评价
+     *  @param evaluate
+     * @return
+     */
+    int updateevlaute(Evaluate evaluate);
+
+    /**
+     *删除一致性评价
+     *  @param id
+     * @return
+     */
+    int deleteevlaute(int id);
+
+    /**
+     * 根据id查找一致性评价
+     * @param id
+     * @return
+     */
+    public Evaluate findevluateByid(int id);
 }

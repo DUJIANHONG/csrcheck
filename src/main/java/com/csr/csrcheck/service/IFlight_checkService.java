@@ -43,4 +43,32 @@ public interface IFlight_checkService {
                             String product_t_name,
                             String check_no,
                            String publication);
+
+    /**
+     * 增加
+     * @param flight_check
+     * @return
+     */
+    int addFlightcheck(Flight_check flight_check);
+
+    /**
+     * 修改
+     * @param flight_check
+     * @return
+     */
+    int updateFlightcheck(Flight_check flight_check);
+
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
+    int deleteFlightcheck(int id);
+
+    /**
+     * 根据id查找
+     * @param id
+     * @return
+     */
+    Flight_check findflightByid(int id);
 }

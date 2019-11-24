@@ -1,6 +1,8 @@
 package com.csr.csrcheck.service;
 
+import com.csr.csrcheck.pojo.Shareholder;
 import com.csr.csrcheck.pojo.Special_bulletin;
+import com.csr.csrcheck.pojo.Stock_alteration;
 import com.csr.csrcheck.util.PageResult;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,4 +25,28 @@ public interface Special_bulletinService {
      */
     public PageResult getlistpage(String release_time,
                                   String  company_name,int pageNum,int pageSize);
+    /**
+     * 增加特别公告信息
+     * @param special_bulletin
+     */
+    public void addSpecial_bulletin(Special_bulletin special_bulletin);
+
+    /**
+     * 修改特别公告
+     * @param special_bulletin
+     * @return
+     */
+    int updateSpecial_bulletin(Special_bulletin special_bulletin);
+    /**
+     * 根据id查找特别公告
+     * @param id
+     * @return
+     */
+    Special_bulletin findspecial_bulletinByid(int id);
+    /**
+     *根据id删除特别公告
+     *  @param id
+     * @return
+     */
+    int deletespecial_bulletinByid(int id);
 }

@@ -36,4 +36,26 @@ l.`lawsuitUrl`,l.`casetype`,l.`doctype`,l.`agent`,l.`thirdParties`,l.`defendants
             </trim>
     </select>
 
+    <insert id="addlawsuit" parameterType="com.csr.csrcheck.pojo.Lawsuit"
+                  keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO `lawsuit` (`company_id`,`plaintiffs`,`court`,`casereason`,`url`,`caseno`,`title`,`abstracts`,`submittime`,`lawsuitUrl`,
+                       `casetype`,`doctype`,`agent`,`thirdParties`,`defendants`)
+               VALUE  (#{company_id},#{plaintiffs},#{court},#{casereason},#{url},#{caseno},#{title},#{abstracts},#{submittime},#{lawsuitUrl},
+                       #{casetype},#{doctype},#{agent},#{thirdParties},#{defendants})
+    </insert>
+
+    <update id="updatelawsuit" parameterType="com.csr.csrcheck.pojo.Lawsuit">
+            UPDATE `lawsuit` SET  company_id=#{company_id},plaintiffs=#{plaintiffs},court=#{court},casereason=#{casereason},url=#{url},caseno=#{caseno},title=#{title},
+                       abstracts=#{abstracts},submittime=#{submittime},lawsuitUrl=#{lawsuitUrl},
+                       casetype=#{casetype},doctype=#{doctype},agent=#{agent},thirdParties=#{thirdParties},defendants=#{defendants}
+                       where id=#{id}
+    </update>
+
+    <delete id="deletelawsuit">
+        DELETE  FROM `lawsuit` WHERE id=#{id}
+    </delete>
+
+    <select id="findlawsuit" resultType="com.csr.csrcheck.pojo.Lawsuit">
+        SELECT l.* FROM `lawsuit` l WHERE l.id=#{id}
+    </select>
 </mapper>

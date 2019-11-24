@@ -12,5 +12,7 @@ FROM `company` c, product p, z_product_type d,`z_actual_controller` z
 WHERE c.`id`=z.`relevance_enterprise` AND p.company_id=c.`id` AND p.product_type_id=d.id AND d.id=1;
     </select>
 
-
+    <select id="list" resultType="com.csr.csrcheck.pojo.Actual_controller">
+       SELECT `id`,`con_name` FROM `z_actual_controller`
+    </select>
 </mapper>

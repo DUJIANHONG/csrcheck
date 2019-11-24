@@ -130,15 +130,12 @@
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
-                                                    <li><a class="modifyAppInfo" data-toggle="tooltip"
+                                                    <li><a class="updatebussiness" data-toggle="tooltip"
                                                            data-placement="top" title=""
-                                                           data-original-title="修改公司信息">修改</a></li>
-                                                    <li><a class="viewApp" data-toggle="tooltip"
+                                                           data-original-title="修改公司信息" updateid="${pages.id}">修改</a></li>
+                                                    <li><a class="deletebussiness" data-toggle="tooltip"
                                                            data-placement="top" title=""
-                                                           data-original-title="查看公司信息">查看</a></li>
-                                                    <li><a class="deleteApp" data-toggle="tooltip"
-                                                           data-placement="top" title=""
-                                                           data-original-title="删除公司信息">删除</a></li>
+                                                           data-original-title="删除公司信息" deleteid="${pages.id}">删除</a></li>
                                                 </ul>
                                             </div>
                                         </td>
@@ -228,6 +225,49 @@
             }
         })
     })
+    //修改经营风险
+    $(".updatebussiness").on('click',function () {
+        var obj=$(this);
+        console.log(obj.attr("updateid"))
+        layer.open({
+            type: 2,
+            title:'修改经营分险信息',
+            maxmin:true,
+            shadeClose: true,
+            anim: 4,
+            shade:[0.8,'#393D49'],
+            area:['800px','600px'],
+            content: '/web/updateBusiness.html?id='+obj.attr('updateid'),
+            end:function () {
+                location.reload();
+            }
+        })
+    })
+    //删除经营分险信息
+    $(".deletebussiness").on('click',function () {
+        var obj=$(this);
+        console.log(obj.attr("deleteid"));
+        parent.layer.confirm("确定要删除这条记录吗？",{btn:['确定','取消']},function (confirm) {
+            layer.close(confirm);
+            $.ajax({
+                type:"post",
+                url:"/business_risks/deletebussiness/"+obj.attr("deleteid"),
+                dataType:"json",
+                success:function (data) {
+                    if(data.state==2000){
+                        parent.layer.msg("操作成功",{icon:6});
+                        location.reload();
+                    }else{
+                        parent.layer.msg(data.message);
+                    }
+                }
+            });
+        },function (confirms) {
+            layer.close(confirms);
+            parent.layer.msg("已取消删除");
+        });
+
+    });
 </script>
 </body>
 </body>

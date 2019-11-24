@@ -55,4 +55,24 @@ c.`company_name`,p.`product_name`,f.`attention`,f.`punish` ,f.content
                  </if>
              </trim>
     </select>
+
+
+    <insert id="addFlightcheck" useGeneratedKeys="true" keyProperty="id" parameterType="com.csr.csrcheck.pojo.Flight_check">
+        INSERT INTO `flight_check` (`check_no`,`product_id`,`punish`,`attention`,`publication`,`term_of_validity`,`content`)
+       VALUE (#{check_no},#{product_id},#{punish},#{attention},#{publication},#{term_of_validity},#{content})
+    </insert>
+
+    <update id="updateFlightcheck" parameterType="com.csr.csrcheck.pojo.Flight_check">
+        UPDATE `flight_check` SET `check_no`=#{check_no},`product_id`=#{product_id},`punish`=#{punish},`attention`=#{attention},
+                         `publication`=#{publication},`term_of_validity`=#{term_of_validity},`content`=#{content}
+                         where id=#{id}
+    </update>
+
+    <delete id="deleteFlightcheck">
+        DELETE FROM `flight_check` WHERE id=#{id}
+    </delete>
+
+    <select id="findflightByid" resultType="com.csr.csrcheck.pojo.Flight_check">
+        SELECT f.* FROM `flight_check` f WHERE f.id=#{id}
+    </select>
 </mapper>
