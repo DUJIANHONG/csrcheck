@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface Abnormal_productsService {
     //查询所有不合格产品
-    public List<Abnormal_products> getAllProduct();
+    public List<Abnormal_products> getAbnormalByTheir_id(int product_type_id);
 
     //根据产品名称分页查询
     public PageResult abnormallsitpage(int pageNum, int pageSize, String product_name);

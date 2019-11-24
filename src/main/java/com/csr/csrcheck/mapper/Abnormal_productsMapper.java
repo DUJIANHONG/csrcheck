@@ -17,8 +17,8 @@ import java.util.List;
  * @modified By:
  */
 public interface Abnormal_productsMapper {
-    //查询所有不合格产品
-    public List<Abnormal_products> getAllProduct();
+    //查询化妆品不合格产品
+    public List<Abnormal_products> getAbnormalByTheir_id(int product_type_id);
 
     /**
      * 根据产品名称查询产品异常通报

@@ -190,7 +190,7 @@
                                                     </button>
                                                     <ul class="dropdown-menu" role="menu">
                                                         <li><a class="modifyAppInfo" data-toggle="tooltip"
-                                                               data-placement="top" title=""
+                                                               data-placement="top" title="" id="update"
                                                                data-original-title="修改公司信息">修改</a></li>
                                                         <li><a class="viewApp" data-toggle="tooltip"
                                                                data-placement="top" title=""
@@ -278,7 +278,26 @@
                 shadeClose: true,
                 maxmin: true, //开启最大化最小化按钮
                 area: ['893px', '600px'],
-                content: '/product/addproduct'
+                anim: 1,
+                content: '/product/addproduct',
+                end: function () {
+                    location.reload();
+                }
+            });
+        });
+        var params = $("#update").val();
+        $("#update").click(function () {
+            layer.open({
+                type: 2,
+                title: '新增产品',
+                shadeClose: true,
+                maxmin: true, //开启最大化最小化按钮
+                area: ['893px', '600px'],
+                anim: 1,
+                content: '/product/updateproduct'+params,
+                end: function () {
+                    location.reload();
+                }
             });
         });
     });

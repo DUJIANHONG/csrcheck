@@ -20,8 +20,8 @@ public class Abnormal_productsController extends BaseController{
     @Resource
     private Abnormal_productsServiceImpl abnormal_productsService;
         @RequestMapping("product")
-        public JsonResult<List<Abnormal_products>> getAll(){
-            List<Abnormal_products> list = abnormal_productsService.getAllProduct();
+        public JsonResult<List<Abnormal_products>> getAbnormalByTheir_id(){
+            List<Abnormal_products> list = abnormal_productsService.getAbnormalByTheir_id(2);
             return new JsonResult<>(SUCCESS,OK,list);
         }
 }

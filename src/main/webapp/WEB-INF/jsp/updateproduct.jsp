@@ -1,25 +1,28 @@
+-+<%--
+|';lk6rej--=00000000000000000
+  Created/* by IntelliJ IDEA.
+  User: Administrator
+  Date: 2019/11/23
+  Time: 14:45
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
-<%@ page language="java" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-
-    <title>新增产品</title>
+    <title>修改产品信息</title>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/font.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/layui/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css">
-
 </head>
 <body>
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-    <legend>增加产品信息</legend>
+    <legend>修改产品信息</legend>
 </fieldset>
-<form class="layui-form layui-form-pane" id="productadd">
-
+<form class="layui-form layui-form-pane" id="productupdate">
+    <input type="hidden" id="product_id"/>
     <div class="layui-form-item">
         <label class="layui-form-label">所属公司</label>
 
@@ -132,68 +135,24 @@
         <input class="layui-btn center-block" lay-submit="" lay-filter="*"  id="save" value="提交"/>
     </div>
 </form>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="js/layui.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            type: "POST",
+            url: "/product/updateproduct/" + window.location.search.split("id=")[1],
+            dataType: "JSON",
+            success: function (data) {
+                console.log(data.data.product_id);
+                $("#product_name").val(data.data.product_name);
+                $("#approval_num").val(data.data.product_t_id);
+                $("#id").val(data.data.id);
 
-<script type="text/javascript" src="${pageContext.request.contextPath }/layui/layui.js" charset="utf-8"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.validate.min.js"></script>
-
- <script>
-
-
-
-     layui.use(['form','layer','jquery','laydate'], function() {
-         var form = layui.form,
-             layer = layui.layer,
-             $ = layui.jquery,
-             laydate = layui.laydate;
-
-         laydate.render({
-             elem: '#date1' //指定元素
-         });
-         form.on('submit(*)', function () {
-             add();
-             panduan();
-         });
-
-
-     });
-
-            function panduan(){
-                     $("#patent_no").click(function () {
-                         var patent_no = $("#patent_no").val();
-                         var patent_t_id = $("#patent_t_id");
-                         if (patent_no.length>0){
-                             patent_t_id.remove(disabled);
-                             alert(patent_no.val());
-                         }else {
-                             patent_t_id.attr("disabled","disable");
-                         }
-                     });
-                     var stage_no = $("#stage_no");
-                     if ($("#shangshi").checked()) {
-                         stage_no.attr("disabled",true);
-                     }
             }
-         function add() {
-                if($("#productadd").valid()){
-                    $.ajax({
-                        type: "POST",
-                        url: "${pageContext.request.contextPath }/product/saveproduct",
-                        data: $('#productadd').serialize(),
-                        async: false,
-                        dataType: 'json',
-                        success: function (data) {
-                            if (data.state == 2000) {
-                                parent.layer.alert("添加成功");
-                            } else {
-                                parent.layer.alert(data.msg)
-                            }
-                        }
-                    });
-                }
-         }
-
+        });
+    });
 </script>
-
 </body>
 </html>

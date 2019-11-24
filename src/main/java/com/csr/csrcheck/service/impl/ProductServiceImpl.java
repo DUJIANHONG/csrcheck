@@ -90,4 +90,14 @@ public class ProductServiceImpl implements ProductService {
     public int addproduct(Product product) {
         return productMapper.addproduct(product);
     }
+
+    @Override
+    public Product selectByproduct_id(int product_id) {
+        return productMapper.selectByproduct_id(product_id);
+    }
+
+    @Override
+    public int updateProduct(Product product) {
+        return productMapper.updateProduct(product);
+    }
 }

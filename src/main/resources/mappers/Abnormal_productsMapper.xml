@@ -39,10 +39,10 @@
       </trim>
     </select>
 
-    <select id="getAllProduct" resultType="com.csr.csrcheck.pojo.Abnormal_products">
+    <select id="getAbnormalByTheir_id" resultType="com.csr.csrcheck.pojo.Abnormal_products">
         SELECT p.`product_name`,a.`packing`,a.`batch_no`,a.`approval_no`,a.`disqualification`,
                a.`inspection_result`,a.`standard_code`,a.`agencies_to_verify`,a.`last`,a.`provenance`
-        FROM abnormal_products a,product p
-        WHERE a.`product_id`=p.`product_id`
+        FROM abnormal_products a,product p,z_product_type z
+        WHERE a.`product_id`=p.`product_id` AND p.product_type_id=z.id AND z.id=#{product_type_id}
     </select>
 </mapper>

@@ -38,7 +38,7 @@ public class Abnormal_productsServiceImpl implements Abnormal_productsService {
         }
         return new PageInfo(list);
     }
-    public List<Abnormal_products> getAllProduct() {
-        return abnormal_productsMapper.getAllProduct();
+    public List<Abnormal_products> getAbnormalByTheir_id(int product_type_id) {
+        return abnormal_productsMapper.getAbnormalByTheir_id(product_type_id);
     }
 }

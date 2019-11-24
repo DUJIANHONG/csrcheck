@@ -57,4 +57,12 @@ public interface ProductMapper {
      *  @return
      */
     List<Product> list();
+    /**
+     * 修改前根据产品id查询产品信息
+     */
+    Product selectByproduct_id(int product_id);
+    /**
+     * 修改产品信息
+     */
+    int updateProduct(Product product);
 }
