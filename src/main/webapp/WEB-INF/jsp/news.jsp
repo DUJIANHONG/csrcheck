@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CSR</title>
+    <script type="text/css" rel="stylesheet" src="${pageContext.request.contextPath }/layui/css/layui.css" media="all"></script>
     <!-- Bootstrap -->
     <link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -28,6 +29,7 @@
     <!-- add local/css 2016-8-18 -->
     <link href="${pageContext.request.contextPath }/css/appinfoadd.css" rel='stylesheet'>
     <link href="${pageContext.request.contextPath }/css/appinfolist.css" rel='stylesheet'>
+
     <style type="text/css">
         *{
             margin: 0;
@@ -148,6 +150,16 @@
                                             <div class="right_bottom_left">
                                                 <span>${pages.news_name}</span>  <span>${pages.position}</span><span>|</span> <span><fmt:formatDate value="${pages.date}" type="date"/></span>
                                                 <span style="color: red;float: right" newsid="${pages.id}" class="btn">查看新闻详情 >>>></span>
+                                                <div style="float: right">
+                                                    <div class="layui-btn-group">
+                                                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+                                                            <i class="layui-icon">&#xe642;</i>
+                                                        </button>
+                                                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+                                                            <i class="layui-icon">&#xe640;</i>
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -200,6 +212,7 @@
         </div>
     </div>
 </div>
+<script src="${pageContext.request.contextPath }/layui/layui.js" charset="utf-8"></script>
 <!-- jQuery -->
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <!-- Bootstrap -->
@@ -216,12 +229,17 @@
 <!--<script src="js/rollpage.js"></script>-->
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/rollpage.js"></script>
+
 <script>
   $(".btn").click(function () {
       var obj = $(this);
       window.location.href="/web/news.html?id="+obj.attr("newsid");
   })
-
+  //一般直接写在一个js文件中
+  layui.use(['layer', 'form'], function(){
+      var layer = layui.layer
+          ,form = layui.form;
+  });
 </script>
 </body
 </body>
