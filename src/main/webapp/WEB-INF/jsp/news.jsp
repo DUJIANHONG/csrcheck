@@ -158,6 +158,7 @@
                                                         <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
                                                             <i class="layui-icon">&#xe640;</i>
                                                         </button>
+                                                        <button type="button" class="layui-btn layui-btn-warm">暖色按钮</button>
                                                     </div>
                                                 </div>
                                             </div>
