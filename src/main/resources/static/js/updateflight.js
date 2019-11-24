@@ -1,3 +1,7 @@
+$(function () {
+    loadType();
+})
+
 laydate.render({
     elem: '#term_of_validity', //指定元素
     eventElem: '.yx'
@@ -10,7 +14,6 @@ laydate.render({
 });
 $().ready(function() {
     validateRule();
-    loadType();
     $.ajax({
         type:"POST",
         url:"/flight_check/findflight/"+window.location.search.split("id=")[1],

@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Date;
 
-import java.util.Date;
-
 /**
  * @description:公司
  * @author: Administrator
@@ -26,8 +24,6 @@ public class Company {
     private String strategic_focus;     //战略重点
     private int listed_unlisted;        //上市/未上市（1上市；2未上市）
     private String ten_shareholders;    //前十大股东
-
-    private int introduction_controller_id;  //公司实际控制人id
 
     private int introduction_controller_id;  //公司实际控制人id
     private int company_ranking;        //公司排名
