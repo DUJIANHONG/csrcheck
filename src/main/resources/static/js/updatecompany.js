@@ -1,10 +1,12 @@
 $().ready(function() {
+    //loadType();
     validateRule();
     $.ajax({
         type:"POST",
         url:"/company/findCompanyByid/"+window.location.search.split("id=")[1],
         dataType: "JSON",
         success:function (data) {
+            console.log(data.data.introduction_controller_id);
             console.log(data.data.company_name);
             console.log(data.data.company_address);
             console.log(data.data.type_ownership);
@@ -20,14 +22,16 @@ $().ready(function() {
             $("#type_ownership").val(data.data.type_ownership);
             $("#main_business").val(data.data.main_business);
             $("#strategic_focus").val(data.data.strategic_focus);
-            $("#listed_unlisted").val(data.data.listed_unlisted);
+           /* $("#listed_unlisted").val(data.data.listed_unlisted);*/
             $("#ten_shareholders").val(data.data.ten_shareholders);
             $("#production").val(data.data.production);
             $("#organization").val(data.data.organization);
             $("#company_ranking").val(data.data.company_ranking);
             $("#id").val(data.data.id);
-
-           // loadType2();
+            //单选框的赋值方法
+            $("input[name='listed_unlisted'][value='"+data.data.listed_unlisted+"']").attr("checked",true);
+           /* $("input[name='introduction_controller_id'][value='"+data.data.introduction_controller_id+"']").attr("checked",true);*/
+            // loadType2();
             loadType();
         }
     })

@@ -11,15 +11,16 @@ $().ready(function() {
             console.log(data.data.share_change);
             console.log(data.data.increase_decrease);
             console.log(data.data.change_time);
-            $("#type").val(data.data.type);
             $("#ratio_after").val(data.data.ratio_after);
             $("#ratio_before").val(data.data.ratio_before);
             $("#share_change").val(data.data.share_change);
             $("#increase_decrease").val(data.data.increase_decrease);
             $("#change_time").val(data.data.change_time);
             $("#id").val(data.data.id);
+            //单选框的赋值方法
+            $("input[name='type'][value='"+data.data.type+"']").attr("checked",true);
 
-           // loadType2();
+            // loadType2();
             loadType();
         }
     })

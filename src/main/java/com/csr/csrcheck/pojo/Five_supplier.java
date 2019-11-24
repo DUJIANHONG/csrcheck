@@ -13,7 +13,7 @@ public class Five_supplier {
     private int id;                                 //主键（前五大供应商）
     private int company_id;                         //供应商关联公司的id
     private String supplier_name;                   //供应商名称
-    private int announcement_date;                  //报告期
+    private String announcement_date;                  //报告期
     private String amt;                             //采购金额（万元）
     private String alias;                           //简称
     private String relationship;                    //关联关系
@@ -97,11 +97,11 @@ public class Five_supplier {
         this.ratio = ratio;
     }
 
-    public int getAnnouncement_date() {
+    public String getAnnouncement_date() {
         return announcement_date;
     }
 
-    public void setAnnouncement_date(int announcement_date) {
+    public void setAnnouncement_date(String announcement_date) {
         this.announcement_date = announcement_date;
     }
 

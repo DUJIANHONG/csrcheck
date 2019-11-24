@@ -16,6 +16,7 @@ public class Special_bulletin {
     private String content;     //.pdf的存放路径
     private int company_id;     //关联公司id
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date release_time;  //公告发布时间
 
     //自定义字段
