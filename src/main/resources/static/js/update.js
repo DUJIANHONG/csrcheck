@@ -1,5 +1,6 @@
 
 $().ready(function() {
+    loadType();
     validateRule();
     $.ajax({
         type: "POST",
@@ -7,17 +8,16 @@ $().ready(function() {
         dataType: "JSON",
         success: function (data) {
             loadType();
-            $("#company_id").prop('value',data.data.company_id);
             console.log(data.data.announcement_date)
             $("#supplier_name").val(data.data.supplier_name);
-            $("#announcement_date").attr(data.data.announcement_date);
+            $("#announcement_date").val(data.data.announcement_date);
             $("#amt").val(data.data.amt);
             $("#alias").val(data.data.alias);
             $("#dataSource").val(data.data.dataSource);
             $("#id").val(data.data.id);
             $("#ratio").val(data.data.ratio);
-            $("#relationship").val(data.data.relationship
-            );
+            $("#relationship").val(data.data.relationship);
+            $("#company_id").find("option[value=" + data.data.company_id + "]").attr("selected", true).trigger("chosen:updated");
         }
     });
 });
@@ -74,8 +74,8 @@ function loadType(){
             for (var i = 0; i < list.length; i++) {
                 html += '<option value="' + list[i].id + '">' + list[i].company_name + '</option>'
             }
-            $(".chosen-select").append(html);
-            $(".chosen-select").chosen({
+            $("#company_id").append(html);
+            $("#company_id").chosen({
                 maxHeight : 200
             });
             //点击事件

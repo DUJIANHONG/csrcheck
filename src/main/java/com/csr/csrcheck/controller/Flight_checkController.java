@@ -2,8 +2,10 @@ package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.Flight_check;
+import com.csr.csrcheck.pojo.Product;
 import com.csr.csrcheck.pojo.Product_type;
 import com.csr.csrcheck.service.IFlight_checkService;
+import com.csr.csrcheck.service.ProductService;
 import com.csr.csrcheck.service.Product_typeService;
 import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.service.ex.Flight_checkException;
@@ -122,6 +124,60 @@ public class Flight_checkController extends BaseController{
         if(list==null){
             throw new CompanyException("数据为空");
         }
+        return new JsonResult<>(SUCCESS,OK,list);
+    }
+
+    /**
+     * 增加
+     * @param flight_check
+     * @return
+     */
+    @RequestMapping(path = "addflight",method = RequestMethod.POST)
+    public JsonResult<Void> addflight(Flight_check flight_check){
+        iFlight_checkService.addFlightcheck(flight_check);
+        return new JsonResult<>(SUCCESS,OK);
+    }
+
+    /**
+     * 修改
+     * @param flight_check
+     * @return
+     */
+    @RequestMapping(path = "updateflight",method = RequestMethod.POST)
+    public JsonResult<Void> updateflight(Flight_check flight_check){
+        iFlight_checkService.updateFlightcheck(flight_check);
+        return new JsonResult<>(SUCCESS,OK);
+    }
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
+    @RequestMapping(path = "deleteflight/{id}",method = RequestMethod.POST)
+    public JsonResult<Void> deleteflight(@PathVariable(value = "id") int id){
+        iFlight_checkService.deleteFlightcheck(id);
+        return new JsonResult<>(SUCCESS,OK);
+    }
+
+    /**
+     * 跟据id查找
+     * @param id
+     * @return
+     */
+    @RequestMapping(path = "findflight/{id}",method = RequestMethod.POST)
+    public JsonResult<Flight_check> findflight(@PathVariable(value = "id") int id){
+        Flight_check flight_check=iFlight_checkService.findflightByid(id);
+        return new JsonResult<>(SUCCESS,OK,flight_check);
+    }
+    /**
+     * 下拉框展示产品数据
+     * @return
+     */
+    @Resource
+    private ProductService productService;
+    @RequestMapping(path="listproduct", method= RequestMethod.POST)
+    public JsonResult<List<Product>> listproduct(){
+        List list=productService.list();
         return new JsonResult<>(SUCCESS,OK,list);
     }
 }

@@ -1,28 +1,47 @@
 laydate.render({
-    elem: '#time', //指定元素
-    eventElem: '.fa-calendar'
+    elem: '#term_of_validity', //指定元素
+    eventElem: '.yx'
+    ,trigger: 'click'
+});
+laydate.render({
+    elem: '#publication', //指定元素
+    eventElem: '.gb'
     ,trigger: 'click'
 });
 $().ready(function() {
-    loadType();
     validateRule();
+    $.ajax({
+        type:"POST",
+        url:"/flight_check/findflight/"+window.location.search.split("id=")[1],
+        dataType: "JSON",
+        success:function (data) {
+            $("#check_no").val(data.data.check_no);
+            $("#punish").val(data.data.punish);
+            $("#attention").val(data.data.attention);
+            $("#publication").val(data.data.publication);
+            $("#term_of_validity").val(data.data.term_of_validity);
+            $("#content").val(data.data.content);
+            $("#id").val(data.data.id);
+            loadType();
+        }
+    })
 });
-//添加
-$("#save").click(function () {
-     if($("#company_id").val()==null||$("#company_id").val()=='') {
-        layer.msg("请选择所属企业", {icon: 5,anim:6});
+
+$("#update").click(function () {
+    if($("#product_id").val()==null||$("#product_id").val()==''){
+        layer.msg("请选择产品",{icon:5,anim:6});
     }else {
         if ($("#signupForm").valid()) {
             $.ajax({
                 cache: true,
                 type: "POST",
-                url: "/contend/addcontend",
+                url: "/flight_check/updateflight",
                 data: $('#signupForm').serialize(),// 你的formid
                 async: false,
                 dataType: 'json',
                 success: function (data) {
                     if (data.state == 2000) {
-                        parent.layer.msg("操作成功", {icon: 1});
+                        parent.layer.msg("操作成功");
                     } else {
                         parent.layer.alert(data.message)
                     }
@@ -47,17 +66,17 @@ function validateRule() {
         }
     })
 }
-//企业信息
+//加载产品
 function loadType(){
     var html = "";
     $.ajax({
-        url : '/contend/showcompany',
+        url : '/flight_check/listproduct',
         type:'POST',
         success : function(data) {
             //加载数据
             var list=data.data;
             for (var i = 0; i < list.length; i++) {
-                html += '<option value="' + list[i].id + '">' + list[i].company_name + '</option>'
+                html += '<option value="' + list[i].product_id + '">' + list[i].product_name + '</option>'
             }
             $(".chosen-select").append(html);
             $(".chosen-select").chosen({
@@ -76,6 +95,5 @@ function loadType(){
         }
     });
 }
-
 
 

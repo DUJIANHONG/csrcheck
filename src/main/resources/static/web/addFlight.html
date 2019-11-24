@@ -25,6 +25,26 @@
     <link href="../css/animate.css" rel="stylesheet">
     <link href="../css/plugins/toastr/chosen/chosen.css" rel="stylesheet">
     <link href="../css/style.css?v=4.1.0" rel="stylesheet">
+    <style>
+        .gb{
+            position: absolute;
+            right: 20px;
+            top: -0.5px;
+            margin-top: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #1E9FFF;
+        }
+        .yx{
+            position: absolute;
+            right: 20px;
+            top: -0.5px;
+            margin-top: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #1E9FFF;
+        }
+    </style>
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content ">
@@ -33,61 +53,56 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <form class="form-horizontal m-t" id="signupForm">
-                        <input id="id" name="id" type="hidden"/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">所属企业：</label>
+                            <label class="col-sm-3 control-label">所属产品：</label>
                             <div class="col-sm-8">
-                                <select data-placeholder="--选择所属准字--" name="company_id" id="company_id"
-                                        class="form-control" tabindex="2" required>
-                                    <option value="">--选择所属企业--</option>
+                                <select data-placeholder="--选择所属产品--" name="product_id" id="product_id"
+                                        class="form-control chosen-select" tabindex="2" required>
+                                    <option value="">--选择所属产品--</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">供应商名称：</label>
+                            <label class="col-sm-3 control-label">检查编号：</label>
                             <div class="col-sm-8">
-                                <input id="supplier_name" name="supplier_name" class="form-control" type="text" required>
+                                <input id="check_no" name="check_no" class="form-control" type="text" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">报告期：</label>
+                            <label class="col-sm-3 control-label">所受处罚：</label>
                             <div class="col-sm-8">
-                                <input id="announcement_date" name="announcement_date" class="form-control" type="text" required>
+                                <input id="punish" name="punish" class="form-control" type="text" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">采购金额（万元）：</label>
+                            <label class="col-sm-3 control-label">特别关注：</label>
                             <div class="col-sm-8">
-                                <input id="amt" name="amt" class="form-control" type="text" required>
+                                <input id="attention" name="attention" class="form-control" type="text" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">简称：</label>
+                            <label class="col-sm-3 control-label">公布日期：</label>
                             <div class="col-sm-8">
-                                <input id="alias" name="alias" class="form-control" type="text" required>
+                                <input id="publication" name="publication" class="form-control" placeholder="年-月-日"  required>
+                                <i class="fa fa-calendar gb" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">关联关系：</label>
+                            <label class="col-sm-3 control-label">有效期限：</label>
                             <div class="col-sm-8">
-                                <input id="relationship" name="relationship" class="form-control" type="text" required>
+                                <input id="term_of_validity" name="term_of_validity" class="form-control" placeholder="年-月-日" type="text" required>
+                                <i class="fa fa-calendar yx" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">数据来源：</label>
+                            <label class="col-sm-3 control-label">飞行检查内容：</label>
                             <div class="col-sm-8">
-                                <input id="dataSource" name="dataSource" class="form-control" type="text" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">采购占比：</label>
-                            <div class="col-sm-8">
-                                <input id="ratio" name="ratio" class="form-control" type="text" required>
+                                <input id="content" name="content" class="form-control" type="text" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-8 col-sm-offset-3">
-                                <button type="button" class="btn btn-primary" id="update">更新</button>
+                                <button type="button" class="btn btn-primary" id="save">提交</button>
                                 <button type="reset" class="btn btn-group">重置</button>
                             </div>
                         </div>
@@ -97,6 +112,7 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="../laydate/laydate.js" ></script>
 <script type="text/javascript" src="../js/jquery.min.js" ></script>
 <script type="text/javascript" src="../js/bootstrap.min.js" ></script>
 <script type="text/javascript" src="../js/icheck.min.js"></script>
@@ -110,7 +126,7 @@
 <script src="../js/jquery.validate.min.js"></script>
 <script src="../js/jquery.validate.extend.js"></script>
 <script src="../js/messages_zh.min.js"></script>
-<script src="../js/update.js"></script>
+<script src="../js/addflight.js"></script>
 
 <script src="../js/jquery.min.js?v=2.1.4"></script>
 <script src="../js/bootstrap.min.js?v=3.3.6"></script>

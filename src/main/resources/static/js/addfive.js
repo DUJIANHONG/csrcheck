@@ -3,6 +3,7 @@ $().ready(function() {
     loadType();
     validateRule();
 });
+
 //添加
 $("#save").click(function () {
     if($("#company_id").val()==null||$("#company_id").val()=='') {
@@ -40,6 +41,10 @@ function validateRule() {
             name : {
                 required : icon + ""
             }
+        },
+        errorPlacement:function(error,element){
+            element.next().remove();
+            element.closest('.form-group').append(error);
         }
     })
 }
