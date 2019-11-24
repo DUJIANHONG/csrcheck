@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CSR</title>
-    <script type="text/css" rel="stylesheet" src="${pageContext.request.contextPath }/layui/css/layui.css" media="all"></script>
+
     <!-- Bootstrap -->
     <link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -29,14 +29,14 @@
     <!-- add local/css 2016-8-18 -->
     <link href="${pageContext.request.contextPath }/css/appinfoadd.css" rel='stylesheet'>
     <link href="${pageContext.request.contextPath }/css/appinfolist.css" rel='stylesheet'>
-
+    <link  rel="stylesheet" href="${pageContext.request.contextPath }/layui/css/layui.css" media="all">
     <style type="text/css">
         *{
             margin: 0;
             padding:0;
         }
         .wrap{
-            width: 600px;
+            width: 700px;
             margin: 0px auto;
 
         }
@@ -150,18 +150,17 @@
                                             <div class="right_bottom_left">
                                                 <span>${pages.news_name}</span>  <span>${pages.position}</span><span>|</span> <span><fmt:formatDate value="${pages.date}" type="date"/></span>
                                                 <span style="color: red;float: right" newsid="${pages.id}" class="btn">查看新闻详情 >>>></span>
-                                                <div style="float: right">
-                                                    <div class="layui-btn-group">
-                                                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
-                                                            <i class="layui-icon">&#xe642;</i>
-                                                        </button>
-                                                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
-                                                            <i class="layui-icon">&#xe640;</i>
-                                                        </button>
-                                                        <button type="button" class="layui-btn layui-btn-warm">暖色按钮</button>
-                                                    </div>
-                                                </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div style="float: right;">
+                                        <div class="layui-btn-group">
+                                            <%--<button type="button" class="layui-btn layui-btn-primary layui-btn-sm update" title="修改"  updateid="${pages.id}">
+                                                <i class="layui-icon">&#xe642;</i>
+                                            </button>--%>
+                                            <button type="button" class="layui-btn layui-btn-primary layui-btn-sm delete" title="删除"  deleteid="${pages.id}">
+                                                <i class="layui-icon">&#xe640;</i>
+                                            </button>
                                         </div>
                                     </div>
                                 </li>
@@ -241,6 +240,48 @@
       var layer = layui.layer
           ,form = layui.form;
   });
+//删除
+  $(".delete").on('click',function(){
+      var obj=$(this);
+      console.log(obj.attr("deleteid"));
+      parent.layer.confirm("确定要删除这条记录吗？",{btn:['确定','取消']},function (confirm) {
+          layer.close(confirm);
+          $.ajax({
+              type:"post",
+              url:"/news/deletenews/"+obj.attr("deleteid"),
+              dataType:"json",
+              success:function (data) {
+                  if(data.state==2000){
+                      parent.layer.msg("操作成功",{icon:6});
+                      location.reload();
+                  }else{
+                      parent.layer.msg(data.message);
+                  }
+              }
+          });
+      },function (confirms) {
+          layer.close(confirms);
+          parent.layer.msg("已取消删除");
+      });
+  });
+  //修改
+ /* $(".update").on('click',function(){
+      var obj=$(this);
+      console.log(obj.attr("updateid"));
+      layer.open({
+          type: 2,
+          title:'修改新闻信息',
+          maxmin:true,
+          shadeClose: true,
+          anim: 4,
+          shade:[0.8,'#393D49'],
+          area:['800px','680px'],
+          content: '/web/ubdatenews.html?id='+obj.attr('updateid'),
+          end:function () {
+              location.reload();
+          }
+      })
+  });*/
 </script>
 </body
 </body>

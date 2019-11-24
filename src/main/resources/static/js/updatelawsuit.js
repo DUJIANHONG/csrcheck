@@ -75,7 +75,7 @@ function validateRule() {
         }
     })
 }
-//加载产品
+
 function loadType(){
     var html = "";
     $.ajax({
@@ -87,19 +87,9 @@ function loadType(){
             for (var i = 0; i < list.length; i++) {
                 html += '<option value="' + list[i].id + '">' + list[i].company_name + '</option>'
             }
-            $(".chosen-select").append(html);
-            $(".chosen-select").chosen({
+            $("#company_id").append(html);
+            $("#company_id").chosen({
                 maxHeight : 200
-            });
-            //点击事件
-            $('.chosen-select').on('change', function(e, params) {
-                console.log(params.selected);
-                var opt = {
-                    query : {
-                        type : params.selected,
-                    }
-                }
-                $('#exampleTable').bootstrapTable('refresh', opt);
             });
         }
     });

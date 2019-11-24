@@ -15,4 +15,8 @@
     <select id="getnewsbyid" resultType="com.csr.csrcheck.pojo.News">
         SELECT * FROM news WHERE `id`=#{id}
     </select>
+
+    <delete id="deleteNews">
+        delete from news where id=#{id}
+    </delete>
 </mapper>

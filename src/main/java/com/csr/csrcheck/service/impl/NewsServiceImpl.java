@@ -4,8 +4,6 @@ import com.csr.csrcheck.mapper.NewsMapper;
 import com.csr.csrcheck.pojo.News;
 import com.csr.csrcheck.service.NewsService;
 import com.csr.csrcheck.service.ex.CompanyException;
-import com.csr.csrcheck.service.ex.InsertException;
-import com.csr.csrcheck.util.PageRequest;
 import com.csr.csrcheck.util.PageResult;
 import com.csr.csrcheck.util.PageUtils;
 import com.github.pagehelper.PageHelper;
@@ -50,6 +48,24 @@ public class NewsServiceImpl implements NewsService {
             throw new CompanyException("数据为空");
         }
         return news;
+    }
+
+    @Override
+    public int updateNews(News news) {
+        int row=newsMapper.updateNews(news);
+        if(row!=1){
+            throw new CompanyException("修改失败");
+        }
+        return row;
+    }
+
+    @Override
+    public int deleteNews(int id) {
+        int row=newsMapper.deleteNews(id);
+        if(row!=1){
+            throw new CompanyException("删除失败");
+        }
+        return row;
     }
 
     /**
