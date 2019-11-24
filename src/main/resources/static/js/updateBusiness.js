@@ -1,4 +1,7 @@
 $().ready(function() {
+    loadType();
+    loadType2();
+    loadType3();
     validateRule();
 
     $.ajax({
@@ -17,6 +20,9 @@ $().ready(function() {
             $("#title").val(data.data.title);
             $("#describe").val(data.data.describe);
             $("#id").val(data.data.id);
+            $("#company_id").find("option[value=" + data.data.company_id + "]").attr("selected", true).trigger("chosen:updated");
+            $("#risk_type").find("option[value=" + data.data.risk_type + "]").attr("selected", true).trigger("chosen:updated");
+            $("#type_id").find("option[value=" + data.data.type_id + "]").attr("selected", true).trigger("chosen:updated");
             }
     });
 });
@@ -81,16 +87,6 @@ function loadType(){
             $(".chosen-select").chosen({
                 maxHeight : 200
             });
-            //点击事件
-            $('.chosen-select').on('change', function(e, params) {
-                console.log(params.selected);
-                var opt = {
-                    query : {
-                        type : params.selected,
-                    }
-                }
-                $('#exampleTable').bootstrapTable('refresh', opt);
-            });
         }
     });
 }
@@ -109,17 +105,6 @@ function loadType2(){
             $(".chosen-select2").append(html);
             $(".chosen-select2").chosen({
                 maxHeight : 200
-            });
-            //点击事件
-            $('.chosen-select2').on('change', function(e, params) {
-                console.log(params.selected);
-
-                var opt = {
-                    query : {
-                        type : params.selected,
-                    }
-                }
-                $('#exampleTable').bootstrapTable('refresh', opt);
             });
         }
     });
@@ -143,13 +128,6 @@ function loadType3(){
             //点击事件
             $('.chosen-select3').on('change', function(e, params) {
                 console.log(params.selected);
-
-                var opt = {
-                    query : {
-                        type : params.selected,
-                    }
-                }
-                $('#exampleTable').bootstrapTable('refresh', opt);
             });
         }
     });

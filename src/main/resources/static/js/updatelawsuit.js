@@ -1,3 +1,6 @@
+$(function () {
+    loadType();
+})
 laydate.render({
     elem: '#submittime', //指定元素
     eventElem: '.fa-calendar'
@@ -10,6 +13,7 @@ $().ready(function() {
         url:"/lawsuit/findlawsuit/"+window.location.search.split("id=")[1],
         dataType: "JSON",
         success:function (data) {
+            loadType();
             $("#plaintiffs").val(data.data.plaintiffs);
             $("#court").val(data.data.court);
             $("#casereason").val(data.data.casereason);
@@ -26,7 +30,8 @@ $().ready(function() {
             $("#agent").val(data.data.agent);
             $("#defendants").val(data.data.defendants);
             $("#id").val(data.data.id);
-            loadType();
+
+            $("#company_id").find("option[value=" + data.data.company_id + "]").attr("selected", true).trigger("chosen:updated");
         }
     })
 });

@@ -1,10 +1,12 @@
 $().ready(function() {
     validateRule();
+    loadType();
     $.ajax({
         type:"POST",
         url:"/stock_alteration/findStock_alterationByid/"+window.location.search.split("id=")[1],
         dataType: "JSON",
         success:function (data) {
+            loadType();
             console.log(data.data.type);
             console.log(data.data.ratio_after);
             console.log(data.data.ratio_before);
@@ -20,7 +22,9 @@ $().ready(function() {
             $("#id").val(data.data.id);
 
            // loadType2();
-            loadType();
+
+            $("#investor_id").find("option[value=" + data.data.investor_id + "]").attr("selected", true).trigger("chosen:updated");
+            $("input[name='type'][value='"+data.data.type+"']").attr("checked",true);$("input[name='type']")
         }
     })
 });

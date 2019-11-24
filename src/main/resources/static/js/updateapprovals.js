@@ -1,6 +1,10 @@
-$().ready(function() {
+$(function () {
     loadType();
+})
+$(document).ready(function () {
     loadType2();
+})
+$().ready(function() {
     validateRule();
     $.ajax({
         type:"POST",

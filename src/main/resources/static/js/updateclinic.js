@@ -1,21 +1,21 @@
 $().ready(function() {
+    loadType();
     validateRule();
     $.ajax({
         type:"POST",
         url:"/clinic/findClinicByid/"+window.location.search.split("id=")[1],
         dataType: "JSON",
         success:function (data) {
+            loadType();
             console.log(data.data.record_number);
             console.log(data.data.adaptation_disease);
             console.log(data.data.record_date);
             $("#record_number").val(data.data.record_number);
             $("#adaptation_disease").val(data.data.adaptation_disease);
             $("#record_date").val(data.data.record_date);
-
             $("#id").val(data.data.id);
+            $("#product_id").find("option[value=" + data.data.product_id + "]").attr("selected", true).trigger("chosen:updated");
 
-           // loadType2();
-            loadType();
         }
     })
 });

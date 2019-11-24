@@ -1,10 +1,12 @@
 $().ready(function() {
     validateRule();
+    loadType();
     $.ajax({
         type:"POST",
         url:"/shareholder/findShareholderByid/"+window.location.search.split("id=")[1],
         dataType: "JSON",
         success:function (data) {
+            loadType();
             console.log(data.data.shareholder_name);
             console.log(data.data.share_type);
             console.log(data.data.number_of_shares);
@@ -15,8 +17,7 @@ $().ready(function() {
             $("#proportion").val(data.data.proportion);
             $("#id").val(data.data.id);
 
-           // loadType2();
-            loadType();
+            $("#company_id").find("option[value=" + data.data.company_id + "]").attr("selected", true).trigger("chosen:updated");
         }
     })
 });
@@ -60,7 +61,7 @@ function validateRule() {
         }
     })
 }
-//加载产品
+
 function loadType(){
     var html = "";
     $.ajax({
@@ -72,8 +73,8 @@ function loadType(){
             for (var i = 0; i < list.length; i++) {
                 html += '<option value="' + list[i].id + '">' + list[i].company_name + '</option>'
             }
-            $(".chosen-select").append(html);
-            $(".chosen-select").chosen({
+            $("#company_id").append(html);
+            $("#company_id").chosen({
                 maxHeight : 200
             });
             //点击事件
