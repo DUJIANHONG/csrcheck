@@ -30,7 +30,6 @@ $().ready(function() {
             $("#id").val(data.data.id);
             //单选框的赋值方法
             $("input[name='listed_unlisted'][value='"+data.data.listed_unlisted+"']").attr("checked",true);
-           /* $("input[name='introduction_controller_id'][value='"+data.data.introduction_controller_id+"']").attr("checked",true);*/
             // loadType2();
             loadType();
         }
