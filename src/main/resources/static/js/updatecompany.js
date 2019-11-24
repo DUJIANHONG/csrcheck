@@ -6,7 +6,6 @@ $().ready(function() {
         url:"/company/findCompanyByid/"+window.location.search.split("id=")[1],
         dataType: "JSON",
         success:function (data) {
-            console.log(data.data.introduction_controller_id);
             console.log(data.data.company_name);
             console.log(data.data.company_address);
             console.log(data.data.type_ownership);
