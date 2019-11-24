@@ -26,7 +26,7 @@ public class Company {
     private int listed_unlisted;        //上市/未上市（1上市；2未上市）
     private String ten_shareholders;    //前十大股东
     @JsonIgnore
-    private String introduction_controller_id;  //公司实际控制人id
+    private int introduction_controller_id;  //公司实际控制人id
     private int company_ranking;        //公司排名
 
     private String licence_no;          //许可证编号
@@ -174,11 +174,11 @@ public class Company {
         this.ten_shareholders = ten_shareholders;
     }
 
-    public String getIntroduction_controller_id() {
+    public int  getIntroduction_controller_id() {
         return introduction_controller_id;
     }
 
-    public void setIntroduction_controller_id(String introduction_controller_id) {
+    public void setIntroduction_controller_id(int introduction_controller_id) {
         this.introduction_controller_id = introduction_controller_id;
     }
     public int getCompany_ranking() {
