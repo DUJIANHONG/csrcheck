@@ -89,12 +89,7 @@ public class ProductController extends BaseController {
         return new JsonResult<>(SUCCESS,OK);
     }
 
-    @RequestMapping(path = "updateproduct", method = RequestMethod.POST)
-    public String updateProduct(@RequestParam("params") int params,Model model) {
-        Product product = productService.selectByproduct_id(params);
-        model.addAttribute("product",product);
-        return "updateproduct";
-    }
+
 
     /**
      * 修改产品信息

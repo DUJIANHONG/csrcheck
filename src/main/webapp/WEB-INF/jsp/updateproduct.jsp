@@ -144,11 +144,10 @@
             type: "POST",
             url: "/product/updateproduct/" + window.location.search.split("id=")[1],
             dataType: "JSON",
-            success: function (data) {
-                console.log(data.data.product_id);
-                $("#product_name").val(data.data.product_name);
-                $("#approval_num").val(data.data.product_t_id);
-                $("#id").val(data.data.id);
+            success: function (params) {
+                console.log(params.data.product_id);
+                $("#product_name").val(params.data.product_name);
+                $("#id").val(params.data.id);
 
             }
         });
