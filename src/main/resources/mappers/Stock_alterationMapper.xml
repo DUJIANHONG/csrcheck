@@ -33,6 +33,7 @@
     <update id="updateStock_alteration" parameterType="com.csr.csrcheck.pojo.Stock_alteration">
         update `stock_alteration`
         set
+         investor_id=#{investor_id},
         type=#{type},ratio_after=#{ratio_after},
         ratio_before=#{ratio_before},share_change=#{share_change},
         increase_decrease=#{increase_decrease},change_time=#{change_time}

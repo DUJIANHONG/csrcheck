@@ -3,6 +3,7 @@ $(function () {
 })
 
 $().ready(function() {
+    //loadType();
     validateRule();
     $.ajax({
         type:"POST",
@@ -10,7 +11,7 @@ $().ready(function() {
         dataType: "JSON",
         success:function (data) {
             loadType();
-            console.log(data.data.introduction_controller_id);
+
             $("#company_name").val(data.data.company_name);
             $("#company_address").val(data.data.company_address);
             $("#type_ownership").val(data.data.type_ownership);

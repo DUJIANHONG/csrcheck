@@ -19,6 +19,7 @@ public class Stock_alteration {
     private String share_change;     //持股变化（股）
     private String increase_decrease;//增减情况
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date change_time;        //变更时间
 
     //自定义字段
