@@ -13,15 +13,6 @@
         a{
             color: #2b303a;
         }
-        .box2{
-            width: 500px;
-            margin: 0 auto;
-        }
-        .box3{
-            width: 500px;
-            margin: 0 auto;
-            margin-top: 50px;
-        }
         h4{
             color: #1b6d85;
         }
@@ -36,7 +27,7 @@
 </head>
 <body>
 <div class="bo"><a href="#" onclick="javascript :history.back(-1);"><i class="fa fa-mail-reply" aria-hidden="true" style="color: #1c84c6"></i></a></div>
-<div id="box">
+<div id="box" style="width: 50%;margin: 0 auto">
 </div>
 <script src="../js/jquery.min.js"></script>
 <script>
@@ -45,11 +36,11 @@
         url:"/news/byidnews/"+window.location.search.split("id=")[1],
         dataType:"json",
         success:function (data) {
-                let html="<div class='box2'>"
-                    +"<h1>news_title</h1>"
+                let html="<div>"
+                    +"<h2>news_title</h2>"
                     +"<h4>subheading</h4>"
                     +"<span>news_name</span><span>position</span>|<span>date</span></div>"
-                    +"<div class='box3'>&nbsp;&nbsp;&nbsp;&nbsp;news_content</div>"
+                    +"<div>&nbsp;&nbsp;&nbsp;&nbsp;news_content</div>"
                 html=html.replace("news_content",data.data.news_content)
                 html=html.replace("news_title",data.data.news_title)
                 html=html.replace("subheading",data.data.subheading)

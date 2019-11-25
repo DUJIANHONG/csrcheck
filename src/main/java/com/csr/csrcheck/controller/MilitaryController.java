@@ -33,7 +33,7 @@ public class MilitaryController extends BaseController{
             throw new ClinicException("没有数据");
         }
 
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
     /**
      * 查进口器械的临床
@@ -45,7 +45,7 @@ public class MilitaryController extends BaseController{
         if (list==null){
             throw new ClinicException("没有数据");
         }
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
     /**
      * 查合法厂家
@@ -56,7 +56,7 @@ public class MilitaryController extends BaseController{
         if (list==null){
             throw new ClinicException("没有数据");
         }
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -68,6 +68,6 @@ public class MilitaryController extends BaseController{
         if (list==null){
             throw new ClinicException("没有数据");
         }
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 }

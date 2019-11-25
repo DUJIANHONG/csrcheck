@@ -2,7 +2,6 @@ package com.csr.csrcheck.mapper;
 
 import com.csr.csrcheck.pojo.News;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -29,4 +28,18 @@ public interface NewsMapper {
      * @return
      */
     public News getnewsbyid(@Param(value = "id") Integer id);
+
+    /**
+     * 修改
+     * @param news
+     * @return
+     */
+    int updateNews(News news);
+
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
+    int deleteNews(int id);
 }

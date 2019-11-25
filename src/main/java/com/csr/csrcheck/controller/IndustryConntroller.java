@@ -1,9 +1,7 @@
 package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.pojo.Industry;
-import com.csr.csrcheck.pojo.Research;
 import com.csr.csrcheck.service.IndustryService;
-import com.csr.csrcheck.service.ResearchService;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +26,7 @@ public class IndustryConntroller extends BaseController {
     @GetMapping("industrylist")
     public JsonResult<List<Industry>> getlistByCompany_id(){
         List<Industry> list = industryService.getIndustryList();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -46,6 +44,6 @@ public class IndustryConntroller extends BaseController {
         log.info("contend---------------------------------->pageNum:"+pageNum);
         log.info("contend---------------------------------->pageSize:"+pageSize);
         log.info("contend---------------------------------->company_name:"+company_name);
-        return new JsonResult<>(SUCCESS,OK,pageResult);
+        return new JsonResult<>(code,OK,pageResult);
     }
 }

@@ -1,3 +1,6 @@
+$(function () {
+    loadType();
+})
 laydate.render({
     elem: '#submittime', //指定元素
     eventElem: '.fa-calendar'
@@ -10,6 +13,7 @@ $().ready(function() {
         url:"/lawsuit/findlawsuit/"+window.location.search.split("id=")[1],
         dataType: "JSON",
         success:function (data) {
+            loadType();
             $("#plaintiffs").val(data.data.plaintiffs);
             $("#court").val(data.data.court);
             $("#casereason").val(data.data.casereason);
@@ -26,7 +30,8 @@ $().ready(function() {
             $("#agent").val(data.data.agent);
             $("#defendants").val(data.data.defendants);
             $("#id").val(data.data.id);
-            loadType();
+
+            $("#company_id").find("option[value=" + data.data.company_id + "]").attr("selected", true).trigger("chosen:updated");
         }
     })
 });
@@ -44,10 +49,10 @@ $("#update").click(function () {
                 async: false,
                 dataType: 'json',
                 success: function (data) {
-                    if (data.state == 2000) {
+                    if (data.code == 0) {
                         parent.layer.msg("操作成功",{icon:6});
                     } else {
-                        parent.layer.alert(data.message)
+                        parent.layer.alert(data.msg)
                     }
 
                 }
@@ -70,7 +75,7 @@ function validateRule() {
         }
     })
 }
-//加载产品
+
 function loadType(){
     var html = "";
     $.ajax({
@@ -82,19 +87,9 @@ function loadType(){
             for (var i = 0; i < list.length; i++) {
                 html += '<option value="' + list[i].id + '">' + list[i].company_name + '</option>'
             }
-            $(".chosen-select").append(html);
-            $(".chosen-select").chosen({
+            $("#company_id").append(html);
+            $("#company_id").chosen({
                 maxHeight : 200
-            });
-            //点击事件
-            $('.chosen-select').on('change', function(e, params) {
-                console.log(params.selected);
-                var opt = {
-                    query : {
-                        type : params.selected,
-                    }
-                }
-                $('#exampleTable').bootstrapTable('refresh', opt);
             });
         }
     });

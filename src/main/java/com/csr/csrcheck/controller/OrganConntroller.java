@@ -2,14 +2,11 @@ package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.controller.ex.CompanyException;
 import com.csr.csrcheck.pojo.Company;
-import com.csr.csrcheck.service.CompanyService;
 import com.csr.csrcheck.service.OrganService;
 import com.csr.csrcheck.util.JsonResult;
-import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -46,7 +43,7 @@ public class OrganConntroller extends BaseController{
         if (list==null){
            throw new CompanyException("没有数据");
         }
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
     //基本信息
     @GetMapping("organlist2")
@@ -55,6 +52,6 @@ public class OrganConntroller extends BaseController{
         if (list==null){
             throw new CompanyException("没有数据");
         }
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 }

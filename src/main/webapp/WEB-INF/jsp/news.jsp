@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CSR</title>
+
     <!-- Bootstrap -->
     <link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -28,13 +29,14 @@
     <!-- add local/css 2016-8-18 -->
     <link href="${pageContext.request.contextPath }/css/appinfoadd.css" rel='stylesheet'>
     <link href="${pageContext.request.contextPath }/css/appinfolist.css" rel='stylesheet'>
+    <link  rel="stylesheet" href="${pageContext.request.contextPath }/layui/css/layui.css" media="all">
     <style type="text/css">
         *{
             margin: 0;
             padding:0;
         }
         .wrap{
-            width: 600px;
+            width: 700px;
             margin: 0px auto;
 
         }
@@ -54,7 +56,7 @@
             transform: scale(1.2);/*当鼠标移动到图片上时实现放大功能*/
         }
         .content ul li{
-            height: 100px;
+            /*display: block;*/
             overflow: hidden;
             border-bottom: 1px solid lavender;
             background: white;
@@ -71,7 +73,7 @@
             overflow: hidden;/*隐藏溢出图片内容*/
             transition-duration: 0.5s;
             width: 140px;
-            height:80px;
+            height:110px;
             /*background: green;*/
             float: left;
             margin-right:20px;
@@ -85,7 +87,7 @@
             height:60px;
         }
         .right_bottom{
-            margin_top:50px;
+            margin_top:80px;
         }
         .right_bottom_left span{
             color: darkgray;
@@ -144,11 +146,20 @@
                                         <div class="right_top">
                                             <h3>${pages.news_title}</h3>
                                         </div>
-                                        <div class="right_bottom">
+                                        <div class="right_bottom" style="position: relative; top: 30px; width: 100%">
                                             <div class="right_bottom_left">
                                                 <span>${pages.news_name}</span>  <span>${pages.position}</span><span>|</span> <span><fmt:formatDate value="${pages.date}" type="date"/></span>
-                                                <span style="color: red;float: right" newsid="${pages.id}" class="btn">查看新闻详情 >>>></span>
+                                                <span style="color: red;float: right;position: relative; top: -6px;" newsid="${pages.id}" class="btn">查看新闻详情 >>>></span>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div style="float: right;">
+                                        <div class="layui-btn-group">
+                                            <%--<button type="button" class="layui-btn layui-btn-primary layui-btn-sm update" title="修改"  updateid="${pages.id}">
+                                                <i class="layui-icon">&#xe642;</i>
+                                            </button>--%>
+                                                <i class="layui-icon delete" title="删除" deleteid="${pages.id}">&#xe640;</i>
+
                                         </div>
                                     </div>
                                 </li>
@@ -200,6 +211,7 @@
         </div>
     </div>
 </div>
+<script src="${pageContext.request.contextPath }/layui/layui.js" charset="utf-8"></script>
 <!-- jQuery -->
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <!-- Bootstrap -->
@@ -216,12 +228,59 @@
 <!--<script src="js/rollpage.js"></script>-->
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/rollpage.js"></script>
+
 <script>
   $(".btn").click(function () {
       var obj = $(this);
       window.location.href="/web/news.html?id="+obj.attr("newsid");
   })
-
+  //一般直接写在一个js文件中
+  layui.use(['layer', 'form'], function(){
+      var layer = layui.layer
+          ,form = layui.form;
+  });
+//删除
+  $(".delete").on('click',function(){
+      var obj=$(this);
+      console.log(obj.attr("deleteid"));
+      parent.layer.confirm("确定要删除这条记录吗？",{btn:['确定','取消']},function (confirm) {
+          layer.close(confirm);
+          $.ajax({
+              type:"post",
+              url:"/news/deletenews/"+obj.attr("deleteid"),
+              dataType:"json",
+              success:function (data) {
+                  if(data.code==0){
+                      parent.layer.msg("操作成功",{icon:6});
+                      location.reload();
+                  }else{
+                      parent.layer.msg(data.msg);
+                  }
+              }
+          });
+      },function (confirms) {
+          layer.close(confirms);
+          parent.layer.msg("已取消删除");
+      });
+  });
+  //修改
+ /* $(".update").on('click',function(){
+      var obj=$(this);
+      console.log(obj.attr("updateid"));
+      layer.open({
+          type: 2,
+          title:'修改新闻信息',
+          maxmin:true,
+          shadeClose: true,
+          anim: 4,
+          shade:[0.8,'#393D49'],
+          area:['800px','680px'],
+          content: '/web/ubdatenews.html?id='+obj.attr('updateid'),
+          end:function () {
+              location.reload();
+          }
+      })
+  });*/
 </script>
 </body
 </body>

@@ -36,7 +36,7 @@ public class EvaluateController extends BaseController{
             throw new EvaluateException("一致性评价没有数据");
         }
 
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
 
@@ -58,7 +58,7 @@ public class EvaluateController extends BaseController{
         log.info("evaluate--------------------------->pageSize:"+pageSize);
         log.info("evaluate--------------------------->company_name:"+company_name);
         log.info("evaluate--------------------------->product_name:"+product_name);
-        return new JsonResult<>(SUCCESS,OK,pageResult);
+        return new JsonResult<>(code,OK,pageResult);
     }
 
     /**
@@ -69,7 +69,7 @@ public class EvaluateController extends BaseController{
     @RequestMapping(path = "addEvaluate",method = RequestMethod.POST)
     public JsonResult<Void> addEvaluate(Evaluate evaluate){
         evaluateService.addevlaute(evaluate);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
     /**
      *修改一致性评价
@@ -79,7 +79,7 @@ public class EvaluateController extends BaseController{
     @RequestMapping(path = "uppdateEvaluate",method = RequestMethod.POST)
     public JsonResult<Void> uppdateEvaluate(Evaluate evaluate){
         evaluateService.updateevlaute(evaluate);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
     /**
      *删除一致性评价
@@ -89,7 +89,7 @@ public class EvaluateController extends BaseController{
     @RequestMapping(path = "deleteEvaluate/{id}",method = RequestMethod.POST)
     public JsonResult<Void> deleteEvaluate(@PathVariable(value = "id") int id){
         evaluateService.deleteevlaute(id);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
     /**
@@ -103,7 +103,7 @@ public class EvaluateController extends BaseController{
         if(evaluate==null){
             throw new CompanyException("没有数据");
         }
-        return new JsonResult<>(SUCCESS,OK,evaluate);
+        return new JsonResult<>(code,OK,evaluate);
     }
     @Resource
     private CompanyService companyService;
@@ -115,7 +115,7 @@ public class EvaluateController extends BaseController{
     @RequestMapping(path = "showcompany",method = RequestMethod.POST)
     public JsonResult<List<Company>> showcompany(){
         List<Company> list = companyService.getCommpanylist();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
     @Resource
     private ProductService productService;
@@ -127,6 +127,6 @@ public class EvaluateController extends BaseController{
     @RequestMapping(path="listproduct", method= RequestMethod.POST)
     public JsonResult<List<Product>> listproduct(){
         List list=productService.list();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 }

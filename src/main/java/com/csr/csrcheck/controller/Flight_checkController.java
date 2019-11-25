@@ -1,6 +1,5 @@
 package com.csr.csrcheck.controller;
 
-import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.Flight_check;
 import com.csr.csrcheck.pojo.Product;
 import com.csr.csrcheck.pojo.Product_type;
@@ -18,7 +17,6 @@ import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 @RequestMapping("flight_check")
@@ -45,7 +43,7 @@ public class Flight_checkController extends BaseController{
             throw new Flight_checkException("没有企业中的飞行数据");
         }
 
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -62,7 +60,7 @@ public class Flight_checkController extends BaseController{
             throw new Flight_checkException("没有化妆品中的飞行数据");
         }
 
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
     /**
      * 查医疗器械中的飞行检查
@@ -78,7 +76,7 @@ public class Flight_checkController extends BaseController{
             throw new Flight_checkException("没有医疗器械中的飞行数据");
         }
 
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -111,7 +109,7 @@ public class Flight_checkController extends BaseController{
         log.info("flightcheck--------------------------->product_t_name:"+product_t_name);
         log.info("flightcheck--------------------------->check_no:"+check_no);
         log.info("flightcheck--------------------------->publication:"+publication);
-        return new JsonResult<>(SUCCESS,OK,pageResult);
+        return new JsonResult<>(code,OK,pageResult);
     }
 
     /**
@@ -124,7 +122,7 @@ public class Flight_checkController extends BaseController{
         if(list==null){
             throw new CompanyException("数据为空");
         }
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -135,7 +133,7 @@ public class Flight_checkController extends BaseController{
     @RequestMapping(path = "addflight",method = RequestMethod.POST)
     public JsonResult<Void> addflight(Flight_check flight_check){
         iFlight_checkService.addFlightcheck(flight_check);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
     /**
@@ -146,7 +144,7 @@ public class Flight_checkController extends BaseController{
     @RequestMapping(path = "updateflight",method = RequestMethod.POST)
     public JsonResult<Void> updateflight(Flight_check flight_check){
         iFlight_checkService.updateFlightcheck(flight_check);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
     /**
      * 删除
@@ -156,7 +154,7 @@ public class Flight_checkController extends BaseController{
     @RequestMapping(path = "deleteflight/{id}",method = RequestMethod.POST)
     public JsonResult<Void> deleteflight(@PathVariable(value = "id") int id){
         iFlight_checkService.deleteFlightcheck(id);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
     /**
@@ -167,7 +165,7 @@ public class Flight_checkController extends BaseController{
     @RequestMapping(path = "findflight/{id}",method = RequestMethod.POST)
     public JsonResult<Flight_check> findflight(@PathVariable(value = "id") int id){
         Flight_check flight_check=iFlight_checkService.findflightByid(id);
-        return new JsonResult<>(SUCCESS,OK,flight_check);
+        return new JsonResult<>(code,OK,flight_check);
     }
     /**
      * 下拉框展示产品数据
@@ -178,6 +176,6 @@ public class Flight_checkController extends BaseController{
     @RequestMapping(path="listproduct", method= RequestMethod.POST)
     public JsonResult<List<Product>> listproduct(){
         List list=productService.list();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 }

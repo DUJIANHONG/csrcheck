@@ -1,8 +1,6 @@
 package com.csr.csrcheck.controller;
 
-import com.csr.csrcheck.pojo.Other;
 import com.csr.csrcheck.pojo.Speech;
-import com.csr.csrcheck.service.OtherService;
 import com.csr.csrcheck.service.SpeechService;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
@@ -28,7 +26,7 @@ public class SpeechConntroller extends BaseController {
     @GetMapping("speechlist")
     public JsonResult<List<Speech>> getlistByCompany_id(){
         List<Speech> list = speechService.getSpeechList();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -46,6 +44,6 @@ public class SpeechConntroller extends BaseController {
         log.info("contend---------------------------------->pageNum:"+pageNum);
         log.info("contend---------------------------------->pageSize:"+pageSize);
         log.info("contend---------------------------------->company_name:"+company_name);
-        return new JsonResult<>(SUCCESS,OK,pageResult);
+        return new JsonResult<>(code,OK,pageResult);
     }
 }

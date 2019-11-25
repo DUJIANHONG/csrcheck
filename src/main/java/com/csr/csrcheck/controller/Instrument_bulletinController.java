@@ -1,9 +1,7 @@
 package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.pojo.Abnormal_products;
-import com.csr.csrcheck.pojo.Clinic;
 import com.csr.csrcheck.pojo.Important_notification;
-import com.csr.csrcheck.service.ClinicService;
 import com.csr.csrcheck.service.Instrument_bulletinService;
 import com.csr.csrcheck.service.ex.ClinicException;
 import com.csr.csrcheck.util.JsonResult;
@@ -41,7 +39,7 @@ public class Instrument_bulletinController extends BaseController{
             throw new ClinicException("没有数据");
         }
 
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -58,6 +56,6 @@ public class Instrument_bulletinController extends BaseController{
             throw new ClinicException("没有数据");
         }
 
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 }

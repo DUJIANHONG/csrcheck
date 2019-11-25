@@ -36,7 +36,7 @@ $("#update").click(function () {
                 async: false,
                 dataType: 'json',
                 success: function (data) {
-                    if (data.state == 2000) {
+                    if (data.code == 0) {
                         parent.layer.msg("操作成功", {icon: 1});
                     } else {
                         parent.layer.alert(data.message)
@@ -77,16 +77,6 @@ function loadType(){
             $("#company_id").append(html);
             $("#company_id").chosen({
                 maxHeight : 200
-            });
-            //点击事件
-            $('.chosen-select').on('change', function(e, params) {
-                console.log(params.selected);
-                var opt = {
-                    query : {
-                        type : params.selected,
-                    }
-                }
-                $('#exampleTable').bootstrapTable('refresh', opt);
             });
         }
     });

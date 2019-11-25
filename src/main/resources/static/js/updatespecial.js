@@ -1,10 +1,12 @@
 $().ready(function() {
     validateRule();
+    loadType();
     $.ajax({
         type:"POST",
         url:"/specialb/findSpecialByid/"+window.location.search.split("id=")[1],
         dataType: "JSON",
         success:function (data) {
+            loadType();
             console.log(data.data.title);
             console.log(data.data.content);
             console.log(data.data.release_time);
@@ -14,8 +16,8 @@ $().ready(function() {
 
             $("#id").val(data.data.id);
 
-           // loadType2();
-            loadType();
+            $("#company_id").find("option[value=" + data.data.company_id + "]").attr("selected", true).trigger("chosen:updated");
+
         }
     })
 });
@@ -33,7 +35,7 @@ $("#update").click(function () {
             async: false,
             dataType: 'json',
             success: function (data) {
-                if (data.state == 2000) {
+                if (data.code == 0) {
                     parent.layer.msg("操作成功");
                 } else {
                     parent.layer.alert(data.msg)

@@ -37,4 +37,18 @@ public interface NewsService {
      */
     public News getnewsbyid(@Param(value = "id") Integer id);
 
+    /**
+     * 修改
+     * @param news
+     * @return
+     */
+    int updateNews(News news);
+
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
+    int deleteNews(int id);
+
 }

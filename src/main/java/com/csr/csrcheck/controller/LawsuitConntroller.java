@@ -5,11 +5,9 @@ import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.Lawsuit;
 import com.csr.csrcheck.service.CompanyService;
 import com.csr.csrcheck.service.LawsuitService;
-import com.csr.csrcheck.service.OrganService;
 import com.csr.csrcheck.service.ex.LawsuitException;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
-import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,7 +45,7 @@ public class LawsuitConntroller extends BaseController{
         if (list==null){
            throw new LawsuitException("没有数据");
         }
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
 
@@ -79,7 +77,7 @@ public class LawsuitConntroller extends BaseController{
         log.info("lawsuit-------------------------------------->doctype:"+doctype);
         log.info("lawsuit-------------------------------------->defendants:"+defendants);
         log.info("lawsuit-------------------------------------->submittime:"+submittime);
-        return new JsonResult<>(SUCCESS,OK,pageResult);
+        return new JsonResult<>(code,OK,pageResult);
     }
 
     /**
@@ -90,7 +88,7 @@ public class LawsuitConntroller extends BaseController{
     @RequestMapping(path = "addlawsuit",method = RequestMethod.POST)
     public JsonResult<Void> addlawsuit(Lawsuit lawsuit){
          lawsuitService.addlawsuit(lawsuit);
-         return new JsonResult<>(SUCCESS,OK);
+         return new JsonResult<>(code,OK);
     }
     /**
      * 修改
@@ -100,7 +98,7 @@ public class LawsuitConntroller extends BaseController{
     @RequestMapping(path = "updatelawsuit",method = RequestMethod.POST)
     public JsonResult<Void> updatelawsuit(Lawsuit lawsuit){
          lawsuitService.updatelawsuit(lawsuit);
-         return new JsonResult<>(SUCCESS,OK);
+         return new JsonResult<>(code,OK);
     }
     /**
      * 删除
@@ -110,7 +108,7 @@ public class LawsuitConntroller extends BaseController{
     @RequestMapping(path = "deletelawsuit/{id}",method = RequestMethod.POST)
     public JsonResult<Void> deletelawsuit(@PathVariable(value = "id") int id){
          lawsuitService.deletelawsuit(id);
-         return new JsonResult<>(SUCCESS,OK);
+         return new JsonResult<>(code,OK);
     }
     /**
      * 根据id查找
@@ -120,7 +118,7 @@ public class LawsuitConntroller extends BaseController{
     @RequestMapping(path = "findlawsuit/{id}",method = RequestMethod.POST)
     public JsonResult<Lawsuit> findlawsuit(@PathVariable(value = "id") int id){
         Lawsuit lawsuit = lawsuitService.findlawsuit(id);
-         return new JsonResult<>(SUCCESS,OK,lawsuit);
+         return new JsonResult<>(code,OK,lawsuit);
     }
 
     @Resource
@@ -132,7 +130,7 @@ public class LawsuitConntroller extends BaseController{
     @RequestMapping(path = "showcompany",method = RequestMethod.POST)
     public JsonResult<List<Company>> showcompany() {
         List<Company> list = companyService.getCommpanylist();
-        return new JsonResult<>(SUCCESS, OK, list);
+        return new JsonResult<>(code, OK, list);
     }
 
 }

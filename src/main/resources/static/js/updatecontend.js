@@ -5,6 +5,7 @@ laydate.render({
 });
 $().ready(function() {
     validateRule();
+    loadType();
     $.ajax({
         type: "POST",
         url: "/contend/findcontendByid/" + window.location.search.split("id=")[1],
@@ -19,6 +20,7 @@ $().ready(function() {
             $("#id").val(data.data.id);
             $("#content").val(data.data.content);
             $("#time").val(data.data.time);
+            $("#company_id").find("option[value=" + data.data.company_id + "]").attr("selected", true).trigger("chosen:updated");
         }
     });
 });
@@ -37,10 +39,10 @@ $("#update").click(function () {
                 async: false,
                 dataType: 'json',
                 success: function (data) {
-                    if (data.state == 2000) {
+                    if (data.code == 0) {
                         parent.layer.msg("操作成功", {icon: 1});
                     } else {
-                        parent.layer.alert(data.message)
+                        parent.layer.alert(data.msg)
                     }
 
                 }

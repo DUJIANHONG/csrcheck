@@ -23,6 +23,6 @@ public class Company_newsController extends BaseController {
     @RequestMapping("news")
     public JsonResult<List<Company_news>> select_All(){
         List<Company_news> list = company_newsService.selectAllBycompany_id(4);
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 }

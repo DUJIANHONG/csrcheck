@@ -47,7 +47,7 @@ public class Business_risksConntroller extends BaseController{
         if (list==null){
            throw new LawsuitException("没有数据");
         }
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
 
@@ -66,7 +66,7 @@ public class Business_risksConntroller extends BaseController{
         if(pageResult==null){
             throw new CompanyException("没有数据");
         }
-        return new JsonResult<>(SUCCESS,OK,pageResult);
+        return new JsonResult<>(code,OK,pageResult);
     }
 
     /**
@@ -77,7 +77,7 @@ public class Business_risksConntroller extends BaseController{
     @RequestMapping(path = "addbussiness",method = RequestMethod.POST)
     public JsonResult<Void> addbussiness(Business_risks business_risks){
         business_risksService.addBusiness(business_risks);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
     /**
@@ -88,7 +88,7 @@ public class Business_risksConntroller extends BaseController{
     @RequestMapping(path = "updatebussiness",method = RequestMethod.POST)
     public JsonResult<Void> updatebussiness(Business_risks business_risks){
         business_risksService.updateBusiness(business_risks);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
     /**
      *删除经营风险
@@ -98,7 +98,7 @@ public class Business_risksConntroller extends BaseController{
     @RequestMapping(path = "deletebussiness/{id}",method = RequestMethod.POST)
     public JsonResult<Void> deletebussiness(@PathVariable(value = "id") int id){
         business_risksService.deleteBusiness(id);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
     @Resource
     private CompanyService companyService;
@@ -110,7 +110,7 @@ public class Business_risksConntroller extends BaseController{
     @RequestMapping(path = "getcompany",method = RequestMethod.POST)
     public JsonResult<List<Company>> getcompany(){
        List<Company>  list=companyService.getCommpanyByid();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -120,7 +120,7 @@ public class Business_risksConntroller extends BaseController{
     @RequestMapping(path = "getriskclassify",method = RequestMethod.POST)
     public JsonResult<List<Risk_classify>> getriskclassify(){
         List<Risk_classify> list=business_risksService.findbylistclassify();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
     /**
      *下拉列表显示分险类型
@@ -129,7 +129,7 @@ public class Business_risksConntroller extends BaseController{
     @RequestMapping(path = "getsriktype",method = RequestMethod.POST)
     public JsonResult< List<Risk_type>> getsriktype(){
         List<Risk_type> list=business_risksService.findbylisttype();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -140,6 +140,6 @@ public class Business_risksConntroller extends BaseController{
     @RequestMapping(path = "getbussinessbyid/{id}",method = RequestMethod.POST)
     public JsonResult<Business_risks> getbussinessbyid(@PathVariable(value = "id") int id){
         Business_risks business_risks=business_risksService.findlistbyid(id);
-        return new JsonResult<>(SUCCESS,OK,business_risks);
+        return new JsonResult<>(code,OK,business_risks);
     }
 }

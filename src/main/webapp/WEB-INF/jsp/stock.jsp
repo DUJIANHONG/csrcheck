@@ -292,11 +292,11 @@
                     url:"/stock_alteration/deletestock_alteration/"+obj.attr("deletestock_alterationid"),
                     dataType:"json",
                     success:function (data) {
-                        if(data.state==2000){
+                        if(data.code==0){
                             parent.layer.msg("操作成功",{icon:6});
                             location.reload();
                         }else{
-                            parent.layer.msg(data.message);
+                            parent.layer.msg(data.msg);
                         }
                     }
                 });

@@ -21,10 +21,10 @@ $("#save").click(function () {
                 async: false,
                 dataType: 'json',
                 success: function (data) {
-                    if (data.state == 2000) {
+                    if (data.code == 0) {
                         parent.layer.msg("操作成功", {icon: 1});
                     } else {
-                        parent.layer.alert(data.message)
+                        parent.layer.alert(data.msg)
                     }
 
                 }

@@ -1,6 +1,8 @@
 
 $().ready(function() {
     validateRule();
+    loadType();
+    loadType2();
     $.ajax({
         type: "POST",
         url: "/evaluate/findEvaluate/" + window.location.search.split("id=")[1],
@@ -14,6 +16,8 @@ $().ready(function() {
             $("#agent_type").val(data.data.agent_type);
             $("#adaptation_disease").val(data.data.adaptation_disease);
             $("#id").val(data.data.id);
+            $("#company_id").find("option[value=" + data.data.company_id + "]").attr("selected", true).trigger("chosen:updated");
+            $("#product_id").find("option[value=" + data.data.product_id + "]").attr("selected", true).trigger("chosen:updated");
         }
     });
 });
@@ -34,10 +38,10 @@ $("#update").click(function () {
                 async: false,
                 dataType: 'json',
                 success: function (data) {
-                    if (data.state == 2000) {
+                    if (data.code == 0) {
                         parent.layer.msg("操作成功", {icon: 1});
                     } else {
-                        parent.layer.alert(data.message)
+                        parent.layer.alert(data.msg)
                     }
 
                 }

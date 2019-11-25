@@ -84,13 +84,13 @@
             data: $('#signupForm').serialize(),
             dataType:"json",
             success: function (json) {
-                if(json.state==2000){
+                if(json.code==0){
                     //alert("登录成功");
                     window.location.href="index_v1.html";
                 }else{
                     //alert("登录失败"+json.message)
                     var icon = "<i class='fa fa-times-circle'></i> ";
-                    $("#erro").html(icon+json.message)
+                    $("#erro").html(icon+json.msg)
                 }
             },
         });

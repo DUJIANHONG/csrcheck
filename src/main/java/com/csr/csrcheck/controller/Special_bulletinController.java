@@ -1,11 +1,8 @@
 package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.pojo.Company;
-import com.csr.csrcheck.pojo.Shareholder;
 import com.csr.csrcheck.pojo.Special_bulletin;
-import com.csr.csrcheck.pojo.Stock_alteration;
 import com.csr.csrcheck.service.CompanyService;
-import com.csr.csrcheck.service.ShareholderService;
 import com.csr.csrcheck.service.Special_bulletinService;
 import com.csr.csrcheck.util.JsonResult;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +36,7 @@ public class Special_bulletinController extends BaseController{
        special_bulletin.setRelease_time(sdf.parse(date));
         special_bulletinService.addSpecial_bulletin(special_bulletin);
         log.info("add================================>approvals："+special_bulletinService);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
 
@@ -53,7 +50,7 @@ public class Special_bulletinController extends BaseController{
     @RequestMapping(path="listcompany", method= RequestMethod.POST)
     public JsonResult<List<Company>> listcompany(){
         List list=companyService.list();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -64,7 +61,7 @@ public class Special_bulletinController extends BaseController{
     @RequestMapping(path="updatespecial", method= RequestMethod.POST)
     public JsonResult<Void> updatespecial(Special_bulletin special_bulletin){
         special_bulletinService.updateSpecial_bulletin(special_bulletin);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
     /**
      * 根据id查找特别公告
@@ -79,7 +76,7 @@ public class Special_bulletinController extends BaseController{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -91,6 +88,6 @@ public class Special_bulletinController extends BaseController{
     public JsonResult<Void> deletespecial(@PathVariable(value = "id") int id){
         special_bulletinService.deletespecial_bulletinByid(id);
         log.info("删除成功-------------------------》id:"+id);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 }

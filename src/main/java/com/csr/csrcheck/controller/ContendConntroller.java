@@ -26,7 +26,7 @@ public class ContendConntroller extends BaseController {
     @GetMapping("contendlist")
     public JsonResult<List<Contend>> getlistByCompany_id(){
         List<Contend> list = contendService.getContendList();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -44,7 +44,7 @@ public class ContendConntroller extends BaseController {
         log.info("contend---------------------------------->pageNum:"+pageNum);
         log.info("contend---------------------------------->pageSize:"+pageSize);
         log.info("contend---------------------------------->company_name:"+company_name);
-        return new JsonResult<>(SUCCESS,OK,pageResult);
+        return new JsonResult<>(code,OK,pageResult);
     }
 
     /**
@@ -55,7 +55,7 @@ public class ContendConntroller extends BaseController {
     @RequestMapping(path = "addcontend",method = RequestMethod.POST)
     public JsonResult<Void> addcontend(Contend contend){
         contendService.addcontend(contend);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
     /**
      * 修改核心竞争力
@@ -65,7 +65,7 @@ public class ContendConntroller extends BaseController {
     @RequestMapping(path = "updatecontend",method = RequestMethod.POST)
     public JsonResult<Void> updatecontend(Contend contend){
         contendService.updatecontend(contend);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
     /**
@@ -76,7 +76,7 @@ public class ContendConntroller extends BaseController {
     @RequestMapping(path = "deletecontend/{id}",method = RequestMethod.POST)
     public JsonResult<Void> deletecontend(@PathVariable(value = "id") int id){
         contendService.deletecontend(id);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
     /**
@@ -90,7 +90,7 @@ public class ContendConntroller extends BaseController {
         if(contend==null){
             throw new CompanyException("数据为空");
         }
-        return new JsonResult<>(SUCCESS,OK,contend);
+        return new JsonResult<>(code,OK,contend);
     }
 
     @Resource
@@ -103,7 +103,7 @@ public class ContendConntroller extends BaseController {
     @RequestMapping(path = "showcompany",method = RequestMethod.POST)
     public JsonResult<List<Company>> showcompany(){
         List<Company> list = companyService.getCommpanylist();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
 }

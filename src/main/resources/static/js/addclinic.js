@@ -18,7 +18,7 @@ $("#save").click(function () {
 				async: false,
 				dataType: 'json',
 				success: function (data) {
-					if (data.state == 2000) {
+					if (data.code == 0) {
 						parent.layer.msg("操作成功");
 					} else {
 						parent.layer.alert(data.msg)
@@ -38,7 +38,7 @@ function validateRule() {
 				required : true
 			}
 		},
-		messages : {
+		msgs : {
 			name : {
 				required : icon + ""
 			}

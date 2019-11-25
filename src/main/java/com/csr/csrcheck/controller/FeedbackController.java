@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,7 +28,6 @@ public class FeedbackController extends BaseController{
 
     @Resource
     private FeedbackService feedbackService;
-
     /**
      *小程序增加反馈
      *  @param feedback
@@ -46,7 +44,7 @@ public class FeedbackController extends BaseController{
         feedbackService.addfeedback(feedback);
         log.info("add--------------->feedback"+feedback);
         log.info("add--------------->Commitdata"+data);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
 
@@ -57,6 +55,6 @@ public class FeedbackController extends BaseController{
     @RequestMapping("list")
     public JsonResult<List<Feedback>> list(){
         List<Feedback> list=feedbackService.getfeedback();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 }

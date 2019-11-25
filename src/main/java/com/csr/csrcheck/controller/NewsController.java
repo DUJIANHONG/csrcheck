@@ -1,23 +1,22 @@
 package com.csr.csrcheck.controller;
 
-import com.csr.csrcheck.controller.ex.*;
 import com.csr.csrcheck.pojo.News;
-import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.service.impl.NewsServiceImpl;
 import com.csr.csrcheck.util.JsonResult;
-import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
-import org.apache.commons.io.FilenameUtils;
 
 /**
  * @author Karry
@@ -37,7 +36,7 @@ public class NewsController extends BaseController{
     @GetMapping("newlist")
     public JsonResult<List<News>> getAllNews(){
         List<News> list = newsService.getAllNews();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -128,7 +127,7 @@ public class NewsController extends BaseController{
         }
         news.setImg_url(imgurl);
         newsService.addNews(news);
-        return new JsonResult<>(SUCCESS, OK);
+        return new JsonResult<>(code, OK);
     }*/
 
     /**
@@ -146,7 +145,7 @@ public class NewsController extends BaseController{
         }
         log.info("listpage---------------------------->pageNum"+pageNum);
         log.info("listpage---------------------------->pageSize"+pageSize);
-        return new JsonResult<Object>(SUCCESS,OK,pageResult);
+        return new JsonResult<Object>(code,OK,pageResult);
     }*/
 
     /**
@@ -163,6 +162,12 @@ public class NewsController extends BaseController{
             throw new com.csr.csrcheck.service.ex.CompanyException("数据为空");
         }
         log.info("byidnews-------------------------->id:"+id);
-        return new JsonResult<>(SUCCESS,OK,news);
+        return new JsonResult<>(code,OK,news);
+    }
+
+    @RequestMapping(path = "deletenews/{id}")
+    public JsonResult<Void> deletenews(@PathVariable(value = "id") int id){
+        newsService.deleteNews(id);
+        return new JsonResult<>(code,OK);
     }
 }

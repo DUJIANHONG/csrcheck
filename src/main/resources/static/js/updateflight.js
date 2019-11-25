@@ -1,3 +1,7 @@
+$(function () {
+    loadType();
+})
+
 laydate.render({
     elem: '#term_of_validity', //指定元素
     eventElem: '.yx'
@@ -15,6 +19,7 @@ $().ready(function() {
         url:"/flight_check/findflight/"+window.location.search.split("id=")[1],
         dataType: "JSON",
         success:function (data) {
+            loadType();
             $("#check_no").val(data.data.check_no);
             $("#punish").val(data.data.punish);
             $("#attention").val(data.data.attention);
@@ -22,7 +27,8 @@ $().ready(function() {
             $("#term_of_validity").val(data.data.term_of_validity);
             $("#content").val(data.data.content);
             $("#id").val(data.data.id);
-            loadType();
+
+            $("#product_id").find("option[value=" + data.data.product_id + "]").attr("selected", true).trigger("chosen:updated");
         }
     })
 });
@@ -40,10 +46,10 @@ $("#update").click(function () {
                 async: false,
                 dataType: 'json',
                 success: function (data) {
-                    if (data.state == 2000) {
+                    if (data.code == 0) {
                         parent.layer.msg("操作成功");
                     } else {
-                        parent.layer.alert(data.message)
+                        parent.layer.alert(data.msg)
                     }
 
                 }

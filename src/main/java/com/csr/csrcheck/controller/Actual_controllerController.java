@@ -1,11 +1,8 @@
 package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.pojo.Actual_controller;
-import com.csr.csrcheck.pojo.Clinic;
 import com.csr.csrcheck.service.Actual_controllerService;
-import com.csr.csrcheck.service.ClinicService;
 import com.csr.csrcheck.service.ex.Actual_controllerException;
-import com.csr.csrcheck.service.ex.ClinicException;
 import com.csr.csrcheck.util.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +32,6 @@ public class Actual_controllerController extends BaseController{
             throw new Actual_controllerException("核心人员关联企业没有数据");
         }
 
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 }
