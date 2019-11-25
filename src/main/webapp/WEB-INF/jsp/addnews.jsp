@@ -29,8 +29,8 @@
     <!-- add local/css 2016-8-18 -->
     <link href="../css/appinfoadd.css" rel='stylesheet'>
     <link href="../css/appinfolist.css" rel='stylesheet'>
-    <%--<link rel="stylesheet" href="../layui/css/layui.css" media="all">--%>
-    <link href="../Content/Layui-KnifeZ/css/layui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+    <link href="../Content/Layui-KnifeZ/css/layui.css" rel="stylesheet" media="all">
     <style>
         .fa-calendar {
             position: absolute;
@@ -167,13 +167,14 @@
 <!--<script src="js/rollpage.js"></script>-->
 <script src="../js/jquery.min.js"></script>
 <script src="../js/rollpage.js"></script>
-<%--<script src="../layui/layui.js" charset="utf-8"></script>--%>
-<script src="../Content/Layui-KnifeZ/layui.js"></script>
-<script src="../Content/ace/ace.js"></script>
+<script src="../layui/layui.js" charset="utf-8"></script>
+<script src="../Content/Layui-KnifeZ/layui.js" charset="utf-8"></script>
+<script src="../Content/ace/ace.js" charset="utf-8"></script>
 <script>
-    layui.use(['laydate','layedit'], function () {
+    layui.use(['laydate','layedit','layer'], function () {
         var laydate = layui.laydate,
-            layedit=layui.layedit;
+            layedit=layui.layedit,
+            layer=layui.layer;
 
         //执行一个laydate实例
         laydate.render({
