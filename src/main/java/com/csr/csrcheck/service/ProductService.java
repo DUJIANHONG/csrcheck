@@ -59,4 +59,9 @@ public interface ProductService {
      * 修改产品信息
      */
     int updateProduct(Product product);
+
+    /**
+     * 根据产品id删除
+     */
+    int deleteProductByid(int product_id);
 }

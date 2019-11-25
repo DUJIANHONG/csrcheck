@@ -189,13 +189,12 @@
                                                         <span class="sr-only">Toggle Dropdown</span>
                                                     </button>
                                                     <ul class="dropdown-menu" role="menu">
-                                                        <li><a class="modifyAppInfo" data-toggle="tooltip"
-                                                               data-placement="top" title="" id="update"
-                                                               data-original-title="修改公司信息">修改</a></li>
-                                                        <li><a class="viewApp" data-toggle="tooltip"
+                                                        <li><a class="modifyAppInfo update" data-toggle="tooltip"
+                                                               common="${pages.product_id}"
                                                                data-placement="top" title=""
-                                                               data-original-title="查看公司信息">查看</a></li>
-                                                        <li><a class="deleteApp" data-toggle="tooltip"
+                                                               data-original-title="修改公司信息">修改</a></li>
+                                                        <li><a class="deleteApp delete" data-toggle="tooltip"
+                                                               common="${pages.product_id}"
                                                                data-placement="top" title=""
                                                                data-original-title="删除公司信息">删除</a></li>
                                                     </ul>
@@ -285,21 +284,48 @@
                 }
             });
         });
-        var params = $("#update").val();
-        $("#update").click(function () {
+        $(".update").click(function () {
+            var obj=$(this);
+            console.log(obj.attr('common'));
             layer.open({
                 type: 2,
-                title: '新增产品',
+                title: '修改产品',
                 shadeClose: true,
                 maxmin: true, //开启最大化最小化按钮
                 area: ['893px', '600px'],
                 anim: 1,
-                content: '/product/updateproduct'+params,
+                content: '/product/updateproduct/'+obj.attr("common"),
                 end: function () {
                     location.reload();
                 }
             });
         });
+        $(".delete").click(function () {
+            var obj=$(this);
+            console.log(obj.attr('common'));
+             layer.confirm('您确认删除吗？', {
+                    btn: ['删除','取消'] //按钮
+                }, function(){
+                 $.ajax({
+                     type: "POST",
+                     url: "/product/deleteproduct/"+obj.attr("common"),
+                     dataType: 'json',
+                     success: function (data) {
+                         if (data.state == 2000) {
+                             parent.layer.msg("删除成功", {icon: 1});
+                             location.reload();
+                         } else {
+                             parent.layer.alert(data.message)
+                         }
+                     }
+                 });
+                }, function(){
+                    layer.msg('您取消了删除', {
+                        time: 2000, //2s后自动关闭
+                    });
+                    parent.layer.close();
+                });
+            });
     });
 </script>
 </body>

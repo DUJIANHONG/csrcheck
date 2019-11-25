@@ -50,7 +50,7 @@
                 <if test="registered != null or registered !=''">
                 registered,
                 </if>
-                <if test="stage_no != 'null' or stage_no !=''">
+                <if test="stage_no != null or stage_no !=''">
                 stage_no,
                 </if>
                 <if test="company_id != null or company_id !=''">
@@ -59,7 +59,7 @@
                 <if test="patent_no != null or patent_no !=''">
                 patent_no,
                 </if>
-                <if test="patent_t_id != 'null' or patent_t_id !=''">
+                <if test="patent_t_id != null or patent_t_id !=''">
                 patent_t_id,
                 </if>
                 <if test="approvals_no != null or approvals_no !=''">
@@ -133,10 +133,10 @@
         AND p.`product_id` =#{product_id};
     </select>
 
-    <update id="updateProduct" parameterType="com.csr.csrcheck.pojo.Product">
+    <update id="updateProduct"  parameterType="com.csr.csrcheck.pojo.Product">
         UPDATE product SET
             <if test="product_name != null or product_name !=''">
-                product_name = #{product_name,jdbcType=INTEGER},
+                product_name = #{product_name,jdbcType=VARCHAR},
             </if>
             <if test="product_type_id != null or product_type_id !=''">
                 product_type_id = #{product_type_id,jdbcType=INTEGER},
@@ -145,12 +145,12 @@
                 product_territory = #{product_territory,jdbcType=VARCHAR},
             </if>
             <if test="study_appear != null or study_appear !=''">
-                study_appear = #{study_appear,jdbcType=VARCHAR},
+                study_appear = #{study_appear,jdbcType=INTEGER},
             </if>
             <if test="registered != null or registered !=''">
-                registered = #{registered,jdbcType=INTEGER},
+                registered = #{registered,jdbcType=VARCHAR},
             </if>
-            <if test="stage_no != 'null' or stage_no !=''">
+            <if test="stage_no != null or stage_no !=''">
                 stage_no = #{stage_no,jdbcType=INTEGER},
             </if>
             <if test="company_id != null or company_id !=''">
@@ -159,8 +159,8 @@
             <if test="patent_no != null or patent_no !=''">
                 patent_no = #{patent_no,jdbcType=VARCHAR},
             </if>
-            <if test="patent_t_id != 'null' or patent_t_id !=''">
-                patent_t_id = #{patent_t_id},
+            <if test="patent_t_id != null or patent_t_id !=''">
+                patent_t_id = #{patent_t_id,jdbcType=INTEGER},
             </if>
             <if test="approvals_no != null or approvals_no !=''">
                 approvals_no = #{approvals_no,jdbcType=VARCHAR},
@@ -175,7 +175,7 @@
                 iflegal = #{iflegal,jdbcType=VARCHAR},
             </if>
             <if test="term_of_validity != null or term_of_validity !=''">
-                term_of_validity = #{term_of_validity}
+                term_of_validity = #{term_of_validity,jdbcType=DATE}
             </if>
         WHERE product_id = #{product_id}
 
@@ -184,4 +184,8 @@
     <select id="list" resultType="com.csr.csrcheck.pojo.Product">
        SELECT `product_id`,`product_name` FROM `product`
     </select>
+
+    <delete id="deleteProductByid">
+        delete from product where product_id=#{product_id}
+    </delete>
 </mapper>

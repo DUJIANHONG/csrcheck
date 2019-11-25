@@ -91,18 +91,54 @@ public class ProductController extends BaseController {
 
 
 
+    @RequestMapping(path = "updateproduct/{id}", method = RequestMethod.GET)
+    public String updateProduct(@PathVariable(value = "id") int id,Model model) {
+        Product product = productService.selectByproduct_id(id);
+        List<Company> company = productService.selectCompany();
+        List<Product_type> typelist = productService.selectProduct_type();
+        List<Patent_type> patent = productService.selectPatent();
+        List<Stage> stages = productService.selectStage();
+        model.addAttribute("company",company);
+        model.addAttribute("typelist",typelist);
+        model.addAttribute("patent",patent);
+        model.addAttribute("stages",stages);
+        model.addAttribute("product",product);
+        return "updateproduct";
+    }
+
     /**
-     * 修改产品信息
+     * 保存修改产品信息
      * @param product
      * @return
      */
-    @RequestMapping(path="updateproduct", method= RequestMethod.POST)
-    public JsonResult<Void> updateapprovals(Product product){
-        int result = productService.updateProduct(product);
-        if (result == 1) {
-            log.info("修改了产品信息！");
-        } else {
-            log.info("未完成修改！");
+    @ResponseBody
+    @RequestMapping(path="saveupdateproduct", method= RequestMethod.POST)
+    public JsonResult<Void> updateproduct(Product product){
+        try {
+            int result = productService.updateProduct(product);
+            if (result == 1) {
+                log.info("修改了产品信息！");
+            } else {
+                log.info("未完成修改！");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return new JsonResult<>(SUCCESS,OK);
+    }
+    /**
+     * 根据产品id删除
+     * @param
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(path = "deleteproduct/{id}", method = RequestMethod.POST)
+    public JsonResult<Object> deleteProduct(Product product, @PathVariable(value = "id") int id) {
+        int result = productService.deleteProductByid(id);
+        if (result ==1){
+            log.info("删除成功！");
+        }else {
+            log.info("删除失败！");
         }
         return new JsonResult<>(SUCCESS,OK);
     }
