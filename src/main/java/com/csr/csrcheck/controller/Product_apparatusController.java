@@ -1,23 +1,16 @@
 package com.csr.csrcheck.controller;
 
-import com.csr.csrcheck.controller.ex.CompanyException;
 import com.csr.csrcheck.controller.ex.ProductException;
 import com.csr.csrcheck.pojo.Product;
-
 import com.csr.csrcheck.service.Product_apparatusService;
-
-
 import com.csr.csrcheck.util.JsonResult;
-import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -52,6 +45,6 @@ public class Product_apparatusController extends BaseController {
               throw new com.csr.csrcheck.service.ex.ProductException("请输入产品名称");
             }*/
 
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 }

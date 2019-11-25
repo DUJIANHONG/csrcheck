@@ -1,7 +1,6 @@
 package com.csr.csrcheck.util;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * 封装响应的JSON结果的类
@@ -10,46 +9,46 @@ public class JsonResult<T> implements Serializable {
 
 	private static final long serialVersionUID = -3675277270614887834L;
 	
-	private Integer state;
-	private String message;
+	private Integer code;
+	private String msg;
 	private T data;
 
 	public JsonResult() {
 		super();
 	}
 
-	public JsonResult(Integer state,String message) {
+	public JsonResult(Integer code,String msg) {
 		super();
-		this.state = state;
-		this.message=message;
+		this.code = code;
+		this.msg=msg;
 	}
 
 	public JsonResult(Throwable e) {
 		super();
-		this.message = e.getMessage();
+		this.msg = e.getMessage();
 	}
 
-	public JsonResult(Integer state, String message,T data) {
+	public JsonResult(Integer code, String msg,T data) {
 		super();
-		this.state = state;
-		this.message=message;
+		this.code = code;
+		this.msg=msg;
 		this.data = data;
 	}
 
-	public Integer getState() {
-		return state;
+	public Integer getcode() {
+		return code;
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
+	public void setcode(Integer code) {
+		this.code = code;
 	}
 
-	public String getMessage() {
-		return message;
+	public String getmsg() {
+		return msg;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setmsg(String msg) {
+		this.msg = msg;
 	}
 
 	public T getData() {

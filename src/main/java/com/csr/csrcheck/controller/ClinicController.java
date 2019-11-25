@@ -1,11 +1,10 @@
 package com.csr.csrcheck.controller;
 
-import com.csr.csrcheck.pojo.*;
+import com.csr.csrcheck.pojo.Clinic;
+import com.csr.csrcheck.pojo.Product;
 import com.csr.csrcheck.service.ClinicService;
-import com.csr.csrcheck.service.IFlight_checkService;
 import com.csr.csrcheck.service.ProductService;
 import com.csr.csrcheck.service.ex.ClinicException;
-import com.csr.csrcheck.service.ex.Flight_checkException;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +33,7 @@ public class ClinicController extends BaseController{
             throw new ClinicException("没有数据");
         }
 
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -51,7 +50,7 @@ public class ClinicController extends BaseController{
         log.info("clinic---------------------------->pageNum:"+pageNum);
         log.info("clinic---------------------------->pageSize:"+pageSize);
         log.info("clinic---------------------------->product_name:"+product_name);
-        return new JsonResult<>(SUCCESS,OK,pageResult);
+        return new JsonResult<>(code,OK,pageResult);
     }
 
     /**
@@ -64,7 +63,7 @@ public class ClinicController extends BaseController{
     public JsonResult<Object> addclinic(Clinic clinic){
         clinicService.addClinic(clinic);
         log.info("add================================>approvals："+clinic);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
     @Resource
     private ProductService productService;
@@ -75,7 +74,7 @@ public class ClinicController extends BaseController{
     @RequestMapping(path="listproduct", method= RequestMethod.POST)
     public JsonResult<List<Product>> listproduct(){
         List list=productService.list();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -86,7 +85,7 @@ public class ClinicController extends BaseController{
     @RequestMapping(path="updateclinic", method= RequestMethod.POST)
     public JsonResult<Void> updateclinic(Clinic clinic){
         clinicService.updateClinic(clinic);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
     /**
      * 根据id查找临床
@@ -101,7 +100,7 @@ public class ClinicController extends BaseController{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -113,6 +112,6 @@ public class ClinicController extends BaseController{
     public JsonResult<Void> deleteclinic(@PathVariable(value = "id") int id){
         clinicService.deleteclinicByid(id);
         log.info("删除成功-------------------------》id:"+id);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 }

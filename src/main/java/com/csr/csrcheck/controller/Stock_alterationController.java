@@ -1,9 +1,8 @@
 package com.csr.csrcheck.controller;
 
-import com.csr.csrcheck.pojo.*;
-import com.csr.csrcheck.service.CompanyService;
+import com.csr.csrcheck.pojo.Shareholder;
+import com.csr.csrcheck.pojo.Stock_alteration;
 import com.csr.csrcheck.service.ShareholderService;
-import com.csr.csrcheck.service.Special_bulletinService;
 import com.csr.csrcheck.service.Stock_alterationService;
 import com.csr.csrcheck.util.JsonResult;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +39,7 @@ public class Stock_alterationController extends BaseController{
         stock_alteration.setChange_time(sdf.parse(date));
         stock_alterationService.addStock_alteration(stock_alteration);
         log.info("add================================>approvals："+stock_alteration);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
 
@@ -55,7 +54,7 @@ public class Stock_alterationController extends BaseController{
     @RequestMapping(path="listshareholder", method= RequestMethod.POST)
     public JsonResult<List<Shareholder>> listshareholder(){
         List list=shareholderService.list();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
     /**
      * 修改股权变更
@@ -65,7 +64,7 @@ public class Stock_alterationController extends BaseController{
     @RequestMapping(path="updatestock_alteration", method= RequestMethod.POST)
     public JsonResult<Void> updatestock_alteration(Stock_alteration stock_alteration){
         stock_alterationService.updateStock_alteration(stock_alteration);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
     /**
      * 根据id查找股权变更
@@ -80,7 +79,7 @@ public class Stock_alterationController extends BaseController{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -92,7 +91,7 @@ public class Stock_alterationController extends BaseController{
     public JsonResult<Void> deletestock_alteration(@PathVariable(value = "id") int id){
         stock_alterationService.deletestock_alterationByid(id);
         log.info("删除成功-------------------------》id:"+id);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
 }

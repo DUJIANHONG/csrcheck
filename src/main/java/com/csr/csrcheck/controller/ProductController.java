@@ -44,7 +44,7 @@ public class ProductController extends BaseController {
         if(pageResult==null){
             throw new CompanyException("没有数据");
         }
-        return new JsonResult<>(SUCCESS,OK,pageResult);
+        return new JsonResult<>(code,OK,pageResult);
     }
 
     public String selectproduct_type(Model model){

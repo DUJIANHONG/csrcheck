@@ -4,7 +4,6 @@ import com.csr.csrcheck.pojo.Abnormal_products;
 import com.csr.csrcheck.service.impl.Abnormal_productsServiceImpl;
 import com.csr.csrcheck.util.JsonResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -22,6 +21,6 @@ public class Abnormal_productsController extends BaseController{
         @RequestMapping("product")
         public JsonResult<List<Abnormal_products>> getAll(){
             List<Abnormal_products> list = abnormal_productsService.getAllProduct();
-            return new JsonResult<>(SUCCESS,OK,list);
+            return new JsonResult<>(code,OK,list);
         }
 }

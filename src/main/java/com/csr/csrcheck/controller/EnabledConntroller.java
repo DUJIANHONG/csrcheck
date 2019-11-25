@@ -1,9 +1,7 @@
 package com.csr.csrcheck.controller;
 
 import com.csr.csrcheck.pojo.Enabled;
-import com.csr.csrcheck.pojo.Speech;
 import com.csr.csrcheck.service.EnabledService;
-import com.csr.csrcheck.service.SpeechService;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +26,7 @@ public class EnabledConntroller extends BaseController {
     @GetMapping("enabledlist")
     public JsonResult<List<Enabled>> getlistByCompany_id(){
         List<Enabled> list = enabledService.getEnabledList();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -46,6 +44,6 @@ public class EnabledConntroller extends BaseController {
         log.info("contend---------------------------------->pageNum:"+pageNum);
         log.info("contend---------------------------------->pageSize:"+pageSize);
         log.info("contend---------------------------------->company_name:"+company_name);
-        return new JsonResult<>(SUCCESS,OK,pageResult);
+        return new JsonResult<>(code,OK,pageResult);
     }
 }

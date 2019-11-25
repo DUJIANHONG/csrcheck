@@ -49,7 +49,7 @@ public class Five_SupplierController extends BaseController {
         log.info("fiveSuppler------------------>pageNum"+pageNum);
         log.info("fiveSuppler------------------>pageSize"+pageSize);
         log.info("fiveSuppler------------------>supplier_name"+supplier_name);
-        return new JsonResult<>(SUCCESS,OK,pageResult);
+        return new JsonResult<>(code,OK,pageResult);
     }
 
     /**
@@ -60,7 +60,7 @@ public class Five_SupplierController extends BaseController {
     @RequestMapping(path = "addFive",method = RequestMethod.POST)
     public JsonResult<Void> addFive(Five_supplier five_Supplier){
         fiveSupplierService.addFivesupplier(five_Supplier);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
     /**
      *修改前五大供应商
@@ -70,7 +70,7 @@ public class Five_SupplierController extends BaseController {
     @RequestMapping(path = "updateFive",method = RequestMethod.POST)
     public JsonResult<Void> updateFive(Five_supplier five_Supplier){
         fiveSupplierService.updateFiveSupplier(five_Supplier);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
     /**
      *删除前五大供应商
@@ -80,7 +80,7 @@ public class Five_SupplierController extends BaseController {
     @RequestMapping(path = "deleteFive/{id}",method = RequestMethod.POST)
     public JsonResult<Void> deleteFive(@PathVariable(value = "id") int id){
         fiveSupplierService.deleteFiveSupplier(id);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
     /**
@@ -94,7 +94,7 @@ public class Five_SupplierController extends BaseController {
         if(five_Supplier==null){
             throw new CompanyException("没有数据");
         }
-        return new JsonResult<>(SUCCESS,OK,five_Supplier);
+        return new JsonResult<>(code,OK,five_Supplier);
     }
     @Resource
     private CompanyService companyService;
@@ -106,6 +106,6 @@ public class Five_SupplierController extends BaseController {
     @RequestMapping(path = "showcompany",method = RequestMethod.POST)
     public JsonResult<List<Company>> showcompany(){
         List<Company> list = companyService.getCommpanylist();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 }

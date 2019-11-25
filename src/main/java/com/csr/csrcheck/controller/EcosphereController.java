@@ -22,11 +22,11 @@ public class EcosphereController extends BaseController{
     @RequestMapping("five_suplier")
     public JsonResult<List<Five_supplier>> getAllSuplier(){
         List<Five_supplier> list = ecosphereSrevice.getAllSupplier(4);
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
     @RequestMapping("alteration")
     public JsonResult<List<Stock_alteration>> getAllalteration(){
         List<Stock_alteration> list = ecosphereSrevice.getAllAlteration(4);
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 }

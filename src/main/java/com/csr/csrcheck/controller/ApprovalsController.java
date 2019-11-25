@@ -40,7 +40,7 @@ public class ApprovalsController extends BaseController{
             throw new AppletIOException("批文没有数据");
         }
 
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -58,7 +58,7 @@ public class ApprovalsController extends BaseController{
         if(pageResult==null){
             throw new CompanyException("没有数据");
         }
-        return new JsonResult<>(SUCCESS,OK,pageResult);
+        return new JsonResult<>(code,OK,pageResult);
     }
     /**
      * 查询批文信息
@@ -78,7 +78,7 @@ public class ApprovalsController extends BaseController{
         if(pageResult==null){
             throw new CompanyException("没有数据");
         }
-        return new JsonResult<Object>(SUCCESS,OK,pageResult);
+        return new JsonResult<Object>(code,OK,pageResult);
     }
 
     /**
@@ -90,7 +90,7 @@ public class ApprovalsController extends BaseController{
     public JsonResult<Object> addapprovals(Approvals approvals){
         approvalsService.addApprovals(approvals);
         log.info("add================================>approvals："+approvals);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
 
@@ -104,7 +104,7 @@ public class ApprovalsController extends BaseController{
     @RequestMapping(path="listproduct", method= RequestMethod.POST)
     public JsonResult<List<Product>> listproduct(){
         List list=productService.list();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     @Resource
@@ -117,7 +117,7 @@ public class ApprovalsController extends BaseController{
     @RequestMapping(path="listapproved_by", method= RequestMethod.POST)
     public JsonResult<List<Approved_by>> listapproved_by(){
         List<Approved_by> list = approved_byService.listApprovde_by();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -128,7 +128,7 @@ public class ApprovalsController extends BaseController{
     @RequestMapping(path="updateapprovals", method= RequestMethod.POST)
     public JsonResult<Void> updateapprovals(Approvals approvals){
         approvalsService.updateApprovals(approvals);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
     /**
@@ -144,7 +144,7 @@ public class ApprovalsController extends BaseController{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -156,6 +156,6 @@ public class ApprovalsController extends BaseController{
     public JsonResult<Void> deleteapprovals(@PathVariable(value = "id") int id){
         approvalsService.deleteapprovalsByid(id);
         log.info("删除成功-------------------------》id:"+id);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 }

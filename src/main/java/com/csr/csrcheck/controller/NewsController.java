@@ -36,7 +36,7 @@ public class NewsController extends BaseController{
     @GetMapping("newlist")
     public JsonResult<List<News>> getAllNews(){
         List<News> list = newsService.getAllNews();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -127,7 +127,7 @@ public class NewsController extends BaseController{
         }
         news.setImg_url(imgurl);
         newsService.addNews(news);
-        return new JsonResult<>(SUCCESS, OK);
+        return new JsonResult<>(code, OK);
     }*/
 
     /**
@@ -145,7 +145,7 @@ public class NewsController extends BaseController{
         }
         log.info("listpage---------------------------->pageNum"+pageNum);
         log.info("listpage---------------------------->pageSize"+pageSize);
-        return new JsonResult<Object>(SUCCESS,OK,pageResult);
+        return new JsonResult<Object>(code,OK,pageResult);
     }*/
 
     /**
@@ -162,12 +162,12 @@ public class NewsController extends BaseController{
             throw new com.csr.csrcheck.service.ex.CompanyException("数据为空");
         }
         log.info("byidnews-------------------------->id:"+id);
-        return new JsonResult<>(SUCCESS,OK,news);
+        return new JsonResult<>(code,OK,news);
     }
 
     @RequestMapping(path = "deletenews/{id}")
     public JsonResult<Void> deletenews(@PathVariable(value = "id") int id){
         newsService.deleteNews(id);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 }

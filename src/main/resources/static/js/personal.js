@@ -11,10 +11,10 @@ $("#base_save").click(function () {
                 data : $('#basicInfoForm').serialize(),
                 async : false,
                 success : function(data) {
-                    if (data.state == 2000) {
+                    if (data.code == 0) {
                         parent.layer.msg("更新成功",{icon:6});
                     } else {
-                        parent.layer.alert(data.message)
+                        parent.layer.alert(data.msg)
                     }
                 }
             });
@@ -33,10 +33,10 @@ $("#pwd_save").click(function () {
             data : $('#modifyPwd').serialize(),
             async : false,
             success : function(json) {
-                if (json.state==2000) {
+                if (json.code==0) {
                     parent.layer.alert("更新密码成功,请重新登录",function(){window.location.href="/web/login.html";});
                 } else {
-                    parent.layer.alert(json.message)
+                    parent.layer.alert(json.msg)
                 }
             }
         });
@@ -59,10 +59,10 @@ $("#update").click(function () {
             //取消帮我们格式化数据，是什么就是什么
             processData:false,
             success : function(json) {
-                if (json.state==2000) {
+                if (json.code==0) {
                     parent.layer.alert("更新头像成功")
                 } else {
-                    parent.layer.msg(json.message)
+                    parent.layer.msg(json.msg)
                 }
             }
         });
@@ -78,10 +78,10 @@ $("#save").click(function () {
             data :$("#userinfo").serialize(),
             async : false,
             success : function(json) {
-                if (json.state==2000) {
+                if (json.code==0) {
                     parent.layer.alert("增加成功")
                 } else {
-                    parent.layer.msg(json.message)
+                    parent.layer.msg(json.msg)
                 }
             }
         });

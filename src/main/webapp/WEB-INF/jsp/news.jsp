@@ -56,7 +56,7 @@
             transform: scale(1.2);/*当鼠标移动到图片上时实现放大功能*/
         }
         .content ul li{
-            height: 100px;
+            /*display: block;*/
             overflow: hidden;
             border-bottom: 1px solid lavender;
             background: white;
@@ -73,7 +73,7 @@
             overflow: hidden;/*隐藏溢出图片内容*/
             transition-duration: 0.5s;
             width: 140px;
-            height:80px;
+            height:110px;
             /*background: green;*/
             float: left;
             margin-right:20px;
@@ -87,7 +87,7 @@
             height:60px;
         }
         .right_bottom{
-            margin_top:50px;
+            margin_top:80px;
         }
         .right_bottom_left span{
             color: darkgray;
@@ -146,10 +146,10 @@
                                         <div class="right_top">
                                             <h3>${pages.news_title}</h3>
                                         </div>
-                                        <div class="right_bottom">
+                                        <div class="right_bottom" style="position: relative; top: 30px; width: 100%">
                                             <div class="right_bottom_left">
                                                 <span>${pages.news_name}</span>  <span>${pages.position}</span><span>|</span> <span><fmt:formatDate value="${pages.date}" type="date"/></span>
-                                                <span style="color: red;float: right" newsid="${pages.id}" class="btn">查看新闻详情 >>>></span>
+                                                <span style="color: red;float: right;position: relative; top: -6px;" newsid="${pages.id}" class="btn">查看新闻详情 >>>></span>
                                             </div>
                                         </div>
                                     </div>
@@ -158,9 +158,8 @@
                                             <%--<button type="button" class="layui-btn layui-btn-primary layui-btn-sm update" title="修改"  updateid="${pages.id}">
                                                 <i class="layui-icon">&#xe642;</i>
                                             </button>--%>
-                                            <button type="button" class="layui-btn layui-btn-primary layui-btn-sm delete" title="删除"  deleteid="${pages.id}">
-                                                <i class="layui-icon">&#xe640;</i>
-                                            </button>
+                                                <i class="layui-icon delete" title="删除" deleteid="${pages.id}">&#xe640;</i>
+
                                         </div>
                                     </div>
                                 </li>
@@ -251,11 +250,11 @@
               url:"/news/deletenews/"+obj.attr("deleteid"),
               dataType:"json",
               success:function (data) {
-                  if(data.state==2000){
+                  if(data.code==0){
                       parent.layer.msg("操作成功",{icon:6});
                       location.reload();
                   }else{
-                      parent.layer.msg(data.message);
+                      parent.layer.msg(data.msg);
                   }
               }
           });

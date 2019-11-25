@@ -34,7 +34,7 @@ public class        TheirServlet extends BaseController{
         if (list == null){
             throw new ProductException("没有关联数据");
         }
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
     @ResponseBody
     @RequestMapping("import")
@@ -43,7 +43,7 @@ public class        TheirServlet extends BaseController{
         if (list==null){
             throw new ProductException("没有数据");
         }
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     @ResponseBody
@@ -53,19 +53,19 @@ public class        TheirServlet extends BaseController{
         if (list==null){
             throw new ProductException("没有数据");
         }
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
     @ResponseBody
     @RequestMapping("/company")
     public JsonResult<List<Product>> getComanyByProduct_t_id(){
         List<Product> list = theirService.getComanyByProduct_t_id(2);
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
     @ResponseBody
     @RequestMapping("/Notification")
     public JsonResult<List<Important_notification>> getAllNotification(){
         List<Important_notification> list = theirService.getAllNotification();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     @RequestMapping("/index")

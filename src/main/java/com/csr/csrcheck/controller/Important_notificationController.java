@@ -46,6 +46,6 @@ public class Important_notificationController extends BaseController {
         log.info("important----------------------------->pageSize:"+pageSize);
         log.info("important----------------------------->product_name:"+product_name);
         log.info("important----------------------------->product_t_name:"+product_t_name);
-        return new JsonResult<>(SUCCESS,OK,pageResult);
+        return new JsonResult<>(code,OK,pageResult);
     }
 }

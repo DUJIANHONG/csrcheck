@@ -1,8 +1,6 @@
 package com.csr.csrcheck.controller;
 
-import com.csr.csrcheck.pojo.Contend;
 import com.csr.csrcheck.pojo.Guide;
-import com.csr.csrcheck.service.ContendService;
 import com.csr.csrcheck.service.GuideService;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
@@ -28,7 +26,7 @@ public class GuideConntroller extends BaseController {
     @GetMapping("guidelist")
     public JsonResult<List<Guide>> getlistByCompany_id(){
         List<Guide> list = guideService.getGuideList();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 
     /**
@@ -46,6 +44,6 @@ public class GuideConntroller extends BaseController {
         log.info("contend---------------------------------->pageNum:"+pageNum);
         log.info("contend---------------------------------->pageSize:"+pageSize);
         log.info("contend---------------------------------->company_name:"+company_name);
-        return new JsonResult<>(SUCCESS,OK,pageResult);
+        return new JsonResult<>(code,OK,pageResult);
     }
 }

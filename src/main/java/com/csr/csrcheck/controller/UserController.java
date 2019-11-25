@@ -41,7 +41,7 @@ public class UserController extends BaseController {
         session.setAttribute("role_name",data.getRole_name());
         session.setAttribute(Constants.USER_SESSION,data);
         log.info("user_id:"+getUidFromSession(session));
-        return new JsonResult<User>(SUCCESS,OK,data);
+        return new JsonResult<User>(code,OK,data);
     }
 
     /**
@@ -53,7 +53,7 @@ public class UserController extends BaseController {
     public JsonResult<Void> logout(HttpSession session) {
         //清除session
          session.removeAttribute(Constants.USER_SESSION);
-        return new JsonResult<Void>(SUCCESS,OK);
+        return new JsonResult<Void>(code,OK);
     }
 
     /**
@@ -71,7 +71,7 @@ public class UserController extends BaseController {
             Integer userid=getUidFromSession(session);
             log.info("changePassword-------------------->userid:"+userid);
             userService.UpdatePassword(userid,oldPassword,newPassword);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
     /**
@@ -89,7 +89,7 @@ public class UserController extends BaseController {
                                       String user_address,HttpSession session){
         int id=getUidFromSession(session);
         userService.UpdateUser(id,user_name,user_sex,user_age,user_address);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
     /**
@@ -105,7 +105,7 @@ public class UserController extends BaseController {
                                          MultipartFile file,HttpSession session){
         int id=getUidFromSession(session);
         userService.UpdateUser_photo(id,request,file);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
     /**
@@ -117,7 +117,7 @@ public class UserController extends BaseController {
     public JsonResult<User> findImg(HttpSession session){
         int id=getUidFromSession(session);
        User user=userService.finduser(id);
-       return new JsonResult<>(SUCCESS,OK,user);
+       return new JsonResult<>(code,OK,user);
     }
 
     /**
@@ -135,6 +135,6 @@ public class UserController extends BaseController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 }

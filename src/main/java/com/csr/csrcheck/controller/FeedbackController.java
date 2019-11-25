@@ -5,12 +5,9 @@ import com.csr.csrcheck.service.FeedbackService;
 import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.util.JsonResult;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.json.JSON;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
@@ -31,7 +28,6 @@ public class FeedbackController extends BaseController{
 
     @Resource
     private FeedbackService feedbackService;
-
     /**
      *小程序增加反馈
      *  @param feedback
@@ -48,7 +44,7 @@ public class FeedbackController extends BaseController{
         feedbackService.addfeedback(feedback);
         log.info("add--------------->feedback"+feedback);
         log.info("add--------------->Commitdata"+data);
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
 
@@ -59,6 +55,6 @@ public class FeedbackController extends BaseController{
     @RequestMapping("list")
     public JsonResult<List<Feedback>> list(){
         List<Feedback> list=feedbackService.getfeedback();
-        return new JsonResult<>(SUCCESS,OK,list);
+        return new JsonResult<>(code,OK,list);
     }
 }
