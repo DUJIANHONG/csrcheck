@@ -79,7 +79,7 @@ function loadType(){
             //加载数据
             var list=data.data;
             for (var i = 0; i < list.length; i++) {
-                html += '<option value="' + list[i].id + '">' + list[i].con_name + '</option>'
+                html += '<option value="' + list[i].id + '" selected="">' + list[i].con_name + '</option>'
             }
             $("#introduction_controller_id").append(html);
             $("#introduction_controller_id").chosen({
