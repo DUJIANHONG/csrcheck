@@ -33,7 +33,7 @@ public class LoginInterceptorConfigurer implements WebMvcConfigurer {
 		paths.add("/company/companylist");//查询企业
 		paths.add("/company/companylist2");//根据企业名称查询
 		paths.add("/news/newlist");//查询新闻
-		paths.add("feeedback/add");//增加反馈
+		paths.add("/feeedback/add");//增加反馈
 		paths.add("/news/byidnews/{id}");//根据id查询新闻
 		paths.add("/flight_check/flight_checkllist");//查企业中的飞行检查
 		paths.add("/clinic/cliniclist");//查企业中的临床：
