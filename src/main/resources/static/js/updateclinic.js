@@ -70,7 +70,7 @@ function loadType(){
             //加载数据
             var list=data.data;
             for (var i = 0; i < list.length; i++) {
-                html += '<option value="' + list[i].product_id + '">' + list[i].product_name + '</option>'
+                html += '<option value="' + list[i].product_id + '" selected="">' + list[i].product_name + '</option>'
             }
             $(".chosen-select").append(html);
             $(".chosen-select").chosen({
