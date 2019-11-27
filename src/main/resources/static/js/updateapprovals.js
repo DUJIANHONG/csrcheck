@@ -79,7 +79,7 @@ function loadType(){
             //加载数据
             var list=data.data;
             for (var i = 0; i < list.length; i++) {
-                html += '<option value="' + list[i].product_id + '" selected="">' + list[i].product_name + '</option>'
+                html += '<option value="' + list[i].product_id + '" >' + list[i].product_name + '</option>'
             }
             $("#product_id").append(html);
             $("#product_id").chosen({
@@ -98,7 +98,7 @@ function loadType2(){
             //加载数据
             var list=data.data;
             for (var i = 0; i < list.length; i++) {
-                html += '<option value="' + list[i].id + '" selected="">' + list[i].approved_t_name + '</option>'
+                html += '<option value="' + list[i].id + '" >' + list[i].approved_t_name + '</option>'
             }
             $("#approved_by").append(html);
             $("#approved_by").chosen({

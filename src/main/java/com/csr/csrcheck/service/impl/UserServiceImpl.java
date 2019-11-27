@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -107,10 +108,10 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void UpdateUser_photo(int user_id,HttpServletRequest request, MultipartFile file) {
+    public void UpdateUser_photo(int user_id, HttpServletRequest request, HttpSession session, MultipartFile file) {
             String url=null;
             if(!file.isEmpty()){
-                String path=request.getSession().getServletContext().getRealPath("newsFile");
+                String path=session.getServletContext().getRealPath("upload");
                 String oldFilename=file.getOriginalFilename();
                 String prefix= FilenameUtils.getExtension(oldFilename);
                 if(prefix.equalsIgnoreCase("jpg")||prefix.equalsIgnoreCase("png")
@@ -125,7 +126,7 @@ public class UserServiceImpl implements IUserService {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    url=request.getContextPath() + "/newsFile/" + filename;
+                    url="/upload/" + filename;
                 }else{
                     throw  new CompanyException("上传文件格式不正确");
                 }

@@ -197,10 +197,10 @@ public class HTConntroller extends BaseController {
      */
     @RequestMapping(value = "add",method = RequestMethod.POST)
     public String addNews(News news, @RequestParam(value = "multipartFile") MultipartFile multipartFile,
-                          HttpServletRequest request,String newsdate) {
+                          HttpServletRequest request,String newsdate,HttpSession session) {
         String imgurl = null;
         if (!multipartFile.isEmpty()) {
-            String path = request.getSession().getServletContext().getRealPath( "newsFile");
+            String path=session.getServletContext().getRealPath("upload");
             log.info("newsFile path:" + path);
             String oldFilename = multipartFile.getOriginalFilename();//原文件名
             String prefix = FilenameUtils.getExtension(oldFilename);//原文件后缀
@@ -222,7 +222,7 @@ public class HTConntroller extends BaseController {
                     request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_2);
                     return "addnews";
                 }
-                imgurl = request.getContextPath() + "newsFile/" + fliename;
+                imgurl = "/upload/" + fliename;
             } else {
                 request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_3);
                 return "addnews";

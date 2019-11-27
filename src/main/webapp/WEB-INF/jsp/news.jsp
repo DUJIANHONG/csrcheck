@@ -141,7 +141,7 @@
                             <ul>
                             <c:forEach var="pages" items="${page.content}" varStatus="status">
                                 <li>
-                                    <div class="left"><img src="../../${pages.img_url}" alt=""></div>
+                                    <div class="left"><img src="${pages.img_url}" alt=""></div>
                                     <div class="right">
                                         <div class="right_top">
                                             <h3>${pages.news_title}</h3>

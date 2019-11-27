@@ -85,7 +85,7 @@ function loadType(){
             //加载数据
             var list=data.data;
             for (var i = 0; i < list.length; i++) {
-                html += '<option value="' + list[i].id + '" selected="">' + list[i].company_name + '</option>'
+                html += '<option value="' + list[i].id + '" >' + list[i].company_name + '</option>'
             }
             $("#company_id").append(html);
             $("#company_id").chosen({
