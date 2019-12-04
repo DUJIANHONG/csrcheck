@@ -201,7 +201,11 @@ public class HTConntroller extends BaseController {
         String imgurl = null;
         if (!multipartFile.isEmpty()) {
             String path=session.getServletContext().getRealPath("upload");
-            log.info("newsFile path:" + path);
+            File file= new File(path);
+            if(!file.exists()) {
+                file.mkdirs(); //创建目录
+            }
+                log.info("newsFile path:" + path);
             String oldFilename = multipartFile.getOriginalFilename();//原文件名
             String prefix = FilenameUtils.getExtension(oldFilename);//原文件后缀
             int filesize = 500000;
@@ -222,7 +226,7 @@ public class HTConntroller extends BaseController {
                     request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_2);
                     return "addnews";
                 }
-                imgurl = "/upload/" + fliename;
+                imgurl = request.getContextPath() + "/upload/" + fliename;
             } else {
                 request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_3);
                 return "addnews";

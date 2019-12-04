@@ -112,6 +112,10 @@ public class UserServiceImpl implements IUserService {
             String url=null;
             if(!file.isEmpty()){
                 String path=session.getServletContext().getRealPath("upload");
+                File files= new File(path);
+                if(!files.exists()) {
+                    files.mkdirs(); //创建目录
+                }
                 String oldFilename=file.getOriginalFilename();
                 String prefix= FilenameUtils.getExtension(oldFilename);
                 if(prefix.equalsIgnoreCase("jpg")||prefix.equalsIgnoreCase("png")
@@ -126,7 +130,7 @@ public class UserServiceImpl implements IUserService {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    url="/upload/" + filename;
+                    url=request.getContextPath()+"/upload/" + filename;
                 }else{
                     throw  new CompanyException("上传文件格式不正确");
                 }

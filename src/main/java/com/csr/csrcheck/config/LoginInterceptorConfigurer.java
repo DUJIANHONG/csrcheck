@@ -22,7 +22,7 @@ public class LoginInterceptorConfigurer implements WebMvcConfigurer {
 		paths.add("/css/**");
 		paths.add("/images/**");
 		paths.add("/img/**");
-		paths.add("/newsFile/**");//上传的图片
+		paths.add("/upload/**");//上传的图片
 		paths.add("/fonts/**");
 		paths.add("/bootstrap3/**");
 		paths.add("/districts/**");
