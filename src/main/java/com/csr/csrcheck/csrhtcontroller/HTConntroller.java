@@ -13,6 +13,7 @@ import com.csr.csrcheck.util.Constants;
 import com.csr.csrcheck.util.PageResult;
 import com.csr.csrcheck.util.PageSupport;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,7 +31,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
 /**
  * @description:
@@ -201,32 +201,26 @@ public class HTConntroller extends BaseController {
         String imgurl = null;
         if (!multipartFile.isEmpty()) {
             String fileName = multipartFile.getOriginalFilename();  // 文件名
-            String suffixName = fileName.substring(fileName.lastIndexOf("."));  // 后缀名
+//            String suffixName = fileName.substring(fileName.lastIndexOf("."));  // 后缀名
+            String suffixName=FilenameUtils.getExtension(fileName);
             String filePath = "D://temp-rainy//"; // 上传后的路径
-            fileName = UUID.randomUUID() + suffixName; // 新文件名
-            File dest = new File(filePath + fileName);
-            if (!dest.getParentFile().exists()) {
-                dest.getParentFile().mkdirs();
-            }
-            int filesize = 500000;
-            if (multipartFile.getSize() > filesize) { //上传大小不得超过50kB
-                request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_4);
-                return "addnews";
-            } else if (suffixName.equalsIgnoreCase("jpg") || suffixName.equalsIgnoreCase("jpeg")
+//            fileName = UUID.randomUUID() + suffixName; // 新文件名
+
+            if (suffixName.equalsIgnoreCase("jpg") || suffixName.equalsIgnoreCase("jpeg")
                     || suffixName.equalsIgnoreCase("png") || suffixName.equalsIgnoreCase("pneg")) {//上传图片格式
-                String fliename = System.currentTimeMillis()+"_"+new Random().nextInt(1000)  + ".jpg";//上传图片命名
-                File targetfile = new File(suffixName, fliename);
-                if (!targetfile.exists()) {
-                    targetfile.mkdirs();
+                fileName= System.currentTimeMillis()+"_"+new Random().nextInt(1000)  + ".jpg";//上传图片命名
+                File dest = new File(filePath + fileName);
+                if (!dest.getParentFile().exists()) {
+                    dest.getParentFile().mkdirs();
                 }
                 try {
-                    multipartFile.transferTo(targetfile);
+                    multipartFile.transferTo(dest);
                 } catch (IOException e) {
                     e.printStackTrace();
                     request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_2);
                     return "addnews";
                 }
-                imgurl = "/temp-rainy/"+ fliename;
+                imgurl = "/temp-rainy/"+ fileName;
             } else {
                 request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_3);
                 return "addnews";

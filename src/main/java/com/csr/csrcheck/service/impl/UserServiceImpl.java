@@ -111,26 +111,22 @@ public class UserServiceImpl implements IUserService {
     public void UpdateUser_photo(int user_id, HttpServletRequest request, HttpSession session, MultipartFile file) {
             String url=null;
             if(!file.isEmpty()){
-                String path=session.getServletContext().getRealPath("upload");
-                File files= new File(path);
-                if(!files.exists()) {
-                    files.mkdirs(); //创建目录
-                }
-                String oldFilename=file.getOriginalFilename();
-                String prefix= FilenameUtils.getExtension(oldFilename);
-                if(prefix.equalsIgnoreCase("jpg")||prefix.equalsIgnoreCase("png")
-                        ||prefix.equalsIgnoreCase("jpeg")||prefix.equalsIgnoreCase("pneg")){
-                    String filename=System.currentTimeMillis()+"_"+new Random().nextInt(1000)+".png";
-                    File targetfile=new File(path,filename);
-                    if(!targetfile.exists()){
-                        targetfile.mkdirs();
+                String fileName = file.getOriginalFilename();  // 文件名
+                String suffixName=FilenameUtils.getExtension(fileName);
+                String filePath = "D://temp-rainy//"; // 上传后的路径
+                if(suffixName.equalsIgnoreCase("jpg")||suffixName.equalsIgnoreCase("png")
+                        ||suffixName.equalsIgnoreCase("jpeg")||suffixName.equalsIgnoreCase("pneg")){
+                     fileName=System.currentTimeMillis()+"_"+new Random().nextInt(1000)+".png";
+                    File dest=new File(filePath+fileName);
+                    if(!dest.exists()){
+                        dest.mkdirs();
                     }
                     try {
-                        file.transferTo(targetfile);
+                        file.transferTo(dest);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    url=request.getContextPath()+"/upload/" + filename;
+                    url= "/temp-rainy/"+ fileName;
                 }else{
                     throw  new CompanyException("上传文件格式不正确");
                 }
