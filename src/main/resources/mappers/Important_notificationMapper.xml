@@ -19,4 +19,66 @@
         </trim>
     </select>
 
+    <select id="selectproduct" resultType="com.csr.csrcheck.pojo.Product">
+        select product_id,product_name from product;
+    </select>
+
+    <!--增加产品重要通报信息sql-->
+    <insert id="addimportant" parameterType="com.csr.csrcheck.pojo.Important_notification">
+        insert into important_notification(
+            <if test="title != null or title !=''">
+                title,
+            </if>
+            <if test="content != null or content !=''">
+                content,
+            </if>
+            <if test="product_id != null or product_id !=''">
+                product_id,
+            </if>
+            <if test="release_time != null or release_time !=''">
+                release_time
+            </if>
+            )values (
+            <if test="title != null or title !=''">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null or content !=''">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="product_id != null or product_id !=''">
+                #{product_id,jdbcType=INTEGER},
+            </if>
+            <if test="release_time != null or release_time !=''">
+                #{release_time,jdbcType=VARCHAR}
+            </if>
+        );
+    </insert>
+
+    <select id="selectByimportant_id" resultType="com.csr.csrcheck.pojo.Important_notification">
+        SELECT p.product_id,p.product_name,i.*
+        FROM product p,important_notification i
+        WHERE p.`product_id` = i.`product_id`
+        AND i.id =#{id};
+    </select>
+
+    <update id="updateimportant"  parameterType="com.csr.csrcheck.pojo.Important_notification">
+        UPDATE important_notification SET
+            <if test="title != null or title !=''">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null or content !=''">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="product_id != null or product_id !=''">
+                product_id = #{product_id,jdbcType=INTEGER},
+            </if>
+            <if test="release_time != null or release_time !=''">
+                release_time = #{release_time,jdbcType=VARCHAR}
+            </if>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteimportantByid">
+        delete from important_notification where id=#{id}
+    </delete>
 </mapper>

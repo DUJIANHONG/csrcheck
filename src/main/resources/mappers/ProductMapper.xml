@@ -35,39 +35,157 @@
     <!--增加产品sql-->
     <insert id="addproduct" parameterType="com.csr.csrcheck.pojo.Product">
         insert into product(
+                <if test="product_name != null or product_name !=''">
                 product_name,
+                </if>
+                <if test="product_type_id != null or product_type_id !=''">
                 product_type_id,
+                </if>
+                <if test="product_territory != null or product_territory !=''">
                 product_territory,
+                </if>
+                <if test="study_appear != null or study_appear !=''">
                 study_appear,
+                </if>
+                <if test="registered != null or registered !=''">
                 registered,
+                </if>
+                <if test="stage_no != null or stage_no !=''">
                 stage_no,
+                </if>
+                <if test="company_id != null or company_id !=''">
                 company_id,
+                </if>
+                <if test="patent_no != null or patent_no !=''">
                 patent_no,
+                </if>
+                <if test="patent_t_id != null or patent_t_id !=''">
                 patent_t_id,
+                </if>
+                <if test="approvals_no != null or approvals_no !=''">
                 approvals_no,
+                </if>
+                <if test="domestic_import != null or domestic_import !=''">
                 domestic_import,
+                </if>
+                <if test="yieldly != null or yieldly !=''">
                 yieldly,
+                </if>
+                <if test="iflegal != null or iflegal !=''">
                 iflegal,
+                </if>
+                <if test="term_of_validity != null or term_of_validity !=''">
                 term_of_validity
+                </if>
                 )values (
+                <if test="product_name != null or product_name !=''">
                 #{product_name,jdbcType=INTEGER},
+                </if>
+                <if test="product_type_id != null or product_type_id !=''">
                 #{product_type_id,jdbcType=INTEGER},
+                </if>
+                <if test="product_territory != null or product_territory !=''">
                 #{product_territory,jdbcType=VARCHAR},
+                </if>
+                <if test="study_appear != null or study_appear !=''">
                 #{study_appear,jdbcType=VARCHAR},
+                </if>
+                <if test="registered != null or registered !=''">
                 #{registered,jdbcType=INTEGER},
+                </if>
+                <if test="stage_no != null or stage_no !=''">
                 #{stage_no,jdbcType=INTEGER},
+                </if>
+                <if test="company_id != null or company_id !=''">
                 #{company_id,jdbcType=INTEGER},
+                </if>
+                <if test="patent_no != null or patent_no !=''">
                 #{patent_no,jdbcType=VARCHAR},
+                </if>
+                <if test="patent_t_id != null or patent_t_id !=''">
                 #{patent_t_id},
+                </if>
+                <if test="approvals_no != null or approvals_no !=''">
                 #{approvals_no,jdbcType=VARCHAR},
+                </if>
+                <if test="domestic_import != null or domestic_import !=''">
                 #{domestic_import,jdbcType=INTEGER},
+                </if>
+                <if test="yieldly != null or yieldly !=''">
                 #{yieldly,jdbcType=VARCHAR},
+                </if>
+                <if test="iflegal != null or iflegal !=''">
                 #{iflegal,jdbcType=VARCHAR},
+                </if>
+                <if test="term_of_validity != null or term_of_validity !=''">
                 #{term_of_validity}
+                </if>
                 );
     </insert>
+
+    <select id="selectByproduct_id" resultType="com.csr.csrcheck.pojo.Product">
+        SELECT p.*,c.`company_name`,t.`product_t_name`,y.`patent_t_name`,s.`stage_name`
+        FROM product p,company c,z_product_type t,z_patent_type Y,z_stage s
+        WHERE p.`company_id` = c.`id`
+        AND p.`product_type_id`=t.`id`
+        AND p.`patent_t_id` = y.`id`
+        AND p.`stage_no`=s.`id`
+        AND p.`product_id` =#{product_id};
+    </select>
+
+    <update id="updateProduct"  parameterType="com.csr.csrcheck.pojo.Product">
+        UPDATE product SET
+            <if test="product_name != null or product_name !=''">
+                product_name = #{product_name,jdbcType=VARCHAR},
+            </if>
+            <if test="product_type_id != null or product_type_id !=''">
+                product_type_id = #{product_type_id,jdbcType=INTEGER},
+            </if>
+            <if test="product_territory != null or product_territory !=''">
+                product_territory = #{product_territory,jdbcType=VARCHAR},
+            </if>
+            <if test="study_appear != null or study_appear !=''">
+                study_appear = #{study_appear,jdbcType=INTEGER},
+            </if>
+            <if test="registered != null or registered !=''">
+                registered = #{registered,jdbcType=VARCHAR},
+            </if>
+            <if test="stage_no != null or stage_no !=''">
+                stage_no = #{stage_no,jdbcType=INTEGER},
+            </if>
+            <if test="company_id != null or company_id !=''">
+                company_id = #{company_id,jdbcType=INTEGER},
+            </if>
+            <if test="patent_no != null or patent_no !=''">
+                patent_no = #{patent_no,jdbcType=VARCHAR},
+            </if>
+            <if test="patent_t_id != null or patent_t_id !=''">
+                patent_t_id = #{patent_t_id,jdbcType=INTEGER},
+            </if>
+            <if test="approvals_no != null or approvals_no !=''">
+                approvals_no = #{approvals_no,jdbcType=VARCHAR},
+            </if>
+            <if test="domestic_import != null or domestic_import !=''">
+                domestic_import = #{domestic_import,jdbcType=INTEGER},
+            </if>
+            <if test="yieldly != null or yieldly !=''">
+                yieldly  = #{yieldly,jdbcType=VARCHAR},
+            </if>
+            <if test="iflegal != null or iflegal !=''">
+                iflegal = #{iflegal,jdbcType=VARCHAR},
+            </if>
+            <if test="term_of_validity != null or term_of_validity !=''">
+                term_of_validity = #{term_of_validity,jdbcType=DATE}
+            </if>
+        WHERE product_id = #{product_id}
+
+    </update>
 
     <select id="list" resultType="com.csr.csrcheck.pojo.Product">
        SELECT `product_id`,`product_name` FROM `product`
     </select>
+
+    <delete id="deleteProductByid">
+        delete from product where product_id=#{product_id}
+    </delete>
 </mapper>

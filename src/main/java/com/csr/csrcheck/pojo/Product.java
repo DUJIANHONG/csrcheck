@@ -1,7 +1,7 @@
 package com.csr.csrcheck.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -32,7 +32,7 @@ public class Product {
     private int domestic_import;        //国产/进口（1国产；2进口）
     private String yieldly;             //产品生产地
     private int iflegal;               //是否合法
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")//转换时间格式
     private Date term_of_validity;//有效期限
 
     public int getIflegal() {

@@ -95,8 +95,8 @@
                 <div id="datatable-responsive_wrapper"
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
+                        <button type="submit" id="addrecall" class="btn btn-primary"> 新增产品召回</button>
                         <div class="col-sm-12">
-                            <a href="${pageContext.request.contextPath}/" class="btn btn-success btn-sm">新增产品召回信息</a>
                             <table id="datatable-responsive"
                                    class=" table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
                                    role="grid" aria-describedby="datatable-responsive_info"
@@ -153,14 +153,11 @@
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
-                                                    <li><a class="modifyAppInfo" data-toggle="tooltip"
-                                                           data-placement="top" title=""
+                                                    <li><a class="modifyAppInfo update" data-toggle="tooltip"
+                                                           data-placement="top" title="" common="${pages.id}"
                                                            data-original-title="修改公司信息">修改</a></li>
-                                                    <li><a class="viewApp" data-toggle="tooltip"
-                                                           data-placement="top" title=""
-                                                           data-original-title="查看公司信息">查看</a></li>
-                                                    <li><a class="deleteApp" data-toggle="tooltip"
-                                                           data-placement="top" title=""
+                                                    <li><a class="deleteApp delete" data-toggle="tooltip"
+                                                           data-placement="top" title="" common="${pages.id}"
                                                            data-original-title="删除公司信息">删除</a></li>
                                                 </ul>
                                             </div>
@@ -231,7 +228,67 @@
 <!--<script src="js/rollpage.js"></script>-->
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/rollpage.js"></script>
-</body>
+<script src="${pageContext.request.contextPath }/js/plugins/layer/layer.js"></script>
+<script type="application/javascript">
+    $(function () {
+        $("#addrecall").click(function () {
+            layer.open({
+                type: 2,
+                title: '新增产品召回',
+                shadeClose: true,
+                maxmin: true, //开启最大化最小化按钮
+                area: ['893px', '750px'],
+                anim: 3,
+                content: '/recall/addrecall',
+                end: function () {
+                    location.reload();
+                }
+            });
+        });
+        $(".update").click(function () {
+            var obj=$(this);
+            console.log(obj.attr('common'));
+            layer.open({
+                type: 2,
+                title: '修改产品召回',
+                shadeClose: true,
+                maxmin: true, //开启最大化最小化按钮
+                area: ['893px', '700px'],
+                anim: 2,
+                content: '/recall/updaterecall/'+obj.attr("common"),
+                end: function () {
+                    location.reload();
+                }
+            });
+        });
+        $(".delete").click(function () {
+            var obj=$(this);
+            console.log(obj.attr('common'));
+            layer.confirm('您确认删除吗？', {
+                btn: ['删除','取消'] //按钮
+            }, function(){
+                $.ajax({
+                    type: "POST",
+                    url: "/recall/deleterecall/"+obj.attr("common"),
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.code == 0) {
+                            parent.layer.msg("删除成功", {icon: 1});
+                            location.reload();
+                        } else {
+                            parent.layer.alert(data.msg);
+                        }
+                    }
+                });
+            }, function(){
+                layer.msg('您取消了删除', {
+                    time: 1000, //2s后自动关闭
+                });
+                parent.layer.close();
+            });
+        });
+    });
+</script>
 </body>
 </html>
 

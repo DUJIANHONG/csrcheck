@@ -1,16 +1,17 @@
 package com.csr.csrcheck.controller;
 import com.csr.csrcheck.controller.ex.CompanyException;
-import com.csr.csrcheck.pojo.Product_type;
+import com.csr.csrcheck.pojo.*;
 import com.csr.csrcheck.service.ProductService;
 import com.csr.csrcheck.util.JsonResult;
 import com.csr.csrcheck.util.PageResult;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 
@@ -21,11 +22,12 @@ import java.util.List;
  * @version:
  * @modified By:
  */
-@RestController
+@Controller
 @RequestMapping("product")
 @Slf4j
 public class ProductController extends BaseController {
 
+    private static final Integer code=0;
     @Resource
     private ProductService productService;
 
@@ -50,5 +52,95 @@ public class ProductController extends BaseController {
     public String selectproduct_type(Model model){
         List<Product_type> list = productService.selectProduct_type();
         return "/";
+    }
+
+    /**
+     * 跳转到新增产品页面
+     */
+    @RequestMapping("addproduct")
+    public String addproduct(Model model){
+        List<Company> company = productService.selectCompany();
+        List<Product_type> typelist = productService.selectProduct_type();
+        List<Patent_type> patent = productService.selectPatent();
+        List<Stage> stages = productService.selectStage();
+        model.addAttribute("company",company);
+        model.addAttribute("typelist",typelist);
+        model.addAttribute("patent",patent);
+        model.addAttribute("stages",stages);
+        return "addproduct";
+    }
+
+    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+    /**
+     * 新增成功后跳转到产品列表
+     * @param
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(path = "saveproduct", method = RequestMethod.POST)
+    public JsonResult<Object> addProduct(Product product, @RequestParam("term_of_validity") String date) throws ParseException {
+        product.setTerm_of_validity(sdf.parse(date));
+        int result = productService.addproduct(product);
+        if (result ==1){
+            log.info("添加成功！");
+        }else {
+            log.info("添加失败！");
+        }
+        return new JsonResult<>(code,OK);
+    }
+
+
+
+    @RequestMapping(path = "updateproduct/{id}", method = RequestMethod.GET)
+    public String updateProduct(@PathVariable(value = "id") int id,Model model) {
+        Product product = productService.selectByproduct_id(id);
+        List<Company> company = productService.selectCompany();
+        List<Product_type> typelist = productService.selectProduct_type();
+        List<Patent_type> patent = productService.selectPatent();
+        List<Stage> stages = productService.selectStage();
+        model.addAttribute("company",company);
+        model.addAttribute("typelist",typelist);
+        model.addAttribute("patent",patent) ;
+        model.addAttribute("stages",stages);
+        model.addAttribute("product",product);
+        return "updateproduct";
+    }
+
+    /**
+     * 保存修改产品信息
+     * @param product
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(path="saveupdateproduct", method= RequestMethod.POST)
+    public JsonResult<Void> updateproduct(Product product){
+        try {
+            int result = productService.updateProduct(product);
+            if (result == 1) {
+                log.info("修改了产品信息！");
+            } else {
+                log.info("未完成修改！");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return new JsonResult<>(code,OK);
+    }
+    /**
+     * 根据产品id删除
+     * @param
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(path = "deleteproduct/{id}", method = RequestMethod.POST)
+    public JsonResult<Object> deleteProduct(Product product, @PathVariable(value = "id") int id) {
+        int result = productService.deleteProductByid(id);
+        if (result ==1){
+            log.info("删除成功！");
+        }else {
+            log.info("删除失败！");
+        }
+        return new JsonResult<>(code,OK);
     }
 }

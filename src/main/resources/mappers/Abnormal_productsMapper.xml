@@ -39,10 +39,127 @@
       </trim>
     </select>
 
-    <select id="getAllProduct" resultType="com.csr.csrcheck.pojo.Abnormal_products">
+    <select id="getAbnormalByTheir_id" resultType="com.csr.csrcheck.pojo.Abnormal_products">
         SELECT p.`product_name`,a.`packing`,a.`batch_no`,a.`approval_no`,a.`disqualification`,
                a.`inspection_result`,a.`standard_code`,a.`agencies_to_verify`,a.`last`,a.`provenance`
-        FROM abnormal_products a,product p
-        WHERE a.`product_id`=p.`product_id`
+        FROM abnormal_products a,product p,z_product_type z
+        WHERE a.`product_id`=p.`product_id` AND p.product_type_id=z.id AND z.id=#{product_type_id}
     </select>
+
+    <select id="selectproduct" resultType="com.csr.csrcheck.pojo.Product">
+        select product_id,product_name,term_of_validity from product;
+    </select>
+
+    <!--增加产品异常信息sql-->
+    <insert id="addabnormal" parameterType="com.csr.csrcheck.pojo.Abnormal_products">
+        insert into abnormal_products(
+        <if test="product_id != null or product_id !=''">
+            product_id,
+        </if>
+        <if test="packing != null or packing !=''">
+            packing,
+        </if>
+        <if test="batch_no != null or batch_no !=''">
+            batch_no,
+        </if>
+        <if test="approval_no != null or approval_no !=''">
+            approval_no,
+        </if>
+        <if test="disqualification != null or disqualification !=''">
+            disqualification,
+        </if>
+        <if test="inspection_result != null or inspection_result !=''">
+            inspection_result,
+        </if>
+        <if test="standard_code != null or standard_code !=''">
+            standard_code,
+        </if>
+        <if test="agencies_to_verify != null or agencies_to_verify !=''">
+            agencies_to_verify,
+        </if>
+        <if test="last != null or last !=''">
+            last,
+        </if>
+        <if test="provenance != null or provenance !=''">
+            provenance
+        </if>
+        )values (
+        <if test="product_id != null or product_id !=''">
+            #{product_id,jdbcType=INTEGER},
+        </if>
+        <if test="packing != null or packing !=''">
+            #{packing,jdbcType=VARCHAR},
+        </if>
+        <if test="batch_no != null or batch_no !=''">
+            #{batch_no,jdbcType=VARCHAR},
+        </if>
+        <if test="approval_no != null or approval_no !=''">
+            #{approval_no,jdbcType=VARCHAR},
+        </if>
+        <if test="disqualification != null or disqualification !=''">
+            #{disqualification,jdbcType=VARCHAR},
+        </if>
+        <if test="inspection_result != null or inspection_result !=''">
+            #{inspection_result,jdbcType=VARCHAR},
+        </if>
+        <if test="standard_code != null or standard_code !=''">
+            #{standard_code,jdbcType=VARCHAR},
+        </if>
+        <if test="agencies_to_verify != null or agencies_to_verify !=''">
+            #{agencies_to_verify,jdbcType=VARCHAR},
+        </if>
+        <if test="last != null or last !=''">
+            #{last,jdbcType=VARCHAR},
+        </if>
+        <if test="provenance != null or provenance !=''">
+            #{provenance,jdbcType=VARCHAR}
+        </if>
+        );
+    </insert>
+
+    <select id="selectByabnormal_id" resultType="com.csr.csrcheck.pojo.Abnormal_products">
+        SELECT p.product_id,p.product_name,a.*
+        FROM product p,abnormal_products a
+        WHERE p.`product_id` = a.`product_id`
+        AND a.id =#{id};
+    </select>
+
+    <update id="updateabnormal"  parameterType="com.csr.csrcheck.pojo.Abnormal_products">
+        UPDATE abnormal_products SET
+        <if test="product_id != null or product_id !=''">
+            product_id = #{product_id,jdbcType=INTEGER},
+        </if>
+        <if test="packing != null or packing !=''">
+            packing = #{packing,jdbcType=VARCHAR},
+        </if>
+        <if test="batch_no != null or batch_no !=''">
+            batch_no = #{batch_no,jdbcType=VARCHAR},
+        </if>
+        <if test="approval_no != null or approval_no !=''">
+            approval_no = #{approval_no,jdbcType=VARCHAR},
+        </if>
+        <if test="disqualification != null or disqualification !=''">
+            disqualification = #{disqualification,jdbcType=VARCHAR},
+        </if>
+        <if test="inspection_result != null or inspection_result !=''">
+            inspection_result = #{inspection_result,jdbcType=VARCHAR},
+        </if>
+        <if test="standard_code != null or standard_code !=''">
+            standard_code = #{standard_code,jdbcType=VARCHAR},
+        </if>
+        <if test="agencies_to_verify != null or agencies_to_verify !=''">
+            agencies_to_verify = #{agencies_to_verify,jdbcType=VARCHAR},
+        </if>
+        <if test="last != null or last !=''">
+            last = #{last,jdbcType=VARCHAR},
+        </if>
+        <if test="provenance != null or provenance !=''">
+            provenance = #{provenance,jdbcType=VARCHAR}
+        </if>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteabnormalByid">
+        delete from abnormal_products where id=#{id}
+    </delete>
 </mapper>
