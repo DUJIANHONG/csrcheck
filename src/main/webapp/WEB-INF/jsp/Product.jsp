@@ -311,7 +311,7 @@
                      url: "/product/deleteproduct/"+obj.attr("common"),
                      dataType: 'json',
                      success: function (data) {
-                         if (data.state == 2000) {
+                         if (data.code == 0) {
                              parent.layer.msg("删除成功", {icon: 1});
                              location.reload();
                          } else {
