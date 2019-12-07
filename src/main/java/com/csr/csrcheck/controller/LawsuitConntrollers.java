@@ -27,7 +27,7 @@ public class LawsuitConntrollers extends BaseController{
     private LawsuitService lawsuitService;
 
 
-       int count=lawsuitService.count();
+    private static final int count=1000;
 
     /**
      * 根据企业名称、案件类型、文书类型、被告、发布时间 分页查询法律诉讼
