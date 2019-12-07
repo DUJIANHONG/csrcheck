@@ -104,7 +104,7 @@ public class UserController extends BaseController {
     public JsonResult<Void> chageUserImg(HttpServletRequest request,
                                          MultipartFile file,HttpSession session){
         int id=getUidFromSession(session);
-        userService.UpdateUser_photo(id,request,file);
+        userService.UpdateUser_photo(id,request,session,file);
         return new JsonResult<>(code,OK);
     }
 
