@@ -28,6 +28,8 @@ import java.util.List;
 @RestController
 @Slf4j
 public class LawsuitConntroller extends BaseController{
+
+    private static final int count=1000;
     @Resource
     private LawsuitService lawsuitService;
 

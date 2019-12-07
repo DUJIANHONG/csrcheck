@@ -1,6 +1,5 @@
 package com.csr.csrcheck.mapper;
 
-import com.csr.csrcheck.pojo.Clinic;
 import com.csr.csrcheck.pojo.Lawsuit;
 import org.apache.ibatis.annotations.Param;
 
@@ -54,4 +53,6 @@ public interface LawsuitMapper {
      * @return
      */
     Lawsuit findlawsuit(int id);
+
+    int count();
 }

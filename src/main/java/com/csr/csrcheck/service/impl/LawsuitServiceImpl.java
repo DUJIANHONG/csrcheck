@@ -1,11 +1,8 @@
 package com.csr.csrcheck.service.impl;
 
 import com.csr.csrcheck.mapper.LawsuitMapper;
-import com.csr.csrcheck.mapper.OrganMapper;
-import com.csr.csrcheck.pojo.Company;
 import com.csr.csrcheck.pojo.Lawsuit;
 import com.csr.csrcheck.service.LawsuitService;
-import com.csr.csrcheck.service.OrganService;
 import com.csr.csrcheck.service.ex.CompanyException;
 import com.csr.csrcheck.service.ex.LawsuitException;
 import com.csr.csrcheck.util.PageResult;
@@ -51,6 +48,15 @@ public class LawsuitServiceImpl implements LawsuitService {
     }
 
     @Override
+    public List<Lawsuit> getlistpages(String company_name, String casetype, String doctype, String defendants, String submittime) {
+        List<Lawsuit> list=lawsuitMapper.getListpage(company_name,casetype,doctype,defendants,submittime);
+        if(list==null){
+            throw new CompanyException("数据为空");
+        }
+        return list;
+    }
+
+    @Override
     public int addlawsuit(Lawsuit lawsuit) {
         int row = lawsuitMapper.addlawsuit(lawsuit);
         if(row!=1){
@@ -80,6 +86,11 @@ public class LawsuitServiceImpl implements LawsuitService {
     @Override
     public Lawsuit findlawsuit(int id) {
         return lawsuitMapper.findlawsuit(id);
+    }
+
+    @Override
+    public int count() {
+        return lawsuitMapper.count();
     }
 
 

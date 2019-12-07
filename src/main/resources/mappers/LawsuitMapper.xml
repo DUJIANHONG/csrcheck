@@ -58,4 +58,8 @@ l.`lawsuitUrl`,l.`casetype`,l.`doctype`,l.`agent`,l.`thirdParties`,l.`defendants
     <select id="findlawsuit" resultType="com.csr.csrcheck.pojo.Lawsuit">
         SELECT l.* FROM `lawsuit` l WHERE l.id=#{id}
     </select>
+
+    <select id="count">
+        select count(*) from lawsuit
+    </select>
 </mapper>

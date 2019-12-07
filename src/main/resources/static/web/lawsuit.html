@@ -1,0 +1,304 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CSR</title>
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../css/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../css/green.css" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="../css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="../css/jqvmap.min.css" rel="stylesheet"/>
+    <link href="../css/dropzone.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="../css/custom.min.css" rel="stylesheet">
+
+    <!-- add local/css-->
+    <link href="../css/appinfoadd.css" rel='stylesheet'>
+    <link href="../css/appinfolist.css" rel='stylesheet'>
+    <link  rel="stylesheet" href="../layui/css/layui.css" media="all">
+</head>
+<body>
+
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    法律诉讼信息管理维护 <i class="fa fa-user"></i><small><span th:text="${userSession.role_name}"></span>-
+                    <span th:text="${userSession.user_name}"></span>- 您可以通过搜索或者其他的筛选项对法律诉讼的信息进行修改、删除等管理操作。</small>
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <form method="post" action="/lawsuits/lawsuits">
+                    <input type="hidden" name="pageNum" value="1" />
+                    <ul>
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">企业名称</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input name="company_name" type="text" class="form-control col-md-7 col-xs-12"
+                                           value="">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">案件类型</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input name="casetype" type="text" class="form-control col-md-7 col-xs-12"
+                                           value="">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">文书类型</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input name="doctype" type="text" class="form-control col-md-7 col-xs-12"
+                                           value="">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">被告</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input name="defendants" type="text" class="form-control col-md-7 col-xs-12"
+                                           value="">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">发布时间</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input name="submittime" type="date" class="form-control col-md-7 col-xs-12"
+                                           value="">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询</button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
+                <p class="text-muted font-13 m-b-30"></p>
+                <div id="datatable-responsive_wrapper"
+                     class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a href="javascript:;" id="addlawsuit" class="btn btn-success btn-sm">新增法律诉讼信息</a>
+                            <table class="layui-hide" id="test" lay-filter="test"></table>
+
+                            <script type="text/html" id="toolbarDemo">
+                                <div class="layui-btn-container">
+                                    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+                                    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+                                    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+                                </div>
+                            </script>
+
+                            <script type="text/html" id="barDemo">
+                                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jQuery -->
+<script src="../js/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="../js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../js/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../js/nprogress.js"></script>
+<!-- jQuery custom content scroller -->
+<script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../js/dropzone.js"></script>
+<!--<script src="js/rollpage.js"></script>-->
+<script src="../js/jquery.min.js"></script>
+<script src="../js/rollpage.js"></script>
+<script src="../js/plugins/layer/layer.min.js"></script>
+<script src="../js/plugins/layer/layer.js"></script>
+<script src="../layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript">
+    layui.use(['layer','table'], function(){
+        var table = layui.table,
+            layer=layui.layer;
+
+        table.render({
+            elem: '#test'
+            ,url:'/lawsuits/lawsuits'
+            // parseData: function(res){
+            //     console.log('返回的值',res)
+            //     return {
+            //         "statusCode": res.code, //解析接口状态
+            //         "data": res.data.content //解析数据列表
+            //     };
+            // }
+            ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                title: '提示'
+                ,layEvent: 'LAYTABLE_TIPS'
+                ,icon: 'layui-icon-tips'
+            }]
+            ,title: '用户数据表'
+            ,cols: [[
+                {type: 'numbers', fixed: 'left'}
+                ,{field:'company_id', title:'公司名称', width:80}
+                ,{field:'plaintiffs', title:'原告', width:120}
+                ,{field:'court', title:'法院', width:150}
+                ,{field:'casereason', title:'案由', width:80}
+                ,{field:'url', title:'原文链接地址', width:100}
+                ,{field:'caseno', title:'案号'}
+                ,{field:'title', title:'标题', width:80}
+                ,{field:'abstracts', title:'摘要', width:120}
+                ,{field:'submittime', title:'发布时间', width:100}
+                ,{field:'lawsuitUrl', title:'药企通显示url', width:120}
+                ,{field:'casetype', title:'案件类型', width:120}
+                ,{field:'doctype', title:'文书类型', width:120}
+                ,{field:'agent', title:'代理人', width:120}
+                ,{field:'thirdParties', title:'第三人', width:120}
+                ,{field:'defendants', title:'被告', width:120}
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+            ]]
+            ,page: true
+        });
+
+        //头工具栏事件
+        table.on('toolbar(test)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'getCheckData':
+                    var data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                    break;
+                case 'getCheckLength':
+                    var data = checkStatus.data;
+                    layer.msg('选中了：'+ data.length + ' 个');
+                    break;
+                case 'isAll':
+                    layer.msg(checkStatus.isAll ? '全选': '未全选');
+                    break;
+
+                //自定义头工具栏右侧图标 - 提示
+                case 'LAYTABLE_TIPS':
+                    layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                    break;
+            };
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function(obj){
+            var data = obj.data;
+            //console.log(obj)
+            if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if(obj.event === 'edit'){
+                layer.prompt({
+                    formType: 2
+                    ,value: data.email
+                }, function(value, index){
+                    obj.update({
+                        email: value
+                    });
+                    layer.close(index);
+                });
+            }
+        });
+    });
+
+
+    //增加
+    $("#addlawsuit").on('click',function () {
+        layer.open({
+            type: 2,
+            title: '添加法律诉讼',
+            maxmin: true,
+            shadeClose: true,
+            anim: 2,
+            shade: [0.8, '#393D49'],
+            area: ['800px', '600px'],
+            content: '/web/addlawsuit.html',
+            end: function () {
+                location.reload();
+            }
+        })
+    })
+    //修改
+    $(".update").on('click',function () {
+        var obj=$(this);
+        console.log(obj.attr("updateid"))
+        layer.open({
+            type: 2,
+            title:'修改法律诉讼',
+            maxmin:true,
+            shadeClose: true,
+            anim: 4,
+            shade:[0.8,'#393D49'],
+            area:['800px','600px'],
+            content: '/web/updatelawsuit.html?id='+obj.attr('updateid'),
+            end:function () {
+                location.reload();
+            }
+        })
+    })
+    //删除
+    $(".delete").on('click',function () {
+        var obj=$(this);
+        console.log(obj.attr("deleteid"));
+        parent.layer.confirm("确定要删除这条记录吗？",{btn:['确定','取消']},function (confirm) {
+            layer.close(confirm);
+            $.ajax({
+                type:"post",
+                url:"/lawsuit/deletelawsuit/"+obj.attr("deleteid"),
+                dataType:"json",
+                success:function (data) {
+                    if(data.code==0){
+                        parent.layer.msg("操作成功",{icon:6});
+                        location.reload();
+                    }else{
+                        parent.layer.msg(data.msg);
+                    }
+                }
+            });
+        },function (confirms) {
+            layer.close(confirms);
+            parent.layer.msg("已取消删除");
+        });
+
+    });
+</script>
+</body>
+</body>
+</html>
+

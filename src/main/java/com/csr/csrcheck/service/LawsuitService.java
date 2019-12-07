@@ -1,11 +1,7 @@
 package com.csr.csrcheck.service;
 
-import com.csr.csrcheck.pojo.Clinic;
 import com.csr.csrcheck.pojo.Lawsuit;
 import com.csr.csrcheck.util.PageResult;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -29,6 +25,23 @@ public interface LawsuitService {
      * @return
      */
     PageResult getlistpage(int pageNum,int pageSize,String company_name,
+                          String casetype,
+                           String doctype,
+                          String defendants,
+                          String submittime);
+
+    /**
+     * 根据企业名称、案件类型、文书类型、被告、发布时间 分页查询法律诉讼
+     * @param
+     * @param
+     * @param company_name
+     * @param casetype
+     * @param doctype
+     * @param defendants
+     * @param submittime
+     * @return
+     */
+    List<Lawsuit> getlistpages(String company_name,
                           String casetype,
                            String doctype,
                           String defendants,
@@ -59,4 +72,6 @@ public interface LawsuitService {
      * @return
      */
     Lawsuit findlawsuit(int id);
+
+    int count();
 }
