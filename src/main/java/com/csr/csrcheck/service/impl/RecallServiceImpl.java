@@ -1,6 +1,7 @@
 package com.csr.csrcheck.service.impl;
 
 import com.csr.csrcheck.mapper.RecallMapper;
+import com.csr.csrcheck.pojo.Product;
 import com.csr.csrcheck.pojo.Product_recall;
 import com.csr.csrcheck.service.RecallService;
 import com.csr.csrcheck.service.ex.CompanyException;
@@ -39,6 +40,43 @@ public class RecallServiceImpl implements RecallService {
     @Override
     public PageResult getlistpage(int pageNum, int pageSize, String company_name, String product_name, String product_t_name) {
         return PageUtils.getPageResult(pageNum,pageSize,getPageInfo(pageNum,pageSize,company_name,product_name,product_t_name));
+    }
+
+    @Override
+    public List<Product> selectproduct() {
+        return recallMapper.selectproduct();
+    }
+
+    @Override
+    public int addrecall(Product_recall product_recall) {
+        int result = recallMapper.addrecall(product_recall);
+        if (result != 1){
+            throw new CompanyException("添加失败！");
+        }
+        return result;
+    }
+
+    @Override
+    public Product_recall selectByrecall_id(int id) {
+        return recallMapper.selectByrecall_id(id);
+    }
+
+    @Override
+    public int updaterecall(Product_recall product_recall) {
+        int result = recallMapper.updaterecall(product_recall);
+        if (result != 1){
+            throw new CompanyException("添加失败！");
+        }
+        return result;
+    }
+
+    @Override
+    public int deleterecallByid(int id) {
+        int result = recallMapper.deleterecallByid(id);
+        if (result != 1){
+            throw new CompanyException("添加失败！");
+        }
+        return result;
     }
 
 

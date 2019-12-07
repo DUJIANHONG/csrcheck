@@ -27,4 +27,58 @@
         </if>
     </trim>
     </select>
+    <!--查询产品信息-->
+    <select id="selectproduct" resultType="com.csr.csrcheck.pojo.Product">
+        select product_id,product_name from product;
+    </select>
+
+    <!--增加产品重要通报信息sql-->
+    <insert id="addrecall" parameterType="com.csr.csrcheck.pojo.Product_recall">
+        insert into product_recall(
+        <if test="product_id != null or product_id !=''">
+            product_id,
+        </if>
+        <if test="keywords_remarks != null or keywords_remarks !=''">
+            keywords_remarks,
+        </if>
+        <if test="recall_content != null or recall_content !=''">
+            recall_content
+        </if>
+        )values (
+        <if test="product_id != null or product_id !=''">
+            #{product_id,jdbcType=INTEGER},
+        </if>
+        <if test="keywords_remarks != null or keywords_remarks !=''">
+            #{keywords_remarks,jdbcType=VARCHAR},
+        </if>
+        <if test="recall_content != null or recall_content !=''">
+            #{recall_content,jdbcType=VARCHAR}
+        </if>
+        );
+    </insert>
+
+    <select id="selectByrecall_id" resultType="com.csr.csrcheck.pojo.Product_recall">
+        SELECT p.product_id,p.product_name,r.*
+        FROM product p,product_recall r
+        WHERE p.`product_id` = r.`product_id`
+        AND r.id =#{id};
+    </select>
+
+    <update id="updaterecall"  parameterType="com.csr.csrcheck.pojo.Product_recall">
+        UPDATE product_recall SET
+        <if test="product_id != null or product_id !=''">
+            product_id = #{product_id,jdbcType=INTEGER},
+        </if>
+        <if test="keywords_remarks != null or keywords_remarks !=''">
+            keywords_remarks = #{keywords_remarks,jdbcType=VARCHAR},
+        </if>
+        <if test="recall_content != null or recall_content !=''">
+            recall_content = #{recall_content,jdbcType=VARCHAR}
+        </if>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleterecallByid">
+        delete from product_recall   where id=#{id}
+    </delete>
 </mapper>

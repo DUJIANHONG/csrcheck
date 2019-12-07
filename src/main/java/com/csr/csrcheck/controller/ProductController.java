@@ -27,6 +27,7 @@ import java.util.List;
 @Slf4j
 public class ProductController extends BaseController {
 
+    private static final Integer code=0;
     @Resource
     private ProductService productService;
 
@@ -86,7 +87,7 @@ public class ProductController extends BaseController {
         }else {
             log.info("添加失败！");
         }
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 
 
@@ -100,7 +101,7 @@ public class ProductController extends BaseController {
         List<Stage> stages = productService.selectStage();
         model.addAttribute("company",company);
         model.addAttribute("typelist",typelist);
-        model.addAttribute("patent",patent);
+        model.addAttribute("patent",patent) ;
         model.addAttribute("stages",stages);
         model.addAttribute("product",product);
         return "updateproduct";
@@ -124,7 +125,7 @@ public class ProductController extends BaseController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
     /**
      * 根据产品id删除
@@ -140,6 +141,6 @@ public class ProductController extends BaseController {
         }else {
             log.info("删除失败！");
         }
-        return new JsonResult<>(SUCCESS,OK);
+        return new JsonResult<>(code,OK);
     }
 }

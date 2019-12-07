@@ -5,6 +5,7 @@ import com.csr.csrcheck.pojo.Abnormal_products;
 import java.util.List;
 
 import com.csr.csrcheck.pojo.Abnormal_products;
+import com.csr.csrcheck.pojo.Product;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -26,4 +27,28 @@ public interface Abnormal_productsMapper {
      * @return
      */
    public List<Abnormal_products> abnormallsit(@Param(value = "product_name") String product_name);
+
+    /**
+     *下拉框查询产品名称
+     */
+    List<Product> selectproduct();
+   /**
+   增加产品异常信息
+    */
+   int addabnormal(Abnormal_products abnormal_products);
+
+    /**
+     * 修改前根据产品id查询产品异常信息
+     */
+    Abnormal_products selectByabnormal_id(int id);
+
+    /**
+     * 修改产品异常信息
+     */
+    int updateabnormal(Abnormal_products abnormal_products);
+
+    /**
+     * 根据产品id删除
+     */
+    int deleteabnormalByid(int id);
 }

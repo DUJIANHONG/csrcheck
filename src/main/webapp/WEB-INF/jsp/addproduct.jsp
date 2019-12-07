@@ -18,7 +18,7 @@
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
     <legend>增加产品信息</legend>
 </fieldset>
-<form class="layui-form layui-form-pane" id="productadd">
+<form class="layui-form layui-form-pane" id="abnormaladd">
     <div class="layui-form-item">
         <label class="layui-form-label">所属公司</label>
         <div class="layui-input-block">
@@ -144,31 +144,24 @@
 
 
 
-     layui.use(['form','layer','jquery','laydate'], function() {
-         var form = layui.form,
-             layer = layui.layer,
-             $ = layui.jquery,
-             laydate = layui.laydate;
+     layui.use(['laydate'], function() {
+         var laydate = layui.laydate;
 
          laydate.render({
              elem: '#date1' //指定元素
          });
-         form.on('submit(*)', function () {
-             add();
-         });
      });
 
-
-         function add() {
-                if($("#productadd").valid()){
+            $("#save").click(function () {
+                if($("#abnormaladd").valid()){
                     $.ajax({
                         type: "POST",
-                        url: "${pageContext.request.contextPath }/product/saveproduct",
-                        data: $('#productadd').serialize(),
+                        url: "/product/saveproduct",
+                        data: $('#abnormaladd').serialize(),
                         async: false,
                         dataType: 'json',
                         success: function (data) {
-                            if (data.state == 2000) {
+                            if (data.code == 0) {
                                 parent.layer.alert("添加成功");
                             } else {
                                 parent.layer.alert(data.msg)
@@ -176,8 +169,7 @@
                         }
                     });
                 }
-         }
-
+            });
 </script>
 
 </body>
